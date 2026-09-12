@@ -1,19 +1,19 @@
 [data-theme="dark"] {
   /* Primary */
-  --primary-50: #eff3ff;
-  --primary-100: #dae2ff;
-  --primary-200: #becdff;
-  --primary-300: #91aeff;
-  --primary-400: #5e84fc;
-  --primary-500: #3758f9;
-  --primary-600: #2237ee;
-  --primary-700: #1a25db;
-  --primary-800: #1c20b1;
-  --primary-900: #1c228c;
-  --primary-950: #161755;
+  --primary-50: #fff3f1;
+  --primary-100: #ffe2de;
+  --primary-200: #ffc9c1;
+  --primary-300: #ffa393;
+  --primary-400: #ff7d69;
+  --primary-500: #ff6450;
+  --primary-600: #e85d2f;
+  --primary-700: #c44328;
+  --primary-800: #a23825;
+  --primary-900: #863524;
+  --primary-950: #4a0e1a;
 
   --primary-text: white;
-  --neutral-brand-color: #7592ff;
+  --neutral-brand-color: #ff7d69;
 
   /* Text Color */
   --title-50: #ffffffcc;
@@ -69,10 +69,10 @@
   /* ======== Button Color For Dark =========*/
 
   /* Button Primary Color */
-  --button-primary-background: #5750f1;
-  --button-primary-hover-background: #3c35d8;
+  --button-primary-background: #ff6450;
+  --button-primary-hover-background: #e85d2f;
   --button-primary-text: #ffffff;
-  --button-primary-focus-ring: rgba(87, 80, 241, 0.2);
+  --button-primary-focus-ring: rgba(255, 100, 80, 0.2);
 
   /* Outline Dark */
   --button-outline-background: #111827;
@@ -464,19 +464,19 @@
 
   --animate-pulse-custom: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
-  /* ======================= Next Admin Dashboard  ======================= */
+  /* ======================= Application aliases ======================= */
   /* background */
-  --background-gray-secondary_alt_2: #09090b;
-  --background-gray-secondary_alt: #27272a;
-  --background-gray-primary: #18181b;
-  --background-gray-secondary: #18181b;
-  --background-gray-tertiary: #27272a;
+  --background-gray-secondary_alt_2: #160e10;
+  --background-gray-secondary_alt: #241719;
+  --background-gray-primary: #211416;
+  --background-gray-secondary: #241719;
+  --background-gray-tertiary: #362326;
   --dropdowns-background: #27272a;
   --input-background: rgba(255, 255, 255, 0.05);
-  --card-background: #171718;
+  --card-background: #211416;
   --background-white-secondary: #18181b;
-  --card-surface-area: #0f0f0f;
-  --sidebar-navigation-nav-item-nav-hover-background: rgba(255, 255, 255, 0.05);
+  --card-surface-area: #1b1113;
+  --sidebar-navigation-nav-item-nav-hover-background: rgba(255, 100, 80, 0.1);
   --button-primary-outline-background: rgba(255, 255, 255, 0.05);
   --button-primary-outline-hover-background: #18181b;
   --background-white-primary: #09090b;
@@ -487,12 +487,12 @@
   --background-gray-quaternary: #3f3f46;
 
   /* general color */
-  --brand-100: #e0e7ff;
-  --brand-200: #c7d2fe;
-  --brand-300: #a5b4fc;
-  --brand-400: #818cf8;
-  --brand-500: #5750f1;
-  --brand-600: #3c35d8;
+  --brand-100: #fff3f1;
+  --brand-200: #ffe2de;
+  --brand-300: #ffa393;
+  --brand-400: #ff7d69;
+  --brand-500: #ff6450;
+  --brand-600: #e85d2f;
   --base-white: #ffffff;
   --green-600: #16a34a;
   --red-600: #dc2626;

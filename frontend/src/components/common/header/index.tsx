@@ -5,10 +5,8 @@ import ThemeToggle from "@/components/common/header/theme-toggle";
 import { UserProfileButton } from "@/components/common/header/user-profile";
 import { ThreeDots } from "@/components/common/sidebar/icon";
 import { cn } from "@/utils/cn";
-import { LogoWithText } from "@/utils/icon";
+import { BrandLogo } from "@/components/common/brand-logo";
 import React from "react";
-import { NotificationsButton } from "./notifications";
-import SearchBar from "./searchbar";
 
 //  Main Header
 export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
@@ -25,7 +23,7 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
               id="mobile-menu-toggle"
               onClick={onMenuClick}
               aria-label="Open sidebar menu"
-              className="rounded-md px-1.5 py-1 text-icon-tertiary transition-colors hover:text-text-primary"
+              className="flex size-11 items-center justify-center rounded-lg text-icon-tertiary transition-colors hover:bg-background-gray-secondary hover:text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
             >
               <MenuIcon />
             </button>
@@ -33,7 +31,7 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
 
           {/* Center: Logo */}
           <div className="flex items-center justify-center">
-            <LogoWithText />
+            <BrandLogo />
           </div>
 
           {/* Right: Three-dot */}
@@ -43,7 +41,7 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
               onClick={() => setIsDrawerOpen(!isDrawerOpen)}
               aria-label="Open quick access"
               className={cn(
-                "rounded-md px-1.5 py-3 transition-colors",
+                "flex size-11 items-center justify-center rounded-lg transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600",
                 isDrawerOpen
                   ? "bg-background-gray-secondary text-text-primary"
                   : "text-icon-tertiary hover:text-text-primary",
@@ -57,14 +55,11 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
         {/* Desktop layout (xl+) - original layout */}
         <div className="hidden items-center justify-between xl:flex">
           {/* Left Side - Search */}
-          <div className="max-w-xs flex-1">
-            <SearchBar />
-          </div>
+          <p className="text-sm font-medium text-text-secondary">Organization workspace</p>
 
           {/* Right Side - Actions */}
           <div className="flex items-center gap-2.5">
             <ThemeToggle />
-            <NotificationsButton />
             <UserProfileButton />
           </div>
         </div>
@@ -83,9 +78,7 @@ function MobileInfoDrawer({ isOpen }: { isOpen: boolean }) {
       <div className="px-5 py-4 shadow-xs">
         <div className="flex items-center justify-between gap-2.5">
           <div className="flex items-center gap-2.5">
-            <NotificationsButton />
             <ThemeToggle />
-            <SearchBar />
           </div>
 
           {/* Right Side - Actions */}

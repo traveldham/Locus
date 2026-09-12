@@ -1,11 +1,8 @@
 'use client';
 
-import { buttonStyles } from '@/components/tailgrids/core/button';
 import { CollapsibleGroup } from '@/components/tailgrids/core/collapsible';
+import { BrandLogo } from '@/components/common/brand-logo';
 import { cn } from '@/utils/cn';
-import { Logo, LogoWithText, LogoWithTextDark } from '@/utils/icon';
-import { useTheme } from 'next-themes';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import type { Key } from 'react-aria-components';
@@ -26,7 +23,6 @@ export default function Sidebar({
     onItemClick?: () => void;
 }) {
     const pathname = usePathname();
-    const { theme } = useTheme();
 
     // Compute which group should be open based on the current route
     const activeGroupKey = useMemo(
@@ -39,37 +35,25 @@ export default function Sidebar({
     );
 
     return (
-        <div className='flex h-full flex-col overflow-hidden'>
+        <div className='flex h-full flex-col overflow-hidden bg-background-gray-secondary_alt_2 text-white'>
             {/* Header */}
             <div
                 className={cn(
-                    'flex items-center px-4 pt-7 text-text-primary',
+                    'flex items-center px-4 pt-7 text-white',
                     isSidebarOpen
                         ? 'justify-between'
                         : 'flex-col justify-center gap-4',
                 )}
             >
-                <Link href='/'>
-                    {isSidebarOpen ? (
-                        <>
-                            {theme === 'light' ? (
-                                <LogoWithText />
-                            ) : (
-                                <LogoWithTextDark />
-                            )}
-                        </>
-                    ) : (
-                        <Logo />
-                    )}
-                </Link>
+                <BrandLogo compact={!isSidebarOpen} />
 
                 <button
                     onClick={() => toggleSidebar()}
                     className={cn(
-                        'p-1.5 transition-colors',
+                        'flex size-11 shrink-0 items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600',
                         isMobileSheet
-                            ? 'rounded-lg text-icon-tertiary hover:bg-background-gray-primary hover:text-text-primary'
-                            : 'text-icon-tertiary hover:text-text-secondary',
+                            ? 'rounded-lg text-white/60 hover:bg-white/10 hover:text-white'
+                            : 'text-white/60 hover:text-white',
                     )}
                     aria-label={
                         isMobileSheet ? 'Close sidebar' : 'Toggle sidebar'
@@ -94,12 +78,12 @@ export default function Sidebar({
                         <div key={section.label}>
                             {/* Expanded: show section label | Collapsed: show divider between sections */}
                             {isSidebarOpen ? (
-                                <p className='mt-6 mb-4 text-xs text-text-tertiary uppercase'>
+                                <p className='mt-6 mb-4 text-xs uppercase text-white/45'>
                                     {section.label}
                                 </p>
                             ) : (
                                 section.label && (
-                                    <span className='flex items-center justify-center pt-6 pb-4 text-icon-secondary'>
+                                    <span className='flex items-center justify-center pt-6 pb-4 text-white/45'>
                                         <ThreeDots />
                                     </span>
                                 )
@@ -129,30 +113,7 @@ export default function Sidebar({
                 </CollapsibleGroup>
             </nav>
 
-            {/* Footer — only visible when expanded */}
-            {isSidebarOpen && (
-                <div className='px-4 py-4'>
-                    <div className='rounded-2xl bg-background-gray-primary px-4 py-5 text-center'>
-                        <p className='mb-2 leading-6 font-semibold text-text-primary'>
-                            Upgrade to Pro
-                        </p>
-                        <small className='text-sm leading-5 tracking-[-0.15px] text-text-tertiary'>
-                            Get all dashboard and 200+ essential UI elements
-                        </small>
-                        <Link
-                            href='https://nextadmin.co/pricing'
-                            className={buttonStyles({
-                                size: 'lg',
-                                className: 'mt-4 h-10 w-full bg-brand-500',
-                            })}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                        >
-                            Upgrade to Pro
-                        </Link>
-                    </div>
-                </div>
-            )}
+            {isSidebarOpen && <p className='px-5 py-5 text-xs leading-5 text-white/45'>Secure organization workspace</p>}
         </div>
     );
 }

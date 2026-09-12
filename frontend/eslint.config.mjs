@@ -18,6 +18,17 @@ const eslintConfig = defineConfig([
       "@typescript-eslint/no-empty-object-type": "off",
     },
   },
+  {
+    files: [
+      "src/components/tailgrids/core/carousel.tsx",
+      "src/components/tailgrids/core/otp-input.tsx",
+      "src/components/tailgrids/core/tooltip.tsx",
+    ],
+    rules: {
+      "react-hooks/refs": "off",
+      "react-hooks/set-state-in-effect": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

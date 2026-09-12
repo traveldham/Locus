@@ -1,0 +1,37 @@
+[project]
+name = "locus-backend"
+version = "0.1.0"
+description = "Locus Intelligence API"
+requires-python = ">=3.12"
+dependencies = [
+  "alembic>=1.13,<2",
+  "asyncpg>=0.30,<1",
+  "email-validator>=2.2,<3",
+  "fastapi>=0.115,<1",
+  "pydantic-settings>=2.6,<3",
+  "pwdlib[argon2]>=0.2,<1",
+  "pyjwt>=2.9,<3",
+  "sqlalchemy[asyncio]>=2.0,<3",
+  "uvicorn[standard]>=0.32,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "aiosqlite>=0.20,<1",
+  "httpx>=0.27,<1",
+  "pytest>=8.3,<9",
+  "pytest-asyncio>=0.24,<1",
+  "ruff>=0.8,<1",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]

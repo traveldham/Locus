@@ -1,18 +1,18 @@
 :root {
-  --primary-50: var(--primary-50);
-  --primary-100: #dae2ff;
-  --primary-200: #becdff;
-  --primary-300: #91aeff;
-  --primary-400: #5e84fc;
-  --primary-500: #3758f9;
-  --primary-600: #2237ee;
-  --primary-700: #1a25db;
-  --primary-800: #1c20b1;
-  --primary-900: #1c228c;
-  --primary-950: #161755;
+  --primary-50: #fff3f1;
+  --primary-100: #ffe2de;
+  --primary-200: #ffc9c1;
+  --primary-300: #ffa393;
+  --primary-400: #ff7d69;
+  --primary-500: #ff6450;
+  --primary-600: #e85d2f;
+  --primary-700: #c44328;
+  --primary-800: #a23825;
+  --primary-900: #863524;
+  --primary-950: #4a0e1a;
 
   --primary-text: white;
-  --neutral-brand-color: #465fff;
+  --neutral-brand-color: #ff6450;
 
   /* Text Color */
   --text-50: #374151;
@@ -73,10 +73,10 @@
   /* ======== Button Color =========*/
 
   /* Primary */
-  --button-primary-background: #5750f1;
-  --button-primary-hover-background: #3c35d8;
+  --button-primary-background: #ff6450;
+  --button-primary-hover-background: #e85d2f;
   --button-primary-text: #ffffff;
-  --button-primary-focus-ring: rgba(87, 80, 241, 0.2);
+  --button-primary-focus-ring: rgba(255, 100, 80, 0.2);
 
   /* Outline */
   --button-outline-background: #ffffff;
@@ -466,17 +466,17 @@
   --popover-shadow: 0px 5px 5px -2px rgba(16, 24, 40, 0.04);
   --shadow-hero: 0px -14px 100px 0px rgba(0, 0, 0, 0.05);
 
-  /* ======================= Next Admin Dashboard  ======================= */
+  /* ======================= Application aliases ======================= */
   /* backgrounds */
-  --background-gray-secondary_alt_2: #f4f4f5;
-  --background-gray-secondary_alt: #f4f4f5;
-  --background-gray-primary: #fafafa;
-  --background-gray-secondary: #f4f4f5;
-  --background-gray-tertiary: #e4e4e7;
+  --background-gray-secondary_alt_2: #4a0e1a;
+  --background-gray-secondary_alt: #f7f3ef;
+  --background-gray-primary: #fbfaf6;
+  --background-gray-secondary: #f7f3ef;
+  --background-gray-tertiary: #ede6e1;
   --input-background: #ffffff;
-  --card-surface-area: #fcfcfd;
+  --card-surface-area: #fbfaf6;
   --card-background: #ffffff;
-  --sidebar-navigation-nav-item-nav-hover-background: rgba(0, 0, 0, 0.05);
+  --sidebar-navigation-nav-item-nav-hover-background: rgba(74, 14, 26, 0.07);
   --background-white-secondary: #ffffff;
   --button-primary-outline-background: #ffffff;
   --button-primary-outline-hover-background: #f4f4f5;
@@ -489,12 +489,12 @@
   --background-gray-quaternary: #d4d4d8;
 
   /* general color */
-  --brand-100: #e0e7ff;
-  --brand-200: #c7d2fe;
-  --brand-300: #a5b4fc;
-  --brand-400: #818cf8;
-  --brand-500: #5750f1;
-  --brand-600: #3c35d8;
+  --brand-100: #fff3f1;
+  --brand-200: #ffe2de;
+  --brand-300: #ffa393;
+  --brand-400: #ff7d69;
+  --brand-500: #ff6450;
+  --brand-600: #e85d2f;
   --base-white: #ffffff;
   --green-600: #16a34a;
   --red-600: #dc2626;

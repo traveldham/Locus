@@ -46,10 +46,10 @@ export default function NavItem({
               href={href ?? items?.[0]?.url ?? "#"}
               onClick={onItemClick}
               className={cn(
-                "flex items-center justify-center rounded-lg px-3 py-2.5",
+                "flex min-h-11 min-w-11 items-center justify-center rounded-lg px-3 py-2.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600",
                 isActive || hasActiveChild
-                  ? "bg-sidebar-navigation-nav-item-nav-hover-background text-icon-primary"
-                  : "text-icon-tertiary transition-colors duration-200 hover:bg-sidebar-navigation-nav-item-nav-hover-background hover:text-icon-primary",
+                  ? "bg-white/10 text-white"
+                  : "text-white/65 transition-colors duration-200 hover:bg-white/10 hover:text-white",
               )}
             >
               {icon}
@@ -72,18 +72,18 @@ export default function NavItem({
       >
         <CollapsibleTrigger
           className={cn(
-            "group/collapsible flex w-full items-center justify-between gap-3 rounded-lg border-none bg-transparent px-3 py-2 text-sm font-medium sm:px-3 sm:py-2",
+            "group/collapsible flex min-h-11 w-full items-center justify-between gap-3 rounded-lg border-none bg-transparent px-3 py-2 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 sm:px-3",
             hasActiveChild
-              ? "bg-sidebar-navigation-nav-item-nav-hover-background text-text-primary"
-              : "text-text-secondary transition-colors duration-200 hover:bg-sidebar-navigation-nav-item-nav-hover-background hover:text-text-primary",
+              ? "bg-white/10 text-white"
+              : "text-white/65 transition-colors duration-200 hover:bg-white/10 hover:text-white",
           )}
         >
           <div className="flex flex-1 items-center gap-3">
             <span
               className={cn(
                 hasActiveChild
-                  ? "text-icon-primary"
-                  : "text-icon-tertiary transition-colors duration-200 group-hover/collapsible:text-icon-primary",
+                  ? "text-white"
+                  : "text-white/60 transition-colors duration-200 group-hover/collapsible:text-white",
               )}
             >
               {icon}
@@ -91,7 +91,7 @@ export default function NavItem({
             <span>{label}</span>
           </div>
 
-          <AltArrowUpIcon className="rotate-180 text-icon-tertiary duration-200 group-data-expanded:rotate-0" />
+          <AltArrowUpIcon className="rotate-180 text-white/60 duration-200 group-data-expanded:rotate-0" />
         </CollapsibleTrigger>
 
         <CollapsibleContent className="space-y-1 pr-0 group-data-expanded:mt-2">
@@ -104,10 +104,10 @@ export default function NavItem({
                   href={item.url ?? "#"}
                   onClick={onItemClick}
                   className={cn(
-                    "block rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                    "flex min-h-11 items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600",
                     isChildActive
-                      ? "bg-sidebar-navigation-nav-item-nav-hover-background text-text-primary"
-                      : "text-text-secondary hover:bg-sidebar-navigation-nav-item-nav-hover-background hover:text-text-primary",
+                      ? "bg-white/10 text-white"
+                      : "text-white/65 hover:bg-white/10 hover:text-white",
                   )}
                 >
                   {item.title}
@@ -127,13 +127,13 @@ export default function NavItem({
         href={href}
         onClick={onItemClick}
         className={cn(
-          "flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+          "flex min-h-11 w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600",
           isActive
-            ? "bg-sidebar-navigation-nav-item-nav-hover-background text-text-primary"
-            : "text-text-secondary hover:bg-sidebar-navigation-nav-item-nav-hover-background hover:text-text-primary",
+            ? "bg-white/10 text-white"
+            : "text-white/65 hover:bg-white/10 hover:text-white",
         )}
       >
-        <span className="text-icon-tertiary">{icon}</span>
+        <span className="text-white/60">{icon}</span>
         <span>{label}</span>
       </Link>
     )

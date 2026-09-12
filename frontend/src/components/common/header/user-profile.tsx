@@ -1,29 +1,16 @@
 "use client";
 
-import {
-  BillingIcon,
-  GearIcon,
-  LogoutIcon,
-  UserCircleIcon,
-} from "@/components/common/header/icons";
+import { LogoutIcon } from "@/components/common/header/icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/tailgrids/core/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuHeader,
   DropdownMenuItem,
-  DropdownMenuSection,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/tailgrids/core/dropdown";
 import { AltArrowDownIcon } from "@/utils/icon";
-import Link from "next/link";
-
-interface UserProfileMenuItem {
-  href: string;
-  icon: React.ReactNode;
-  label: string;
-}
+import { useAuth } from "@/contexts/auth-context";
 
 interface UserProfile {
   name: string;
@@ -31,30 +18,12 @@ interface UserProfile {
   avatarUrl?: string;
 }
 
-const user: UserProfile = {
-  name: "Jhon Smith",
-  email: "jhonsmith@example.com",
-  avatarUrl: "/images/user/jhon-smith.png",
-};
-
 export function UserProfileButton() {
-  const menuItems: UserProfileMenuItem[] = [
-    {
-      href: "/profile",
-      icon: <UserCircleIcon />,
-      label: "View profile",
-    },
-    {
-      href: "#",
-      icon: <GearIcon />,
-      label: "Account Settings",
-    },
-    {
-      href: "#",
-      icon: <BillingIcon />,
-      label: "Billing and Plan",
-    },
-  ];
+  const { user: account, logout } = useAuth();
+  const user: UserProfile = {
+    name: account?.full_name ?? account?.email ?? "Account",
+    email: account?.email ?? "",
+  };
 
   return (
     <DropdownMenu>
@@ -85,30 +54,8 @@ export function UserProfileButton() {
           </span>
         </DropdownMenuHeader>
 
-        <DropdownMenuSection className="p-1.5">
-          {menuItems.map((item) => (
-            <DropdownMenuItem
-              key={item.label}
-              href={item.href}
-              className="cursor-pointer px-3 py-2.5"
-              render={(domProps) =>
-                "href" in domProps ? <Link {...domProps} /> : <div {...domProps} />
-              }
-            >
-              <span className="shrink-0 text-icon-secondary group-hover:text-text-primary">
-                {item.icon}
-              </span>
-              <span className="leading-5 font-medium">{item.label}</span>
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenuSection>
-
-        <DropdownMenuSeparator />
-
         <DropdownMenuItem
-          onAction={() => {
-            // logout handler
-          }}
+          onAction={() => void logout()}
           className="m-1.5 w-auto cursor-pointer px-3 py-2.5"
         >
           <span className="text-icon-secondary group-hover:text-text-primary">

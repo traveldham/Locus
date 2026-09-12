@@ -5,6 +5,7 @@ import Sidebar from "@/components/common/sidebar";
 import { SheetContent, SheetOverlay, SheetTitle } from "@/components/tailgrids/core/sheet";
 import { cn } from "@/utils/cn";
 import { ReactNode, useState } from "react";
+import { AuthGuard } from "@/components/auth/auth-guard";
 
 export default function WithLayout({ children }: { children: ReactNode }) {
   // XL+ sidebar expand/collapse state
@@ -15,6 +16,7 @@ export default function WithLayout({ children }: { children: ReactNode }) {
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
   return (
+    <AuthGuard>
     <div className="flex h-full">
       {/*  Desktop sidebar (xl+) — always in DOM, toggles width  */}
       <aside
@@ -35,7 +37,7 @@ export default function WithLayout({ children }: { children: ReactNode }) {
         <SheetContent
           side="left"
           showCloseButton={false}
-          className="w-67.5! max-w-67.5! border-r border-card-border bg-card-surface-area p-0"
+          className="w-67.5! max-w-67.5! border-r border-white/10 bg-background-gray-secondary_alt_2 p-0"
         >
           <SheetTitle className="sr-only">Sidebar</SheetTitle>
           <Sidebar
@@ -62,5 +64,6 @@ export default function WithLayout({ children }: { children: ReactNode }) {
         </div>
       </div>
     </div>
+    </AuthGuard>
   );
 }
