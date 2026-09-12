@@ -78,6 +78,9 @@ export function KeywordList({
                           .filter(Boolean)
                           .join(" · ")}
                       </span>
+                      <span className="mt-0.5 block truncate text-[11px] leading-4 text-text-disable tabular-nums">
+                        {keyword.external_keyword_id}
+                      </span>
                     </span>
                     <RankBadge rank={keyword.latest_rank} className="shrink-0" />
                   </button>

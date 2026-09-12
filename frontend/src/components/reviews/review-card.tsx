@@ -156,6 +156,12 @@ export function ReviewCard({ review, className }: ReviewCardProps) {
         isRemoving={removeReply.isPending}
         error={removeReply.isError ? reviewErrorMessage(removeReply.error, "remove_reply") : null}
       />
+      <p
+        className="mt-4 border-t border-card-border pt-3 text-xs text-text-tertiary tabular-nums"
+        title={review.google_review_name ?? review.google_review_id}
+      >
+        Review ID: {review.google_review_id}
+      </p>
     </article>
   );
 }

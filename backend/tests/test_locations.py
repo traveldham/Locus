@@ -4,6 +4,7 @@ from conftest import sign_in
 from httpx import AsyncClient
 
 from app.models import (
+    AttributeCatalogItem,
     Location,
     LocationAttributeValue,
     LocationCategory,
@@ -87,6 +88,37 @@ async def seed_rich_location(session_factory, organization_id: UUID) -> str:
 async def test_locations_require_authentication(client: AsyncClient) -> None:
     assert (await client.get("/api/v1/locations")).status_code == 401
     assert (await client.get(f"/api/v1/locations/{uuid4()}")).status_code == 401
+    assert (await client.get("/api/v1/locations/attribute-catalog")).status_code == 401
+
+
+async def test_attribute_catalog_is_complete_and_organization_scoped(
+    client: AsyncClient, session_factory
+) -> None:
+    headers, organization_id = await sign_in(client)
+    async with session_factory() as session:
+        session.add(
+            AttributeCatalogItem(
+                organization_id=organization_id,
+                external_attribute_id="attr_01",
+                attribute_name="wheelchair_accessible_entrance",
+                attribute_group="accessibility",
+                applies_to_category="Dentist",
+                value_type="bool",
+            )
+        )
+        await session.commit()
+
+    body = (await client.get("/api/v1/locations/attribute-catalog", headers=headers)).json()
+    assert body["total"] == 1
+    assert body["items"] == [
+        {
+            "external_attribute_id": "attr_01",
+            "attribute_name": "wheelchair_accessible_entrance",
+            "attribute_group": "accessibility",
+            "applies_to_category": "Dentist",
+            "value_type": "bool",
+        }
+    ]
 
 
 async def test_location_detail_shape(client: AsyncClient, session_factory) -> None:

@@ -4,6 +4,8 @@ export interface Review {
   id: string;
   location_id: string;
   location_title: string;
+  google_review_id: string;
+  google_review_name: string | null;
   /** Null when Google withheld the name; pair with `is_anonymous` before rendering. */
   reviewer_display_name: string | null;
   is_anonymous: boolean;

@@ -62,6 +62,7 @@ class ProviderLocation:
 
     google_location_name: str
     title: str
+    source_location_id: str | None = None
     google_resource_name: str | None = None
     place_id: str | None = None
     store_code: str | None = None

@@ -19,6 +19,7 @@ export type SearchIntent =
 export interface TrackedKeyword {
   id: string;
   location_id: string;
+  external_keyword_id: string;
   keyword: string;
   search_intent: SearchIntent;
   device: string;

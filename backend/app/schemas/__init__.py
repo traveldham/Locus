@@ -14,6 +14,8 @@ from app.schemas.content import (
 from app.schemas.integrations import ConnectionResponse
 from app.schemas.locations import (
     ActionUser,
+    AttributeCatalogItemResponse,
+    AttributeCatalogResponse,
     AttributeInput,
     CategoryInput,
     EditPreviewResponse,
@@ -61,6 +63,8 @@ from app.schemas.seo import (
 
 __all__ = [
     "ActionUser",
+    "AttributeCatalogItemResponse",
+    "AttributeCatalogResponse",
     "AttributeInput",
     "BookingListResponse",
     "BookingResponse",

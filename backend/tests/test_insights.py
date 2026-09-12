@@ -18,6 +18,7 @@ from httpx import AsyncClient
 from sqlalchemy import func, select
 
 from app.models import (
+    AttributeCatalogItem,
     Booking,
     BookingChannel,
     BookingStatus,
@@ -487,6 +488,16 @@ COMPETITOR_COLUMNS = [
 ]
 
 SAMPLE_CSVS = {
+    "attribute_catalog.csv": csv_text(
+        [
+            "attribute_id",
+            "attribute_name",
+            "attribute_group",
+            "applies_to_category",
+            "value_type",
+        ],
+        ["attr_01,wheelchair_accessible_entrance,accessibility,Dentist,bool"],
+    ),
     "locations.csv": csv_text(
         ["location_id", "gbp_location_id"],
         [f"LOC-001,{MUELLER}", f"LOC-002,{SOUTH_LAMAR}"],
@@ -589,6 +600,7 @@ def sample_dataset(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
 
 
 EXPECTED_COUNTS = {
+    "attribute_catalog_items": 1,
     "performance_daily": 3,
     "search_terms_monthly": 2,
     "media_summary": 1,
@@ -644,6 +656,9 @@ async def test_loader_parses_skips_unimported_locations_and_is_idempotent(
                 ),
                 "media_summary": await session.scalar(select(func.count(MediaSummary.id))),
                 "posts": await session.scalar(select(func.count(Post.id))),
+                "attribute_catalog_items": await session.scalar(
+                    select(func.count(AttributeCatalogItem.id))
+                ),
                 "bookings": await session.scalar(select(func.count(Booking.id))),
                 "tracked_keywords": await session.scalar(select(func.count(TrackedKeyword.id))),
                 "keyword_ranks": await session.scalar(select(func.count(KeywordRank.id))),

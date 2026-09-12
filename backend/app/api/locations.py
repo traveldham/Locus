@@ -9,6 +9,7 @@ from app.api.dependencies import CurrentUser, DbSession
 from app.api.scoping import OrganizationId
 from app.models import (
     ActionStatus,
+    AttributeCatalogItem,
     GoogleConnection,
     Location,
     ProfileAction,
@@ -18,6 +19,8 @@ from app.models import (
 )
 from app.schemas import (
     ActionUser,
+    AttributeCatalogItemResponse,
+    AttributeCatalogResponse,
     EditPreviewResponse,
     LocationDetail,
     LocationEditRequest,
@@ -117,6 +120,19 @@ async def list_locations(
         statement.order_by(Location.title, Location.id).limit(limit).offset(offset)
     )
     return [serialize_summary(location) for location in result.scalars().all()]
+
+
+@router.get("/attribute-catalog", response_model=AttributeCatalogResponse)
+async def get_attribute_catalog(
+    organization_id: OrganizationId, db: DbSession
+) -> AttributeCatalogResponse:
+    result = await db.execute(
+        select(AttributeCatalogItem)
+        .where(AttributeCatalogItem.organization_id == organization_id)
+        .order_by(AttributeCatalogItem.attribute_group, AttributeCatalogItem.attribute_name)
+    )
+    items = [AttributeCatalogItemResponse.model_validate(item) for item in result.scalars()]
+    return AttributeCatalogResponse(items=items, total=len(items))
 
 
 @router.get("/{location_id}", response_model=LocationDetail)

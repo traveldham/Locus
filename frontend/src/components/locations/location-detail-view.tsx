@@ -9,7 +9,7 @@ import { PageHeader } from "@/components/common/page-header";
 import { SectionCard } from "@/components/common/section-card";
 import { Button } from "@/components/tailgrids/core/button";
 import { Skeleton } from "@/components/tailgrids/core/skeleton";
-import { useLocationQuery } from "@/hooks/use-locations";
+import { useAttributeCatalogQuery, useLocationQuery } from "@/hooks/use-locations";
 import { ApiError } from "@/services/api/client";
 import type { LocationDetail } from "@/services/api/locations";
 import { formatDateTime } from "@/utils/format-date";
@@ -66,6 +66,7 @@ export function LocationDetailView({ locationId }: { locationId: string }) {
 function LocationProfile({ location }: { location: LocationDetail }) {
   const [isEditing, setIsEditing] = useState(false);
   const [applied, setApplied] = useState<AppliedEdit | null>(null);
+  const catalog = useAttributeCatalogQuery();
 
   function startEditing() {
     setApplied(null);
@@ -157,6 +158,11 @@ function LocationProfile({ location }: { location: LocationDetail }) {
               <DataField label="Google location name">
                 <span className="break-all">{location.google_location_name}</span>
               </DataField>
+              <DataField label="Dataset location ID">
+                {location.source_location_id ? (
+                  <span className="tabular-nums">{location.source_location_id}</span>
+                ) : null}
+              </DataField>
               <DataField label="Google resource name">
                 {location.google_resource_name ? <span className="break-all">{location.google_resource_name}</span> : null}
               </DataField>
@@ -171,7 +177,11 @@ function LocationProfile({ location }: { location: LocationDetail }) {
             </dl>
           </SectionCard>
 
-          <LocationAttributesSection attributes={location.attributes} />
+          <LocationAttributesSection
+            attributes={location.attributes}
+            catalog={catalog.data?.items}
+            isCatalogLoading={catalog.isPending}
+          />
           <LocationChangeHistory locationId={location.id} />
         </div>
 

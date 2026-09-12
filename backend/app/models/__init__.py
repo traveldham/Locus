@@ -4,6 +4,7 @@ from app.models.bookings import Booking, BookingChannel, BookingStatus
 from app.models.connection import ConnectionStatus, ExternalAccount, GoogleConnection
 from app.models.content import MediaSummary, Post, PostCtaType, PostType
 from app.models.location import (
+    AttributeCatalogItem,
     Location,
     LocationAttributeValue,
     LocationCategory,
@@ -32,6 +33,7 @@ from app.models.user import AuthProvider, User, UserIdentity
 __all__ = [
     "ActionStatus",
     "AuthProvider",
+    "AttributeCatalogItem",
     "Base",
     "Booking",
     "BookingChannel",

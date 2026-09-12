@@ -200,7 +200,11 @@ export function SearchTermsView() {
             aria-busy={searchTerms.isFetching}
             className={cn("transition-opacity", searchTerms.isFetching && "opacity-60")}
           >
-            <SearchTermsTable items={items} hideMonth={yearMonth !== null} />
+            <SearchTermsTable
+              items={items}
+              hideMonth={yearMonth !== null}
+              hideLocation={locationId !== null}
+            />
           </div>
 
           <p className="border-t border-card-border px-5 py-4 text-xs leading-5 text-text-tertiary">

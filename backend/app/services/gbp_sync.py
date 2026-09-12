@@ -86,6 +86,7 @@ async def upsert_location(
     location.connection_id = connection.id
     location.external_account_id = external_account_id
     location.google_resource_name = payload.google_resource_name
+    location.source_location_id = payload.source_location_id
     location.place_id = payload.place_id
     location.store_code = payload.store_code
     location.title = payload.title

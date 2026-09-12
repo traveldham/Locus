@@ -14,6 +14,7 @@ export const locationKeys = {
   list: (params: LocationListParams) => [...locationKeys.all, "list", params] as const,
   detail: (id: string) => [...locationKeys.all, "detail", id] as const,
   actions: (id: string) => [...locationKeys.all, "actions", id] as const,
+  attributeCatalog: () => [...locationKeys.all, "attribute-catalog"] as const,
 };
 
 /** Statuses that are still moving, so the audit trail is worth re-reading. */
@@ -41,6 +42,15 @@ export function useLocationQuery(id: string) {
     enabled: Boolean(id),
     retry: 1,
     staleTime: 30_000,
+  });
+}
+
+export function useAttributeCatalogQuery() {
+  return useQuery({
+    queryKey: locationKeys.attributeCatalog(),
+    queryFn: locationsApi.attributeCatalog,
+    retry: 1,
+    staleTime: 5 * 60_000,
   });
 }
 

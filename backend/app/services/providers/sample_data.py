@@ -252,6 +252,7 @@ def _location(row: dict[str, str]) -> ProviderLocation:
     primary = categories[0] if categories and categories[0].is_primary else None
     return ProviderLocation(
         google_location_name=google_location_name,
+        source_location_id=csv_id,
         # The v4 reviews API addresses a location as accounts/{a}/locations/{l}, so the
         # account-qualified form is synthesized here in exactly that shape.
         google_resource_name=f"{SAMPLE_ACCOUNT.resource_name}/{google_location_name}",

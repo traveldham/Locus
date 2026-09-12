@@ -57,6 +57,7 @@ class SearchTermResponse(BaseModel):
 
     id: UUID
     location_id: UUID
+    location_title: str | None = None
     year_month: str
     search_term: str
     impressions: int | None = None

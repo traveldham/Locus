@@ -53,6 +53,7 @@ class Location(TimestampMixin, Base):
     # Both identity forms are kept: v1 APIs use "locations/123" while the legacy
     # v4 API needs the account-qualified "accounts/1/locations/2".
     google_location_name: Mapped[str] = mapped_column(String(255))
+    source_location_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
     google_resource_name: Mapped[str | None] = mapped_column(String(255), nullable=True)
     place_id: Mapped[str | None] = mapped_column(String(255), nullable=True)
     store_code: Mapped[str | None] = mapped_column(String(128), nullable=True)
@@ -149,3 +150,20 @@ class LocationAttributeValue(Base):
     values: Mapped[Any] = mapped_column(JSON)
 
     location: Mapped[Location] = relationship(back_populates="attributes")
+
+
+class AttributeCatalogItem(TimestampMixin, Base):
+    """One attribute available for this organization's business category."""
+
+    __tablename__ = "attribute_catalog_items"
+    __table_args__ = (UniqueConstraint("organization_id", "external_attribute_id"),)
+
+    id: Mapped[UUID] = mapped_column(primary_key=True, default=uuid4)
+    organization_id: Mapped[UUID] = mapped_column(
+        ForeignKey("organizations.id", ondelete="CASCADE"), index=True
+    )
+    external_attribute_id: Mapped[str] = mapped_column(String(64))
+    attribute_name: Mapped[str] = mapped_column(String(255))
+    attribute_group: Mapped[str] = mapped_column(String(64))
+    applies_to_category: Mapped[str] = mapped_column(String(255))
+    value_type: Mapped[str] = mapped_column(String(32))

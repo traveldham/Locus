@@ -37,6 +37,7 @@ from sqlalchemy import delete, insert, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models import (
+    AttributeCatalogItem,
     Booking,
     BookingChannel,
     BookingStatus,
@@ -64,6 +65,7 @@ BOOKINGS_FILE = "booking_requests.csv"
 KEYWORDS_FILE = "tracked_keywords.csv"
 RANKS_FILE = "keyword_rank_weekly.csv"
 COMPETITORS_FILE = "competitor_ranks_weekly.csv"
+ATTRIBUTE_CATALOG_FILE = "attribute_catalog.csv"
 
 # ~8,800 rows land in eight tables; they go out in batched executemany statements rather
 # than one INSERT per row.
@@ -305,6 +307,31 @@ def _performance_payloads(
                 # `_int` yields None for a blank cell. Nothing here coalesces to 0.
                 **{name: _int(row.get(name, "")) for name in PERFORMANCE_METRICS},
                 "source": DataSource.google,
+            }
+        )
+    return payloads
+
+
+def _attribute_catalog_payloads(
+    rows: Sequence[dict[str, str]], organization_id: UUID
+) -> list[dict[str, Any]]:
+    payloads = []
+    for row in rows:
+        external_id = _text(row.get("attribute_id", ""))
+        name = _text(row.get("attribute_name", ""))
+        group = _text(row.get("attribute_group", ""))
+        category = _text(row.get("applies_to_category", ""))
+        value_type = _text(row.get("value_type", ""))
+        if not all((external_id, name, group, category, value_type)):
+            continue
+        payloads.append(
+            {
+                "organization_id": organization_id,
+                "external_attribute_id": external_id,
+                "attribute_name": name,
+                "attribute_group": group,
+                "applies_to_category": category,
+                "value_type": value_type,
             }
         )
     return payloads
@@ -560,10 +587,19 @@ async def load_sample_datasets(db: AsyncSession, organization_id: UUID) -> Sampl
                 "tracked_keywords",
                 "keyword_ranks",
                 "competitor_observations",
+                "attribute_catalog_items",
             ),
             0,
         )
         return result
+
+    result.counts["attribute_catalog_items"] = await _upsert(
+        db,
+        AttributeCatalogItem,
+        ("external_attribute_id",),
+        organization_id,
+        _attribute_catalog_payloads(_read_csv(directory, ATTRIBUTE_CATALOG_FILE), organization_id),
+    )
 
     result.counts["performance_daily"] = await _upsert(
         db,

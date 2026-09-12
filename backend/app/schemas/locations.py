@@ -35,6 +35,21 @@ class LocationAttributeResponse(BaseModel):
     values: Any = None
 
 
+class AttributeCatalogItemResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    external_attribute_id: str
+    attribute_name: str
+    attribute_group: str
+    applies_to_category: str
+    value_type: str
+
+
+class AttributeCatalogResponse(BaseModel):
+    items: list[AttributeCatalogItemResponse] = []
+    total: int = 0
+
+
 class LocationSummary(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
@@ -61,6 +76,7 @@ class LocationDetail(LocationSummary):
     model_config = ConfigDict(from_attributes=True)
 
     google_resource_name: str | None = None
+    source_location_id: str | None = None
     place_id: str | None = None
     primary_category_name: str | None = None
     address_lines: list[str] | None = None

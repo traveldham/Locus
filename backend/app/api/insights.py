@@ -208,8 +208,10 @@ async def read_search_terms(
     reports "fewer than N", the number must be rendered as "<N" and never summed or
     ranked as if it were N.
     """
-    statement: Select = select(SearchTermMonthly).where(
-        SearchTermMonthly.organization_id == organization_id
+    statement: Select = (
+        select(SearchTermMonthly, Location.title)
+        .join(Location, Location.id == SearchTermMonthly.location_id)
+        .where(SearchTermMonthly.organization_id == organization_id)
     )
 
     if location_id is not None:
@@ -231,7 +233,10 @@ async def read_search_terms(
         .offset(offset)
     )
     return SearchTermListResponse(
-        items=[SearchTermResponse.model_validate(row) for row in result.scalars()],
+        items=[
+            SearchTermResponse.model_validate(row).model_copy(update={"location_title": title})
+            for row, title in result.all()
+        ],
         total=total,
         limit=limit,
         offset=offset,

@@ -12,6 +12,8 @@ class ReviewResponse(BaseModel):
     id: UUID
     location_id: UUID
     location_title: str | None = None
+    google_review_id: str
+    google_review_name: str | None = None
     reviewer_display_name: str | None = None
     is_anonymous: bool = False
     star_rating: int

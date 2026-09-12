@@ -53,9 +53,15 @@ interface SearchTermsTableProps {
   items: SearchTerm[];
   /** True when the month filter is set, so the repeated month column can be dropped. */
   hideMonth?: boolean;
+  /** True when the page is already filtered to one location. */
+  hideLocation?: boolean;
 }
 
-export function SearchTermsTable({ items, hideMonth = false }: SearchTermsTableProps) {
+export function SearchTermsTable({
+  items,
+  hideMonth = false,
+  hideLocation = false,
+}: SearchTermsTableProps) {
   return (
     <TableRoot className="text-sm">
       <caption className="sr-only">
@@ -64,6 +70,7 @@ export function SearchTermsTable({ items, hideMonth = false }: SearchTermsTableP
       <TableHeader>
         <TableRow>
           <TableHead className="text-left">Search term</TableHead>
+          {hideLocation ? null : <TableHead className="text-left">Location</TableHead>}
           {hideMonth ? null : (
             <TableHead className="text-left whitespace-nowrap">Month</TableHead>
           )}
@@ -74,6 +81,11 @@ export function SearchTermsTable({ items, hideMonth = false }: SearchTermsTableP
         {items.map((term) => (
           <TableRow key={`${term.year_month}-${term.search_term}`}>
             <TableCell className="text-text-primary">{term.search_term}</TableCell>
+            {hideLocation ? null : (
+              <TableCell className="text-text-secondary">
+                {term.location_title ?? term.location_id}
+              </TableCell>
+            )}
             {hideMonth ? null : (
               <TableCell className="whitespace-nowrap text-text-tertiary">
                 {formatReportingMonth(term.year_month)}

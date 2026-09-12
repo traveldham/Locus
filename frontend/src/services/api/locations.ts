@@ -47,9 +47,23 @@ export interface LocationAttribute {
   values: unknown[];
 }
 
+export interface AttributeCatalogItem {
+  external_attribute_id: string;
+  attribute_name: string;
+  attribute_group: string;
+  applies_to_category: string;
+  value_type: string;
+}
+
+export interface AttributeCatalog {
+  items: AttributeCatalogItem[];
+  total: number;
+}
+
 export interface LocationDetail extends LocationSummary {
   google_location_name: string;
   google_resource_name: string | null;
+  source_location_id: string | null;
   place_id: string | null;
   address_lines: string[] | null;
   locality: string | null;
@@ -159,6 +173,7 @@ export const locationsApi = {
     return apiRequest<LocationSummary[]>(`/locations${search ? `?${search}` : ""}`);
   },
   get: (id: string) => apiRequest<LocationDetail>(locationPath(id)),
+  attributeCatalog: () => apiRequest<AttributeCatalog>("/locations/attribute-catalog"),
   /**
    * Dry-runs the edit against Google. Nothing on the live listing changes, so this is
    * safe to call as often as the person editing wants to look at the diff.

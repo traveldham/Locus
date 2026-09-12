@@ -30,6 +30,8 @@ export interface PerformanceResponse {
 }
 
 export interface SearchTerm {
+  location_id: string;
+  location_title: string | null;
   /** `YYYY-MM`. Google reports search terms by month, never by day. */
   year_month: string;
   search_term: string;
