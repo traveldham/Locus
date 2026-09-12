@@ -1,6 +1,7 @@
 "use client";
 
 import { MenuIcon } from "@/components/common/header/icons";
+import { ProjectSwitcher } from "@/components/common/header/project-switcher";
 import ThemeToggle from "@/components/common/header/theme-toggle";
 import { UserProfileButton } from "@/components/common/header/user-profile";
 import { ThreeDots } from "@/components/common/sidebar/icon";
@@ -54,8 +55,8 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
 
         {/* Desktop layout (xl+) - original layout */}
         <div className="hidden items-center justify-between xl:flex">
-          {/* Spacer: keeps the actions pinned right without an organization label. */}
-          <div />
+          {/* Left Side - project switcher, replacing the sidebar's Projects entry */}
+          <ProjectSwitcher />
 
           {/* Right Side - Actions */}
           <div className="flex items-center gap-2.5">

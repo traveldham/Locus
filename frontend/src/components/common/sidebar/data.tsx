@@ -4,7 +4,6 @@ import {
   InsightsIcon,
   IntegrationsIcon,
   LocationsIcon,
-  ProjectsIcon,
   RankingsIcon,
   ReviewsIcon,
 } from "./icon";
@@ -27,7 +26,6 @@ export const NAV_DATA: NavigationSection[] = [
   {
     label: "WORKSPACE",
     items: [
-      { title: "Projects", icon: <ProjectsIcon />, url: "/projects", items: [] },
       { title: "Locations", icon: <LocationsIcon />, url: "/locations", items: [] },
       { title: "Reviews", icon: <ReviewsIcon />, url: "/reviews", items: [] },
       // One entry: performance, search terms and photos are tabs inside the page.

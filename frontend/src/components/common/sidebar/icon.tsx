@@ -4,17 +4,12 @@ import {
   Buildings11,
   CalendarTime,
   Close,
-  Folder1,
   MenuMeatballs1,
   Plug1,
   StarIcon,
   TrendUp2,
   UserMultiple1,
 } from "@tailgrids/icons";
-
-export function ProjectsIcon() {
-  return <Folder1 className="size-4.5" aria-hidden="true" />;
-}
 
 export function LocationsIcon() {
   return <Buildings11 className="size-4.5" aria-hidden="true" />;
