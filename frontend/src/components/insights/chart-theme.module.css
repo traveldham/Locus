@@ -1,0 +1,39 @@
+/*
+ * Chart palette.
+ *
+ * The two columns are separately selected steps of the same eight hues, not an
+ * automatic flip: the light steps are chosen against the light card surface
+ * (#ffffff) and the dark steps against the dark card surface (#211416). Both sets
+ * were validated for lightness band, chroma floor, colour-vision-deficiency
+ * separation and normal-vision separation before being used here.
+ *
+ * Three of the light steps sit below 3:1 against white, so every chart that uses
+ * them also ships a table view — identity is never carried by colour alone.
+ *
+ * Dark mode is driven by `[data-theme="dark"]`, never by `prefers-color-scheme`,
+ * so the in-app theme toggle stays authoritative.
+ */
+
+.scope {
+  --viz-series-1: #2a78d6;
+  --viz-series-2: #eb6834;
+  --viz-series-3: #1baf7a;
+  --viz-series-4: #eda100;
+  --viz-series-5: #e87ba4;
+
+  /* Carries "no category" and de-emphasised context, never a named series. */
+  --viz-neutral: #898781;
+
+  /* Chrome reuses the app tokens so it swaps with the rest of the interface. */
+  --viz-surface: var(--card-background);
+  --viz-grid: var(--card-border);
+  --viz-axis: var(--text-tertiary);
+}
+
+:global([data-theme="dark"]) .scope {
+  --viz-series-1: #3987e5;
+  --viz-series-2: #d95926;
+  --viz-series-3: #199e70;
+  --viz-series-4: #c98500;
+  --viz-series-5: #d55181;
+}

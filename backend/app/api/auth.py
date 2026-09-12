@@ -1,9 +1,13 @@
-import re
+"""Session handling for the one seeded demo account.
+
+There is no registration: `app.seed` writes the single user, its organization and its
+Google connection, and everything here operates on that account.
+"""
+
 from datetime import UTC, datetime, timedelta
 
-from fastapi import APIRouter, HTTPException, Request, Response, status
+from fastapi import APIRouter, HTTPException, Request, Response
 from sqlalchemy import select
-from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import selectinload
 
 from app.api.dependencies import CurrentUser, DbSession
@@ -11,16 +15,14 @@ from app.core.config import get_settings
 from app.core.security import (
     create_access_token,
     digest_token,
-    hash_password,
     new_refresh_token,
     verify_password,
 )
-from app.models import MembershipRole, Organization, OrganizationMembership, RefreshSession, User
+from app.models import OrganizationMembership, RefreshSession, User
 from app.schemas import (
     LoginRequest,
     MessageResponse,
     OrganizationSummary,
-    RegisterRequest,
     TokenResponse,
     UserResponse,
 )
@@ -105,53 +107,15 @@ async def issue_session(db: DbSession, response: Response, user: User) -> TokenR
     return TokenResponse(access_token=access, expires_in=expires_in, user=serialize_user(user))
 
 
-async def unique_slug(db: DbSession, name: str) -> str:
-    base = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-") or "organization"
-    candidate = base
-    number = 2
-    while await db.scalar(select(Organization.id).where(Organization.slug == candidate)):
-        candidate = f"{base}-{number}"
-        number += 1
-    return candidate
-
-
-@router.post("/register", response_model=TokenResponse, status_code=status.HTTP_201_CREATED)
-async def register(payload: RegisterRequest, response: Response, db: DbSession) -> TokenResponse:
-    email = payload.email.lower().strip()
-    if await db.scalar(select(User.id).where(User.email == email)):
-        raise HTTPException(status_code=409, detail="An account with this email already exists")
-
-    user = User(
-        email=email,
-        full_name=payload.full_name,
-        password_hash=hash_password(payload.password),
-    )
-    organization = Organization(
-        name=payload.organization_name,
-        slug=await unique_slug(db, payload.organization_name),
-    )
-    try:
-        db.add_all([user, organization])
-        await db.flush()
-        db.add(
-            OrganizationMembership(
-                user_id=user.id, organization_id=organization.id, role=MembershipRole.owner
-            )
-        )
-        return await issue_session(db, response, user)
-    except IntegrityError:
-        await db.rollback()
-        raise HTTPException(
-            status_code=409,
-            detail="An account or organization with these details already exists",
-        ) from None
-
-
 @router.post("/login", response_model=TokenResponse)
 async def login(payload: LoginRequest, response: Response, db: DbSession) -> TokenResponse:
     result = await db.execute(select(User).where(User.email == payload.email.lower().strip()))
     user = result.scalar_one_or_none()
-    if user is None or not verify_password(payload.password, user.password_hash):
+    if (
+        user is None
+        or user.password_hash is None
+        or not verify_password(payload.password, user.password_hash)
+    ):
         raise HTTPException(status_code=401, detail="Invalid email or password")
     if not user.is_active:
         raise HTTPException(status_code=403, detail="Account is inactive")

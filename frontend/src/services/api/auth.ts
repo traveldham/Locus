@@ -16,7 +16,7 @@ export interface AuthUser {
   organizations: OrganizationSummary[];
 }
 
-interface TokenResponse {
+export interface TokenResponse {
   access_token: string;
   token_type: "bearer";
   expires_in: number;
@@ -29,8 +29,6 @@ export const authApi = {
       method: "POST",
       body: JSON.stringify({ email, password }),
     }),
-  register: (input: { full_name: string; email: string; password: string; organization_name: string }) =>
-    apiRequest<TokenResponse>("/auth/register", { method: "POST", body: JSON.stringify(input) }),
   me: () => apiRequest<AuthUser>("/auth/me"),
   refresh: () => apiRequest<TokenResponse>("/auth/refresh", { method: "POST" }),
   logout: () => apiRequest<{ message: string }>("/auth/logout", { method: "POST" }),

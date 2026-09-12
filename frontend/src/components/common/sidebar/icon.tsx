@@ -1,7 +1,47 @@
-import { AngleDoubleLeft, Close, Home, MenuMeatballs1 } from "@tailgrids/icons";
+import {
+  AngleDoubleLeft,
+  BarChart2,
+  Buildings11,
+  CalendarTime,
+  Close,
+  Folder1,
+  MenuMeatballs1,
+  Plug1,
+  StarIcon,
+  TrendUp2,
+  UserMultiple1,
+} from "@tailgrids/icons";
 
-export function HomeIcon() {
-  return <Home className="size-4.5" aria-hidden="true" />;
+export function ProjectsIcon() {
+  return <Folder1 className="size-4.5" aria-hidden="true" />;
+}
+
+export function LocationsIcon() {
+  return <Buildings11 className="size-4.5" aria-hidden="true" />;
+}
+
+export function ReviewsIcon() {
+  return <StarIcon className="size-4.5" aria-hidden="true" />;
+}
+
+export function InsightsIcon() {
+  return <BarChart2 className="size-4.5" aria-hidden="true" />;
+}
+
+export function RankingsIcon() {
+  return <TrendUp2 className="size-4.5" aria-hidden="true" />;
+}
+
+export function CompetitorsIcon() {
+  return <UserMultiple1 className="size-4.5" aria-hidden="true" />;
+}
+
+export function BookingsIcon() {
+  return <CalendarTime className="size-4.5" aria-hidden="true" />;
+}
+
+export function IntegrationsIcon() {
+  return <Plug1 className="size-4.5" aria-hidden="true" />;
 }
 
 export function SidebarExpandedIcon() {

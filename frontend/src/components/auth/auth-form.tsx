@@ -5,11 +5,11 @@ import { FieldError, FieldLabel } from "@/components/tailgrids/core/field";
 import { Input } from "@/components/tailgrids/core/input";
 import { TextField } from "@/components/tailgrids/core/text-field";
 import { useAuth } from "@/contexts/auth-context";
-import Link from "next/link";
 import { FormEvent, useState } from "react";
+import { DEMO_ACCOUNT } from "./demo-account";
 
-export function AuthForm({ mode, nextPath = "/" }: { mode: "login" | "register"; nextPath?: string }) {
-  const { login, register } = useAuth();
+export function AuthForm({ nextPath = "/" }: { nextPath?: string }) {
+  const { login } = useAuth();
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -19,15 +19,7 @@ export function AuthForm({ mode, nextPath = "/" }: { mode: "login" | "register";
     setIsSubmitting(true);
     const data = new FormData(event.currentTarget);
     try {
-      if (mode === "login") {
-        await login(String(data.get("email")), String(data.get("password")), nextPath);
-      }
-      else await register({
-        full_name: String(data.get("full_name")),
-        organization_name: String(data.get("organization_name")),
-        email: String(data.get("email")),
-        password: String(data.get("password")),
-      });
+      await login(String(data.get("email")), String(data.get("password")), nextPath);
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "We could not complete that request.");
       setIsSubmitting(false);
@@ -35,23 +27,27 @@ export function AuthForm({ mode, nextPath = "/" }: { mode: "login" | "register";
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mt-8 space-y-5">
-      {mode === "register" && <>
-        <TextField name="full_name" required className="gap-1.5"><FieldLabel>Full name</FieldLabel><Input autoComplete="name" className="w-full" /></TextField>
-        <TextField name="organization_name" required className="gap-1.5"><FieldLabel>Organization</FieldLabel><Input autoComplete="organization" className="w-full" /></TextField>
-      </>}
-      <TextField name="email" type="email" required className="gap-1.5"><FieldLabel>Work email</FieldLabel><Input autoComplete="email" className="w-full" placeholder="you@company.com" /></TextField>
-      <TextField name="password" type="password" required minLength={8} className="gap-1.5"><FieldLabel>Password</FieldLabel><Input autoComplete={mode === "login" ? "current-password" : "new-password"} className="w-full" /><FieldError /></TextField>
+    <form onSubmit={handleSubmit} className="space-y-5">
+      <TextField name="email" type="email" required defaultValue={DEMO_ACCOUNT.email} className="gap-1.5">
+        <FieldLabel>Work email</FieldLabel>
+        <Input autoComplete="email" className="w-full" placeholder="you@company.com" />
+      </TextField>
+      <TextField
+        name="password"
+        type="password"
+        required
+        minLength={8}
+        defaultValue={DEMO_ACCOUNT.password}
+        className="gap-1.5"
+      >
+        <FieldLabel>Password</FieldLabel>
+        <Input autoComplete="current-password" className="w-full" />
+        <FieldError />
+      </TextField>
       {error && <p role="alert" className="rounded-lg bg-background-soft-100 px-3 py-2 text-sm text-error-500">{error}</p>}
       <Button type="submit" size="xl" isDisabled={isSubmitting} className="w-full">
-        {isSubmitting ? "Please wait…" : mode === "login" ? "Sign in" : "Create workspace"}
+        {isSubmitting ? "Please wait…" : "Sign in"}
       </Button>
-      <p className="text-center text-sm text-text-tertiary">
-        {mode === "login" ? "New to Locus?" : "Already have an account?"}{" "}
-        <Link href={mode === "login" ? "/register" : "/login"} className="font-medium text-text-primary underline decoration-border-primary underline-offset-4">
-          {mode === "login" ? "Create an account" : "Sign in"}
-        </Link>
-      </p>
     </form>
   );
 }

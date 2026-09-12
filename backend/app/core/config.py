@@ -17,6 +17,10 @@ class Settings(BaseSettings):
     refresh_token_days: int = 30
     cookie_secure: bool = False
 
+    # Where the sample CSVs live. Blank falls back to the dataset checked out beside the
+    # backend; see app/services/providers/sample_data.py.
+    sample_data_dir: str | None = None
+
     @field_validator("database_url")
     @classmethod
     def normalize_postgres_driver(cls, value: str) -> str:

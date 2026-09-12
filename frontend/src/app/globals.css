@@ -5,6 +5,10 @@
 @import "./css/default.css";
 @import "./css/dark.css";
 
+/* Bind `dark:` to the app's own theme attribute. Tailwind's default keys off the
+   OS `prefers-color-scheme`, which would ignore the in-app theme toggle. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme {
   --color-primary-50: var(--primary-50);
   --color-primary-100: var(--primary-100);

@@ -54,8 +54,8 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
 
         {/* Desktop layout (xl+) - original layout */}
         <div className="hidden items-center justify-between xl:flex">
-          {/* Left Side - Search */}
-          <p className="text-sm font-medium text-text-secondary">Organization workspace</p>
+          {/* Spacer: keeps the actions pinned right without an organization label. */}
+          <div />
 
           {/* Right Side - Actions */}
           <div className="flex items-center gap-2.5">

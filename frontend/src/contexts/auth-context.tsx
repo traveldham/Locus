@@ -5,12 +5,14 @@ import { getAccessToken, setAccessToken } from "@/services/api/client";
 import { usePathname, useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 
+/** Routes that render for signed-out visitors and must not block on a session lookup. */
+const PUBLIC_PATHS = new Set(["/login"]);
+
 interface AuthContextValue {
   user: AuthUser | null;
   activeOrganization: AuthUser["organizations"][number] | null;
   isLoading: boolean;
   login(email: string, password: string, nextPath?: string): Promise<void>;
-  register(input: { full_name: string; email: string; password: string; organization_name: string }): Promise<void>;
   logout(): Promise<void>;
 }
 
@@ -20,19 +22,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const [user, setUser] = useState<AuthUser | null>(null);
-  const [isLoading, setIsLoading] = useState(
-    () => pathname !== "/login" && pathname !== "/register",
-  );
+  const [isLoading, setIsLoading] = useState(() => !PUBLIC_PATHS.has(pathname));
 
-  const loadUser = useCallback(async () => {
+  const refreshSession = useCallback(async () => {
     try {
-      if (!getAccessToken()) {
-        const response = await authApi.refresh();
-        setAccessToken(response.access_token);
-        setUser(response.user);
-      } else {
-        setUser(await authApi.me());
-      }
+      const response = await authApi.refresh();
+      setAccessToken(response.access_token);
+      setUser(response.user);
     } catch {
       setAccessToken(null);
       setUser(null);
@@ -41,10 +37,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  useEffect(() => {
-    if ((pathname === "/login" || pathname === "/register") && !getAccessToken()) {
+  const loadUser = useCallback(async () => {
+    if (!getAccessToken()) {
+      await refreshSession();
       return;
     }
+    try {
+      setUser(await authApi.me());
+    } catch {
+      setAccessToken(null);
+      setUser(null);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [refreshSession]);
+
+  useEffect(() => {
+    if (PUBLIC_PATHS.has(pathname) && !getAccessToken()) return;
     const timeout = window.setTimeout(() => void loadUser(), 0);
     return () => window.clearTimeout(timeout);
   }, [loadUser, pathname]);
@@ -58,13 +67,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setAccessToken(response.access_token);
       setUser(response.user);
       router.replace(nextPath);
-      router.refresh();
-    },
-    register: async (input) => {
-      const response = await authApi.register(input);
-      setAccessToken(response.access_token);
-      setUser(response.user);
-      router.replace("/");
       router.refresh();
     },
     logout: async () => {

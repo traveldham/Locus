@@ -45,7 +45,7 @@ export default function Sidebar({
                         : 'flex-col justify-center gap-4',
                 )}
             >
-                <BrandLogo compact={!isSidebarOpen} />
+                <BrandLogo compact={!isSidebarOpen} onDark />
 
                 <button
                     onClick={() => toggleSidebar()}
