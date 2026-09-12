@@ -1,0 +1,70 @@
+post_id,location_id,post_type,summary,cta_type,published_on
+POST-00001,LOC-001,OFFER,Smile with confidence — we can help.,BOOK,2026-04-02
+POST-00002,LOC-001,EVENT,Join our dental wellness program.,GET_OFFER,2026-04-10
+POST-00003,LOC-001,STANDARD,Mercury-free restorations.,CALL,2026-04-14
+POST-00004,LOC-001,OFFER,Root canal therapy — expert care.,CALL,2026-05-02
+POST-00005,LOC-001,OFFER,Sleep apnea screening.,,2026-06-02
+POST-00006,LOC-001,EVENT,Smile makeover before and after.,BOOK,2026-06-11
+POST-00007,LOC-001,STANDARD,Smile makeover before and after.,,2026-06-20
+POST-00008,LOC-001,EVENT,Invisalign consultations — clear aligners.,CALL,2026-07-11
+POST-00009,LOC-001,EVENT,Advanced tooth replacement options.,LEARN_MORE,2026-07-13
+POST-00010,LOC-001,EVENT,Special offer on dental cleanings.,GET_OFFER,2026-07-24
+POST-00011,LOC-001,OFFER,Root canal therapy — expert care.,SIGN_UP,2026-08-02
+POST-00012,LOC-001,STANDARD,Sports mouth guard fittings.,BOOK,2026-08-12
+POST-00013,LOC-001,STANDARD,Sedation dentistry available.,LEARN_MORE,2026-09-02
+POST-00014,LOC-003,EVENT,Spring cleaning special! Get your smile ready.,GET_OFFER,2026-03-12
+POST-00015,LOC-003,EVENT,Bridge and crown specialists.,CALL,2026-03-23
+POST-00016,LOC-003,STANDARD,Summer smile refresh — whitening special.,GET_OFFER,2026-07-16
+POST-00017,LOC-003,EVENT,Cosmetic dentistry transformations.,,2026-08-01
+POST-00018,LOC-004,STANDARD,Smile with confidence — we can help.,BOOK,2026-03-11
+POST-00019,LOC-004,OFFER,Advanced implant solutions for missing teeth.,BOOK,2026-04-29
+POST-00020,LOC-004,STANDARD,Digital x-rays for safety.,,2026-06-01
+POST-00021,LOC-004,OFFER,Advanced tooth replacement options.,SIGN_UP,2026-06-28
+POST-00022,LOC-004,STANDARD,Spring cleaning special! Get your smile ready.,SIGN_UP,2026-07-15
+POST-00023,LOC-005,STANDARD,Jaw pain solutions.,,2026-03-06
+POST-00024,LOC-005,STANDARD,Join our dental wellness program.,,2026-03-11
+POST-00025,LOC-005,STANDARD,Back-to-school dental checkup reminder.,CALL,2026-03-17
+POST-00026,LOC-005,STANDARD,Sports mouth guard fittings.,CALL,2026-03-22
+POST-00027,LOC-005,STANDARD,Schedule your routine checkup now.,GET_OFFER,2026-04-01
+POST-00028,LOC-005,OFFER,Bite correction options.,LEARN_MORE,2026-04-11
+POST-00029,LOC-005,STANDARD,Root canal therapy — expert care.,CALL,2026-04-15
+POST-00030,LOC-005,STANDARD,Bite correction options.,CALL,2026-04-23
+POST-00031,LOC-005,STANDARD,New patient exam — book your first visit today.,SIGN_UP,2026-04-26
+POST-00032,LOC-005,OFFER,Advanced tooth replacement options.,LEARN_MORE,2026-05-06
+POST-00033,LOC-005,STANDARD,Family dentistry at its best.,BOOK,2026-05-10
+POST-00034,LOC-005,OFFER,Back-to-school dental checkup reminder.,SIGN_UP,2026-05-17
+POST-00035,LOC-005,OFFER,Meet our dental team!,GET_OFFER,2026-05-27
+POST-00036,LOC-005,STANDARD,Restorative dentistry services.,CALL,2026-05-31
+POST-00037,LOC-005,STANDARD,Mercury-free restorations.,SIGN_UP,2026-06-07
+POST-00038,LOC-005,EVENT,Summer smile refresh — whitening special.,GET_OFFER,2026-06-25
+POST-00039,LOC-005,EVENT,Mercury-free restorations.,SIGN_UP,2026-06-28
+POST-00040,LOC-005,STANDARD,Dental anxiety? We have solutions.,,2026-07-07
+POST-00041,LOC-005,OFFER,Patient success stories.,BOOK,2026-07-16
+POST-00042,LOC-005,OFFER,Smile makeover consultations available.,CALL,2026-07-24
+POST-00043,LOC-005,STANDARD,Cosmetic dentistry transformations.,,2026-07-27
+POST-00044,LOC-005,OFFER,Preventive care saves money and smiles.,LEARN_MORE,2026-08-02
+POST-00045,LOC-005,STANDARD,Cosmetic dentistry transformations.,LEARN_MORE,2026-08-09
+POST-00046,LOC-005,EVENT,Family dentistry at its best.,,2026-08-21
+POST-00047,LOC-005,OFFER,Enamel restoration treatments.,LEARN_MORE,2026-09-03
+POST-00048,LOC-005,EVENT,Bridge and crown specialists.,LEARN_MORE,2026-09-07
+POST-00049,LOC-006,EVENT,Breath freshening treatments.,BOOK,2026-03-28
+POST-00050,LOC-006,STANDARD,Gum health seminar — learn and save.,CALL,2026-04-17
+POST-00051,LOC-006,EVENT,Restorative dentistry services.,CALL,2026-04-29
+POST-00052,LOC-007,EVENT,Jaw pain solutions.,BOOK,2026-03-17
+POST-00053,LOC-007,EVENT,Advanced implant solutions for missing teeth.,BOOK,2026-03-30
+POST-00054,LOC-007,OFFER,New technology for better dental care.,SIGN_UP,2026-05-23
+POST-00055,LOC-007,STANDARD,New patient exam — book your first visit today.,CALL,2026-06-19
+POST-00056,LOC-007,OFFER,Sports mouth guard fittings.,BOOK,2026-07-18
+POST-00057,LOC-007,STANDARD,Advanced tooth replacement options.,CALL,2026-08-06
+POST-00058,LOC-007,OFFER,Breath freshening treatments.,GET_OFFER,2026-08-10
+POST-00059,LOC-007,OFFER,Back-to-school dental checkup reminder.,GET_OFFER,2026-08-22
+POST-00060,LOC-008,OFFER,Bruxism solutions for teeth grinding.,,2026-05-12
+POST-00061,LOC-008,STANDARD,Back-to-school dental checkup reminder.,SIGN_UP,2026-06-17
+POST-00062,LOC-008,STANDARD,Preventive care saves money and smiles.,BOOK,2026-09-01
+POST-00063,LOC-010,OFFER,Fluoride treatment benefits.,LEARN_MORE,2026-04-10
+POST-00064,LOC-010,EVENT,Meet our dental team!,,2026-05-17
+POST-00065,LOC-010,OFFER,Digital x-rays for safety.,CALL,2026-07-05
+POST-00066,LOC-010,OFFER,Join our dental wellness program.,BOOK,2026-07-22
+POST-00067,LOC-011,OFFER,Jaw pain solutions.,BOOK,2026-03-08
+POST-00068,LOC-011,STANDARD,New patient exam — book your first visit today.,,2026-07-30
+POST-00069,LOC-011,STANDARD,Meet our dental team!,SIGN_UP,2026-08-12

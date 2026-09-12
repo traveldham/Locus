@@ -1,0 +1,113 @@
+keyword_id,location_id,keyword,search_intent,device,tracking_started_on
+KW-0001,LOC-001,dentist austin,general,mobile,2026-06-15
+KW-0002,LOC-001,cosmetic dentist austin,cosmetic,mobile,2026-06-15
+KW-0003,LOC-001,teeth whitening austin,cosmetic,mobile,2026-06-15
+KW-0004,LOC-001,emergency dentist austin,emergency,mobile,2026-06-15
+KW-0005,LOC-001,invisalign austin,orthodontics,mobile,2026-06-15
+KW-0006,LOC-001,dentist open saturday austin,general,mobile,2026-06-15
+KW-0007,LOC-001,dental implants austin,implants,desktop,2026-06-15
+KW-0008,LOC-001,pediatric dentist austin,pediatric,mobile,2026-06-15
+KW-0009,LOC-001,walk in dentist austin,general,mobile,2026-06-15
+KW-0010,LOC-001,dental insurance accepted austin,insurance,mobile,2026-06-15
+KW-0011,LOC-002,dentist austin,general,mobile,2026-06-15
+KW-0012,LOC-002,emergency dentist austin,emergency,mobile,2026-06-15
+KW-0013,LOC-002,dental implants austin,implants,mobile,2026-06-15
+KW-0014,LOC-002,teeth whitening austin,cosmetic,mobile,2026-06-15
+KW-0015,LOC-002,pediatric dentist austin,pediatric,mobile,2026-06-15
+KW-0016,LOC-002,invisalign austin,orthodontics,mobile,2026-06-15
+KW-0017,LOC-002,cosmetic dentist austin,cosmetic,mobile,2026-06-15
+KW-0018,LOC-002,dentist open saturday austin,general,mobile,2026-06-15
+KW-0019,LOC-003,dentist round rock,general,mobile,2026-06-15
+KW-0020,LOC-003,pediatric dentist round rock,pediatric,mobile,2026-06-15
+KW-0021,LOC-003,emergency dentist round rock,emergency,mobile,2026-06-15
+KW-0022,LOC-003,cosmetic dentist round rock,cosmetic,mobile,2026-06-15
+KW-0023,LOC-003,dentist open saturday round rock,general,mobile,2026-06-15
+KW-0024,LOC-003,dental implants round rock,implants,mobile,2026-06-15
+KW-0025,LOC-003,invisalign round rock,orthodontics,desktop,2026-06-15
+KW-0026,LOC-003,teeth whitening round rock,cosmetic,mobile,2026-06-15
+KW-0027,LOC-004,dentist dallas,general,mobile,2026-06-15
+KW-0028,LOC-004,cosmetic dentist dallas,cosmetic,mobile,2026-06-15
+KW-0029,LOC-004,emergency dentist dallas,emergency,mobile,2026-06-15
+KW-0030,LOC-004,invisalign dallas,orthodontics,mobile,2026-06-15
+KW-0031,LOC-004,teeth whitening dallas,cosmetic,mobile,2026-06-15
+KW-0032,LOC-004,dentist deep ellum,general,mobile,2026-06-15
+KW-0033,LOC-004,dental implants dallas,implants,mobile,2026-06-15
+KW-0034,LOC-004,pediatric dentist dallas,pediatric,desktop,2026-06-15
+KW-0035,LOC-004,walk in dentist dallas,general,mobile,2026-06-15
+KW-0036,LOC-005,dentist plano,general,mobile,2026-06-15
+KW-0037,LOC-005,emergency dentist plano,emergency,mobile,2026-06-15
+KW-0038,LOC-005,cosmetic dentist plano,cosmetic,mobile,2026-06-15
+KW-0039,LOC-005,invisalign plano tx,orthodontics,desktop,2026-06-15
+KW-0040,LOC-005,pediatric dentist plano,pediatric,mobile,2026-06-15
+KW-0041,LOC-005,dental implants plano,implants,mobile,2026-06-15
+KW-0042,LOC-005,orthodontist plano,orthodontics,mobile,2026-06-15
+KW-0043,LOC-005,teeth whitening plano,cosmetic,mobile,2026-06-15
+KW-0044,LOC-005,dentist near plano,general,mobile,2026-06-15
+KW-0045,LOC-005,walk in dentist plano,general,mobile,2026-06-15
+KW-0046,LOC-005,emergency dental plano tx,emergency,mobile,2026-06-15
+KW-0047,LOC-005,family dentistry plano,general,mobile,2026-06-15
+KW-0048,LOC-006,dentist irving,general,mobile,2026-06-15
+KW-0049,LOC-006,cosmetic dentist irving,cosmetic,mobile,2026-06-15
+KW-0050,LOC-006,emergency dentist irving,emergency,mobile,2026-06-15
+KW-0051,LOC-006,dentist irving tx,general,mobile,2026-06-15
+KW-0052,LOC-006,emergency dental care irving,emergency,mobile,2026-06-15
+KW-0053,LOC-006,emergency dentist irving tx,emergency,mobile,2026-06-15
+KW-0054,LOC-006,pediatric dentist irving,pediatric,desktop,2026-06-15
+KW-0055,LOC-006,invisalign irving,orthodontics,mobile,2026-06-15
+KW-0056,LOC-006,teeth whitening irving,cosmetic,mobile,2026-06-15
+KW-0057,LOC-006,dental implants irving,implants,mobile,2026-06-15
+KW-0058,LOC-007,dentist houston montrose,general,mobile,2026-06-15
+KW-0059,LOC-007,cosmetic dentist houston,cosmetic,mobile,2026-06-15
+KW-0060,LOC-007,teeth whitening montrose,cosmetic,mobile,2026-06-15
+KW-0061,LOC-007,emergency dentist houston,emergency,desktop,2026-06-15
+KW-0062,LOC-007,invisalign houston,orthodontics,mobile,2026-06-15
+KW-0063,LOC-007,dentist montrose,general,mobile,2026-06-15
+KW-0064,LOC-007,dental implants houston,implants,mobile,2026-06-15
+KW-0065,LOC-007,pediatric dentist houston,pediatric,mobile,2026-06-15
+KW-0066,LOC-007,dentist near montrose,general,mobile,2026-06-15
+KW-0067,LOC-008,dentist katy,general,mobile,2026-06-15
+KW-0068,LOC-008,pediatric dentist katy,pediatric,mobile,2026-06-15
+KW-0069,LOC-008,teeth whitening katy,cosmetic,mobile,2026-06-15
+KW-0070,LOC-008,emergency dentist katy,emergency,mobile,2026-06-15
+KW-0071,LOC-008,cosmetic dentist katy,cosmetic,mobile,2026-06-15
+KW-0072,LOC-008,dentist near katy tx,general,desktop,2026-06-15
+KW-0073,LOC-008,walk in dentist katy,general,desktop,2026-06-15
+KW-0074,LOC-008,invisalign katy,orthodontics,mobile,2026-06-15
+KW-0075,LOC-008,dental implants katy,implants,mobile,2026-06-15
+KW-0076,LOC-009,dentist sugar land,general,mobile,2026-06-15
+KW-0077,LOC-009,emergency dentist sugar land,emergency,desktop,2026-06-15
+KW-0078,LOC-009,cosmetic dentist sugar land,cosmetic,mobile,2026-06-15
+KW-0079,LOC-009,dental implants sugar land,implants,mobile,2026-06-15
+KW-0080,LOC-009,pediatric dentist sugar land,pediatric,mobile,2026-06-15
+KW-0081,LOC-009,invisalign sugar land,orthodontics,mobile,2026-06-15
+KW-0082,LOC-009,dentist near sugar land,general,mobile,2026-06-15
+KW-0083,LOC-009,teeth whitening sugar land,cosmetic,mobile,2026-06-15
+KW-0084,LOC-009,orthodontist sugar land,orthodontics,desktop,2026-06-15
+KW-0085,LOC-010,dentist arcadia,general,mobile,2026-06-15
+KW-0086,LOC-010,cosmetic dentist arcadia,cosmetic,mobile,2026-06-15
+KW-0087,LOC-010,emergency dentist phoenix,emergency,desktop,2026-06-15
+KW-0088,LOC-010,invisalign arcadia,orthodontics,mobile,2026-06-15
+KW-0089,LOC-010,pediatric dentist arcadia,pediatric,mobile,2026-06-15
+KW-0090,LOC-010,walk in dentist arcadia,general,mobile,2026-06-15
+KW-0091,LOC-010,dentist near arcadia,general,mobile,2026-06-15
+KW-0092,LOC-010,dental implants arcadia,implants,mobile,2026-06-15
+KW-0093,LOC-011,dentist tempe,general,mobile,2026-06-15
+KW-0094,LOC-011,emergency dentist tempe,emergency,mobile,2026-06-15
+KW-0095,LOC-011,invisalign tempe,orthodontics,mobile,2026-06-15
+KW-0096,LOC-011,orthodontist tempe,orthodontics,mobile,2026-06-15
+KW-0097,LOC-011,cosmetic dentist tempe,cosmetic,desktop,2026-06-15
+KW-0098,LOC-011,pediatric dentist tempe,pediatric,mobile,2026-06-15
+KW-0099,LOC-011,walk in dentist tempe,general,desktop,2026-06-15
+KW-0100,LOC-011,emergency dental care tempe,emergency,desktop,2026-06-15
+KW-0101,LOC-011,dentist near tempe,general,mobile,2026-06-15
+KW-0102,LOC-011,dental implants tempe,implants,mobile,2026-06-15
+KW-0103,LOC-011,emergency dentist tempe az,emergency,mobile,2026-06-15
+KW-0104,LOC-012,dentist chandler,general,mobile,2026-07-20
+KW-0105,LOC-012,pediatric dentist chandler,pediatric,mobile,2026-07-20
+KW-0106,LOC-012,emergency dentist chandler,emergency,mobile,2026-07-20
+KW-0107,LOC-012,cosmetic dentist chandler,cosmetic,mobile,2026-07-20
+KW-0108,LOC-012,teeth whitening chandler,cosmetic,mobile,2026-07-20
+KW-0109,LOC-012,dentist near chandler,general,mobile,2026-07-20
+KW-0110,LOC-012,invisalign chandler,orthodontics,desktop,2026-07-20
+KW-0111,LOC-012,dental implants chandler,implants,desktop,2026-07-20
+KW-0112,LOC-012,walk in dentist chandler,general,mobile,2026-07-20

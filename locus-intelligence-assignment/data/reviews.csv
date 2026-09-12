@@ -1,0 +1,1515 @@
+review_id,location_id,reviewer_name,rating,review_text,created_at
+REV-00001,LOC-001,Barbara X.,5,Outstanding patient care experience. Loved the friendly atmosphere. I have no cavities thanks to their care.,2026-07-25
+REV-00002,LOC-001,David A.,4,Very clean and well-organized office.,2025-10-23
+REV-00003,LOC-001,Sarah W.,5,Great experience from start to finish. Outstanding results and great communication. Great preventative care approach.,2025-10-18
+REV-00004,LOC-001,Daniel W.,5,Outstanding patient care experience. Excellent dental care and very professional staff.,2026-06-07
+REV-00005,LOC-001,Brenda D.,5,The team puts you at ease right away.,2026-04-05
+REV-00006,LOC-001,Jessica X.,5,The entire team is excellent. Top-notch professionalism.,2025-10-18
+REV-00007,LOC-001,Sandra U.,5,"Professional, friendly, and efficient. Dentist really cares about your teeth.",2026-04-24
+REV-00008,LOC-001,William B.,3,They document everything carefully. No major issues found.,2026-07-14
+REV-00009,LOC-001,Joseph M.,5,"Professional, friendly, and efficient. Excellent communication throughout.",2026-08-05
+REV-00010,LOC-001,Angela G.,5,Dr. did an amazing job with my crown. I trust them completely with my teeth.,2026-01-21
+REV-00011,LOC-001,Donna F.,5,Best dental experience I've had. Highly professional and trustworthy. The hygienist was very skilled.,2026-08-10
+REV-00012,LOC-001,Emily H.,5,Outstanding results and great communication. I have no cavities thanks to their care. The dentist really knows their stuff.,2026-04-25
+REV-00013,LOC-001,Anna S.,4,They treated me like family. Dr. explained everything clearly and answered all questions.,2025-09-17
+REV-00014,LOC-001,Christopher I.,5,I've recommended them to everyone. Dr. is truly passionate about his work. Outstanding service and expertise.,2026-09-03
+REV-00015,LOC-001,Brandon M.,5,The hygienist was very skilled. Top-notch professionalism. Very clean and well-organized office.,2025-11-11
+REV-00016,LOC-001,Amy C.,5,Exceptional dental care every single time.,2026-03-05
+REV-00017,LOC-001,Gail N.,3,Waiting room was clean.,2025-09-25
+REV-00018,LOC-001,Andrew R.,5,They go above and beyond for patients. Best decision switching to this practice.,2026-07-03
+REV-00019,LOC-001,Joshua Y.,4,The hygienist was very skilled.,2025-09-06
+REV-00020,LOC-001,Gary A.,5,The staff really cares about your comfort. Dr. did an amazing job with my crown.,2026-07-26
+REV-00021,LOC-001,Jonathan D.,3,Just another routine appointment. The exam was comprehensive.,2026-09-05
+REV-00022,LOC-001,Melissa Y.,5,Very caring and competent team. Great preventative care approach. The appointment was right on time.,2026-07-18
+REV-00023,LOC-001,Michael D.,5,Excellent dental care and very professional staff. The dentist really knows their stuff. Great facility with amazing staff.,2025-11-22
+REV-00024,LOC-001,Paul S.,3,The dentist was straightforward. Nothing to complain about.,2026-03-05
+REV-00025,LOC-001,Charles E.,5,Dr. explained everything clearly and answered all questions. The hygienist was very skilled.,2025-10-11
+REV-00026,LOC-001,Katie N.,5,Highly professional and trustworthy. Top-notch professionalism. Best decision switching to this practice.,2026-08-04
+REV-00027,LOC-001,Ashley M.,2,The service quality was poor.,2025-12-18
+REV-00028,LOC-001,Patricia H.,4,They treat you with respect. I feel confident in my dental health now.,2026-08-10
+REV-00029,LOC-001,Debra S.,5,Dentist really cares about your teeth.,2025-12-25
+REV-00030,LOC-001,David K.,5,I felt well taken care of during my visit. Excellent communication throughout. Dr. explained everything clearly and answered all questions.,2025-12-22
+REV-00031,LOC-001,Angela E.,5,Great facility with amazing staff. The team puts you at ease right away.,2025-10-07
+REV-00032,LOC-001,Nicholas Z.,2,The appointment was overbooked. I felt disrespected during my visit.,2026-09-06
+REV-00033,LOC-001,Angela N.,5,The staff really cares about your comfort.,2026-03-28
+REV-00034,LOC-001,Stephanie X.,5,Very clean facilities and modern equipment. The hygienist was so gentle and thorough. I felt well taken care of during my visit.,2026-03-30
+REV-00035,LOC-001,Mark G.,4,Loved the friendly atmosphere.,2026-02-21
+REV-00036,LOC-001,Cynthia H.,5,They really care about patient comfort. Outstanding patient care experience.,2026-06-02
+REV-00037,LOC-001,Sarah C.,5,The hygienist was so gentle and thorough. Very clean facilities and modern equipment. Very comfortable and relaxing environment.,2025-10-09
+REV-00038,LOC-001,Stephanie B.,5,The dentist is truly the best. The team puts you at ease right away.,2025-12-31
+REV-00039,LOC-001,Kenneth N.,5,Top-notch professionalism. Outstanding service and expertise.,2025-11-24
+REV-00040,LOC-001,Susan G.,1,Terrible communication. The service quality was poor. I felt like just a number.,2026-08-23
+REV-00041,LOC-001,Emily X.,5,Very comfortable and relaxing environment.,2026-01-30
+REV-00042,LOC-001,Daniel B.,5,The dentist is truly the best. Very caring and competent team. Best decision switching to this practice.,2026-02-08
+REV-00043,LOC-001,Benjamin C.,5,Dr. explained everything clearly and answered all questions.,2026-05-19
+REV-00044,LOC-001,Donna S.,3,Appointment took about as long as expected. They document everything carefully.,2026-08-12
+REV-00045,LOC-001,Alexander S.,5,Beautiful smiles are made here.,2026-07-02
+REV-00046,LOC-001,Paul I.,5,Very thorough cleaning and exam. Very modern technology and techniques.,2026-06-17
+REV-00047,LOC-001,Lisa A.,5,The receptionist was so helpful. Outstanding service and expertise. Very modern technology and techniques.,2026-03-22
+REV-00048,LOC-001,Larry G.,4,Best dental experience I've had.,2026-04-23
+REV-00049,LOC-001,Melissa J.,5,Dr. explained everything clearly and answered all questions. Loved the friendly atmosphere.,2026-05-18
+REV-00050,LOC-001,Makayla R.,5,The receptionist was so helpful. Best decision switching to this practice. Dr. and the team made me feel very comfortable.,2025-11-20
+REV-00051,LOC-001,Carol D.,2,The staff was unprofessional.,2026-02-01
+REV-00052,LOC-001,Kenneth T.,4,They treated me like family.,2025-10-25
+REV-00053,LOC-001,Jonathan P.,4,Top-notch professionalism.,2025-12-17
+REV-00054,LOC-001,Samantha N.,2,The dentist rushed through my exam.,2026-01-07
+REV-00055,LOC-001,Daniel X.,5,Fantastic team and great results. Top-notch professionalism.,2026-01-20
+REV-00056,LOC-001,Thomas C.,5,Outstanding results and great communication. Dr. and the team made me feel very comfortable.,2026-04-15
+REV-00057,LOC-001,Melissa S.,2,The service was inadequate.,2026-08-20
+REV-00058,LOC-001,Ashley L.,5,The staff is so friendly and welcoming.,2026-06-10
+REV-00059,LOC-001,Makayla D.,3,The dentist was straightforward.,2025-09-21
+REV-00060,LOC-001,Daniel Z.,4,The appointment was right on time. Very competent and thorough work.,2026-03-01
+REV-00061,LOC-001,George Z.,3,The exam was comprehensive.,2025-11-30
+REV-00062,LOC-001,Daniel Z.,4,They treated me like family.,2026-03-30
+REV-00063,LOC-001,Steven G.,5,Very thorough and always professional.,2026-08-26
+REV-00064,LOC-001,Jennifer V.,5,I have no cavities thanks to their care.,2026-04-24
+REV-00065,LOC-001,Edward U.,5,Dr. explained everything clearly and answered all questions. Outstanding patient care experience.,2025-12-08
+REV-00066,LOC-001,Carol F.,5,"Clean, comfortable, and welcoming. Great experience from start to finish. Would definitely return and refer friends.",2026-05-19
+REV-00067,LOC-001,Benjamin N.,1,Staff seemed disorganized. Poor customer service experience.,2026-06-25
+REV-00068,LOC-001,Thomas M.,4,The staff really cares about your comfort. Exceptional dental care every single time.,2026-02-24
+REV-00069,LOC-001,James Q.,5,The staff really cares about your comfort.,2026-06-23
+REV-00070,LOC-001,Sharon C.,4,Very professional and caring dentists.,2026-06-03
+REV-00071,LOC-001,Patricia X.,2,Terrible communication. I'm looking for a better dentist.,2026-08-07
+REV-00072,LOC-001,Sophia J.,5,They explain everything before doing it. The dentist really knows their stuff. Never felt rushed during my appointment.,2026-02-01
+REV-00073,LOC-001,Samuel S.,5,Great follow-up care and support. Everything went smoothly and painlessly.,2026-06-11
+REV-00074,LOC-001,Kenneth G.,5,The receptionist was so helpful.,2026-02-02
+REV-00075,LOC-001,Jacob V.,4,They go above and beyond for patients. Best preventative dental team around.,2026-04-09
+REV-00076,LOC-001,Angela V.,5,"Highly professional and trustworthy. Professional, friendly, and efficient. Very attentive to my dental health.",2025-12-19
+REV-00077,LOC-001,Marcus J.,5,Very competent and thorough work.,2026-07-22
+REV-00078,LOC-001,Jessica H.,4,Great experience from start to finish.,2025-12-25
+REV-00079,LOC-001,Rebecca U.,5,Outstanding service and expertise.,2026-05-02
+REV-00080,LOC-001,Donna E.,5,The best option for family dentistry. I've recommended them to everyone. Never felt rushed during my appointment.,2026-06-22
+REV-00081,LOC-001,Steven F.,4,Very clean and well-organized office.,2026-08-02
+REV-00082,LOC-001,Donna D.,5,Outstanding results and great communication.,2026-08-23
+REV-00083,LOC-001,Benjamin K.,5,Best decision switching to this practice. Outstanding results and great communication.,2026-04-22
+REV-00084,LOC-001,Laura F.,5,Very caring and competent team. Very clean and well-organized office. Dentist really cares about your teeth.,2026-04-15
+REV-00085,LOC-001,Stephen P.,5,Outstanding patient care experience.,2026-05-02
+REV-00086,LOC-001,Paul I.,5,Best dental experience I've had. Very attentive to my dental health.,2026-07-18
+REV-00087,LOC-001,Debra M.,5,"Professional, friendly, and efficient. Super friendly reception and fast service. The appointment was right on time.",2026-02-19
+REV-00088,LOC-001,Rebecca N.,5,Dr. explained everything clearly and answered all questions.,2026-08-22
+REV-00089,LOC-001,Rebecca M.,5,I felt well taken care of during my visit. Very thorough cleaning and exam.,2026-02-17
+REV-00090,LOC-001,Anna M.,2,I'm looking for a better dentist.,2026-06-27
+REV-00091,LOC-001,Rebecca R.,5,The receptionist was so helpful. The best option for family dentistry.,2026-05-03
+REV-00092,LOC-001,Steven I.,4,Great facility with amazing staff.,2026-06-07
+REV-00093,LOC-001,Jessica O.,5,Would give them more than 5 stars if possible. Never felt rushed during my appointment.,2026-04-12
+REV-00094,LOC-001,Scott V.,1,The appointment took forever. I won't be returning. Very unsatisfactory visit.,2025-11-05
+REV-00095,LOC-001,Linda B.,5,Super friendly reception and fast service. They go above and beyond for patients.,2025-09-14
+REV-00096,LOC-001,Michelle K.,5,Outstanding service and expertise.,2026-01-12
+REV-00097,LOC-001,Nicholas A.,5,"Dr. is very gentle and patient. Professional, friendly, and efficient.",2026-03-14
+REV-00098,LOC-001,Sarah B.,5,I have no cavities thanks to their care. Dr. explained everything clearly and answered all questions.,2026-06-04
+REV-00099,LOC-001,Michael T.,2,The service was inadequate.,2025-09-16
+REV-00100,LOC-001,Cynthia W.,5,Would definitely return and refer friends. The team puts you at ease right away.,2025-11-18
+REV-00101,LOC-001,Daniel J.,4,Would definitely return and refer friends.,2026-01-10
+REV-00102,LOC-001,Elizabeth C.,5,Great follow-up care and support. Dr. is truly passionate about his work.,2025-10-26
+REV-00103,LOC-001,Sophia Y.,4,Great attention to detail.,2026-07-01
+REV-00104,LOC-001,Jessica L.,3,They document everything carefully.,2026-02-02
+REV-00105,LOC-001,Gregory K.,5,Dr. explained everything clearly and answered all questions. Very caring and competent team.,2026-05-31
+REV-00106,LOC-001,Ronald U.,3,Typical dental office experience. No complications during the visit.,2025-09-07
+REV-00107,LOC-001,Sarah I.,4,Everything went smoothly and painlessly. They treat you with respect.,2026-04-24
+REV-00108,LOC-001,Debra I.,4,They go above and beyond for patients. The staff really cares about your comfort.,2026-07-13
+REV-00109,LOC-001,Laura H.,3,Everything was by the book.,2026-02-13
+REV-00110,LOC-001,Amy K.,5,Great follow-up care and support. Would give them more than 5 stars if possible. Great experience from start to finish.,2026-04-26
+REV-00111,LOC-001,Margaret T.,5,Top-notch professionalism. Would give them more than 5 stars if possible.,2025-12-03
+REV-00112,LOC-001,Mark C.,3,They follow established protocols.,2026-08-26
+REV-00113,LOC-001,Dylan P.,4,Outstanding results and great communication. Very competent and thorough work.,2026-01-02
+REV-00114,LOC-001,Sandra H.,4,The dentist was thorough and really listened to my concerns. Love coming here for my cleanings.,2026-07-28
+REV-00115,LOC-001,Justin Q.,4,I trust them completely with my teeth. Very thorough and always professional.,2026-03-27
+REV-00116,LOC-001,Sophia O.,5,"Dentist really cares about your teeth. Clean, comfortable, and welcoming. They made my anxiety go away.",2026-02-24
+REV-00117,LOC-001,Mark K.,5,Dr. is very knowledgeable and caring.,2026-01-17
+REV-00118,LOC-001,Anna X.,4,Best dentist in the area!,2025-11-01
+REV-00119,LOC-001,Mark J.,5,Best decision switching to this practice. Very attentive to my dental health. The hygienist was so gentle and thorough.,2026-05-06
+REV-00120,LOC-001,Charles I.,5,Dr. and the team made me feel very comfortable. The hygienist was very skilled.,2025-12-26
+REV-00121,LOC-001,Samantha Y.,1,Very disappointed overall. Disappointing from start to finish. The staff was unprofessional.,2025-09-24
+REV-00122,LOC-001,Nicholas P.,5,Very attentive to my dental health.,2026-05-10
+REV-00123,LOC-001,Kathleen D.,5,Dr. is very gentle and patient.,2026-04-14
+REV-00124,LOC-001,Susan E.,5,Very clean facilities and modern equipment.,2025-10-04
+REV-00125,LOC-001,Patricia R.,2,The appointment was overbooked.,2026-06-16
+REV-00126,LOC-001,Laura O.,5,I have no cavities thanks to their care. They treat you with respect. Great follow-up care and support.,2026-04-02
+REV-00127,LOC-001,Brenda B.,3,I got in and out on time. They document everything carefully.,2026-01-31
+REV-00128,LOC-001,Donald U.,1,Not the standard I expected.,2026-07-10
+REV-00129,LOC-001,Paul F.,5,Dr. did an amazing job with my crown.,2025-12-18
+REV-00130,LOC-001,Laura W.,5,They explain everything before doing it.,2026-06-10
+REV-00131,LOC-001,Kenneth W.,5,Excellent communication throughout.,2026-07-02
+REV-00132,LOC-001,Carol Z.,4,Best dental experience I've had. Excellent communication throughout.,2026-01-23
+REV-00133,LOC-001,Thomas R.,5,Very clean and well-organized office.,2026-07-18
+REV-00134,LOC-001,Emily F.,4,Very impressed with the quality of care. Best dental experience I've had.,2025-12-25
+REV-00135,LOC-001,Cynthia W.,5,Very attentive to my dental health. Best preventative dental team around. Dr. is very knowledgeable and caring.,2026-02-05
+REV-00136,LOC-001,Amy O.,4,Very caring and competent team. Very comfortable and relaxing environment.,2026-02-03
+REV-00137,LOC-001,Jennifer C.,5,The dentist really knows their stuff. Dr. is very gentle and patient.,2025-10-12
+REV-00138,LOC-001,Marcus I.,1,Very unsatisfactory visit. The appointment took forever. Not the standard I expected.,2025-12-27
+REV-00139,LOC-001,Stephen U.,5,Very thorough and always professional.,2026-06-23
+REV-00140,LOC-001,Sharon U.,2,Very unsatisfactory visit.,2026-04-15
+REV-00141,LOC-001,George K.,1,The exam felt rushed. The experience was disappointing.,2026-05-10
+REV-00142,LOC-001,Jeffrey W.,5,"Clean, comfortable, and welcoming.",2026-08-10
+REV-00143,LOC-001,Gary C.,5,Dentist really cares about your teeth. Highly recommend this practice!,2026-05-12
+REV-00144,LOC-001,Angela A.,5,Never felt rushed during my appointment.,2026-02-09
+REV-00145,LOC-001,Mark Q.,3,The hygienist did a standard cleaning. Nothing to complain about.,2026-08-03
+REV-00146,LOC-001,Donald I.,4,Best preventative dental team around. Very clean facilities and modern equipment.,2026-03-05
+REV-00147,LOC-001,Patricia A.,5,Best preventative dental team around. Great facility with amazing staff.,2026-06-09
+REV-00148,LOC-001,Ashley R.,5,Dr. did an amazing job with my crown.,2026-07-20
+REV-00149,LOC-001,Thomas O.,5,I have no cavities thanks to their care.,2025-09-08
+REV-00150,LOC-001,Sandra Q.,4,I've recommended them to everyone.,2025-10-31
+REV-00151,LOC-001,Gary R.,5,Very thorough and always professional. Loved the friendly atmosphere.,2026-08-28
+REV-00152,LOC-001,Margaret Y.,5,Exceptional dental care every single time. Super friendly reception and fast service. Dr. explained everything clearly and answered all questions.,2025-11-14
+REV-00153,LOC-001,Kevin S.,5,They treated me like family. Excellent dental care and very professional staff. Very attentive to my dental health.,2026-04-01
+REV-00154,LOC-001,Larry P.,1,Very frustrating experience. Felt overcharged for the work.,2026-06-24
+REV-00155,LOC-001,Mark W.,5,Great follow-up care and support. Outstanding service and expertise. The dentist really knows their stuff.,2026-02-24
+REV-00156,LOC-001,Jessica K.,5,They explain everything before doing it.,2026-01-01
+REV-00157,LOC-001,Amy B.,4,The best option for family dentistry. The appointment was right on time.,2026-05-01
+REV-00158,LOC-001,Joseph Q.,5,"Clean, comfortable, and welcoming. The hygienist was so gentle and thorough. Best preventative dental team around.",2025-11-04
+REV-00159,LOC-001,Sarah E.,5,They explain everything before doing it.,2026-04-22
+REV-00160,LOC-001,Sarah C.,5,Would give them more than 5 stars if possible. Dr. is truly passionate about his work.,2025-10-09
+REV-00161,LOC-001,Angela B.,3,They were matter-of-fact about findings. No problems with the work done.,2026-02-16
+REV-00162,LOC-001,Sharon D.,5,Very attentive to my dental health. Excellent communication throughout. Love coming here for my cleanings.,2026-07-14
+REV-00163,LOC-001,Jessica W.,4,Best preventative dental team around.,2026-07-22
+REV-00164,LOC-001,Emily J.,2,They seemed more concerned with money than care.,2026-02-01
+REV-00165,LOC-001,Shirley N.,5,Loved the friendly atmosphere.,2026-03-03
+REV-00166,LOC-001,Matthew C.,4,Highly professional and trustworthy.,2026-06-17
+REV-00167,LOC-001,Brandon E.,3,No problems with the work done.,2026-07-10
+REV-00168,LOC-001,Makayla A.,5,Outstanding service and expertise. Dr. is very gentle and patient.,2025-12-28
+REV-00169,LOC-001,Jacob L.,2,They seem to have money on their mind only.,2026-04-27
+REV-00170,LOC-001,Kevin G.,5,Dr. is very gentle and patient. Outstanding service and expertise.,2026-06-28
+REV-00171,LOC-001,Timothy S.,3,The dentist was straightforward.,2026-03-16
+REV-00172,LOC-001,Margaret A.,5,Great experience and fair pricing. The dentist was thorough and really listened to my concerns. Dr. is truly passionate about his work.,2026-03-03
+REV-00173,LOC-001,Amy J.,3,Straightforward and professional interaction.,2026-06-17
+REV-00174,LOC-001,Brenda I.,5,I have no cavities thanks to their care. Best dentist in the area!,2025-12-27
+REV-00175,LOC-001,Frank U.,4,The hygienist was so gentle and thorough.,2026-08-14
+REV-00176,LOC-001,Charles C.,5,Highly recommend this practice! Very professional and caring dentists.,2025-09-21
+REV-00177,LOC-001,Charles Z.,5,Everything went smoothly and painlessly. Great preventative care approach.,2026-01-30
+REV-00178,LOC-001,Joshua F.,3,They follow established protocols. Just another routine appointment.,2026-06-04
+REV-00179,LOC-001,Brenda Z.,2,Very poor experience. Very disappointed overall.,2026-01-10
+REV-00180,LOC-001,Steven V.,5,Very impressed with the quality of care.,2025-10-29
+REV-00181,LOC-001,Karen Z.,4,Outstanding results and great communication. Very professional and caring dentists.,2026-09-06
+REV-00182,LOC-001,Marcus X.,5,Dr. is very knowledgeable and caring. Outstanding service and expertise. I trust them completely with my teeth.,2026-03-22
+REV-00183,LOC-001,Marcus H.,5,I trust them completely with my teeth. Great attention to detail.,2026-08-11
+REV-00184,LOC-001,Samantha O.,5,The dentist really knows their stuff. I have no cavities thanks to their care. Dr. explained everything clearly and answered all questions.,2026-04-30
+REV-00185,LOC-001,Jessica B.,5,Would definitely return and refer friends. Super friendly reception and fast service.,2026-08-25
+REV-00186,LOC-001,Paul R.,1,Poor customer service experience.,2026-02-03
+REV-00187,LOC-001,Debra X.,5,Very comfortable and relaxing environment. Beautiful smiles are made here.,2025-11-09
+REV-00188,LOC-001,Samuel N.,5,The hygienist was so gentle and thorough. Great facility with amazing staff.,2026-09-08
+REV-00189,LOC-001,Jacob H.,5,The team puts you at ease right away. Best preventative dental team around.,2026-01-22
+REV-00190,LOC-001,Emily M.,5,I trust them completely with my teeth. Very comfortable and relaxing environment. They made my anxiety go away.,2026-03-05
+REV-00191,LOC-001,Karen V.,5,Outstanding service and expertise.,2026-01-20
+REV-00192,LOC-001,George H.,4,Very clean facilities and modern equipment.,2025-12-18
+REV-00193,LOC-001,Justin G.,4,Dr. explained everything clearly and answered all questions.,2025-11-04
+REV-00194,LOC-001,Christopher Z.,5,"Clean, comfortable, and welcoming.",2026-06-28
+REV-00195,LOC-001,Angela I.,5,Fantastic team and great results.,2026-07-03
+REV-00196,LOC-001,Sarah L.,5,Fantastic team and great results.,2025-11-29
+REV-00197,LOC-001,Carol B.,5,Everything went smoothly and painlessly.,2025-12-31
+REV-00198,LOC-001,Nicholas O.,4,Dr. explained everything clearly and answered all questions.,2025-11-04
+REV-00199,LOC-001,Jonathan H.,5,I feel confident in my dental health now.,2026-03-05
+REV-00200,LOC-001,Gregory A.,5,They treat you with respect. The receptionist was so helpful. Outstanding service and expertise.,2026-07-12
+REV-00201,LOC-001,Nancy P.,1,They didn't explain my treatment plan. I'll seek care elsewhere.,2025-10-02
+REV-00202,LOC-001,Michelle T.,2,The dentist rushed through my exam.,2026-08-31
+REV-00203,LOC-001,Timothy T.,5,Dentist really cares about your teeth. The dentist really knows their stuff.,2025-11-15
+REV-00204,LOC-001,Sarah U.,5,The staff really cares about your comfort. The hygienist was so gentle and thorough. Would definitely return and refer friends.,2026-05-30
+REV-00205,LOC-001,Laura H.,4,The staff really cares about your comfort.,2026-06-10
+REV-00206,LOC-001,Joseph K.,5,Never felt rushed during my appointment. Beautiful smiles are made here.,2026-03-31
+REV-00207,LOC-001,Gail P.,5,I trust them completely with my teeth. The appointment was right on time.,2026-04-07
+REV-00208,LOC-001,Sharon D.,5,Love coming here for my cleanings.,2025-10-05
+REV-00209,LOC-001,Emma K.,4,Outstanding results and great communication.,2026-03-10
+REV-00210,LOC-001,Kenneth T.,5,Very clean and well-organized office. Very clean facilities and modern equipment.,2026-08-10
+REV-00211,LOC-001,Alexander P.,5,Very caring and competent team. The team puts you at ease right away. The appointment was right on time.,2026-02-07
+REV-00212,LOC-001,Thomas Y.,3,"Standard six-month checkup. No surprises, just routine work.",2025-12-24
+REV-00213,LOC-001,Katie V.,5,Outstanding results and great communication. Great experience from start to finish.,2026-01-21
+REV-00214,LOC-001,Sophia Y.,5,They treated me like family.,2026-08-22
+REV-00215,LOC-001,Christopher S.,2,Very disappointed with the service. The cleaning was incomplete.,2026-02-06
+REV-00216,LOC-002,Anna M.,5,Great experience from start to finish. Phone lines are always busy or ring out.,2026-08-03
+REV-00217,LOC-002,Michelle Y.,5,I trust them completely with my teeth.,2026-04-03
+REV-00218,LOC-002,Robert V.,5,The appointment was right on time. Phone lines are always busy or ring out.,2026-06-18
+REV-00219,LOC-002,Anna Y.,5,Very clean and well-organized office. Great facility with amazing staff. Best preventative dental team around.,2025-10-12
+REV-00220,LOC-002,Debra P.,5,Would definitely return and refer friends. Very attentive to my dental health.,2026-05-21
+REV-00221,LOC-002,Benjamin B.,4,I have no cavities thanks to their care.,2026-05-28
+REV-00222,LOC-002,Sandra K.,5,Super friendly reception and fast service.,2025-09-04
+REV-00223,LOC-002,Debra Q.,5,The staff really cares about your comfort. Everything went smoothly and painlessly. Fantastic team and great results.,2025-11-01
+REV-00224,LOC-002,Jessica N.,3,A standard dental visit. Professional environment throughout.,2026-06-14
+REV-00225,LOC-002,Anna M.,5,Very modern technology and techniques.,2025-09-10
+REV-00226,LOC-002,Jessica Z.,4,Would definitely return and refer friends. Never felt rushed during my appointment. Left two voicemails but never got a callback.,2026-08-30
+REV-00227,LOC-002,Donna N.,5,Very professional and caring dentists. Love coming here for my cleanings. The staff really cares about your comfort.,2026-07-14
+REV-00228,LOC-002,Brenda H.,5,Dr. is truly passionate about his work.,2026-06-29
+REV-00229,LOC-002,Shirley Q.,4,Exceptional dental care every single time.,2026-02-18
+REV-00230,LOC-002,Gregory E.,2,The exam felt rushed. Staff seemed annoyed with me.,2025-12-09
+REV-00231,LOC-002,Sarah C.,5,Great preventative care approach. Everything went smoothly and painlessly.,2025-12-30
+REV-00232,LOC-002,Brandon O.,1,I felt like just a number. The office was messy. Not the standard I expected.,2025-11-30
+REV-00233,LOC-002,Nicholas O.,2,The dentist was dismissive. They seemed more concerned with money than care. Called three times but no one picked up.,2026-08-15
+REV-00234,LOC-002,Ashley O.,5,I felt well taken care of during my visit. They made my anxiety go away.,2026-07-21
+REV-00235,LOC-002,Karen T.,5,Very attentive to my dental health. Best dental experience I've had.,2026-04-20
+REV-00236,LOC-002,Anna U.,5,Dentist really cares about your teeth. The staff is so friendly and welcoming.,2026-07-02
+REV-00237,LOC-002,Laura D.,5,Very caring and competent team. The appointment was right on time.,2025-12-06
+REV-00238,LOC-002,Jessica H.,1,Not worth the money.,2026-02-23
+REV-00239,LOC-002,Ronald L.,5,Best decision switching to this practice. They treat you with respect.,2026-08-29
+REV-00240,LOC-002,Emma V.,5,"Very clean facilities and modern equipment. Clean, comfortable, and welcoming. Called three times but no one picked up.",2026-01-23
+REV-00241,LOC-002,Christopher L.,5,"The appointment was right on time. Clean, comfortable, and welcoming. Professional, friendly, and efficient.",2026-03-17
+REV-00242,LOC-002,Richard J.,1,Terrible communication. I won't be returning. The staff was unprofessional.,2026-02-06
+REV-00243,LOC-002,Ryan Q.,5,Fantastic team and great results. Best decision switching to this practice. Tried calling multiple times with no luck.,2026-06-14
+REV-00244,LOC-002,Eric G.,5,They really care about patient comfort. The team puts you at ease right away.,2026-03-05
+REV-00245,LOC-002,Joseph Q.,1,They seem to have money on their mind only.,2025-12-25
+REV-00246,LOC-002,Brenda E.,3,Typical pricing for the area.,2026-06-04
+REV-00247,LOC-002,Brenda Z.,5,They really care about patient comfort.,2026-07-03
+REV-00248,LOC-002,Paul O.,4,They explain everything before doing it.,2025-11-24
+REV-00249,LOC-002,Nicholas G.,5,I feel confident in my dental health now. Excellent communication throughout. The hygienist was very skilled.,2026-07-10
+REV-00250,LOC-002,Jonathan Q.,4,They go above and beyond for patients. Very attentive to my dental health.,2026-03-08
+REV-00251,LOC-002,Andrew B.,1,Very poor experience.,2026-04-03
+REV-00252,LOC-002,Stephen D.,5,Dentist really cares about your teeth. Great attention to detail.,2026-07-26
+REV-00253,LOC-002,Angela E.,5,They treated me like family.,2026-01-24
+REV-00254,LOC-002,Jennifer N.,5,I feel confident in my dental health now.,2026-04-12
+REV-00255,LOC-002,Melissa H.,5,Very competent and thorough work. The best option for family dentistry.,2025-09-28
+REV-00256,LOC-002,Barbara B.,5,"Clean, comfortable, and welcoming.",2025-09-15
+REV-00257,LOC-002,Nicholas O.,2,Disappointing from start to finish. The service was inadequate. Tried calling multiple times with no luck.,2026-01-25
+REV-00258,LOC-002,Susan R.,5,The dentist was thorough and really listened to my concerns.,2026-07-13
+REV-00259,LOC-002,Patricia B.,5,Would definitely return and refer friends. Very attentive to my dental health.,2026-09-08
+REV-00260,LOC-002,Amy T.,5,Outstanding service and expertise. Dr. explained everything clearly and answered all questions. Would definitely return and refer friends.,2026-01-01
+REV-00261,LOC-002,Samuel L.,5,Very competent and thorough work. Very impressed with the quality of care. Great experience and fair pricing.,2026-06-02
+REV-00262,LOC-002,Ronald C.,5,"Professional, friendly, and efficient.",2026-01-02
+REV-00263,LOC-002,Jessica U.,5,Dentist really cares about your teeth. The dentist was thorough and really listened to my concerns. The best option for family dentistry.,2026-05-28
+REV-00264,LOC-002,William L.,1,I regret choosing this practice. The appointment took forever.,2026-03-18
+REV-00265,LOC-002,Angela K.,4,"Clean, comfortable, and welcoming. Left two voicemails but never got a callback.",2026-01-02
+REV-00266,LOC-002,William W.,5,They go above and beyond for patients. The dentist is truly the best. They really care about patient comfort.,2026-07-27
+REV-00267,LOC-002,Jessica K.,5,The staff is so friendly and welcoming.,2026-04-23
+REV-00268,LOC-002,Mark J.,5,Very thorough and always professional. Dr. is very gentle and patient. Highly recommend this practice!,2026-02-06
+REV-00269,LOC-002,Melissa N.,3,Typical pricing for the area.,2026-03-02
+REV-00270,LOC-002,Amy L.,4,Would give them more than 5 stars if possible. They really care about patient comfort.,2026-03-24
+REV-00271,LOC-002,Linda R.,5,Very clean and well-organized office. Phone lines are always busy or ring out.,2026-05-24
+REV-00272,LOC-002,Ashley O.,5,The dentist really knows their stuff.,2026-01-29
+REV-00273,LOC-002,Jessica X.,4,Best preventative dental team around.,2026-07-06
+REV-00274,LOC-002,Stephanie L.,5,Outstanding patient care experience. I felt well taken care of during my visit. Tried calling multiple times with no luck.,2026-02-28
+REV-00275,LOC-002,Marcus Z.,4,Great experience from start to finish. Phone lines are always busy or ring out.,2026-05-21
+REV-00276,LOC-002,Ronald L.,5,Very competent and thorough work.,2026-04-13
+REV-00277,LOC-002,Melissa L.,2,The staff didn't seem to care. Couldn't reach them to book an appointment.,2026-03-16
+REV-00278,LOC-002,Brian U.,4,Best decision switching to this practice.,2026-04-16
+REV-00279,LOC-002,Amy Q.,5,Great experience from start to finish.,2026-01-21
+REV-00280,LOC-002,Laura G.,2,Quality didn't match the price.,2026-03-18
+REV-00281,LOC-002,Laura F.,5,Great preventative care approach. Dr. is very knowledgeable and caring. Called three times but no one picked up.,2026-07-11
+REV-00282,LOC-002,William R.,5,Very modern technology and techniques.,2026-09-01
+REV-00283,LOC-002,Angela H.,5,Dr. did an amazing job with my crown. Everything went smoothly and painlessly.,2026-06-05
+REV-00284,LOC-002,Jennifer L.,1,The appointment was overbooked.,2025-11-02
+REV-00285,LOC-002,Karen C.,5,Dentist really cares about your teeth. Fantastic team and great results.,2026-06-11
+REV-00286,LOC-002,Anna C.,5,The dentist is truly the best. Best decision switching to this practice. They explain everything before doing it.,2026-02-06
+REV-00287,LOC-002,Edward E.,1,They seem to have money on their mind only. Felt overcharged for the work. The office was messy.,2025-11-04
+REV-00288,LOC-002,Emily D.,4,Fantastic team and great results.,2026-06-10
+REV-00289,LOC-002,Steven L.,5,Dr. did an amazing job with my crown.,2026-05-24
+REV-00290,LOC-002,Margaret E.,3,Standard quality care. Phone lines are always busy or ring out.,2026-05-24
+REV-00291,LOC-002,Brandon E.,5,Love coming here for my cleanings. Very caring and competent team. Highly professional and trustworthy.,2026-07-18
+REV-00292,LOC-002,Anna I.,4,The staff is so friendly and welcoming. Great experience from start to finish. Tried calling multiple times with no luck.,2025-11-27
+REV-00293,LOC-002,Angela J.,5,Beautiful smiles are made here. Great experience from start to finish. I've recommended them to everyone.,2026-07-31
+REV-00294,LOC-002,Stephanie J.,1,The appointment was overbooked. Very poor experience.,2026-07-26
+REV-00295,LOC-002,Kathleen O.,5,Dr. did an amazing job with my crown.,2026-04-21
+REV-00296,LOC-002,Brian X.,5,Very modern technology and techniques.,2025-12-14
+REV-00297,LOC-002,Emma D.,1,Not the standard I expected.,2026-02-24
+REV-00298,LOC-002,Christopher D.,5,They treated me like family.,2026-02-11
+REV-00299,LOC-002,Daniel K.,5,Beautiful smiles are made here. Loved the friendly atmosphere.,2025-09-26
+REV-00300,LOC-002,Angela O.,4,Dr. did an amazing job with my crown.,2026-06-23
+REV-00301,LOC-002,Jonathan O.,3,The appointment was scheduled quickly. The dentist did their job well.,2026-05-14
+REV-00302,LOC-002,Sarah V.,5,Very clean facilities and modern equipment. Very attentive to my dental health.,2026-01-02
+REV-00303,LOC-002,Carol X.,5,Great attention to detail.,2026-04-29
+REV-00304,LOC-002,Mark L.,4,The staff is so friendly and welcoming. Never felt rushed during my appointment. Phone lines are always busy or ring out.,2026-03-07
+REV-00305,LOC-002,Margaret T.,5,Very caring and competent team. I feel confident in my dental health now.,2026-06-11
+REV-00306,LOC-002,Brenda R.,5,The hygienist was so gentle and thorough.,2026-08-15
+REV-00307,LOC-002,Jessica B.,4,Exceptional dental care every single time.,2026-03-07
+REV-00308,LOC-002,Katie Q.,5,Very thorough and always professional. They treat you with respect.,2025-09-20
+REV-00309,LOC-002,Kevin S.,5,Very modern technology and techniques. Dr. did an amazing job with my crown. Dr. is truly passionate about his work.,2025-11-11
+REV-00310,LOC-002,Michael L.,5,The hygienist was very skilled. Great facility with amazing staff. The receptionist was so helpful.,2026-02-20
+REV-00311,LOC-002,Carol U.,4,I've been a patient for years and never disappointed. Great experience from start to finish.,2026-02-17
+REV-00312,LOC-002,Brenda Y.,5,Very clean facilities and modern equipment. The dentist is truly the best. Highly professional and trustworthy.,2026-06-24
+REV-00313,LOC-002,Brian N.,5,Loved the friendly atmosphere. Highly recommend this practice! Would definitely return and refer friends. Couldn't reach them to book an appointment.,2026-03-14
+REV-00314,LOC-002,Samuel P.,5,They explain everything before doing it.,2025-11-17
+REV-00315,LOC-002,Alexander P.,5,They treat you with respect. Left two voicemails but never got a callback.,2026-09-08
+REV-00316,LOC-002,Brenda R.,5,Outstanding service and expertise.,2026-05-28
+REV-00317,LOC-002,Margaret R.,4,The dentist is truly the best. Best dentist in the area!,2026-03-01
+REV-00318,LOC-002,Eric K.,5,Very attentive to my dental health. Very thorough cleaning and exam.,2026-01-31
+REV-00319,LOC-002,Angela M.,5,Outstanding patient care experience. Very attentive to my dental health. Dr. is very knowledgeable and caring.,2026-05-04
+REV-00320,LOC-002,Richard L.,4,Great experience and fair pricing. Tried calling multiple times with no luck.,2026-03-22
+REV-00321,LOC-002,Joshua R.,4,The team puts you at ease right away. Great preventative care approach.,2026-04-15
+REV-00322,LOC-002,Makayla Q.,5,Very competent and thorough work.,2026-08-23
+REV-00323,LOC-002,Nicholas D.,4,The hygienist was so gentle and thorough.,2025-12-25
+REV-00324,LOC-002,Daniel N.,4,Dentist really cares about your teeth.,2026-08-15
+REV-00325,LOC-002,Michelle J.,2,Staff attitudes were poor. Not professional at all. Left two voicemails but never got a callback.,2026-08-01
+REV-00326,LOC-002,David F.,5,Excellent communication throughout.,2026-07-28
+REV-00327,LOC-002,Jason Z.,3,Staff was polite and professional.,2026-04-02
+REV-00328,LOC-002,Katie D.,5,Great experience and fair pricing. Highly recommend this practice! Dr. and the team made me feel very comfortable.,2026-05-12
+REV-00329,LOC-002,Barbara Q.,5,Very comfortable and relaxing environment. Best decision switching to this practice. I've recommended them to everyone.,2026-02-19
+REV-00330,LOC-002,Gregory I.,5,"Clean, comfortable, and welcoming. Couldn't reach them to book an appointment.",2026-04-28
+REV-00331,LOC-002,Stephanie N.,5,Would give them more than 5 stars if possible. Great experience and fair pricing. Best dentist in the area! Tried calling multiple times with no luck.,2026-09-03
+REV-00332,LOC-002,Kathleen K.,5,The hygienist was so gentle and thorough. They really care about patient comfort.,2026-05-22
+REV-00333,LOC-002,George J.,5,Very competent and thorough work. I feel confident in my dental health now.,2026-01-06
+REV-00334,LOC-002,Dylan H.,4,Top-notch professionalism.,2026-06-26
+REV-00335,LOC-002,Jonathan W.,4,I've been a patient for years and never disappointed. Dr. did an amazing job with my crown.,2025-10-02
+REV-00336,LOC-003,Barbara P.,4,I trust them completely with my teeth. I have no cavities thanks to their care.,2026-02-07
+REV-00337,LOC-003,Larry Z.,5,I trust them completely with my teeth. Beautiful smiles are made here. Dentist really cares about your teeth.,2025-11-18
+REV-00338,LOC-003,Richard Q.,3,Straightforward and professional interaction.,2026-08-07
+REV-00339,LOC-003,Jonathan G.,5,Best dental experience I've had. Would definitely return and refer friends. Website was outdated about their hours.,2026-04-17
+REV-00340,LOC-003,Jacob D.,5,The dentist really knows their stuff.,2026-06-21
+REV-00341,LOC-003,Emily O.,5,Great facility with amazing staff. Love coming here for my cleanings. Exceptional dental care every single time.,2026-08-15
+REV-00342,LOC-003,Ashley X.,5,I felt well taken care of during my visit. Outstanding results and great communication.,2025-11-07
+REV-00343,LOC-003,Jessica N.,5,The team puts you at ease right away.,2025-09-12
+REV-00344,LOC-003,Nicholas B.,4,Dr. explained everything clearly and answered all questions.,2026-02-24
+REV-00345,LOC-003,Timothy O.,5,Beautiful smiles are made here.,2026-01-25
+REV-00346,LOC-003,Jason Q.,5,Very comfortable and relaxing environment. Super friendly reception and fast service. The entire team is excellent. Website was outdated about their hours.,2026-03-13
+REV-00347,LOC-003,Kevin O.,4,Excellent dental care and very professional staff.,2025-11-05
+REV-00348,LOC-003,Donna O.,4,The hygienist was very skilled. Great follow-up care and support.,2026-08-11
+REV-00349,LOC-003,Rebecca T.,5,Would definitely return and refer friends. Showed up and found they were closed.,2026-02-25
+REV-00350,LOC-003,Laura T.,5,The hygienist was so gentle and thorough.,2025-09-09
+REV-00351,LOC-003,Stephanie O.,4,Loved the friendly atmosphere.,2026-08-11
+REV-00352,LOC-003,Sandra H.,5,Super friendly reception and fast service.,2025-12-29
+REV-00353,LOC-003,Alexander Q.,5,The dentist really knows their stuff. Very competent and thorough work. The receptionist was so helpful.,2026-09-10
+REV-00354,LOC-003,Matthew U.,5,I felt well taken care of during my visit. Outstanding results and great communication.,2025-12-23
+REV-00355,LOC-003,Makayla M.,5,Very clean facilities and modern equipment. The entire team is excellent.,2026-08-14
+REV-00356,LOC-003,Linda Y.,5,They explain everything before doing it. The appointment was right on time.,2026-05-27
+REV-00357,LOC-003,Christopher Z.,5,The receptionist was so helpful.,2026-06-03
+REV-00358,LOC-003,Deborah H.,2,The experience was disappointing. Poor attention to detail.,2026-04-26
+REV-00359,LOC-003,Mark B.,5,"Professional, friendly, and efficient. I feel confident in my dental health now. I trust them completely with my teeth. Showed up and found they were closed.",2026-01-09
+REV-00360,LOC-003,Debra X.,5,The staff is so friendly and welcoming. Best dental experience I've had. Best dentist in the area!,2026-01-16
+REV-00361,LOC-003,Sarah G.,5,"Very thorough cleaning and exam. Clean, comfortable, and welcoming.",2026-08-10
+REV-00362,LOC-003,Kathleen H.,1,I regret choosing this practice.,2025-12-07
+REV-00363,LOC-003,Justin K.,5,Dr. is truly passionate about his work.,2026-08-23
+REV-00364,LOC-003,Amy O.,5,They made my anxiety go away. I've been a patient for years and never disappointed. Top-notch professionalism.,2026-01-23
+REV-00365,LOC-003,Jeffrey B.,4,Very modern technology and techniques. Very thorough cleaning and exam.,2025-10-21
+REV-00366,LOC-003,Brandon S.,3,The appointment was scheduled quickly.,2026-06-16
+REV-00367,LOC-003,Timothy S.,5,Great preventative care approach.,2026-09-04
+REV-00368,LOC-003,Gregory X.,5,Would give them more than 5 stars if possible. Dr. is very gentle and patient. Great facility with amazing staff.,2026-01-04
+REV-00369,LOC-003,Eric F.,5,They made my anxiety go away. Highly professional and trustworthy. Super friendly reception and fast service.,2026-05-10
+REV-00370,LOC-003,Makayla B.,1,The hygienist was rough. Drove over Saturday and they were closed.,2026-06-05
+REV-00371,LOC-003,Gary L.,5,Excellent communication throughout. Dr. explained everything clearly and answered all questions. The appointment was right on time. Website was outdated about their hours.,2025-09-04
+REV-00372,LOC-003,Jeffrey A.,5,The dentist is truly the best. Great facility with amazing staff. The dentist was thorough and really listened to my concerns. Website was outdated about their hours.,2025-10-01
+REV-00373,LOC-003,Marcus N.,5,The hygienist was very skilled. Very attentive to my dental health. Showed up and found they were closed.,2025-09-09
+REV-00374,LOC-003,Brenda Q.,5,Best decision switching to this practice. Website doesn't show their hours clearly.,2025-12-01
+REV-00375,LOC-003,Stephanie O.,4,"Dr. is truly passionate about his work. Professional, friendly, and efficient.",2026-01-08
+REV-00376,LOC-003,Sarah Y.,5,"I have no cavities thanks to their care. The receptionist was so helpful. Professional, friendly, and efficient.",2026-06-17
+REV-00377,LOC-003,Samantha A.,5,Great follow-up care and support. Dentist really cares about your teeth.,2025-09-17
+REV-00378,LOC-003,Joseph Q.,5,"The staff really cares about your comfort. Clean, comfortable, and welcoming.",2026-08-26
+REV-00379,LOC-003,Gail I.,5,Very thorough and always professional. They treated me like family. The staff is so friendly and welcoming.,2025-09-22
+REV-00380,LOC-003,Brian A.,5,Everything went smoothly and painlessly.,2026-06-06
+REV-00381,LOC-003,Paul S.,5,Dr. is truly passionate about his work. Best dental experience I've had. The receptionist was so helpful.,2025-12-16
+REV-00382,LOC-003,Dylan X.,4,The best option for family dentistry. Super friendly reception and fast service.,2026-03-19
+REV-00383,LOC-003,Lisa K.,5,Very clean facilities and modern equipment. The hygienist was so gentle and thorough.,2025-10-11
+REV-00384,LOC-003,Laura P.,4,The dentist really knows their stuff. Great experience from start to finish.,2026-07-07
+REV-00385,LOC-003,Alexander M.,5,The staff really cares about your comfort. They really care about patient comfort.,2025-12-26
+REV-00386,LOC-003,Timothy W.,4,Loved the friendly atmosphere. Best dental experience I've had. Website doesn't show their hours clearly.,2025-10-14
+REV-00387,LOC-003,Ashley O.,5,Very modern technology and techniques. Very professional and caring dentists. Drove over Saturday and they were closed.,2026-07-22
+REV-00388,LOC-003,Laura R.,4,Fantastic team and great results. Had to call to find out if they were open Saturday.,2026-03-04
+REV-00389,LOC-003,Karen T.,5,Great experience from start to finish. Website was outdated about their hours.,2026-06-12
+REV-00390,LOC-003,Richard X.,4,Dr. and the team made me feel very comfortable. Great experience and fair pricing.,2026-07-04
+REV-00391,LOC-003,Gail M.,2,Wouldn't recommend to friends.,2026-06-14
+REV-00392,LOC-003,Sharon I.,5,They treated me like family. I've recommended them to everyone. Website doesn't show their hours clearly.,2025-11-26
+REV-00393,LOC-003,Donna X.,5,Very professional and caring dentists.,2026-04-04
+REV-00394,LOC-003,Jason K.,5,Great preventative care approach. Outstanding service and expertise. Great attention to detail. Drove over Saturday and they were closed.,2026-07-18
+REV-00395,LOC-003,Sarah T.,5,"Best preventative dental team around. Clean, comfortable, and welcoming.",2026-07-15
+REV-00396,LOC-003,Jason K.,5,Great preventative care approach. The dentist is truly the best. Very modern technology and techniques.,2025-11-09
+REV-00397,LOC-003,Jason L.,4,Loved the friendly atmosphere. The dentist really knows their stuff.,2026-01-28
+REV-00398,LOC-003,Linda V.,2,Very unsatisfactory visit.,2025-10-29
+REV-00399,LOC-003,Dylan C.,5,They go above and beyond for patients. Very thorough cleaning and exam. Best preventative dental team around.,2026-06-09
+REV-00400,LOC-003,Alexander E.,4,The receptionist was so helpful.,2026-03-29
+REV-00401,LOC-003,Kathleen S.,5,Best dental experience I've had. I feel confident in my dental health now.,2026-09-02
+REV-00402,LOC-003,Ronald W.,5,Beautiful smiles are made here. Very comfortable and relaxing environment. Highly recommend this practice!,2026-03-25
+REV-00403,LOC-003,Alexander V.,5,Great attention to detail.,2026-06-02
+REV-00404,LOC-003,Sharon D.,5,"The staff is so friendly and welcoming. Never felt rushed during my appointment. Clean, comfortable, and welcoming.",2026-03-01
+REV-00405,LOC-003,Emma S.,5,Exceptional dental care every single time.,2025-09-06
+REV-00406,LOC-003,Marcus S.,5,I trust them completely with my teeth. Dr. is truly passionate about his work.,2026-08-19
+REV-00407,LOC-003,Richard D.,5,Great experience from start to finish. The dentist is truly the best. Had to call to find out if they were open Saturday.,2026-08-20
+REV-00408,LOC-003,Stephen P.,5,Would give them more than 5 stars if possible. Outstanding service and expertise.,2026-09-09
+REV-00409,LOC-003,Thomas A.,5,I feel confident in my dental health now. Very modern technology and techniques. Drove over Saturday and they were closed.,2026-02-26
+REV-00410,LOC-003,Justin F.,4,Loved the friendly atmosphere.,2026-02-23
+REV-00411,LOC-003,Linda U.,5,Excellent communication throughout. Never felt rushed during my appointment.,2026-02-17
+REV-00412,LOC-003,Ryan M.,5,Great preventative care approach.,2026-08-03
+REV-00413,LOC-003,William S.,4,Outstanding patient care experience.,2025-09-03
+REV-00414,LOC-003,Gary D.,4,Very professional and caring dentists.,2025-10-23
+REV-00415,LOC-003,Samuel M.,4,Best decision switching to this practice. Very modern technology and techniques.,2026-01-13
+REV-00416,LOC-003,Kevin T.,5,Outstanding service and expertise. Everything went smoothly and painlessly.,2026-06-28
+REV-00417,LOC-003,Thomas F.,5,Very modern technology and techniques. No way to check hours online.,2026-06-30
+REV-00418,LOC-003,Ryan F.,4,Beautiful smiles are made here. Super friendly reception and fast service.,2026-03-11
+REV-00419,LOC-003,Kenneth E.,4,Outstanding results and great communication.,2026-05-08
+REV-00420,LOC-003,Eric E.,5,Very clean facilities and modern equipment. They made my anxiety go away.,2025-12-05
+REV-00421,LOC-004,Jacob P.,4,They explain everything before doing it. Great facility with amazing staff.,2025-12-09
+REV-00422,LOC-004,Margaret H.,5,I have no cavities thanks to their care.,2025-11-25
+REV-00423,LOC-004,Anna D.,5,I've recommended them to everyone. Dentist really cares about your teeth.,2026-06-03
+REV-00424,LOC-004,Jacob R.,4,Very comfortable and relaxing environment. The staff is so friendly and welcoming.,2026-01-16
+REV-00425,LOC-004,Donna J.,1,I regret choosing this practice.,2025-12-21
+REV-00426,LOC-004,Patricia Y.,5,Love coming here for my cleanings. Best preventative dental team around.,2025-09-17
+REV-00427,LOC-004,Donald G.,5,The entire team is excellent. Very clean and well-organized office. Highly professional and trustworthy.,2025-12-31
+REV-00428,LOC-004,Sandra J.,5,Outstanding patient care experience. The hygienist was very skilled. Highly professional and trustworthy.,2025-10-01
+REV-00429,LOC-004,Margaret U.,5,The hygienist was so gentle and thorough. Super friendly reception and fast service. They explain everything before doing it.,2026-06-21
+REV-00430,LOC-004,Marcus M.,4,Loved the friendly atmosphere. Long wait even though I was early.,2025-11-04
+REV-00431,LOC-004,Samantha Z.,5,They treated me like family. Beautiful smiles are made here. Great follow-up care and support.,2026-05-09
+REV-00432,LOC-004,Michelle S.,5,Outstanding patient care experience. I trust them completely with my teeth. Outstanding service and expertise.,2025-10-18
+REV-00433,LOC-004,Sophia L.,3,They keep the office organized.,2025-09-02
+REV-00434,LOC-004,Amy I.,4,The team puts you at ease right away. Very clean and well-organized office.,2025-10-03
+REV-00435,LOC-004,Eric Z.,4,Dentist really cares about your teeth. Fantastic team and great results.,2026-02-13
+REV-00436,LOC-004,Michael D.,3,Staff was polite and professional. Unexpected charges appeared on my bill.,2026-02-23
+REV-00437,LOC-004,Dylan E.,5,Very clean and well-organized office.,2025-11-20
+REV-00438,LOC-004,Melissa V.,5,Love coming here for my cleanings. Very professional and caring dentists.,2026-07-30
+REV-00439,LOC-004,Karen W.,5,I've been a patient for years and never disappointed. Excellent communication throughout.,2026-07-30
+REV-00440,LOC-004,Stephen V.,5,Best dental experience I've had. Fantastic team and great results.,2025-10-19
+REV-00441,LOC-004,Kathleen C.,5,Would give them more than 5 stars if possible. Dr. is very knowledgeable and caring. Very clean and well-organized office.,2026-04-16
+REV-00442,LOC-004,Barbara M.,5,Great attention to detail. Very modern technology and techniques. I trust them completely with my teeth.,2025-12-27
+REV-00443,LOC-004,Sarah T.,4,Dr. explained everything clearly and answered all questions.,2025-11-08
+REV-00444,LOC-004,Samuel V.,5,The team puts you at ease right away. The appointment was right on time.,2026-07-30
+REV-00445,LOC-004,Deborah L.,2,Poor customer service experience. The wait was extremely long and frustrating.,2026-04-15
+REV-00446,LOC-004,Richard H.,5,Loved the friendly atmosphere.,2026-04-08
+REV-00447,LOC-004,Katie Q.,4,Great experience from start to finish. The receptionist was so helpful.,2026-06-11
+REV-00448,LOC-004,Thomas H.,4,Very clean facilities and modern equipment. Very competent and thorough work.,2025-12-06
+REV-00449,LOC-004,Sarah L.,4,Best decision switching to this practice.,2026-05-14
+REV-00450,LOC-004,Nicholas Y.,5,Beautiful smiles are made here. Very professional and caring dentists. Very comfortable and relaxing environment.,2026-02-10
+REV-00451,LOC-004,Jessica B.,5,Dr. and the team made me feel very comfortable.,2025-10-08
+REV-00452,LOC-004,Susan I.,4,Very clean and well-organized office. Never felt rushed during my appointment. Appointment was running an hour behind.,2026-03-23
+REV-00453,LOC-004,Debra U.,5,Very thorough cleaning and exam. The appointment was right on time. The hygienist was very skilled.,2025-10-13
+REV-00454,LOC-004,Paul B.,3,I got in and out on time.,2026-07-30
+REV-00455,LOC-004,Emily J.,5,Would definitely return and refer friends. Outstanding service and expertise.,2026-01-04
+REV-00456,LOC-004,Daniel P.,3,Appointment took about as long as expected. Waited 50 minutes past my appointment.,2026-08-08
+REV-00457,LOC-004,Patricia Y.,5,Top-notch professionalism. Highly professional and trustworthy. I trust them completely with my teeth. The bill didn't match what I was told.,2026-02-25
+REV-00458,LOC-004,Frank C.,5,They treated me like family. Best decision switching to this practice. They charged more than the quoted price.,2025-09-16
+REV-00459,LOC-004,Jessica L.,4,I felt well taken care of during my visit. I've recommended them to everyone.,2026-05-13
+REV-00460,LOC-004,Angela A.,5,Would definitely return and refer friends.,2025-11-20
+REV-00461,LOC-004,Matthew B.,3,The dentist was straightforward. Long wait even though I was early.,2025-09-23
+REV-00462,LOC-004,Brian I.,2,The staff didn't listen to my concerns. They seemed more concerned with money than care.,2026-06-11
+REV-00463,LOC-004,Robert F.,5,Very caring and competent team.,2025-10-10
+REV-00464,LOC-004,Ashley K.,4,Never felt rushed during my appointment. They keep you waiting much too long.,2025-12-24
+REV-00465,LOC-004,Scott Z.,5,I trust them completely with my teeth.,2025-10-15
+REV-00466,LOC-004,Amy Y.,4,They go above and beyond for patients.,2026-02-03
+REV-00467,LOC-004,Angela L.,4,The appointment was right on time. Long wait even though I was early.,2025-12-10
+REV-00468,LOC-004,Ashley D.,2,I didn't feel listened to. Very unclear pricing and surprise charges.,2026-07-23
+REV-00469,LOC-004,Emily E.,5,Beautiful smiles are made here.,2025-12-15
+REV-00470,LOC-004,Stephen N.,5,Excellent communication throughout.,2026-08-31
+REV-00471,LOC-004,Jonathan E.,1,I regret choosing this practice. The dentist rushed through my exam.,2026-08-25
+REV-00472,LOC-004,Sharon V.,2,Very unsatisfactory visit.,2026-07-24
+REV-00473,LOC-004,Michelle K.,5,Very modern technology and techniques. Dr. is truly passionate about his work.,2025-11-06
+REV-00474,LOC-004,Susan D.,5,Great preventative care approach. Quoted one price but billed something different.,2026-04-20
+REV-00475,LOC-004,Donald O.,5,They explain everything before doing it. Dr. is very knowledgeable and caring.,2025-11-24
+REV-00476,LOC-004,Sophia T.,5,Love coming here for my cleanings. Very unclear pricing and surprise charges.,2026-02-05
+REV-00477,LOC-004,Angela M.,5,Very impressed with the quality of care. Love coming here for my cleanings.,2025-09-21
+REV-00478,LOC-004,Emma X.,5,Top-notch professionalism. Everything went smoothly and painlessly. Never got in at the scheduled time.,2026-05-21
+REV-00479,LOC-004,Charles G.,5,Great attention to detail. Super friendly reception and fast service. Long wait even though I was early.,2026-06-09
+REV-00480,LOC-004,Jacob Z.,5,"Professional, friendly, and efficient. Top-notch professionalism. Best dental experience I've had. The wait was extremely long and frustrating.",2026-03-25
+REV-00481,LOC-004,Robert F.,5,Dr. is very knowledgeable and caring. The staff is so friendly and welcoming.,2025-11-05
+REV-00482,LOC-004,Ryan F.,5,Dr. is truly passionate about his work. I've recommended them to everyone. Great experience from start to finish.,2026-06-21
+REV-00483,LOC-004,Susan B.,5,Outstanding patient care experience.,2026-03-01
+REV-00484,LOC-004,Justin P.,4,Great experience and fair pricing.,2026-07-12
+REV-00485,LOC-004,Donna U.,5,Super friendly reception and fast service. Beautiful smiles are made here. They charged more than the quoted price.,2025-10-02
+REV-00486,LOC-004,Angela Z.,2,I felt disrespected during my visit. The service quality was poor.,2026-06-06
+REV-00487,LOC-004,Jennifer K.,5,Very caring and competent team. The dentist really knows their stuff. The best option for family dentistry.,2026-05-07
+REV-00488,LOC-004,Brandon H.,5,I felt well taken care of during my visit. Very thorough and always professional.,2026-07-03
+REV-00489,LOC-004,Emily Y.,5,Very competent and thorough work. They treated me like family. The hygienist was very skilled.,2025-11-21
+REV-00490,LOC-004,Sophia L.,5,They made my anxiety go away. Everything went smoothly and painlessly. The wait was extremely long and frustrating.,2025-12-22
+REV-00491,LOC-004,Amy R.,5,They made my anxiety go away. Very impressed with the quality of care. Best dentist in the area!,2026-06-30
+REV-00492,LOC-004,Shirley P.,5,Love coming here for my cleanings. Quoted one price but billed something different.,2026-02-06
+REV-00493,LOC-004,Michelle B.,5,Great preventative care approach. Fantastic team and great results. Would give them more than 5 stars if possible.,2025-09-01
+REV-00494,LOC-004,Lisa L.,5,Very impressed with the quality of care. Would definitely return and refer friends. Best decision switching to this practice.,2025-09-12
+REV-00495,LOC-004,Michelle E.,1,Very unsatisfactory visit. Poor customer service experience.,2026-08-27
+REV-00496,LOC-004,Samuel Z.,4,Great facility with amazing staff. Very modern technology and techniques. Very unclear pricing and surprise charges.,2025-11-20
+REV-00497,LOC-004,Sandra E.,5,Everything went smoothly and painlessly. Great follow-up care and support. I've been a patient for years and never disappointed.,2026-03-02
+REV-00498,LOC-004,Samuel H.,4,Highly recommend this practice! They really care about patient comfort.,2025-11-30
+REV-00499,LOC-004,Paul L.,4,"Very impressed with the quality of care. Clean, comfortable, and welcoming.",2026-07-25
+REV-00500,LOC-004,Carol G.,5,"Clean, comfortable, and welcoming.",2026-02-11
+REV-00501,LOC-004,Robert M.,4,Dr. is very gentle and patient. Great attention to detail.,2026-01-06
+REV-00502,LOC-004,Timothy L.,3,The hygienist did a standard cleaning.,2026-04-13
+REV-00503,LOC-004,David J.,5,I have no cavities thanks to their care. Dr. did an amazing job with my crown.,2026-06-07
+REV-00504,LOC-004,Timothy F.,5,Best dental experience I've had.,2025-09-11
+REV-00505,LOC-004,Samuel P.,5,Would give them more than 5 stars if possible.,2026-09-10
+REV-00506,LOC-004,Jeffrey W.,5,Highly professional and trustworthy. The staff really cares about your comfort. Dr. did an amazing job with my crown. Long wait even though I was early.,2026-08-27
+REV-00507,LOC-004,Robert M.,3,Office was reasonably busy. I got in and out on time.,2026-06-11
+REV-00508,LOC-004,Ryan C.,4,The appointment was right on time. Very clean facilities and modern equipment.,2026-06-20
+REV-00509,LOC-004,Richard P.,4,Great preventative care approach. The hygienist was so gentle and thorough. They keep you waiting much too long.,2026-01-29
+REV-00510,LOC-004,Carol C.,5,Very thorough and always professional. Great facility with amazing staff.,2025-10-30
+REV-00511,LOC-004,Melissa F.,4,I trust them completely with my teeth.,2026-07-26
+REV-00512,LOC-004,Joshua S.,5,They go above and beyond for patients. Top-notch professionalism.,2026-04-17
+REV-00513,LOC-004,Jeffrey Y.,5,"The hygienist was so gentle and thorough. Professional, friendly, and efficient. The entire team is excellent.",2025-10-02
+REV-00514,LOC-004,Rebecca R.,5,The best option for family dentistry.,2026-06-29
+REV-00515,LOC-004,Richard M.,2,Wouldn't recommend to friends. The appointment was overbooked.,2026-08-18
+REV-00516,LOC-004,Laura F.,5,They treat you with respect. Very impressed with the quality of care. Dr. is very knowledgeable and caring.,2026-09-01
+REV-00517,LOC-004,Sharon G.,1,The staff was unprofessional. The wait was extremely long and frustrating.,2025-11-25
+REV-00518,LOC-004,Michelle I.,5,Top-notch professionalism. Very modern technology and techniques. Dr. explained everything clearly and answered all questions. Appointment was running an hour behind.,2026-07-19
+REV-00519,LOC-004,Thomas N.,4,They treat you with respect.,2026-05-25
+REV-00520,LOC-004,Edward N.,5,The hygienist was so gentle and thorough. Great attention to detail. Very attentive to my dental health.,2025-11-16
+REV-00521,LOC-004,Katie V.,5,Very thorough and always professional. Highly recommend this practice! Appointment was running an hour behind.,2026-01-14
+REV-00522,LOC-004,Melissa A.,5,"Clean, comfortable, and welcoming. Very competent and thorough work. They keep you waiting much too long.",2026-08-22
+REV-00523,LOC-004,Sophia V.,4,I've been a patient for years and never disappointed. Outstanding patient care experience.,2026-02-20
+REV-00524,LOC-004,Jacob Y.,1,The staff was unprofessional.,2025-10-21
+REV-00525,LOC-004,Jeffrey X.,5,Love coming here for my cleanings. Best dentist in the area!,2026-02-12
+REV-00526,LOC-004,William J.,3,Nothing to complain about. Just another routine appointment.,2026-05-07
+REV-00527,LOC-004,Jennifer F.,4,Best decision switching to this practice.,2026-08-30
+REV-00528,LOC-004,Gary B.,3,Nothing to complain about.,2025-12-08
+REV-00529,LOC-004,Samantha D.,3,"No surprises, just routine work. They keep the office organized.",2026-03-04
+REV-00530,LOC-004,Justin L.,5,Great facility with amazing staff. I feel confident in my dental health now. They charged more than the quoted price.,2026-08-15
+REV-00531,LOC-004,Anna H.,5,Love coming here for my cleanings. Very attentive to my dental health. Appointment was running an hour behind.,2026-02-24
+REV-00532,LOC-004,Angela A.,5,They treated me like family.,2026-07-29
+REV-00533,LOC-004,Sarah H.,5,Everything went smoothly and painlessly.,2026-08-16
+REV-00534,LOC-004,Edward O.,4,Outstanding patient care experience. Very clean and well-organized office.,2026-01-08
+REV-00535,LOC-004,James Q.,5,They treat you with respect. Dr. is truly passionate about his work.,2026-01-08
+REV-00536,LOC-004,Kenneth J.,1,Poor attention to detail. Not professional at all.,2026-08-06
+REV-00537,LOC-004,Samantha K.,5,Would give them more than 5 stars if possible.,2026-08-17
+REV-00538,LOC-004,Paul B.,5,The receptionist was so helpful. Best dentist in the area! The appointment was right on time.,2026-01-20
+REV-00539,LOC-004,Sandra I.,5,Super friendly reception and fast service. Great experience from start to finish.,2026-07-05
+REV-00540,LOC-004,Steven V.,5,Highly recommend this practice! Best dentist in the area! Would give them more than 5 stars if possible.,2026-04-03
+REV-00541,LOC-004,Jessica V.,4,They made my anxiety go away. Very caring and competent team.,2026-06-01
+REV-00542,LOC-004,Linda V.,5,Very thorough and always professional. Appointment was running an hour behind.,2026-06-13
+REV-00543,LOC-004,Ashley N.,4,They made my anxiety go away.,2026-02-19
+REV-00544,LOC-004,Samantha S.,5,Great experience and fair pricing. They go above and beyond for patients. Dr. is very knowledgeable and caring.,2026-02-17
+REV-00545,LOC-004,Jonathan D.,1,Staff attitudes were poor.,2026-06-25
+REV-00546,LOC-004,Susan E.,5,They explain everything before doing it. Very clean facilities and modern equipment.,2026-08-15
+REV-00547,LOC-004,Linda Y.,5,Outstanding service and expertise. Very impressed with the quality of care. Very modern technology and techniques.,2025-12-12
+REV-00548,LOC-004,Anna Y.,5,Everything went smoothly and painlessly. Very modern technology and techniques. I felt well taken care of during my visit. Long wait even though I was early.,2025-10-12
+REV-00549,LOC-004,Samantha N.,5,Fantastic team and great results.,2025-11-21
+REV-00550,LOC-004,Sarah K.,5,The best option for family dentistry. Excellent dental care and very professional staff. They keep you waiting much too long.,2026-03-26
+REV-00551,LOC-004,Edward J.,5,Excellent dental care and very professional staff. Loved the friendly atmosphere. I have no cavities thanks to their care.,2026-05-30
+REV-00552,LOC-004,Kevin J.,5,I've been a patient for years and never disappointed. Highly professional and trustworthy. Dr. explained everything clearly and answered all questions.,2025-11-06
+REV-00553,LOC-004,Eric L.,3,No complications during the visit. The cleaning was thorough.,2026-04-22
+REV-00554,LOC-004,Charles G.,5,The dentist was thorough and really listened to my concerns. Excellent communication throughout.,2025-12-06
+REV-00555,LOC-004,Sarah Z.,5,Dr. is very knowledgeable and caring.,2025-09-12
+REV-00556,LOC-004,Robert V.,5,Dr. is very gentle and patient. The hygienist was very skilled. Very clean facilities and modern equipment.,2025-09-20
+REV-00557,LOC-004,Rebecca O.,4,Very clean facilities and modern equipment.,2025-10-26
+REV-00558,LOC-004,Gail U.,5,Very thorough and always professional. The appointment was right on time.,2026-03-14
+REV-00559,LOC-004,Sophia E.,5,The hygienist was so gentle and thorough. They treat you with respect. They treated me like family.,2025-09-05
+REV-00560,LOC-004,Patricia J.,2,Not worth the money.,2026-04-03
+REV-00561,LOC-004,Elizabeth L.,4,Great preventative care approach. Top-notch professionalism.,2025-10-29
+REV-00562,LOC-004,Donald W.,5,The staff is so friendly and welcoming.,2026-08-27
+REV-00563,LOC-004,Thomas S.,5,Dr. and the team made me feel very comfortable.,2026-05-05
+REV-00564,LOC-004,Gregory H.,4,Exceptional dental care every single time. The bill didn't match what I was told.,2026-08-09
+REV-00565,LOC-004,Sandra L.,1,Quality didn't match the price. The office was messy. Quoted one price but billed something different.,2026-04-22
+REV-00566,LOC-004,Jessica K.,5,Would definitely return and refer friends. The hygienist was so gentle and thorough. The staff is so friendly and welcoming. The wait was extremely long and frustrating.,2026-08-13
+REV-00567,LOC-004,Brenda F.,1,I'll be finding a new dentist. Staff seemed annoyed with me. The dentist rushed through my exam.,2026-03-03
+REV-00568,LOC-004,Kathleen Z.,5,They treated me like family. The best option for family dentistry.,2025-10-29
+REV-00569,LOC-004,Nancy N.,4,Would definitely return and refer friends. Front desk couldn't explain the charges.,2026-04-04
+REV-00570,LOC-004,Samuel A.,4,They really care about patient comfort. Great follow-up care and support.,2026-06-30
+REV-00571,LOC-004,Thomas N.,2,Staff attitudes were poor.,2026-08-17
+REV-00572,LOC-004,Marcus Q.,5,Very modern technology and techniques. Dr. and the team made me feel very comfortable.,2026-04-14
+REV-00573,LOC-004,Dylan W.,3,Typical pricing for the area.,2026-06-23
+REV-00574,LOC-004,Gregory M.,5,Loved the friendly atmosphere. The dentist is truly the best. The entire team is excellent.,2026-07-14
+REV-00575,LOC-004,Daniel Q.,4,Dr. and the team made me feel very comfortable.,2025-11-16
+REV-00576,LOC-004,Michelle H.,2,They seem to have money on their mind only.,2026-04-29
+REV-00577,LOC-004,Gregory M.,1,Not worth the money.,2026-02-17
+REV-00578,LOC-004,Anna O.,2,The office was messy.,2026-03-26
+REV-00579,LOC-004,Sarah A.,3,They were matter-of-fact about findings. Appointment took about as long as expected.,2025-10-16
+REV-00580,LOC-004,Karen Z.,5,Outstanding results and great communication.,2025-10-23
+REV-00581,LOC-004,Makayla O.,1,The receptionist was rude. Not worth the money. Poor attention to detail.,2026-07-07
+REV-00582,LOC-004,George R.,5,I have no cavities thanks to their care.,2026-02-22
+REV-00583,LOC-004,Brenda L.,4,I feel confident in my dental health now. Would definitely return and refer friends. Quoted one price but billed something different.,2026-07-15
+REV-00584,LOC-004,Nancy B.,1,Poor attention to detail. The hygienist was rough.,2026-07-22
+REV-00585,LOC-004,Mark D.,5,They explain everything before doing it. Great attention to detail. Dr. is very gentle and patient.,2025-11-24
+REV-00586,LOC-004,Marcus S.,5,Would give them more than 5 stars if possible. The wait was extremely long and frustrating.,2026-03-21
+REV-00587,LOC-004,Robert R.,4,Outstanding service and expertise. Very caring and competent team. Appointment was running an hour behind.,2025-11-03
+REV-00588,LOC-004,Matthew W.,2,Not worth the money. The office was disorganized.,2026-04-10
+REV-00589,LOC-004,Benjamin T.,5,Great attention to detail.,2026-06-24
+REV-00590,LOC-004,Brenda J.,5,Beautiful smiles are made here. Loved the friendly atmosphere.,2026-02-12
+REV-00591,LOC-004,Angela J.,2,The experience was disappointing.,2026-04-20
+REV-00592,LOC-004,Brenda W.,4,Dentist really cares about your teeth. The team puts you at ease right away.,2026-08-26
+REV-00593,LOC-004,Dylan U.,4,Everything went smoothly and painlessly.,2026-01-27
+REV-00594,LOC-004,Makayla W.,4,Outstanding results and great communication. The dentist is truly the best.,2026-02-13
+REV-00595,LOC-004,Jennifer M.,3,No complications during the visit. It was an okay visit.,2026-04-02
+REV-00596,LOC-004,Daniel J.,5,Great preventative care approach.,2025-11-14
+REV-00597,LOC-004,Angela B.,5,Great experience and fair pricing.,2026-08-16
+REV-00598,LOC-004,Emma H.,2,I had a bad experience.,2026-03-03
+REV-00599,LOC-004,Sophia J.,4,Exceptional dental care every single time.,2026-07-29
+REV-00600,LOC-004,Gail K.,3,They take their job seriously. The hygienist did a standard cleaning.,2026-08-21
+REV-00601,LOC-005,Steven U.,5,Dr. is very gentle and patient. Great preventative care approach. Best preventative dental team around.,2026-06-10
+REV-00602,LOC-005,Mark J.,4,Very comfortable and relaxing environment. Great preventative care approach.,2026-08-27
+REV-00603,LOC-005,Angela D.,5,Best dental experience I've had. They really care about patient comfort. Everything went smoothly and painlessly.,2026-04-18
+REV-00604,LOC-005,Charles F.,5,Outstanding results and great communication. Top-notch professionalism.,2026-03-13
+REV-00605,LOC-005,Cynthia W.,3,Typical pricing for the area.,2026-06-27
+REV-00606,LOC-005,Eric Z.,5,Very clean facilities and modern equipment. The receptionist was so helpful.,2025-11-19
+REV-00607,LOC-005,Shirley H.,5,Very modern technology and techniques.,2026-06-21
+REV-00608,LOC-005,Larry M.,5,Dr. did an amazing job with my crown. Beautiful smiles are made here. Very comfortable and relaxing environment.,2025-12-04
+REV-00609,LOC-005,George L.,5,"Clean, comfortable, and welcoming.",2025-10-18
+REV-00610,LOC-005,Sarah A.,5,Best decision switching to this practice. Very thorough and always professional. Outstanding results and great communication.,2026-01-29
+REV-00611,LOC-005,Jessica V.,4,Very competent and thorough work. Loved the friendly atmosphere.,2025-10-29
+REV-00612,LOC-005,Andrew R.,5,The best option for family dentistry.,2026-02-12
+REV-00613,LOC-005,Eric B.,5,I trust them completely with my teeth. Exceptional dental care every single time. I feel confident in my dental health now.,2026-09-06
+REV-00614,LOC-005,Angela C.,3,They were matter-of-fact about findings.,2026-01-30
+REV-00615,LOC-005,Donald V.,5,The hygienist was very skilled. Excellent dental care and very professional staff. Dr. explained everything clearly and answered all questions.,2025-10-20
+REV-00616,LOC-005,Larry W.,4,Great attention to detail. Very thorough cleaning and exam.,2026-07-20
+REV-00617,LOC-005,Jennifer O.,4,The appointment was right on time.,2026-04-11
+REV-00618,LOC-005,Robert F.,5,Best dental experience I've had.,2026-09-03
+REV-00619,LOC-005,Deborah O.,5,Excellent communication throughout. Top-notch professionalism. They explain everything before doing it.,2026-01-07
+REV-00620,LOC-005,Marcus D.,5,The dentist was thorough and really listened to my concerns. The best option for family dentistry.,2026-07-20
+REV-00621,LOC-005,Angela Q.,5,Dr. explained everything clearly and answered all questions. The staff is so friendly and welcoming. Best dental experience I've had.,2026-06-01
+REV-00622,LOC-005,Jacob M.,5,The receptionist was so helpful. Love coming here for my cleanings. Very attentive to my dental health.,2025-10-25
+REV-00623,LOC-005,Daniel R.,3,The dentist was thorough but quiet.,2026-03-22
+REV-00624,LOC-005,Samantha E.,5,Very comfortable and relaxing environment. Great experience and fair pricing.,2025-12-22
+REV-00625,LOC-005,Emma E.,4,Dr. and the team made me feel very comfortable. Dentist really cares about your teeth.,2026-01-31
+REV-00626,LOC-005,Richard J.,5,Dr. is truly passionate about his work. The hygienist was very skilled. Dentist really cares about your teeth.,2025-11-03
+REV-00627,LOC-005,Gregory Q.,4,The team puts you at ease right away. They explain everything before doing it.,2025-12-17
+REV-00628,LOC-005,Mark D.,5,Dr. is very gentle and patient.,2025-11-12
+REV-00629,LOC-005,Cynthia U.,4,Dentist really cares about your teeth.,2025-12-02
+REV-00630,LOC-005,Elizabeth X.,5,Dr. explained everything clearly and answered all questions. Dr. is very gentle and patient. The hygienist was so gentle and thorough.,2026-06-09
+REV-00631,LOC-005,Makayla U.,5,They made my anxiety go away. Fantastic team and great results.,2026-06-25
+REV-00632,LOC-005,Eric O.,5,Dr. explained everything clearly and answered all questions. Best dentist in the area! Very modern technology and techniques.,2025-12-30
+REV-00633,LOC-005,Brian N.,5,The appointment was right on time. Very professional and caring dentists.,2026-02-16
+REV-00634,LOC-005,Gregory N.,5,I have no cavities thanks to their care.,2025-11-26
+REV-00635,LOC-005,Kathleen O.,3,Typical pricing for the area.,2026-01-20
+REV-00636,LOC-005,Nancy F.,5,Great facility with amazing staff. Dentist really cares about your teeth.,2026-04-17
+REV-00637,LOC-005,Elizabeth I.,5,Super friendly reception and fast service. The hygienist was very skilled.,2026-07-28
+REV-00638,LOC-005,Jonathan U.,5,The dentist was thorough and really listened to my concerns.,2026-07-18
+REV-00639,LOC-005,Justin I.,4,The team puts you at ease right away. Highly recommend this practice!,2025-09-16
+REV-00640,LOC-005,Jason H.,3,"They followed proper procedures. No surprises, just routine work.",2026-06-06
+REV-00641,LOC-005,Jonathan Q.,4,Super friendly reception and fast service. They go above and beyond for patients.,2026-06-29
+REV-00642,LOC-005,Angela E.,5,Dr. and the team made me feel very comfortable. Very competent and thorough work. Highly professional and trustworthy.,2025-10-17
+REV-00643,LOC-005,Jessica H.,5,Very impressed with the quality of care. The dentist is truly the best. They made my anxiety go away.,2026-04-17
+REV-00644,LOC-005,Jessica V.,5,I trust them completely with my teeth. Excellent communication throughout.,2026-05-08
+REV-00645,LOC-005,Gary B.,5,The best option for family dentistry. Very thorough and always professional.,2025-12-15
+REV-00646,LOC-005,Stephen U.,1,Poor customer service experience. The service quality was poor.,2025-09-21
+REV-00647,LOC-005,Scott F.,3,"No issues with scheduling. The visit was uneventful, in a good way.",2026-01-19
+REV-00648,LOC-005,Andrew M.,4,Best dental experience I've had. They treat you with respect.,2026-03-12
+REV-00649,LOC-005,Kathleen T.,5,The entire team is excellent. Great facility with amazing staff.,2025-12-24
+REV-00650,LOC-005,Jessica H.,5,Best preventative dental team around.,2025-09-04
+REV-00651,LOC-005,Linda F.,5,The team puts you at ease right away. The appointment was right on time.,2025-10-10
+REV-00652,LOC-005,Rebecca Z.,5,Excellent communication throughout.,2026-03-05
+REV-00653,LOC-005,Debra F.,4,The dentist is truly the best. Very thorough cleaning and exam.,2026-02-17
+REV-00654,LOC-005,Jessica E.,3,The dentist was straightforward.,2026-07-29
+REV-00655,LOC-005,Jessica S.,5,Exceptional dental care every single time.,2026-06-21
+REV-00656,LOC-005,Stephanie T.,5,They really care about patient comfort. They treat you with respect.,2025-11-15
+REV-00657,LOC-005,Laura T.,4,"Professional, friendly, and efficient. The team puts you at ease right away.",2026-06-16
+REV-00658,LOC-005,Jeffrey T.,3,They kept good records of my visit.,2026-04-30
+REV-00659,LOC-005,Carol F.,4,Exceptional dental care every single time.,2025-11-13
+REV-00660,LOC-005,Timothy M.,4,Dr. explained everything clearly and answered all questions. Excellent communication throughout.,2026-09-06
+REV-00661,LOC-005,Jonathan V.,5,They treat you with respect.,2025-11-07
+REV-00662,LOC-005,Nicholas T.,3,The exam was comprehensive.,2026-04-03
+REV-00663,LOC-005,Kathleen V.,5,Very caring and competent team. Dr. is very knowledgeable and caring. Love coming here for my cleanings.,2026-07-05
+REV-00664,LOC-005,Marcus U.,2,The office was disorganized.,2025-11-06
+REV-00665,LOC-005,Ryan H.,5,The staff is so friendly and welcoming. Best decision switching to this practice.,2026-04-09
+REV-00666,LOC-005,Ryan E.,4,The entire team is excellent. The hygienist was so gentle and thorough.,2026-05-05
+REV-00667,LOC-005,Kenneth T.,5,"Professional, friendly, and efficient.",2026-01-09
+REV-00668,LOC-005,James S.,5,Excellent dental care and very professional staff.,2026-06-06
+REV-00669,LOC-005,Sarah G.,5,Great follow-up care and support.,2026-05-26
+REV-00670,LOC-005,Susan N.,4,Very professional and caring dentists. Great attention to detail.,2026-08-19
+REV-00671,LOC-005,Scott L.,5,The hygienist was very skilled. Very clean and well-organized office.,2026-07-31
+REV-00672,LOC-005,Justin Z.,5,Dr. is truly passionate about his work. Very thorough cleaning and exam. They explain everything before doing it.,2026-07-11
+REV-00673,LOC-005,Andrew J.,5,Outstanding results and great communication. The dentist is truly the best.,2026-06-13
+REV-00674,LOC-005,Debra O.,5,Dr. is truly passionate about his work. Super friendly reception and fast service. Dr. is very knowledgeable and caring.,2026-06-23
+REV-00675,LOC-005,Angela M.,2,The office felt cold and unwelcoming.,2026-08-25
+REV-00676,LOC-005,Deborah U.,4,Dr. did an amazing job with my crown.,2026-02-21
+REV-00677,LOC-005,Benjamin N.,4,Very thorough and always professional.,2025-09-03
+REV-00678,LOC-005,Richard T.,5,I trust them completely with my teeth.,2025-10-16
+REV-00679,LOC-005,Benjamin B.,4,They treat you with respect. Very attentive to my dental health.,2025-09-20
+REV-00680,LOC-005,Alexander Z.,4,Dr. and the team made me feel very comfortable. Great preventative care approach.,2025-11-29
+REV-00681,LOC-005,Stephen W.,5,Exceptional dental care every single time.,2026-05-24
+REV-00682,LOC-005,Sarah A.,5,Highly recommend this practice! Very professional and caring dentists. Very competent and thorough work.,2025-12-28
+REV-00683,LOC-005,Makayla M.,5,Never felt rushed during my appointment. They made my anxiety go away.,2025-11-20
+REV-00684,LOC-005,Justin J.,5,Dr. and the team made me feel very comfortable. Dr. explained everything clearly and answered all questions. Love coming here for my cleanings.,2026-03-27
+REV-00685,LOC-005,Steven T.,3,The facility is adequate. Everything was by the book.,2026-09-07
+REV-00686,LOC-005,Matthew N.,5,Excellent dental care and very professional staff. Top-notch professionalism.,2025-12-09
+REV-00687,LOC-005,Sandra K.,5,Very caring and competent team.,2026-05-18
+REV-00688,LOC-005,Dylan O.,4,The hygienist was very skilled. Dr. is very gentle and patient.,2025-10-30
+REV-00689,LOC-005,Gary V.,5,Would give them more than 5 stars if possible.,2026-03-13
+REV-00690,LOC-005,Thomas I.,3,The dentist was thorough but quiet.,2026-04-24
+REV-00691,LOC-005,Brian N.,5,Excellent communication throughout.,2025-10-05
+REV-00692,LOC-005,Donna J.,5,Top-notch professionalism.,2026-02-28
+REV-00693,LOC-005,Matthew P.,5,Would give them more than 5 stars if possible. Best dental experience I've had. Dentist really cares about your teeth.,2025-10-18
+REV-00694,LOC-005,Amy X.,5,They treated me like family. They really care about patient comfort. Best dentist in the area!,2026-02-08
+REV-00695,LOC-005,Donald H.,5,Top-notch professionalism.,2025-12-12
+REV-00696,LOC-005,Patricia C.,3,They followed proper procedures. Typical dental office experience.,2025-12-13
+REV-00697,LOC-005,Angela B.,1,I had a bad experience. Very disappointed with the service.,2026-08-13
+REV-00698,LOC-005,Eric F.,5,I've recommended them to everyone. Outstanding patient care experience.,2026-05-05
+REV-00699,LOC-005,Robert Q.,5,Fantastic team and great results.,2026-05-20
+REV-00700,LOC-005,Jason V.,5,Highly recommend this practice! Very caring and competent team. The entire team is excellent.,2026-04-05
+REV-00701,LOC-005,Gary K.,5,They treat you with respect.,2025-11-29
+REV-00702,LOC-005,Michelle L.,5,Very thorough cleaning and exam. Great follow-up care and support. The hygienist was so gentle and thorough.,2026-08-19
+REV-00703,LOC-005,Carol H.,3,Standard six-month checkup.,2026-07-11
+REV-00704,LOC-005,Amy N.,5,Would give them more than 5 stars if possible. Very professional and caring dentists. They really care about patient comfort.,2026-01-16
+REV-00705,LOC-005,Margaret O.,5,Very professional and caring dentists. Never felt rushed during my appointment.,2025-12-17
+REV-00706,LOC-005,Paul R.,5,Excellent communication throughout. The hygienist was so gentle and thorough. They treated me like family.,2025-12-02
+REV-00707,LOC-005,Susan P.,3,They followed proper procedures.,2026-04-10
+REV-00708,LOC-005,Larry X.,5,Super friendly reception and fast service. They treat you with respect.,2025-09-05
+REV-00709,LOC-005,Scott B.,4,Dr. is very gentle and patient. Outstanding results and great communication.,2026-02-09
+REV-00710,LOC-005,Anna I.,5,I felt well taken care of during my visit.,2026-03-23
+REV-00711,LOC-005,George I.,3,"Regular checkup, nothing remarkable.",2026-05-02
+REV-00712,LOC-005,Jeffrey D.,5,Dr. is very gentle and patient. The entire team is excellent. The dentist was thorough and really listened to my concerns.,2026-03-04
+REV-00713,LOC-005,Anna U.,3,They document everything carefully.,2026-02-27
+REV-00714,LOC-005,Marcus Q.,5,They made my anxiety go away. The dentist really knows their stuff.,2026-07-30
+REV-00715,LOC-005,Samuel J.,4,"Professional, friendly, and efficient. Great follow-up care and support.",2026-05-08
+REV-00716,LOC-005,Samantha Z.,4,Highly professional and trustworthy.,2026-04-26
+REV-00717,LOC-005,Daniel K.,5,"Never felt rushed during my appointment. Best dental experience I've had. Professional, friendly, and efficient.",2026-02-20
+REV-00718,LOC-005,Joshua O.,5,Great experience and fair pricing. They treated me like family. Dr. is truly passionate about his work.,2025-12-26
+REV-00719,LOC-005,Linda A.,4,They explain everything before doing it. Highly professional and trustworthy.,2026-03-05
+REV-00720,LOC-005,Jessica M.,4,"Professional, friendly, and efficient. Very thorough cleaning and exam.",2025-11-04
+REV-00721,LOC-005,Jennifer Y.,5,Dentist really cares about your teeth. Very clean facilities and modern equipment.,2025-10-23
+REV-00722,LOC-005,Carol T.,5,Great attention to detail.,2026-03-23
+REV-00723,LOC-005,Donna X.,5,I've been a patient for years and never disappointed. Excellent communication throughout.,2025-11-19
+REV-00724,LOC-005,Shirley F.,5,Fantastic team and great results.,2026-01-24
+REV-00725,LOC-005,Cynthia R.,5,The dentist really knows their stuff. Very thorough and always professional.,2025-09-15
+REV-00726,LOC-005,Matthew S.,5,Very comfortable and relaxing environment.,2026-01-18
+REV-00727,LOC-005,Ashley L.,5,The staff really cares about your comfort. Best decision switching to this practice. The hygienist was very skilled.,2026-07-03
+REV-00728,LOC-005,Ashley L.,5,Best preventative dental team around.,2026-05-05
+REV-00729,LOC-005,Stephen Y.,5,Dr. and the team made me feel very comfortable. Excellent dental care and very professional staff.,2026-03-31
+REV-00730,LOC-005,Dylan P.,5,The hygienist was very skilled. Dr. and the team made me feel very comfortable.,2025-11-09
+REV-00731,LOC-005,James R.,5,Great experience and fair pricing. Excellent communication throughout.,2026-05-03
+REV-00732,LOC-005,Daniel W.,5,The staff really cares about your comfort. Dr. is truly passionate about his work. Loved the friendly atmosphere.,2026-03-11
+REV-00733,LOC-005,Richard N.,5,I have no cavities thanks to their care. Top-notch professionalism.,2026-07-28
+REV-00734,LOC-005,Joshua N.,5,They treated me like family. Very attentive to my dental health. The hygienist was very skilled.,2026-07-18
+REV-00735,LOC-005,Sandra D.,3,The cleaning was thorough.,2025-12-06
+REV-00736,LOC-005,Mark K.,5,They treated me like family. Great facility with amazing staff.,2026-07-24
+REV-00737,LOC-005,Kenneth I.,5,The dentist was thorough and really listened to my concerns. They really care about patient comfort. Great attention to detail.,2025-09-10
+REV-00738,LOC-005,Karen E.,4,Excellent communication throughout.,2025-11-04
+REV-00739,LOC-005,Amy L.,5,Beautiful smiles are made here. I've been a patient for years and never disappointed.,2025-09-08
+REV-00740,LOC-005,Richard Y.,4,"Clean, comfortable, and welcoming.",2026-04-26
+REV-00741,LOC-005,Nicholas F.,5,Best dental experience I've had. Very comfortable and relaxing environment.,2025-11-14
+REV-00742,LOC-005,Patricia Y.,3,They take their job seriously. It was an okay visit.,2025-12-08
+REV-00743,LOC-005,Elizabeth O.,5,Loved the friendly atmosphere. Highly recommend this practice!,2026-09-01
+REV-00744,LOC-005,Deborah V.,5,Very thorough and always professional.,2025-10-19
+REV-00745,LOC-005,Jessica X.,2,The dentist was dismissive.,2026-02-07
+REV-00746,LOC-005,Elizabeth L.,5,The dentist is truly the best. The receptionist was so helpful.,2026-06-09
+REV-00747,LOC-005,Paul U.,3,Appointment took about as long as expected.,2025-09-27
+REV-00748,LOC-005,Brandon D.,5,Outstanding patient care experience.,2026-04-11
+REV-00749,LOC-005,Brandon Z.,4,The staff is so friendly and welcoming.,2026-03-22
+REV-00750,LOC-005,Donna F.,5,The appointment was right on time. I trust them completely with my teeth. Love coming here for my cleanings.,2026-08-20
+REV-00751,LOC-005,Gregory E.,5,Would give them more than 5 stars if possible. I felt well taken care of during my visit. They made my anxiety go away.,2026-05-14
+REV-00752,LOC-005,Eric H.,5,Fantastic team and great results.,2026-08-26
+REV-00753,LOC-005,Jacob X.,1,Not the standard I expected. The exam felt rushed. Very poor experience.,2026-02-10
+REV-00754,LOC-005,Andrew B.,5,They made my anxiety go away. Super friendly reception and fast service.,2025-12-08
+REV-00755,LOC-005,Mark S.,4,Very comfortable and relaxing environment. Great facility with amazing staff.,2026-05-07
+REV-00756,LOC-005,Benjamin R.,5,They go above and beyond for patients. Outstanding patient care experience.,2025-12-05
+REV-00757,LOC-005,Sandra I.,5,I feel confident in my dental health now.,2025-11-22
+REV-00758,LOC-005,Timothy X.,5,Very caring and competent team.,2026-06-05
+REV-00759,LOC-005,Michelle X.,3,Standard dental practice environment. The dentist was straightforward.,2025-12-04
+REV-00760,LOC-005,Gail P.,4,Best dentist in the area! Best decision switching to this practice.,2025-10-03
+REV-00761,LOC-005,Gregory K.,5,The dentist really knows their stuff. They explain everything before doing it.,2026-06-10
+REV-00762,LOC-005,Matthew B.,5,Dr. explained everything clearly and answered all questions. The staff is so friendly and welcoming. Fantastic team and great results.,2025-10-27
+REV-00763,LOC-005,David S.,5,The hygienist was so gentle and thorough.,2025-12-13
+REV-00764,LOC-005,Sophia S.,3,They follow established protocols. Standard dental practice environment.,2026-07-26
+REV-00765,LOC-005,Sarah G.,5,Best dental experience I've had.,2026-01-10
+REV-00766,LOC-005,Samantha B.,5,They go above and beyond for patients.,2026-08-02
+REV-00767,LOC-005,Samuel I.,5,I trust them completely with my teeth. I felt well taken care of during my visit.,2026-03-04
+REV-00768,LOC-005,Lisa G.,5,The receptionist was so helpful.,2026-05-29
+REV-00769,LOC-005,Mark G.,5,Excellent communication throughout. The hygienist was very skilled. The best option for family dentistry.,2026-05-24
+REV-00770,LOC-005,Emma N.,4,Outstanding results and great communication.,2026-05-28
+REV-00771,LOC-005,Nancy F.,4,Outstanding service and expertise. Very clean and well-organized office.,2025-10-25
+REV-00772,LOC-005,Benjamin O.,5,Would give them more than 5 stars if possible. Dr. did an amazing job with my crown. The hygienist was very skilled.,2025-12-02
+REV-00773,LOC-005,Jeffrey Y.,2,I'm looking for a better dentist. Not impressed with the service.,2026-02-28
+REV-00774,LOC-005,Anna M.,5,The dentist really knows their stuff. Very competent and thorough work. Very comfortable and relaxing environment.,2026-07-22
+REV-00775,LOC-005,Laura M.,2,Not impressed with the service. Felt overcharged for the work.,2026-06-09
+REV-00776,LOC-005,Barbara J.,4,The dentist was thorough and really listened to my concerns. They treat you with respect.,2025-09-01
+REV-00777,LOC-005,Brian A.,5,The team puts you at ease right away.,2025-09-04
+REV-00778,LOC-005,David O.,3,Typical dental office experience.,2026-08-20
+REV-00779,LOC-005,Debra I.,5,Very professional and caring dentists. Loved the friendly atmosphere.,2026-03-02
+REV-00780,LOC-005,Michelle Z.,5,The team puts you at ease right away. Best dental experience I've had.,2026-02-01
+REV-00781,LOC-005,Anna M.,5,The hygienist was so gentle and thorough. The receptionist was so helpful. Highly recommend this practice!,2026-05-06
+REV-00782,LOC-005,Rebecca D.,4,The entire team is excellent. The staff really cares about your comfort.,2025-10-11
+REV-00783,LOC-005,Robert J.,4,Great follow-up care and support.,2025-12-26
+REV-00784,LOC-005,Sophia H.,5,The appointment was right on time. The dentist really knows their stuff. Very caring and competent team.,2026-05-27
+REV-00785,LOC-005,Karen H.,5,Dr. is truly passionate about his work. I feel confident in my dental health now. Very caring and competent team.,2025-11-18
+REV-00786,LOC-005,Brenda C.,5,Very impressed with the quality of care. Fantastic team and great results.,2026-04-10
+REV-00787,LOC-005,Stephanie I.,5,Dentist really cares about your teeth.,2026-05-02
+REV-00788,LOC-005,Kathleen R.,5,Fantastic team and great results. Super friendly reception and fast service.,2025-10-14
+REV-00789,LOC-005,Donna H.,5,Great preventative care approach. Outstanding results and great communication. Best decision switching to this practice.,2025-12-11
+REV-00790,LOC-005,Thomas V.,5,The dentist really knows their stuff. Love coming here for my cleanings.,2025-10-07
+REV-00791,LOC-005,Edward T.,5,Best dentist in the area! The dentist really knows their stuff.,2026-03-31
+REV-00792,LOC-005,Samuel Z.,5,Highly professional and trustworthy. The entire team is excellent.,2026-08-02
+REV-00793,LOC-005,Elizabeth V.,4,The staff is so friendly and welcoming. Excellent communication throughout.,2026-04-15
+REV-00794,LOC-005,Donna T.,5,"Professional, friendly, and efficient. Would definitely return and refer friends. Very clean facilities and modern equipment.",2026-03-11
+REV-00795,LOC-005,Dylan Z.,3,It was an okay visit. Typical pricing for the area.,2025-11-15
+REV-00796,LOC-005,Donald X.,5,"The dentist was thorough and really listened to my concerns. Clean, comfortable, and welcoming.",2025-10-27
+REV-00797,LOC-005,Kathleen T.,5,They treat you with respect. Top-notch professionalism. Dentist really cares about your teeth.,2026-06-03
+REV-00798,LOC-005,Timothy S.,1,Disappointing from start to finish. Terrible communication. The appointment took forever.,2026-09-09
+REV-00799,LOC-005,Kenneth G.,5,Highly professional and trustworthy. I felt well taken care of during my visit.,2026-08-06
+REV-00800,LOC-005,Sarah A.,5,They go above and beyond for patients.,2026-08-23
+REV-00801,LOC-005,Michael J.,5,Very professional and caring dentists. Great attention to detail.,2025-10-05
+REV-00802,LOC-005,Brian P.,5,Exceptional dental care every single time. The hygienist was so gentle and thorough.,2026-07-30
+REV-00803,LOC-005,Jonathan O.,5,Great preventative care approach.,2026-07-03
+REV-00804,LOC-005,Donna Q.,2,Staff seemed disorganized.,2026-06-15
+REV-00805,LOC-005,Edward V.,5,Dr. did an amazing job with my crown. The dentist was thorough and really listened to my concerns.,2026-02-04
+REV-00806,LOC-005,Margaret Z.,5,Very competent and thorough work. Very caring and competent team.,2026-02-28
+REV-00807,LOC-005,Margaret H.,4,Great experience from start to finish. Outstanding results and great communication.,2025-10-02
+REV-00808,LOC-005,Timothy Q.,5,Super friendly reception and fast service. Love coming here for my cleanings.,2025-11-17
+REV-00809,LOC-005,Anna E.,5,Excellent communication throughout. Beautiful smiles are made here. Very competent and thorough work.,2026-08-14
+REV-00810,LOC-005,Charles G.,1,I didn't feel listened to. Felt overcharged for the work. I left feeling frustrated.,2026-04-07
+REV-00811,LOC-005,Dylan W.,5,Great preventative care approach. Super friendly reception and fast service. I've been a patient for years and never disappointed.,2026-08-01
+REV-00812,LOC-005,Sarah S.,2,The office was disorganized. Very frustrating experience.,2026-05-27
+REV-00813,LOC-005,Brian E.,5,The hygienist was very skilled. Dr. is very knowledgeable and caring. They really care about patient comfort.,2025-11-20
+REV-00814,LOC-005,Jacob X.,5,They explain everything before doing it. The receptionist was so helpful.,2026-09-08
+REV-00815,LOC-005,Mark D.,2,Very frustrating experience. The office was disorganized.,2026-07-24
+REV-00816,LOC-005,Angela C.,5,They treated me like family. Excellent communication throughout. Great experience from start to finish.,2025-11-07
+REV-00817,LOC-005,Katie P.,4,Very caring and competent team.,2026-08-19
+REV-00818,LOC-005,Eric P.,4,The best option for family dentistry.,2026-08-31
+REV-00819,LOC-005,Jeffrey Y.,5,Highly recommend this practice!,2025-11-10
+REV-00820,LOC-005,Makayla G.,2,The staff didn't listen to my concerns. I regret choosing this practice.,2025-09-08
+REV-00821,LOC-005,Gary H.,5,Great facility with amazing staff. The dentist really knows their stuff.,2025-12-14
+REV-00822,LOC-005,Brian M.,5,Great follow-up care and support.,2026-04-07
+REV-00823,LOC-005,Nancy O.,2,The hygienist was rough.,2026-07-11
+REV-00824,LOC-005,Stephen R.,3,The dentist was straightforward.,2026-04-22
+REV-00825,LOC-005,Deborah Q.,1,Poor attention to detail.,2026-03-22
+REV-00826,LOC-005,Jacob M.,1,Very disappointed overall.,2026-07-20
+REV-00827,LOC-005,Ryan J.,4,They go above and beyond for patients. Highly professional and trustworthy.,2026-02-03
+REV-00828,LOC-005,Gregory O.,2,The office was messy.,2026-07-11
+REV-00829,LOC-005,Brandon W.,4,They really care about patient comfort.,2025-10-17
+REV-00830,LOC-005,Jennifer F.,5,The dentist really knows their stuff. I feel confident in my dental health now.,2026-06-07
+REV-00831,LOC-005,Andrew K.,5,Great preventative care approach. Outstanding service and expertise. Love coming here for my cleanings.,2026-04-21
+REV-00832,LOC-005,Karen D.,4,Dr. is very knowledgeable and caring.,2026-08-21
+REV-00833,LOC-005,Deborah X.,5,"Professional, friendly, and efficient. Best decision switching to this practice.",2026-08-28
+REV-00834,LOC-005,Justin M.,5,Great follow-up care and support.,2026-05-20
+REV-00835,LOC-005,Christopher F.,4,The appointment was right on time. Dr. did an amazing job with my crown.,2025-09-23
+REV-00836,LOC-005,Kenneth U.,5,I've been a patient for years and never disappointed. I feel confident in my dental health now.,2026-08-31
+REV-00837,LOC-005,James T.,5,Great preventative care approach.,2025-12-02
+REV-00838,LOC-005,James T.,5,I've recommended them to everyone. Very comfortable and relaxing environment.,2026-01-08
+REV-00839,LOC-005,Jacob C.,5,Very thorough and always professional. Outstanding service and expertise. They explain everything before doing it.,2026-05-11
+REV-00840,LOC-005,Margaret T.,5,Dentist really cares about your teeth.,2026-07-05
+REV-00841,LOC-005,Linda E.,5,Very clean facilities and modern equipment.,2026-07-19
+REV-00842,LOC-005,David V.,4,Very impressed with the quality of care.,2025-09-29
+REV-00843,LOC-005,Robert D.,3,Typical pricing for the area. The dentist did their job well.,2026-06-23
+REV-00844,LOC-005,Kenneth T.,1,I'll seek care elsewhere.,2026-04-02
+REV-00845,LOC-005,Brandon L.,4,Outstanding service and expertise.,2026-08-05
+REV-00846,LOC-005,Timothy C.,5,The dentist really knows their stuff. I trust them completely with my teeth.,2025-09-19
+REV-00847,LOC-005,Nicholas E.,3,Office was reasonably busy.,2026-04-07
+REV-00848,LOC-005,Jeffrey Q.,4,"Clean, comfortable, and welcoming. Best decision switching to this practice.",2025-11-02
+REV-00849,LOC-005,Anna X.,4,Great attention to detail.,2025-12-17
+REV-00850,LOC-005,Dylan T.,5,The dentist is truly the best.,2026-07-20
+REV-00851,LOC-005,Anna T.,5,Very modern technology and techniques. Top-notch professionalism. Best decision switching to this practice.,2026-08-28
+REV-00852,LOC-005,Frank P.,2,The hygienist was rough. Staff seemed annoyed with me.,2026-03-01
+REV-00853,LOC-005,Mark A.,4,Great experience and fair pricing.,2026-05-11
+REV-00854,LOC-005,Jeffrey B.,5,Dr. is very knowledgeable and caring. Very thorough cleaning and exam. Beautiful smiles are made here.,2025-10-31
+REV-00855,LOC-005,Dylan J.,5,The team puts you at ease right away. Dr. and the team made me feel very comfortable. Great preventative care approach.,2026-02-18
+REV-00856,LOC-005,Justin K.,4,The receptionist was so helpful. Very caring and competent team.,2026-01-09
+REV-00857,LOC-005,Scott T.,5,Would give them more than 5 stars if possible. Dr. is truly passionate about his work.,2025-09-04
+REV-00858,LOC-005,Brenda V.,3,Typical pricing for the area.,2025-09-15
+REV-00859,LOC-005,Barbara P.,2,Not professional at all.,2026-05-04
+REV-00860,LOC-005,Emily Q.,4,They go above and beyond for patients. They explain everything before doing it.,2025-11-19
+REV-00861,LOC-006,Michael G.,5,Very modern technology and techniques. Outstanding results and great communication. The hygienist was very skilled.,2026-02-01
+REV-00862,LOC-006,Margaret A.,4,Dr. explained everything clearly and answered all questions. The appointment was right on time.,2026-06-23
+REV-00863,LOC-006,Anna T.,1,I left feeling frustrated. The service was inadequate. Felt like they were just trying to upsell.,2026-02-21
+REV-00864,LOC-006,Brian W.,5,I've been a patient for years and never disappointed.,2026-03-19
+REV-00865,LOC-006,Paul L.,5,I've recommended them to everyone.,2025-09-17
+REV-00866,LOC-006,Kevin F.,3,Front desk staff was efficient. They follow established protocols.,2026-04-20
+REV-00867,LOC-006,Karen O.,5,Great preventative care approach.,2025-10-28
+REV-00868,LOC-006,Mark K.,5,Very caring and competent team. The appointment was right on time.,2026-05-18
+REV-00869,LOC-006,Joseph Q.,4,The dentist really knows their stuff. Very impressed with the quality of care.,2026-05-06
+REV-00870,LOC-006,David O.,1,Staff seemed annoyed with me.,2026-08-13
+REV-00871,LOC-006,Ashley B.,4,Excellent dental care and very professional staff.,2026-03-18
+REV-00872,LOC-006,Cynthia B.,3,Typical pricing for the area.,2026-08-18
+REV-00873,LOC-006,Michelle G.,5,I've been a patient for years and never disappointed. The dentist was thorough and really listened to my concerns. Very thorough cleaning and exam.,2025-10-23
+REV-00874,LOC-006,Joshua E.,5,Very modern technology and techniques. Best preventative dental team around. Dr. is very knowledgeable and caring.,2025-12-08
+REV-00875,LOC-006,Angela D.,5,Outstanding results and great communication.,2025-11-20
+REV-00876,LOC-006,Kenneth S.,5,Very modern technology and techniques. They treated me like family. Very impressed with the quality of care.,2025-12-15
+REV-00877,LOC-006,Jacob B.,5,Would give them more than 5 stars if possible. Very comfortable and relaxing environment.,2026-01-04
+REV-00878,LOC-006,Robert C.,5,Very clean facilities and modern equipment. Great attention to detail. The best option for family dentistry.,2025-11-06
+REV-00879,LOC-006,George G.,5,I feel confident in my dental health now. They made my anxiety go away. I've been a patient for years and never disappointed.,2026-04-07
+REV-00880,LOC-006,Scott E.,4,They go above and beyond for patients.,2026-09-01
+REV-00881,LOC-006,Ashley V.,4,The hygienist was so gentle and thorough. Outstanding service and expertise.,2025-10-18
+REV-00882,LOC-006,Steven E.,4,Very thorough and always professional. Excellent communication throughout.,2026-07-27
+REV-00883,LOC-006,Sophia V.,5,Dr. is truly passionate about his work. They really care about patient comfort.,2026-07-13
+REV-00884,LOC-006,Jennifer C.,4,Outstanding service and expertise. Great facility with amazing staff.,2026-02-17
+REV-00885,LOC-006,Kenneth Y.,5,They go above and beyond for patients. Highly professional and trustworthy.,2026-05-02
+REV-00886,LOC-006,Nancy M.,5,Exceptional dental care every single time.,2026-02-26
+REV-00887,LOC-006,Kevin R.,4,Outstanding results and great communication. Best dental experience I've had.,2026-09-01
+REV-00888,LOC-006,Justin F.,5,Very competent and thorough work. Loved the friendly atmosphere.,2026-04-25
+REV-00889,LOC-006,Sharon S.,5,Very thorough cleaning and exam. The staff really cares about your comfort.,2026-05-05
+REV-00890,LOC-006,Alexander V.,5,Everything went smoothly and painlessly.,2026-02-23
+REV-00891,LOC-006,Michelle R.,4,Would definitely return and refer friends. They go above and beyond for patients.,2025-10-10
+REV-00892,LOC-006,Stephanie C.,3,I got in and out on time.,2025-10-20
+REV-00893,LOC-006,Gregory V.,5,Great follow-up care and support. The dentist really knows their stuff. I've recommended them to everyone.,2026-07-04
+REV-00894,LOC-006,Christopher V.,5,Excellent dental care and very professional staff.,2025-10-02
+REV-00895,LOC-006,Elizabeth G.,5,The best option for family dentistry. I feel confident in my dental health now.,2025-11-16
+REV-00896,LOC-006,Sharon W.,3,They document everything carefully. I got in and out on time.,2026-08-15
+REV-00897,LOC-006,Stephanie E.,1,Very disappointed with the service. I had a bad experience. Not worth the money.,2026-02-24
+REV-00898,LOC-006,Angela D.,5,Very clean facilities and modern equipment. Excellent dental care and very professional staff. Outstanding results and great communication.,2026-01-29
+REV-00899,LOC-006,Sophia S.,3,No complications during the visit.,2026-01-23
+REV-00900,LOC-006,Sharon R.,4,Never felt rushed during my appointment. Great follow-up care and support.,2026-03-21
+REV-00901,LOC-006,Emma M.,4,Super friendly reception and fast service. Best dentist in the area!,2025-12-18
+REV-00902,LOC-006,Makayla E.,3,Office was reasonably busy.,2026-03-04
+REV-00903,LOC-006,Alexander N.,5,The dentist was thorough and really listened to my concerns. Very impressed with the quality of care. Great facility with amazing staff.,2025-11-08
+REV-00904,LOC-006,Brenda F.,5,Beautiful smiles are made here. Outstanding service and expertise. Very clean and well-organized office.,2025-11-09
+REV-00905,LOC-006,Steven F.,5,I feel confident in my dental health now. The best option for family dentistry. They made my anxiety go away.,2026-04-21
+REV-00906,LOC-006,Joshua N.,5,I've recommended them to everyone. Very competent and thorough work. Very caring and competent team.,2026-04-06
+REV-00907,LOC-006,Scott P.,5,Highly recommend this practice!,2026-06-07
+REV-00908,LOC-006,Shirley Y.,5,"The dentist is truly the best. Professional, friendly, and efficient. Very impressed with the quality of care.",2026-08-27
+REV-00909,LOC-006,Samuel C.,5,They treat you with respect.,2026-01-22
+REV-00910,LOC-006,Samuel B.,5,Best dental experience I've had. Very comfortable and relaxing environment. I've been a patient for years and never disappointed.,2026-01-04
+REV-00911,LOC-006,Gary Q.,5,Very thorough and always professional.,2026-02-23
+REV-00912,LOC-006,Sandra J.,5,Beautiful smiles are made here. They made my anxiety go away.,2026-04-29
+REV-00913,LOC-006,Frank P.,5,The receptionist was so helpful. Top-notch professionalism. I felt well taken care of during my visit.,2025-11-25
+REV-00914,LOC-006,Brenda A.,5,Great experience and fair pricing.,2026-06-24
+REV-00915,LOC-006,Lisa Z.,5,Very caring and competent team.,2026-01-25
+REV-00916,LOC-006,Thomas T.,5,Outstanding patient care experience. Dr. is very gentle and patient. Dr. and the team made me feel very comfortable.,2026-01-21
+REV-00917,LOC-006,Laura L.,2,Terrible communication.,2025-11-29
+REV-00918,LOC-006,Shirley B.,5,Very competent and thorough work. Great facility with amazing staff. They really care about patient comfort.,2025-11-29
+REV-00919,LOC-006,Susan P.,1,The staff didn't seem to care.,2026-02-23
+REV-00920,LOC-006,Samantha F.,4,Best preventative dental team around.,2026-03-31
+REV-00921,LOC-006,Thomas B.,5,Very clean facilities and modern equipment. Top-notch professionalism.,2025-12-17
+REV-00922,LOC-006,Larry H.,5,The receptionist was so helpful. Very thorough and always professional.,2025-11-25
+REV-00923,LOC-006,Christopher Q.,4,Very thorough and always professional. Top-notch professionalism.,2026-03-14
+REV-00924,LOC-006,Shirley V.,5,Great follow-up care and support. Very modern technology and techniques.,2026-04-11
+REV-00925,LOC-006,George I.,5,They made my anxiety go away. The staff really cares about your comfort. They treated me like family.,2025-09-22
+REV-00926,LOC-006,Marcus X.,4,Dr. is truly passionate about his work. They go above and beyond for patients.,2026-01-15
+REV-00927,LOC-006,Brenda V.,4,They treat you with respect.,2026-01-02
+REV-00928,LOC-006,Marcus A.,1,Poor attention to detail. Very disappointed with the service.,2026-08-20
+REV-00929,LOC-006,Nancy V.,5,Best decision switching to this practice.,2025-10-05
+REV-00930,LOC-006,David A.,5,Very attentive to my dental health. Dr. is very gentle and patient. Best dentist in the area!,2026-04-17
+REV-00931,LOC-006,Katie E.,5,The team puts you at ease right away. Dr. is very knowledgeable and caring. Love coming here for my cleanings.,2026-07-15
+REV-00932,LOC-006,Sophia F.,4,Would definitely return and refer friends.,2026-03-12
+REV-00933,LOC-006,Ryan W.,5,Best dental experience I've had. Outstanding service and expertise. Outstanding patient care experience.,2026-01-08
+REV-00934,LOC-006,Lisa I.,4,Dr. is very gentle and patient. Dr. did an amazing job with my crown.,2026-08-08
+REV-00935,LOC-006,Carol F.,5,I felt well taken care of during my visit. Top-notch professionalism.,2025-10-02
+REV-00936,LOC-006,Matthew U.,5,Dr. is truly passionate about his work.,2026-04-14
+REV-00937,LOC-006,Jacob W.,5,The staff really cares about your comfort. The team puts you at ease right away. Great attention to detail.,2026-05-10
+REV-00938,LOC-006,Anna X.,5,Best dental experience I've had.,2026-01-11
+REV-00939,LOC-006,Susan U.,4,I've recommended them to everyone.,2026-01-07
+REV-00940,LOC-006,Joshua E.,5,The best option for family dentistry.,2026-07-25
+REV-00941,LOC-006,Eric P.,5,Excellent dental care and very professional staff. Exceptional dental care every single time.,2026-08-25
+REV-00942,LOC-006,James M.,5,Dr. explained everything clearly and answered all questions. Very comfortable and relaxing environment. I have no cavities thanks to their care.,2026-04-12
+REV-00943,LOC-006,Angela K.,4,Dr. is very knowledgeable and caring. The hygienist was very skilled.,2026-08-19
+REV-00944,LOC-006,Ronald R.,5,Love coming here for my cleanings.,2026-08-16
+REV-00945,LOC-006,Matthew R.,5,Great experience and fair pricing. Great preventative care approach.,2026-02-22
+REV-00946,LOC-006,Deborah D.,1,I wasn't happy with the results. The receptionist was rude. Disappointing from start to finish.,2025-09-21
+REV-00947,LOC-006,Mark E.,4,"Professional, friendly, and efficient. Best preventative dental team around.",2026-07-20
+REV-00948,LOC-006,William Z.,5,Very competent and thorough work. Great facility with amazing staff. The best option for family dentistry.,2025-09-19
+REV-00949,LOC-006,Michael B.,4,The hygienist was very skilled. I feel confident in my dental health now.,2026-06-04
+REV-00950,LOC-006,Anna Z.,5,The staff is so friendly and welcoming. Never felt rushed during my appointment. Dr. is very knowledgeable and caring.,2026-02-21
+REV-00951,LOC-006,Brandon H.,4,The hygienist was very skilled. The appointment was right on time.,2026-08-01
+REV-00952,LOC-006,Sarah A.,5,Great facility with amazing staff.,2025-10-07
+REV-00953,LOC-006,Sophia U.,2,The appointment was overbooked.,2026-04-30
+REV-00954,LOC-006,Gary T.,5,Very clean facilities and modern equipment. I've been a patient for years and never disappointed. The hygienist was so gentle and thorough.,2025-11-06
+REV-00955,LOC-006,Thomas P.,3,Typical dental office experience.,2025-11-27
+REV-00956,LOC-007,Ryan K.,4,Dr. explained everything clearly and answered all questions.,2026-07-02
+REV-00957,LOC-007,Anna Y.,5,Very comfortable and relaxing environment.,2026-08-14
+REV-00958,LOC-007,Rebecca F.,5,Dr. explained everything clearly and answered all questions. Dr. is very knowledgeable and caring.,2025-09-24
+REV-00959,LOC-007,Brandon B.,5,Best preventative dental team around.,2026-08-23
+REV-00960,LOC-007,Richard A.,5,Great follow-up care and support. Dr. did an amazing job with my crown. The dentist was thorough and really listened to my concerns.,2025-11-08
+REV-00961,LOC-007,Nicholas W.,5,Very attentive to my dental health.,2025-09-04
+REV-00962,LOC-007,Matthew T.,5,They treated me like family. They treat you with respect. I feel confident in my dental health now.,2025-11-04
+REV-00963,LOC-007,Karen U.,5,I've recommended them to everyone.,2026-08-21
+REV-00964,LOC-007,Patricia Q.,5,Outstanding results and great communication.,2026-02-02
+REV-00965,LOC-007,Alexander G.,5,Very caring and competent team. I have no cavities thanks to their care. They go above and beyond for patients.,2025-10-19
+REV-00966,LOC-007,Nicholas P.,5,The appointment was right on time.,2026-01-20
+REV-00967,LOC-007,Kenneth G.,5,Very clean facilities and modern equipment.,2025-11-30
+REV-00968,LOC-007,Larry F.,5,Outstanding service and expertise. The staff is so friendly and welcoming. Great attention to detail.,2026-04-11
+REV-00969,LOC-007,Jacob S.,4,Exceptional dental care every single time. Would definitely return and refer friends. Couldn't tell what the office looked like before going.,2025-11-20
+REV-00970,LOC-007,Thomas K.,5,The dentist really knows their stuff.,2026-06-24
+REV-00971,LOC-007,Lisa P.,5,They explain everything before doing it. Great preventative care approach. Great follow-up care and support.,2025-12-26
+REV-00972,LOC-007,Gary F.,5,Very impressed with the quality of care. The team puts you at ease right away.,2026-06-27
+REV-00973,LOC-007,Elizabeth K.,5,Best dentist in the area! They made my anxiety go away.,2026-03-18
+REV-00974,LOC-007,Cynthia O.,5,I felt well taken care of during my visit. Outstanding patient care experience. Super friendly reception and fast service.,2025-11-05
+REV-00975,LOC-007,Samantha T.,5,I have no cavities thanks to their care. Great experience and fair pricing.,2026-04-03
+REV-00976,LOC-007,Eric G.,5,Excellent communication throughout. Love coming here for my cleanings. They explain everything before doing it.,2025-11-27
+REV-00977,LOC-007,Donna H.,5,Outstanding patient care experience. Dr. and the team made me feel very comfortable.,2026-06-30
+REV-00978,LOC-007,James N.,5,The appointment was right on time.,2026-02-15
+REV-00979,LOC-007,Jason P.,5,Very caring and competent team. Highly recommend this practice!,2025-09-23
+REV-00980,LOC-007,Dylan X.,3,No problems with the work done. The dentist was straightforward. The photos online are years out of date.,2026-08-23
+REV-00981,LOC-007,Gregory C.,2,The exam felt rushed.,2026-03-28
+REV-00982,LOC-007,Brandon A.,5,Dr. did an amazing job with my crown. Outstanding service and expertise.,2025-09-09
+REV-00983,LOC-007,Melissa U.,5,Never felt rushed during my appointment.,2026-04-21
+REV-00984,LOC-007,Dylan K.,4,Best dental experience I've had.,2026-04-26
+REV-00985,LOC-007,Donald Z.,5,They treated me like family. Very comfortable and relaxing environment.,2026-05-30
+REV-00986,LOC-007,Marcus L.,5,I felt well taken care of during my visit. Exceptional dental care every single time.,2026-08-17
+REV-00987,LOC-007,Matthew U.,5,They go above and beyond for patients. The staff is so friendly and welcoming.,2025-09-27
+REV-00988,LOC-007,Paul R.,4,Super friendly reception and fast service.,2026-06-14
+REV-00989,LOC-007,Joshua Q.,4,I have no cavities thanks to their care.,2025-10-29
+REV-00990,LOC-007,Laura P.,5,Dr. explained everything clearly and answered all questions.,2026-08-15
+REV-00991,LOC-007,Marcus R.,5,Very thorough and always professional.,2026-05-15
+REV-00992,LOC-007,Gary C.,5,Dr. explained everything clearly and answered all questions. Best dentist in the area!,2026-01-28
+REV-00993,LOC-007,Lisa D.,5,Very attentive to my dental health.,2025-10-12
+REV-00994,LOC-007,Stephen U.,5,Very impressed with the quality of care. I've recommended them to everyone. The appointment was right on time.,2025-11-24
+REV-00995,LOC-007,Jacob X.,5,Very comfortable and relaxing environment. Fantastic team and great results. Very thorough and always professional.,2025-09-12
+REV-00996,LOC-007,Stephen U.,5,Dr. explained everything clearly and answered all questions. Couldn't tell what the office looked like before going.,2026-07-28
+REV-00997,LOC-007,Sophia Q.,5,The dentist really knows their stuff. Great facility with amazing staff.,2026-02-19
+REV-00998,LOC-007,Carol H.,5,Fantastic team and great results. I've been a patient for years and never disappointed.,2026-06-08
+REV-00999,LOC-007,Gary F.,5,Very clean facilities and modern equipment. Very impressed with the quality of care.,2026-05-06
+REV-01000,LOC-007,Makayla Z.,2,The cleaning was incomplete. The service was inadequate.,2026-07-14
+REV-01001,LOC-007,Anna E.,5,The staff is so friendly and welcoming.,2025-11-18
+REV-01002,LOC-007,David V.,5,Very thorough cleaning and exam.,2026-04-14
+REV-01003,LOC-007,Daniel R.,1,Not impressed with the service.,2026-02-10
+REV-01004,LOC-007,Christopher O.,5,Never felt rushed during my appointment.,2026-02-02
+REV-01005,LOC-007,Sandra P.,5,"Very comfortable and relaxing environment. Very caring and competent team. Clean, comfortable, and welcoming.",2026-02-11
+REV-01006,LOC-007,Jacob K.,1,Terrible communication. Very frustrating experience. Very poor experience.,2026-01-27
+REV-01007,LOC-007,Thomas J.,5,The staff is so friendly and welcoming. Super friendly reception and fast service.,2026-08-19
+REV-01008,LOC-007,Michelle B.,5,I feel confident in my dental health now.,2025-09-13
+REV-01009,LOC-007,Richard R.,4,Outstanding patient care experience.,2026-07-09
+REV-01010,LOC-007,Eric K.,4,Exceptional dental care every single time.,2026-04-17
+REV-01011,LOC-007,Ryan L.,5,Very professional and caring dentists.,2026-07-06
+REV-01012,LOC-007,Emma C.,5,The entire team is excellent. I've been a patient for years and never disappointed.,2026-03-17
+REV-01013,LOC-007,Ryan X.,4,Beautiful smiles are made here. Best preventative dental team around.,2025-12-20
+REV-01014,LOC-007,Shirley K.,5,Love coming here for my cleanings. Very impressed with the quality of care. Very thorough cleaning and exam.,2026-04-01
+REV-01015,LOC-007,Joshua N.,2,The dentist rushed through my exam. Very disappointed with the service.,2025-10-04
+REV-01016,LOC-007,Sandra R.,5,Super friendly reception and fast service. Great preventative care approach. They really care about patient comfort.,2025-11-29
+REV-01017,LOC-007,Cynthia H.,5,The receptionist was so helpful. I've recommended them to everyone.,2026-05-10
+REV-01018,LOC-007,Samantha U.,4,Top-notch professionalism.,2025-09-14
+REV-01019,LOC-007,Dylan U.,5,Very attentive to my dental health. Beautiful smiles are made here. Everything went smoothly and painlessly.,2026-04-30
+REV-01020,LOC-007,Ronald S.,5,I've recommended them to everyone. Dr. explained everything clearly and answered all questions.,2026-01-04
+REV-01021,LOC-007,Anna A.,5,Very thorough and always professional. Dr. is very knowledgeable and caring.,2026-05-05
+REV-01022,LOC-007,Dylan E.,5,Very impressed with the quality of care.,2026-01-11
+REV-01023,LOC-007,Angela B.,5,Very professional and caring dentists. Beautiful smiles are made here.,2026-03-02
+REV-01024,LOC-007,Linda Y.,5,Best dental experience I've had. Exceptional dental care every single time. Best dentist in the area!,2026-01-27
+REV-01025,LOC-007,Brian V.,5,Very comfortable and relaxing environment.,2025-10-19
+REV-01026,LOC-007,Christopher A.,5,Very professional and caring dentists. The hygienist was so gentle and thorough. The hygienist was very skilled.,2026-02-02
+REV-01027,LOC-007,Daniel D.,5,Great facility with amazing staff. They explain everything before doing it.,2025-11-10
+REV-01028,LOC-007,Emma T.,5,Best dentist in the area!,2025-12-21
+REV-01029,LOC-007,Lisa D.,3,The hygienist did a standard cleaning.,2026-08-20
+REV-01030,LOC-007,Barbara O.,2,The exam felt rushed. The receptionist was rude.,2025-11-07
+REV-01031,LOC-007,Steven E.,5,Everything went smoothly and painlessly. The receptionist was so helpful. The photos online are years out of date.,2026-07-03
+REV-01032,LOC-007,Charles C.,5,I've been a patient for years and never disappointed.,2026-08-22
+REV-01033,LOC-007,Sharon B.,4,Best dental experience I've had. Website photos must be from a long time ago.,2026-04-06
+REV-01034,LOC-007,Andrew B.,5,Exceptional dental care every single time. I felt well taken care of during my visit. Very thorough and always professional.,2025-12-10
+REV-01035,LOC-007,Katie G.,5,The hygienist was so gentle and thorough.,2025-10-04
+REV-01036,LOC-007,Karen E.,2,Terrible communication.,2026-06-28
+REV-01037,LOC-007,Samuel H.,2,The exam felt rushed. Felt like they were just trying to upsell.,2026-01-21
+REV-01038,LOC-007,Mark J.,5,Dr. and the team made me feel very comfortable.,2026-05-17
+REV-01039,LOC-007,Jonathan W.,2,Staff seemed annoyed with me. Couldn't tell what the office looked like before going.,2025-11-27
+REV-01040,LOC-007,Angela M.,5,They really care about patient comfort. Best preventative dental team around. Great attention to detail.,2026-05-02
+REV-01041,LOC-007,Brian D.,5,They explain everything before doing it.,2026-04-06
+REV-01042,LOC-007,Kenneth R.,5,I've recommended them to everyone.,2026-04-27
+REV-01043,LOC-007,Gary T.,5,I've recommended them to everyone. Would definitely return and refer friends.,2026-09-05
+REV-01044,LOC-007,Ryan G.,4,I have no cavities thanks to their care. Dentist really cares about your teeth.,2026-02-07
+REV-01045,LOC-007,Eric V.,3,"No surprises, just routine work. The exam was comprehensive. The office doesn't match the photos at all.",2025-10-06
+REV-01046,LOC-007,Dylan S.,5,"Professional, friendly, and efficient. Dr. is very knowledgeable and caring. Very impressed with the quality of care.",2025-10-24
+REV-01047,LOC-007,Elizabeth K.,4,Dr. explained everything clearly and answered all questions.,2025-10-23
+REV-01048,LOC-007,Amy I.,5,Dr. is very knowledgeable and caring. Excellent communication throughout.,2025-12-12
+REV-01049,LOC-007,Katie M.,4,Never felt rushed during my appointment. They made my anxiety go away.,2026-09-01
+REV-01050,LOC-007,Andrew P.,5,Outstanding service and expertise.,2026-05-07
+REV-01051,LOC-007,William P.,5,Great experience from start to finish. The photos online are years out of date.,2026-05-13
+REV-01052,LOC-007,Michelle E.,5,Great follow-up care and support.,2026-08-14
+REV-01053,LOC-007,Stephen Y.,4,Best dental experience I've had.,2026-02-03
+REV-01054,LOC-007,Eric Q.,4,Great experience and fair pricing.,2026-05-11
+REV-01055,LOC-007,Patricia M.,5,Very comfortable and relaxing environment. The dentist was thorough and really listened to my concerns. Highly recommend this practice!,2026-01-12
+REV-01056,LOC-007,Emma V.,5,Best preventative dental team around. Outstanding service and expertise. Couldn't tell what the office looked like before going.,2026-04-19
+REV-01057,LOC-007,Ashley W.,3,No problems with the work done.,2026-02-03
+REV-01058,LOC-007,Gail R.,5,Great facility with amazing staff.,2026-03-19
+REV-01059,LOC-007,Amy S.,5,Dr. did an amazing job with my crown. Very caring and competent team. I felt well taken care of during my visit.,2026-06-20
+REV-01060,LOC-007,Jessica E.,5,"Very attentive to my dental health. The dentist really knows their stuff. No interior photos, hard to know what to expect.",2026-03-13
+REV-01061,LOC-007,Angela N.,5,Great experience from start to finish. Would give them more than 5 stars if possible. Great follow-up care and support. Pictures don't represent the actual space.,2026-03-07
+REV-01062,LOC-007,Ashley S.,5,Loved the friendly atmosphere.,2026-02-27
+REV-01063,LOC-007,Jessica A.,2,The receptionist was rude.,2025-10-14
+REV-01064,LOC-007,Joshua A.,5,Very clean and well-organized office. Exceptional dental care every single time.,2026-06-03
+REV-01065,LOC-007,Deborah K.,5,Very modern technology and techniques.,2026-08-23
+REV-01066,LOC-007,Jonathan Z.,5,The hygienist was so gentle and thorough. Very thorough cleaning and exam.,2026-06-21
+REV-01067,LOC-007,Samantha Z.,5,The receptionist was so helpful. Very professional and caring dentists. The staff really cares about your comfort.,2026-08-08
+REV-01068,LOC-007,Kevin S.,3,Office was reasonably busy.,2025-10-09
+REV-01069,LOC-007,Joshua C.,4,The hygienist was so gentle and thorough.,2026-03-25
+REV-01070,LOC-007,Lisa U.,4,Very clean and well-organized office. Very thorough cleaning and exam.,2026-06-18
+REV-01071,LOC-007,Rebecca M.,5,The staff really cares about your comfort. Very comfortable and relaxing environment.,2026-02-02
+REV-01072,LOC-007,Frank W.,4,Dentist really cares about your teeth. They really care about patient comfort.,2026-01-07
+REV-01073,LOC-007,Samantha R.,3,Front desk staff was efficient. They keep the office organized.,2026-05-23
+REV-01074,LOC-007,Ronald O.,3,They document everything carefully. Nothing to complain about.,2026-07-12
+REV-01075,LOC-007,William U.,5,The receptionist was so helpful. The staff really cares about your comfort. They explain everything before doing it.,2025-11-15
+REV-01076,LOC-007,Benjamin H.,3,Office was reasonably busy. Waiting room was clean.,2025-12-14
+REV-01077,LOC-007,Cynthia P.,5,Best dentist in the area! Pictures don't represent the actual space.,2026-03-27
+REV-01078,LOC-007,Joshua E.,1,Not professional at all. Staff seemed disorganized.,2026-06-14
+REV-01079,LOC-007,Jessica X.,5,Dentist really cares about your teeth. Everything went smoothly and painlessly.,2025-09-15
+REV-01080,LOC-007,Kevin C.,4,"Professional, friendly, and efficient.",2026-05-07
+REV-01081,LOC-007,Barbara H.,3,Professional environment throughout.,2026-03-28
+REV-01082,LOC-007,Karen H.,5,Dr. is very knowledgeable and caring. They treat you with respect. Best decision switching to this practice.,2025-10-28
+REV-01083,LOC-007,Paul N.,5,"Clean, comfortable, and welcoming. The best option for family dentistry.",2026-07-05
+REV-01084,LOC-007,Jacob N.,5,The team puts you at ease right away.,2025-12-21
+REV-01085,LOC-007,Sophia D.,3,No problems with the work done.,2026-01-09
+REV-01086,LOC-007,Christopher L.,5,Loved the friendly atmosphere. Outstanding patient care experience.,2026-02-10
+REV-01087,LOC-007,Alexander Z.,4,The dentist was thorough and really listened to my concerns. Highly recommend this practice!,2026-05-02
+REV-01088,LOC-007,Ashley U.,4,Dr. is very gentle and patient.,2025-09-28
+REV-01089,LOC-007,Deborah A.,5,Dr. is very knowledgeable and caring. The hygienist was very skilled. Very competent and thorough work.,2026-08-25
+REV-01090,LOC-007,Paul J.,2,The receptionist was rude. The dentist rushed through my exam.,2026-03-21
+REV-01091,LOC-007,Gregory N.,3,"Regular checkup, nothing remarkable.",2025-12-17
+REV-01092,LOC-007,Jeffrey K.,5,Great facility with amazing staff.,2025-09-18
+REV-01093,LOC-007,Jonathan C.,5,Dr. did an amazing job with my crown.,2026-09-03
+REV-01094,LOC-007,Robert U.,5,Dentist really cares about your teeth. The dentist really knows their stuff. Outstanding service and expertise.,2026-02-28
+REV-01095,LOC-007,Frank J.,5,Super friendly reception and fast service. Excellent dental care and very professional staff.,2026-07-26
+REV-01096,LOC-007,Sarah Y.,5,Dr. did an amazing job with my crown.,2026-02-08
+REV-01097,LOC-007,Barbara I.,3,"They were matter-of-fact about findings. Regular checkup, nothing remarkable.",2025-11-06
+REV-01098,LOC-007,Linda M.,4,Very attentive to my dental health. Great preventative care approach. Pictures don't represent the actual space.,2025-11-28
+REV-01099,LOC-007,Emma U.,2,The appointment took forever.,2026-03-13
+REV-01100,LOC-007,Sophia F.,4,They go above and beyond for patients.,2026-07-11
+REV-01101,LOC-007,Jessica S.,5,Top-notch professionalism. The appointment was right on time. Pictures don't represent the actual space.,2025-09-26
+REV-01102,LOC-007,Donald G.,5,The staff really cares about your comfort. Outstanding service and expertise. I've recommended them to everyone.,2025-10-31
+REV-01103,LOC-007,Donald T.,5,Great follow-up care and support. Fantastic team and great results.,2026-01-15
+REV-01104,LOC-007,Linda N.,1,Staff seemed annoyed with me. I'll seek care elsewhere.,2025-12-20
+REV-01105,LOC-007,Melissa S.,5,Very competent and thorough work. I feel confident in my dental health now.,2025-11-14
+REV-01106,LOC-008,Michelle W.,4,Dr. and the team made me feel very comfortable.,2026-08-17
+REV-01107,LOC-008,Emily B.,4,Very clean and well-organized office. Dr. is very gentle and patient. Wish I'd known they offer pediatric care.,2026-03-23
+REV-01108,LOC-008,Benjamin W.,2,The exam felt rushed. The staff didn't seem to care.,2026-02-18
+REV-01109,LOC-008,Charles R.,5,Great follow-up care and support. The receptionist was so helpful. Dr. is truly passionate about his work.,2025-09-24
+REV-01110,LOC-008,Brenda O.,5,Highly professional and trustworthy. Very caring and competent team.,2025-09-22
+REV-01111,LOC-008,Brian B.,5,Best decision switching to this practice. The staff really cares about your comfort. Very impressed with the quality of care.,2025-11-07
+REV-01112,LOC-008,Carol T.,5,Very professional and caring dentists. The staff really cares about your comfort.,2025-11-05
+REV-01113,LOC-008,Eric Y.,5,Highly professional and trustworthy. Very modern technology and techniques.,2026-01-14
+REV-01114,LOC-008,Linda B.,5,Best preventative dental team around. Very clean facilities and modern equipment. Best dentist in the area! Parking situation was confusing.,2025-11-17
+REV-01115,LOC-008,Amy B.,5,They go above and beyond for patients. The staff really cares about your comfort. Would definitely return and refer friends.,2026-04-29
+REV-01116,LOC-008,Christopher D.,5,Outstanding results and great communication. Great facility with amazing staff. Outstanding service and expertise.,2026-04-15
+REV-01117,LOC-008,Joshua S.,5,They really care about patient comfort. Highly professional and trustworthy.,2026-02-26
+REV-01118,LOC-008,Lisa H.,5,Excellent dental care and very professional staff. Best decision switching to this practice. They really care about patient comfort.,2026-08-06
+REV-01119,LOC-008,Gail D.,4,Great experience from start to finish. Very attentive to my dental health.,2026-05-14
+REV-01120,LOC-008,Gary W.,5,The dentist really knows their stuff. No clear info about wheelchair access.,2026-03-21
+REV-01121,LOC-008,Sarah T.,5,"They treated me like family. Excellent dental care and very professional staff. Clean, comfortable, and welcoming.",2026-08-04
+REV-01122,LOC-008,Kenneth K.,5,Fantastic team and great results. The team puts you at ease right away. Very clean facilities and modern equipment.,2026-04-20
+REV-01123,LOC-008,Paul Y.,4,Love coming here for my cleanings. Never felt rushed during my appointment.,2025-09-29
+REV-01124,LOC-008,Stephanie J.,5,Dr. did an amazing job with my crown.,2026-03-24
+REV-01125,LOC-008,Sharon X.,4,Dr. is very knowledgeable and caring.,2026-07-29
+REV-01126,LOC-008,Melissa Q.,2,The exam felt rushed.,2026-02-06
+REV-01127,LOC-008,Ryan C.,5,Very thorough and always professional. They treated me like family.,2025-12-12
+REV-01128,LOC-008,Karen B.,4,The staff really cares about your comfort.,2026-04-05
+REV-01129,LOC-008,Shirley U.,5,I have no cavities thanks to their care. The appointment was right on time.,2026-05-21
+REV-01130,LOC-008,Kathleen J.,5,They go above and beyond for patients. The staff really cares about your comfort. Would have been helpful to know parking details.,2026-07-29
+REV-01131,LOC-008,Sandra S.,1,The receptionist was rude. The service was inadequate. The appointment was overbooked.,2025-11-16
+REV-01132,LOC-008,Jeffrey D.,5,Exceptional dental care every single time. Unclear if they accept my insurance.,2025-09-25
+REV-01133,LOC-008,Jonathan A.,4,They made my anxiety go away. Dr. is very gentle and patient.,2026-04-26
+REV-01134,LOC-008,Jessica C.,4,Everything went smoothly and painlessly. They really care about patient comfort.,2025-10-29
+REV-01135,LOC-008,Makayla O.,3,They were matter-of-fact about findings. No issues with scheduling.,2026-04-02
+REV-01136,LOC-008,Katie I.,4,They really care about patient comfort. The team puts you at ease right away.,2026-07-17
+REV-01137,LOC-008,Sarah P.,5,The dentist was thorough and really listened to my concerns. Excellent dental care and very professional staff. Dr. is truly passionate about his work. Parking situation was confusing.,2026-08-11
+REV-01138,LOC-008,Dylan V.,4,The receptionist was so helpful. Very professional and caring dentists.,2026-04-24
+REV-01139,LOC-008,Thomas A.,4,Fantastic team and great results. Parking situation was confusing.,2026-03-22
+REV-01140,LOC-008,Christopher U.,1,The office felt cold and unwelcoming.,2026-08-23
+REV-01141,LOC-008,Cynthia E.,5,The hygienist was very skilled. Best dentist in the area! Love coming here for my cleanings.,2026-01-02
+REV-01142,LOC-008,Sophia O.,5,Highly professional and trustworthy.,2026-05-01
+REV-01143,LOC-008,Jason B.,5,Loved the friendly atmosphere. Great preventative care approach.,2026-05-07
+REV-01144,LOC-008,Benjamin X.,5,The staff really cares about your comfort. Beautiful smiles are made here. I've recommended them to everyone.,2026-02-18
+REV-01145,LOC-008,Angela S.,1,I felt like just a number.,2026-06-11
+REV-01146,LOC-008,Ryan S.,5,Great facility with amazing staff. Excellent communication throughout. I felt well taken care of during my visit.,2026-09-07
+REV-01147,LOC-008,Gregory L.,5,Beautiful smiles are made here. Very thorough and always professional. Wish I'd known they offer pediatric care.,2026-02-09
+REV-01148,LOC-008,Mark P.,4,Dr. did an amazing job with my crown.,2026-04-18
+REV-01149,LOC-008,Deborah N.,5,I have no cavities thanks to their care. Would give them more than 5 stars if possible. They go above and beyond for patients. No information about whether they see kids.,2026-02-24
+REV-01150,LOC-008,Kenneth W.,4,Very thorough and always professional. Dr. did an amazing job with my crown.,2026-08-11
+REV-01151,LOC-008,Katie P.,4,Everything went smoothly and painlessly.,2025-10-15
+REV-01152,LOC-008,Robert A.,4,The receptionist was so helpful. Very competent and thorough work.,2025-10-22
+REV-01153,LOC-008,Jonathan B.,3,Waiting room was clean. The exam was comprehensive.,2026-03-03
+REV-01154,LOC-008,Eric I.,5,Excellent communication throughout. Parking situation was confusing.,2025-10-03
+REV-01155,LOC-008,Susan W.,4,Outstanding results and great communication.,2026-02-22
+REV-01156,LOC-008,Jacob Z.,5,Very clean facilities and modern equipment.,2026-05-22
+REV-01157,LOC-008,Samuel Z.,1,Poor customer service experience.,2026-04-23
+REV-01158,LOC-008,Patricia G.,3,Just another routine appointment. No details about accessibility features.,2025-10-23
+REV-01159,LOC-008,Joseph E.,5,Best preventative dental team around. Very caring and competent team.,2026-03-05
+REV-01160,LOC-008,Jacob N.,5,Dr. is very knowledgeable and caring.,2026-07-29
+REV-01161,LOC-008,Richard I.,5,Would give them more than 5 stars if possible. Very attentive to my dental health.,2025-09-04
+REV-01162,LOC-008,Shirley N.,4,Very professional and caring dentists. Loved the friendly atmosphere. Would have been helpful to know parking details.,2026-03-10
+REV-01163,LOC-008,Stephen Z.,5,They explain everything before doing it. Outstanding service and expertise.,2025-12-26
+REV-01164,LOC-008,Stephen C.,5,Best preventative dental team around. No clear info about wheelchair access.,2026-08-16
+REV-01165,LOC-008,David V.,5,Highly professional and trustworthy. The staff really cares about your comfort. Would have been helpful to know parking details.,2025-10-14
+REV-01166,LOC-008,Gail W.,5,I felt well taken care of during my visit. They treat you with respect. Great experience and fair pricing.,2026-07-26
+REV-01167,LOC-008,Shirley T.,3,The facility is adequate. It was an okay visit.,2026-06-11
+REV-01168,LOC-008,Brenda U.,4,Very thorough cleaning and exam. Very comfortable and relaxing environment.,2025-11-15
+REV-01169,LOC-008,George M.,4,Great preventative care approach. The receptionist was so helpful. Wish I'd known they offer pediatric care.,2026-04-15
+REV-01170,LOC-008,Kenneth G.,4,They treat you with respect.,2026-09-07
+REV-01171,LOC-008,Daniel A.,5,They treat you with respect. Would give them more than 5 stars if possible.,2025-10-18
+REV-01172,LOC-008,Jonathan D.,3,The dentist was straightforward. I got in and out on time.,2025-09-15
+REV-01173,LOC-008,Robert Y.,5,Top-notch professionalism. Very caring and competent team.,2026-09-10
+REV-01174,LOC-008,Gary K.,2,The receptionist was rude. Wouldn't recommend to friends.,2026-07-31
+REV-01175,LOC-008,Makayla Z.,4,The entire team is excellent.,2025-12-30
+REV-01176,LOC-008,Donna D.,5,Great follow-up care and support.,2026-09-02
+REV-01177,LOC-008,Christopher W.,5,Very professional and caring dentists.,2026-02-15
+REV-01178,LOC-008,Nicholas G.,3,The dentist did their job well. Parking situation was confusing.,2026-04-06
+REV-01179,LOC-008,Jason I.,5,Best decision switching to this practice. Never felt rushed during my appointment. Outstanding results and great communication.,2026-04-17
+REV-01180,LOC-008,Rebecca F.,5,Best preventative dental team around. Great facility with amazing staff.,2026-06-27
+REV-01181,LOC-008,Angela Q.,5,Outstanding service and expertise. Fantastic team and great results.,2025-11-13
+REV-01182,LOC-008,Emma L.,4,Very thorough and always professional. Highly recommend this practice!,2025-10-31
+REV-01183,LOC-008,Sandra B.,5,Would definitely return and refer friends. Dr. is very knowledgeable and caring.,2025-10-31
+REV-01184,LOC-008,Eric A.,5,I've been a patient for years and never disappointed. I trust them completely with my teeth.,2026-05-26
+REV-01185,LOC-008,Anna F.,5,Beautiful smiles are made here. Very clean facilities and modern equipment. I've been a patient for years and never disappointed.,2025-11-13
+REV-01186,LOC-008,Anna J.,5,The entire team is excellent. Dr. explained everything clearly and answered all questions. The staff is so friendly and welcoming.,2026-05-09
+REV-01187,LOC-008,Katie E.,5,Great follow-up care and support. Very thorough and always professional.,2026-06-17
+REV-01188,LOC-008,Michelle C.,5,I feel confident in my dental health now. The appointment was right on time.,2025-11-10
+REV-01189,LOC-008,Brenda R.,4,The best option for family dentistry. Excellent communication throughout.,2026-07-17
+REV-01190,LOC-008,Jessica W.,1,I regret choosing this practice. I'll be finding a new dentist.,2025-09-24
+REV-01191,LOC-008,Richard G.,5,I've been a patient for years and never disappointed. Outstanding results and great communication. Dr. is very knowledgeable and caring.,2025-09-13
+REV-01192,LOC-008,Nicholas Q.,5,They treat you with respect.,2026-07-14
+REV-01193,LOC-008,Donna W.,5,They really care about patient comfort. The dentist was thorough and really listened to my concerns. Outstanding patient care experience.,2025-09-10
+REV-01194,LOC-008,Michael K.,5,The dentist really knows their stuff. Never felt rushed during my appointment. The staff is so friendly and welcoming.,2026-06-24
+REV-01195,LOC-008,Andrew C.,5,Best decision switching to this practice.,2026-04-12
+REV-01196,LOC-008,Karen E.,1,Felt like they were just trying to upsell. Very disappointed overall. Very frustrating experience.,2025-10-29
+REV-01197,LOC-008,Linda A.,1,Felt like they were just trying to upsell. Not what I expected. I had a bad experience.,2026-02-05
+REV-01198,LOC-008,Carol M.,5,The hygienist was so gentle and thorough. Very modern technology and techniques. No information about whether they see kids.,2026-09-01
+REV-01199,LOC-008,Jonathan M.,5,Very competent and thorough work.,2025-11-01
+REV-01200,LOC-008,Kathleen A.,5,They go above and beyond for patients. Dentist really cares about your teeth.,2025-10-29
+REV-01201,LOC-008,Debra V.,4,They treated me like family.,2026-03-28
+REV-01202,LOC-008,Samantha Q.,5,Fantastic team and great results. The receptionist was so helpful. They explain everything before doing it.,2025-10-22
+REV-01203,LOC-008,Jessica Z.,4,I trust them completely with my teeth.,2025-12-14
+REV-01204,LOC-008,Cynthia T.,5,Outstanding results and great communication. I feel confident in my dental health now. Would have been helpful to know parking details.,2026-01-04
+REV-01205,LOC-008,Joshua T.,4,Excellent dental care and very professional staff. Unclear if they accept my insurance.,2026-01-27
+REV-01206,LOC-009,Brandon Q.,4,The entire team is excellent. The team puts you at ease right away.,2026-01-07
+REV-01207,LOC-009,Karen M.,5,The hygienist was very skilled. Dr. explained everything clearly and answered all questions. The receptionist was so helpful.,2026-01-23
+REV-01208,LOC-009,Margaret N.,5,Outstanding results and great communication.,2026-08-24
+REV-01209,LOC-009,Laura I.,4,Would give them more than 5 stars if possible. Top-notch professionalism.,2025-12-17
+REV-01210,LOC-009,Gary T.,4,Would give them more than 5 stars if possible. Very thorough cleaning and exam.,2026-01-04
+REV-01211,LOC-009,James A.,5,Super friendly reception and fast service. Excellent dental care and very professional staff. Very thorough and always professional.,2026-02-16
+REV-01212,LOC-009,Richard Z.,5,Great facility with amazing staff. Dr. is truly passionate about his work. The hygienist was very skilled.,2026-08-11
+REV-01213,LOC-009,Marcus D.,4,Best preventative dental team around.,2026-07-30
+REV-01214,LOC-009,Angela M.,1,Won't be coming back. The staff didn't seem to care.,2026-02-28
+REV-01215,LOC-009,Cynthia L.,4,Dr. is very knowledgeable and caring.,2025-11-30
+REV-01216,LOC-009,Margaret V.,5,The dentist was thorough and really listened to my concerns.,2025-12-08
+REV-01217,LOC-009,Steven H.,5,The receptionist was so helpful.,2026-08-30
+REV-01218,LOC-009,Amy W.,2,I'll be finding a new dentist.,2026-05-11
+REV-01219,LOC-009,Samantha M.,4,Great preventative care approach.,2026-08-28
+REV-01220,LOC-009,Mark V.,3,Waiting room was clean. Standard six-month checkup.,2025-10-27
+REV-01221,LOC-009,Debra E.,4,Dr. explained everything clearly and answered all questions.,2026-06-17
+REV-01222,LOC-009,Mark V.,5,Excellent communication throughout. They treat you with respect. Outstanding patient care experience.,2025-10-04
+REV-01223,LOC-009,Andrew V.,1,I'll seek care elsewhere. I left feeling frustrated. I had a bad experience.,2025-09-12
+REV-01224,LOC-009,Gregory V.,3,No complications during the visit.,2026-06-14
+REV-01225,LOC-009,Margaret D.,5,The staff really cares about your comfort. They explain everything before doing it.,2026-07-30
+REV-01226,LOC-009,Jessica X.,5,Very professional and caring dentists. They treat you with respect.,2026-08-15
+REV-01227,LOC-009,Brian A.,5,The hygienist was very skilled. I feel confident in my dental health now.,2025-12-24
+REV-01228,LOC-009,Steven W.,5,Great experience from start to finish.,2026-03-20
+REV-01229,LOC-009,Jessica K.,2,I wasn't happy with the results.,2026-04-05
+REV-01230,LOC-009,Sharon Z.,5,The hygienist was so gentle and thorough. Great experience from start to finish. The dentist is truly the best.,2026-02-07
+REV-01231,LOC-009,Nancy P.,5,"Clean, comfortable, and welcoming. Dr. is very gentle and patient. Loved the friendly atmosphere.",2025-09-13
+REV-01232,LOC-009,George Q.,2,Won't be coming back.,2026-01-01
+REV-01233,LOC-009,Frank O.,2,Not the standard I expected. Poor customer service experience.,2025-12-31
+REV-01234,LOC-009,Timothy K.,5,Highly recommend this practice!,2026-06-24
+REV-01235,LOC-009,Jacob B.,5,I felt well taken care of during my visit.,2026-08-22
+REV-01236,LOC-009,Marcus B.,4,Dr. explained everything clearly and answered all questions. Great attention to detail.,2026-02-02
+REV-01237,LOC-009,Brenda Y.,5,Never felt rushed during my appointment. The hygienist was so gentle and thorough.,2026-06-14
+REV-01238,LOC-009,Cynthia Z.,5,Dr. and the team made me feel very comfortable. Outstanding service and expertise. The best option for family dentistry.,2026-03-30
+REV-01239,LOC-009,Sarah V.,3,Typical pricing for the area.,2026-04-08
+REV-01240,LOC-009,Nancy A.,5,Best dentist in the area! Great attention to detail.,2025-09-14
+REV-01241,LOC-009,Samantha Q.,4,Fantastic team and great results.,2026-07-02
+REV-01242,LOC-009,Donna E.,5,Best preventative dental team around. They really care about patient comfort.,2026-01-10
+REV-01243,LOC-009,Sarah Y.,5,The staff really cares about your comfort. Exceptional dental care every single time.,2025-09-23
+REV-01244,LOC-009,Katie K.,5,Very impressed with the quality of care. Very thorough and always professional. I've been a patient for years and never disappointed.,2026-03-03
+REV-01245,LOC-009,Debra V.,5,They treat you with respect.,2026-01-28
+REV-01246,LOC-010,Emma B.,5,Very caring and competent team.,2026-08-14
+REV-01247,LOC-010,William K.,5,Great preventative care approach.,2026-04-05
+REV-01248,LOC-010,Rebecca K.,4,"Clean, comfortable, and welcoming. The receptionist was so helpful.",2025-12-06
+REV-01249,LOC-010,Steven A.,5,I've recommended them to everyone.,2025-11-23
+REV-01250,LOC-010,Brenda G.,5,They go above and beyond for patients.,2026-07-25
+REV-01251,LOC-010,Stephanie F.,5,Great follow-up care and support. Very thorough cleaning and exam.,2026-01-01
+REV-01252,LOC-010,Jennifer R.,5,They made my anxiety go away.,2025-09-04
+REV-01253,LOC-010,Jessica A.,5,Best dentist in the area! Very professional and caring dentists.,2025-10-29
+REV-01254,LOC-010,Carol X.,5,I have no cavities thanks to their care.,2025-12-11
+REV-01255,LOC-010,Michael F.,5,Loved the friendly atmosphere. Everything went smoothly and painlessly. Great preventative care approach.,2025-11-29
+REV-01256,LOC-010,Marcus E.,2,The service was inadequate.,2026-01-13
+REV-01257,LOC-010,Donald J.,4,Would give them more than 5 stars if possible.,2026-03-14
+REV-01258,LOC-010,Brenda N.,5,Highly professional and trustworthy. Best decision switching to this practice.,2026-04-22
+REV-01259,LOC-010,Mark G.,5,Fantastic team and great results.,2026-08-31
+REV-01260,LOC-010,Samantha H.,5,Very modern technology and techniques. Very clean and well-organized office.,2026-05-31
+REV-01261,LOC-010,Sandra Z.,4,The hygienist was very skilled.,2025-09-24
+REV-01262,LOC-010,Charles Q.,5,Outstanding patient care experience.,2025-11-16
+REV-01263,LOC-010,Nicholas Z.,3,The dentist did their job well.,2026-06-27
+REV-01264,LOC-010,Deborah Y.,5,Exceptional dental care every single time.,2026-08-06
+REV-01265,LOC-010,Cynthia F.,4,I've recommended them to everyone. They treat you with respect.,2026-07-28
+REV-01266,LOC-010,Joshua S.,4,I've recommended them to everyone. Very thorough and always professional.,2026-02-12
+REV-01267,LOC-010,Steven G.,4,Very thorough cleaning and exam.,2026-03-25
+REV-01268,LOC-010,Ryan M.,3,Front desk staff was efficient. I got in and out on time.,2026-04-20
+REV-01269,LOC-010,Richard E.,5,Dr. is very gentle and patient. Dentist really cares about your teeth.,2026-06-20
+REV-01270,LOC-010,Cynthia Q.,5,They made my anxiety go away. Excellent communication throughout. The staff is so friendly and welcoming.,2025-10-14
+REV-01271,LOC-010,Jeffrey L.,5,They go above and beyond for patients. The staff really cares about your comfort.,2026-07-16
+REV-01272,LOC-010,Jacob H.,5,Great experience from start to finish. Everything went smoothly and painlessly.,2026-05-13
+REV-01273,LOC-010,Jonathan Q.,4,"Professional, friendly, and efficient. Great experience and fair pricing.",2026-01-14
+REV-01274,LOC-010,Patricia C.,4,Excellent communication throughout. The hygienist was so gentle and thorough.,2026-06-07
+REV-01275,LOC-010,Elizabeth V.,5,"Clean, comfortable, and welcoming.",2026-03-04
+REV-01276,LOC-010,Angela I.,5,Outstanding patient care experience. Best dentist in the area! Super friendly reception and fast service.,2026-02-16
+REV-01277,LOC-010,Stephanie S.,4,The entire team is excellent. Never felt rushed during my appointment.,2025-09-05
+REV-01278,LOC-010,Debra H.,5,Exceptional dental care every single time. The appointment was right on time. Dr. is truly passionate about his work.,2026-08-02
+REV-01279,LOC-010,Debra Z.,4,Excellent communication throughout. They treat you with respect.,2026-09-06
+REV-01280,LOC-010,Brian G.,4,"Would give them more than 5 stars if possible. Professional, friendly, and efficient.",2026-06-10
+REV-01281,LOC-010,Laura R.,4,Very thorough cleaning and exam. Best preventative dental team around.,2026-04-08
+REV-01282,LOC-010,Amy Z.,5,Fantastic team and great results. I've been a patient for years and never disappointed. Dr. and the team made me feel very comfortable.,2025-09-16
+REV-01283,LOC-010,Ryan V.,3,They kept good records of my visit. The hygienist did a standard cleaning.,2026-08-04
+REV-01284,LOC-010,Scott Z.,4,The dentist really knows their stuff. The dentist was thorough and really listened to my concerns.,2026-03-26
+REV-01285,LOC-010,Scott U.,2,I didn't feel listened to.,2025-09-17
+REV-01286,LOC-010,Jason C.,2,The staff lacked professionalism. The office felt cold and unwelcoming.,2026-07-06
+REV-01287,LOC-010,Scott O.,5,"Great attention to detail. Clean, comfortable, and welcoming.",2026-06-01
+REV-01288,LOC-010,Nancy V.,3,Waiting room was clean.,2026-07-25
+REV-01289,LOC-010,Elizabeth C.,5,Great facility with amazing staff. Great experience from start to finish. They really care about patient comfort.,2026-06-11
+REV-01290,LOC-010,Alexander Q.,5,Great experience and fair pricing.,2026-03-17
+REV-01291,LOC-010,Jessica K.,5,They treat you with respect. Dr. and the team made me feel very comfortable.,2025-10-06
+REV-01292,LOC-010,Larry N.,5,Fantastic team and great results.,2026-03-30
+REV-01293,LOC-010,Donald J.,4,Very thorough cleaning and exam. Fantastic team and great results.,2026-05-03
+REV-01294,LOC-010,Debra G.,4,Dr. did an amazing job with my crown. I've been a patient for years and never disappointed.,2026-04-10
+REV-01295,LOC-010,James E.,4,Outstanding patient care experience. Great preventative care approach.,2026-05-16
+REV-01296,LOC-010,George S.,5,Loved the friendly atmosphere. Best decision switching to this practice.,2026-04-17
+REV-01297,LOC-010,Gregory O.,5,The staff is so friendly and welcoming. Love coming here for my cleanings. Very attentive to my dental health.,2026-05-10
+REV-01298,LOC-010,Rebecca H.,4,Dr. is truly passionate about his work. Everything went smoothly and painlessly.,2026-02-25
+REV-01299,LOC-010,Alexander F.,3,They keep the office organized. They take their job seriously.,2025-12-01
+REV-01300,LOC-010,Daniel I.,5,The staff is so friendly and welcoming. Very competent and thorough work.,2026-08-24
+REV-01301,LOC-010,Jeffrey Y.,5,Dr. explained everything clearly and answered all questions. The team puts you at ease right away. I've recommended them to everyone.,2026-07-19
+REV-01302,LOC-010,Jonathan Y.,5,Best dental experience I've had. Great attention to detail.,2026-06-11
+REV-01303,LOC-010,Donald Q.,5,Dr. is very gentle and patient.,2026-02-14
+REV-01304,LOC-010,Timothy K.,5,They go above and beyond for patients.,2025-09-23
+REV-01305,LOC-010,Andrew D.,3,Staff was polite and professional. It was an okay visit.,2026-03-24
+REV-01306,LOC-010,Cynthia P.,2,Terrible communication. I regret choosing this practice.,2026-08-30
+REV-01307,LOC-010,Nicholas I.,5,Loved the friendly atmosphere. Best preventative dental team around. Super friendly reception and fast service.,2026-04-25
+REV-01308,LOC-010,Matthew J.,5,The hygienist was so gentle and thorough.,2025-11-22
+REV-01309,LOC-010,Makayla Y.,5,Highly professional and trustworthy. Best dental experience I've had.,2025-11-03
+REV-01310,LOC-010,Angela F.,4,Best preventative dental team around.,2025-09-06
+REV-01311,LOC-010,Sophia B.,4,Best preventative dental team around.,2025-12-20
+REV-01312,LOC-010,Dylan J.,4,The best option for family dentistry.,2026-07-23
+REV-01313,LOC-010,Timothy Y.,5,Very clean facilities and modern equipment.,2026-04-16
+REV-01314,LOC-010,Karen A.,2,The appointment was overbooked. I wasn't happy with the results.,2025-12-13
+REV-01315,LOC-010,Mark V.,5,Would give them more than 5 stars if possible.,2026-04-04
+REV-01316,LOC-010,Jessica B.,5,Highly professional and trustworthy.,2026-08-09
+REV-01317,LOC-010,Frank G.,5,The dentist really knows their stuff. Outstanding results and great communication.,2026-04-01
+REV-01318,LOC-010,Debra G.,5,Dr. is truly passionate about his work. Very clean and well-organized office. Dr. is very knowledgeable and caring.,2026-07-17
+REV-01319,LOC-010,Stephanie U.,5,Dr. and the team made me feel very comfortable.,2025-10-25
+REV-01320,LOC-010,Steven C.,5,Outstanding service and expertise.,2026-02-09
+REV-01321,LOC-010,Anna N.,4,The staff is so friendly and welcoming. Dr. explained everything clearly and answered all questions.,2026-08-03
+REV-01322,LOC-010,Scott F.,4,Great attention to detail. The hygienist was very skilled.,2026-02-02
+REV-01323,LOC-010,Deborah V.,1,They seemed more concerned with money than care. The dentist was dismissive. Disappointing from start to finish.,2026-01-07
+REV-01324,LOC-010,Makayla P.,5,Very modern technology and techniques.,2026-08-22
+REV-01325,LOC-010,Samantha X.,5,I feel confident in my dental health now. Great follow-up care and support. Exceptional dental care every single time.,2025-10-05
+REV-01326,LOC-010,Samuel Y.,5,Dr. and the team made me feel very comfortable. Excellent communication throughout. The dentist was thorough and really listened to my concerns.,2025-12-29
+REV-01327,LOC-010,Emily E.,5,"Very clean and well-organized office. Loved the friendly atmosphere. Professional, friendly, and efficient.",2025-11-03
+REV-01328,LOC-010,Timothy G.,5,The appointment was right on time.,2026-03-11
+REV-01329,LOC-010,Margaret K.,5,"Best preventative dental team around. Clean, comfortable, and welcoming. Super friendly reception and fast service.",2026-07-26
+REV-01330,LOC-010,Rebecca U.,4,They treat you with respect.,2026-07-27
+REV-01331,LOC-010,Brenda H.,4,"Clean, comfortable, and welcoming.",2026-01-26
+REV-01332,LOC-010,Stephen K.,5,Loved the friendly atmosphere. I have no cavities thanks to their care. Great follow-up care and support.,2025-12-15
+REV-01333,LOC-010,Eric C.,5,Dr. explained everything clearly and answered all questions.,2025-12-03
+REV-01334,LOC-010,Charles C.,5,Very thorough cleaning and exam.,2025-12-08
+REV-01335,LOC-010,Jonathan C.,5,Very competent and thorough work.,2025-11-28
+REV-01336,LOC-010,Donna N.,4,Highly professional and trustworthy. Great preventative care approach.,2026-04-07
+REV-01337,LOC-010,Samantha G.,5,Very attentive to my dental health. I feel confident in my dental health now.,2025-11-30
+REV-01338,LOC-010,Jason M.,3,"The dentist did their job well. No surprises, just routine work.",2026-01-18
+REV-01339,LOC-010,Susan Z.,5,Very caring and competent team. The staff really cares about your comfort.,2025-11-25
+REV-01340,LOC-010,Kevin T.,5,"Very clean and well-organized office. Professional, friendly, and efficient.",2026-05-05
+REV-01341,LOC-010,Cynthia J.,5,Everything went smoothly and painlessly. Dr. is very gentle and patient. Great follow-up care and support.,2026-06-03
+REV-01342,LOC-010,Barbara W.,5,"The dentist is truly the best. Best dental experience I've had. Clean, comfortable, and welcoming.",2026-04-21
+REV-01343,LOC-010,Sarah Q.,5,Excellent dental care and very professional staff.,2026-04-29
+REV-01344,LOC-010,Jason X.,4,Never felt rushed during my appointment. Beautiful smiles are made here.,2026-09-09
+REV-01345,LOC-010,David D.,5,Best dental experience I've had. They explain everything before doing it.,2026-03-11
+REV-01346,LOC-010,Sharon I.,2,I wasn't happy with the results.,2026-03-17
+REV-01347,LOC-010,Sarah M.,5,Great facility with amazing staff. I trust them completely with my teeth. I felt well taken care of during my visit.,2026-09-05
+REV-01348,LOC-010,David L.,4,The dentist is truly the best.,2026-04-06
+REV-01349,LOC-010,Carol T.,4,Very impressed with the quality of care.,2026-07-21
+REV-01350,LOC-010,Donna T.,2,Quality didn't match the price.,2026-04-22
+REV-01351,LOC-010,Thomas Y.,1,Very disappointed with the service.,2026-06-24
+REV-01352,LOC-010,Stephen G.,4,"Dr. is truly passionate about his work. Professional, friendly, and efficient.",2025-10-18
+REV-01353,LOC-010,Jonathan R.,5,Dr. is very gentle and patient. The receptionist was so helpful.,2026-04-05
+REV-01354,LOC-010,Nancy U.,3,The hygienist did a standard cleaning. The dentist did their job well.,2026-08-04
+REV-01355,LOC-010,Donald X.,4,Very impressed with the quality of care. They treated me like family.,2026-06-21
+REV-01356,LOC-010,Eric A.,4,Highly professional and trustworthy.,2026-03-23
+REV-01357,LOC-010,Sharon F.,5,Beautiful smiles are made here. Best decision switching to this practice. Very attentive to my dental health.,2025-10-20
+REV-01358,LOC-010,Linda Q.,5,Super friendly reception and fast service. Great preventative care approach. Great facility with amazing staff.,2025-11-30
+REV-01359,LOC-010,Elizabeth B.,5,They really care about patient comfort.,2025-10-27
+REV-01360,LOC-010,Jeffrey O.,4,Top-notch professionalism.,2025-12-03
+REV-01361,LOC-010,Jessica C.,2,The dentist was dismissive.,2026-07-18
+REV-01362,LOC-010,William K.,5,Outstanding patient care experience.,2026-01-29
+REV-01363,LOC-010,Sarah B.,5,Great facility with amazing staff. The hygienist was so gentle and thorough.,2025-09-16
+REV-01364,LOC-010,Joseph G.,4,The staff is so friendly and welcoming.,2026-01-15
+REV-01365,LOC-010,Eric P.,4,They treat you with respect. They treated me like family.,2026-05-26
+REV-01366,LOC-010,Brian H.,5,I trust them completely with my teeth. Would give them more than 5 stars if possible.,2026-02-20
+REV-01367,LOC-010,George Z.,4,I felt well taken care of during my visit. They made my anxiety go away.,2026-03-04
+REV-01368,LOC-010,Katie D.,5,Never felt rushed during my appointment. Super friendly reception and fast service. Great experience from start to finish.,2025-10-22
+REV-01369,LOC-010,Brenda V.,5,Loved the friendly atmosphere. I trust them completely with my teeth. I feel confident in my dental health now.,2026-05-30
+REV-01370,LOC-010,Samantha K.,3,No major issues found. It was an okay visit.,2026-08-04
+REV-01371,LOC-010,Marcus O.,4,The dentist really knows their stuff.,2025-09-09
+REV-01372,LOC-010,Ryan P.,5,"Professional, friendly, and efficient. The entire team is excellent.",2025-12-29
+REV-01373,LOC-010,Sandra T.,3,They take their job seriously.,2026-08-04
+REV-01374,LOC-010,Amy Z.,4,Fantastic team and great results.,2025-12-09
+REV-01375,LOC-010,Laura D.,5,Dentist really cares about your teeth. They go above and beyond for patients. Highly professional and trustworthy.,2025-10-15
+REV-01376,LOC-010,Anna F.,4,Loved the friendly atmosphere.,2026-05-05
+REV-01377,LOC-010,Jennifer F.,4,The staff really cares about your comfort.,2026-08-04
+REV-01378,LOC-010,Andrew V.,2,The staff didn't listen to my concerns. Staff seemed annoyed with me.,2026-02-15
+REV-01379,LOC-010,Larry U.,1,Wouldn't recommend to others. Terrible communication. The staff was unprofessional.,2026-05-02
+REV-01380,LOC-010,Gregory K.,5,"Clean, comfortable, and welcoming. I have no cavities thanks to their care. Dr. explained everything clearly and answered all questions.",2026-09-07
+REV-01381,LOC-010,Emma N.,2,Not professional at all. I felt disrespected during my visit.,2026-03-13
+REV-01382,LOC-010,Karen D.,5,Great experience and fair pricing.,2025-12-29
+REV-01383,LOC-010,Charles K.,5,Best dentist in the area! Would definitely return and refer friends. I trust them completely with my teeth.,2025-10-16
+REV-01384,LOC-010,Emily S.,5,I've been a patient for years and never disappointed.,2026-03-14
+REV-01385,LOC-010,Ronald Z.,5,Very clean and well-organized office. Very modern technology and techniques.,2026-06-02
+REV-01386,LOC-011,Alexander T.,2,The hygienist was rough.,2026-08-14
+REV-01387,LOC-011,Gary K.,5,Dr. and the team made me feel very comfortable. The hygienist was very skilled.,2026-06-30
+REV-01388,LOC-011,Gail O.,4,I have no cavities thanks to their care. I've recommended them to everyone.,2025-11-14
+REV-01389,LOC-011,Benjamin K.,5,Highly recommend this practice!,2025-11-15
+REV-01390,LOC-011,Frank G.,5,Dr. is very knowledgeable and caring. Outstanding patient care experience. The dentist is truly the best.,2026-02-06
+REV-01391,LOC-011,Susan W.,5,"I felt well taken care of during my visit. Clean, comfortable, and welcoming.",2026-05-12
+REV-01392,LOC-011,Matthew P.,3,Nothing to complain about.,2025-12-17
+REV-01393,LOC-011,Jason K.,5,Dr. did an amazing job with my crown. The dentist was thorough and really listened to my concerns. Dentist really cares about your teeth.,2026-09-08
+REV-01394,LOC-011,Shirley X.,4,Dr. is truly passionate about his work. Best dental experience I've had.,2026-04-05
+REV-01395,LOC-011,Jason D.,5,Dentist really cares about your teeth.,2026-01-23
+REV-01396,LOC-011,Sarah F.,5,Very clean facilities and modern equipment. The receptionist was so helpful. Outstanding service and expertise.,2025-11-07
+REV-01397,LOC-011,Donald G.,5,The dentist is truly the best. Great experience and fair pricing. Very impressed with the quality of care.,2026-06-23
+REV-01398,LOC-011,Anna D.,4,Very professional and caring dentists.,2025-12-10
+REV-01399,LOC-011,Ryan V.,4,Great follow-up care and support.,2026-08-14
+REV-01400,LOC-011,Nicholas F.,2,The exam felt rushed.,2025-11-26
+REV-01401,LOC-011,Frank X.,5,Would give them more than 5 stars if possible. The staff really cares about your comfort. The appointment was right on time.,2025-09-27
+REV-01402,LOC-011,Jason P.,5,Very competent and thorough work.,2026-03-26
+REV-01403,LOC-011,Dylan Z.,4,Great follow-up care and support.,2026-02-02
+REV-01404,LOC-011,Frank U.,4,Great follow-up care and support. Outstanding patient care experience.,2026-08-10
+REV-01405,LOC-011,Richard D.,5,Would definitely return and refer friends.,2026-04-16
+REV-01406,LOC-011,Debra S.,4,The dentist was thorough and really listened to my concerns.,2026-05-09
+REV-01407,LOC-011,Kathleen U.,5,The hygienist was so gentle and thorough. They really care about patient comfort. The best option for family dentistry.,2026-06-21
+REV-01408,LOC-011,William W.,5,Fantastic team and great results. The hygienist was so gentle and thorough. The dentist really knows their stuff.,2026-08-26
+REV-01409,LOC-011,Larry Z.,5,The dentist was thorough and really listened to my concerns. Dr. is truly passionate about his work. Outstanding results and great communication.,2026-06-03
+REV-01410,LOC-011,Alexander D.,5,The hygienist was very skilled. Dr. is very knowledgeable and caring. Very thorough cleaning and exam.,2026-05-30
+REV-01411,LOC-011,Emma O.,3,It was an okay visit.,2025-12-02
+REV-01412,LOC-011,Sarah F.,5,Very thorough cleaning and exam.,2026-02-08
+REV-01413,LOC-011,Patricia Q.,5,"Professional, friendly, and efficient.",2025-10-15
+REV-01414,LOC-011,Donna J.,5,Highly professional and trustworthy. Very clean and well-organized office. Excellent dental care and very professional staff.,2026-01-31
+REV-01415,LOC-011,Jacob E.,2,Terrible communication. I left feeling frustrated.,2025-09-24
+REV-01416,LOC-011,Katie R.,5,They treat you with respect. They made my anxiety go away.,2026-06-23
+REV-01417,LOC-011,Paul B.,5,The staff is so friendly and welcoming.,2026-05-20
+REV-01418,LOC-011,Katie R.,5,Super friendly reception and fast service.,2025-12-06
+REV-01419,LOC-011,Lisa R.,5,Fantastic team and great results. Very clean and well-organized office.,2025-12-20
+REV-01420,LOC-011,Richard I.,5,Dr. did an amazing job with my crown. Never felt rushed during my appointment. Outstanding service and expertise.,2026-01-09
+REV-01421,LOC-011,Lisa U.,5,Very impressed with the quality of care. The hygienist was very skilled. Very thorough cleaning and exam.,2026-08-13
+REV-01422,LOC-011,Katie F.,1,Not professional at all. I wasn't happy with the results. The service quality was poor. The team seemed understaffed and rushed.,2026-01-16
+REV-01423,LOC-011,Jennifer T.,3,No complications during the visit. They take their job seriously.,2026-04-03
+REV-01424,LOC-011,Thomas V.,5,The hygienist was very skilled.,2026-01-05
+REV-01425,LOC-011,George Y.,5,Love coming here for my cleanings. Very professional and caring dentists.,2026-06-08
+REV-01426,LOC-011,Sarah D.,5,Outstanding patient care experience.,2026-01-18
+REV-01427,LOC-011,Patricia F.,1,The staff lacked professionalism.,2026-03-13
+REV-01428,LOC-011,Shirley L.,4,Great facility with amazing staff. The hygienist was so gentle and thorough.,2026-05-28
+REV-01429,LOC-011,Katie D.,5,Dentist really cares about your teeth. They treated me like family.,2026-08-25
+REV-01430,LOC-011,Marcus Z.,5,They really care about patient comfort. The entire team is excellent.,2025-09-25
+REV-01431,LOC-011,Carol A.,5,The dentist is truly the best. Fantastic team and great results.,2026-05-31
+REV-01432,LOC-011,Christopher M.,5,Fantastic team and great results.,2026-08-18
+REV-01433,LOC-011,Donna V.,4,I trust them completely with my teeth.,2026-06-18
+REV-01434,LOC-011,Angela Z.,5,They really care about patient comfort. Best preventative dental team around.,2026-07-09
+REV-01435,LOC-011,Debra J.,5,Very clean and well-organized office. They treat you with respect.,2026-04-28
+REV-01436,LOC-011,Karen U.,2,The office was disorganized. They seemed more concerned with money than care.,2025-10-15
+REV-01437,LOC-011,Jessica S.,5,Love coming here for my cleanings.,2025-10-11
+REV-01438,LOC-011,Sarah N.,5,Dentist really cares about your teeth. I've recommended them to everyone.,2025-09-30
+REV-01439,LOC-011,Angela V.,5,Super friendly reception and fast service. The dentist is truly the best. I've recommended them to everyone.,2026-08-13
+REV-01440,LOC-011,Sarah T.,3,Professional environment throughout.,2026-08-13
+REV-01441,LOC-011,Ryan W.,2,The service quality was poor.,2025-12-07
+REV-01442,LOC-011,Gail T.,4,Best decision switching to this practice.,2026-06-01
+REV-01443,LOC-011,Steven F.,5,Best decision switching to this practice.,2025-09-22
+REV-01444,LOC-011,Angela B.,5,Exceptional dental care every single time.,2025-10-09
+REV-01445,LOC-011,Thomas K.,5,I trust them completely with my teeth.,2026-04-05
+REV-01446,LOC-011,Kathleen J.,5,Dr. is very knowledgeable and caring. Great experience and fair pricing. The receptionist was so helpful.,2026-08-14
+REV-01447,LOC-011,Gregory Q.,5,Dr. is truly passionate about his work. The team puts you at ease right away. I've been a patient for years and never disappointed.,2026-01-14
+REV-01448,LOC-011,James T.,2,Not what I expected. The exam felt rushed.,2025-09-19
+REV-01449,LOC-011,Edward X.,5,Great attention to detail. Excellent dental care and very professional staff.,2026-04-24
+REV-01450,LOC-011,Sharon P.,5,The hygienist was so gentle and thorough.,2025-12-05
+REV-01451,LOC-011,Eric A.,5,The appointment was right on time. They explain everything before doing it. Dr. is very knowledgeable and caring.,2025-12-11
+REV-01452,LOC-011,Jason L.,4,I have no cavities thanks to their care. Very thorough and always professional.,2025-11-19
+REV-01453,LOC-011,Joshua D.,5,The hygienist was very skilled.,2026-02-01
+REV-01454,LOC-011,Angela X.,4,Dr. did an amazing job with my crown. Super friendly reception and fast service.,2026-04-13
+REV-01455,LOC-011,Kenneth B.,5,Great preventative care approach. Would definitely return and refer friends. Best dentist in the area!,2026-04-11
+REV-01456,LOC-011,Makayla G.,5,"Clean, comfortable, and welcoming. Highly recommend this practice! Dr. did an amazing job with my crown.",2025-11-08
+REV-01457,LOC-011,Gail W.,1,Wouldn't recommend to others. The experience was disappointing. Staff didn't show up professionalism.,2026-05-04
+REV-01458,LOC-011,Charles D.,5,Very caring and competent team. The best option for family dentistry.,2025-11-05
+REV-01459,LOC-011,Edward Q.,4,The appointment was right on time.,2025-10-26
+REV-01460,LOC-011,Marcus K.,4,Very clean facilities and modern equipment.,2025-09-07
+REV-01461,LOC-011,Richard Y.,1,Very disappointed with the service. They didn't explain my treatment plan. Staff attitudes were poor. Staff didn't show up professionalism.,2026-04-08
+REV-01462,LOC-011,Linda H.,5,Exceptional dental care every single time.,2026-04-08
+REV-01463,LOC-011,Elizabeth P.,4,Loved the friendly atmosphere. Very clean and well-organized office.,2026-01-22
+REV-01464,LOC-011,Samuel F.,4,Very caring and competent team.,2026-08-28
+REV-01465,LOC-011,David I.,1,The dentist was dismissive. Very frustrating experience. The staff didn't listen to my concerns. Staff didn't show up professionalism.,2025-12-06
+REV-01466,LOC-011,Elizabeth C.,2,The appointment took forever. I had a bad experience.,2025-12-08
+REV-01467,LOC-011,Brenda N.,5,I've been a patient for years and never disappointed. Excellent communication throughout. I have no cavities thanks to their care.,2025-09-27
+REV-01468,LOC-011,Thomas I.,5,Very clean facilities and modern equipment. The receptionist was so helpful.,2026-05-04
+REV-01469,LOC-011,Brian B.,5,Beautiful smiles are made here. Loved the friendly atmosphere.,2026-03-06
+REV-01470,LOC-011,Anna J.,5,The dentist really knows their stuff.,2025-12-03
+REV-01471,LOC-011,Andrew P.,5,The hygienist was so gentle and thorough. The staff really cares about your comfort. They really care about patient comfort.,2026-04-30
+REV-01472,LOC-011,Makayla A.,5,The hygienist was so gentle and thorough.,2026-03-06
+REV-01473,LOC-011,Ronald X.,5,"Clean, comfortable, and welcoming.",2026-08-16
+REV-01474,LOC-011,Donald S.,4,Very competent and thorough work. Outstanding patient care experience.,2026-03-05
+REV-01475,LOC-011,Frank X.,5,Fantastic team and great results.,2026-03-16
+REV-01476,LOC-011,Lisa R.,5,Best dentist in the area! I feel confident in my dental health now. The hygienist was so gentle and thorough.,2026-07-06
+REV-01477,LOC-011,Susan B.,5,Very thorough and always professional. Great preventative care approach. The hygienist was very skilled.,2026-07-14
+REV-01478,LOC-011,Emma L.,1,The service quality was poor. Quality didn't match the price. Not the standard I expected.,2026-07-23
+REV-01479,LOC-011,Jonathan Z.,1,Wouldn't recommend to others. They didn't explain my treatment plan. They seem to have money on their mind only. The team seemed understaffed and rushed.,2026-07-26
+REV-01480,LOC-011,Emily Z.,1,Disappointing from start to finish. The staff was unprofessional. The team seemed understaffed and rushed.,2026-07-21
+REV-01481,LOC-011,Lisa F.,1,I felt like just a number. I'll seek care elsewhere. The team seemed understaffed and rushed.,2026-07-24
+REV-01482,LOC-011,Joshua G.,1,Poor attention to detail. The office was disorganized. The team seemed understaffed and rushed.,2026-07-28
+REV-01483,LOC-011,Gary Q.,1,The office felt cold and unwelcoming. Very unsatisfactory visit. Disappointing from start to finish. The team seemed understaffed and rushed.,2026-07-23
+REV-01484,LOC-011,Justin D.,1,Very disappointed overall.,2026-07-29
+REV-01485,LOC-011,Margaret E.,1,The appointment was overbooked. Very disappointed overall. Staff seemed disorganized.,2026-07-23
+REV-01486,LOC-011,Donna G.,2,Not professional at all.,2026-07-25
+REV-01487,LOC-011,Michelle C.,1,The exam felt rushed. The dentist was dismissive. The staff didn't seem to care.,2026-07-29
+REV-01488,LOC-011,Sandra K.,1,The experience was disappointing.,2026-07-29
+REV-01489,LOC-011,Matthew I.,1,Won't be coming back. Appointments were cancelled without notice.,2026-07-21
+REV-01490,LOC-011,Sarah I.,1,Poor customer service experience. Staff seemed annoyed with me. I regret choosing this practice.,2026-07-21
+REV-01491,LOC-011,Frank Z.,1,The staff didn't listen to my concerns. They seemed more concerned with money than care. The team seemed understaffed and rushed.,2026-07-29
+REV-01492,LOC-011,Melissa E.,1,Staff seemed annoyed with me.,2026-07-27
+REV-01493,LOC-011,Mark S.,1,The office was messy. The staff seemed annoyed with patients.,2026-07-28
+REV-01494,LOC-011,Kenneth A.,2,Not professional at all.,2026-07-28
+REV-01495,LOC-011,Mark C.,1,Won't be coming back. The team seemed understaffed and rushed.,2026-07-25
+REV-01496,LOC-011,Stephanie D.,1,The office was messy.,2026-07-23
+REV-01497,LOC-011,Michael D.,1,The staff didn't seem to care. Staff didn't show up professionalism.,2026-07-29
+REV-01498,LOC-011,Joshua E.,1,Staff seemed disorganized. The staff was unprofessional. The appointment was overbooked.,2026-07-21
+REV-01499,LOC-011,Richard G.,1,I felt disrespected during my visit. Appointments were cancelled without notice.,2026-07-21
+REV-01500,LOC-011,Susan H.,1,Felt overcharged for the work. Won't be coming back. Felt like they were just trying to upsell. Staff didn't show up professionalism.,2026-07-23
+REV-01501,LOC-012,Michael B.,5,Very comfortable and relaxing environment. Dr. is very knowledgeable and caring.,2025-09-29
+REV-01502,LOC-012,Rebecca E.,5,Exceptional dental care every single time.,2025-10-23
+REV-01503,LOC-012,Ryan M.,2,The staff didn't listen to my concerns.,2025-09-01
+REV-01504,LOC-012,Gail W.,5,I have no cavities thanks to their care. The best option for family dentistry.,2025-11-15
+REV-01505,LOC-012,Nancy J.,5,I have no cavities thanks to their care.,2025-10-28
+REV-01506,LOC-012,Richard B.,5,Dr. is very knowledgeable and caring. Very professional and caring dentists.,2026-03-02
+REV-01507,LOC-012,Benjamin F.,5,"Best decision switching to this practice. Clean, comfortable, and welcoming.",2026-07-07
+REV-01508,LOC-012,Nancy I.,5,The receptionist was so helpful. Very attentive to my dental health. The entire team is excellent.,2026-08-14
+REV-01509,LOC-012,Susan Y.,4,Best dental experience I've had. Excellent dental care and very professional staff.,2026-05-14
+REV-01510,LOC-012,Laura X.,5,The best option for family dentistry.,2026-08-02
+REV-01511,LOC-012,Margaret E.,4,Very clean and well-organized office.,2026-05-03
+REV-01512,LOC-012,Deborah L.,5,They really care about patient comfort.,2025-10-17
+REV-01513,LOC-012,Barbara Z.,5,"They explain everything before doing it. Clean, comfortable, and welcoming.",2026-02-11
+REV-01514,LOC-012,Amy R.,2,The experience was disappointing. Poor attention to detail.,2026-08-01

@@ -1,0 +1,1001 @@
+booking_id,location_id,customer_name,service,requested_for_date,status,source,created_at
+BK-00001,LOC-001,Matthew P.,Root canal,2026-07-20,confirmed,google_profile,2026-07-08
+BK-00002,LOC-001,Mark B.,Emergency visit,2026-08-08,cancelled,walk_in,2026-07-29
+BK-00003,LOC-001,Christopher F.,Invisalign consult,2026-07-16,new,website,2026-07-06
+BK-00004,LOC-001,Barbara W.,Emergency visit,2026-09-07,completed,phone,2026-08-18
+BK-00005,LOC-001,Michael B.,Kids checkup,2026-08-23,confirmed,website,2026-08-04
+BK-00006,LOC-001,Joseph C.,Emergency visit,2026-07-22,confirmed,phone,2026-07-18
+BK-00007,LOC-001,Michael B.,Implant consult,2026-08-06,confirmed,phone,2026-08-03
+BK-00008,LOC-001,David L.,Invisalign consult,2026-07-27,confirmed,website,2026-07-13
+BK-00009,LOC-001,Jessica P.,Teeth whitening,2026-07-03,completed,google_profile,2026-06-18
+BK-00010,LOC-001,Lisa M.,Teeth whitening,2026-07-27,confirmed,google_profile,2026-07-13
+BK-00011,LOC-001,Nancy S.,Wisdom tooth consult,2026-07-06,completed,walk_in,2026-06-17
+BK-00012,LOC-001,Anna G.,Wisdom tooth consult,2026-09-11,confirmed,google_profile,2026-08-24
+BK-00013,LOC-001,Matthew P.,Implant consult,2026-09-09,completed,walk_in,2026-08-28
+BK-00014,LOC-001,Debra K.,Teeth whitening,2026-07-31,confirmed,phone,2026-07-18
+BK-00015,LOC-001,Matthew P.,Emergency visit,2026-08-11,new,phone,2026-07-25
+BK-00016,LOC-001,Debra K.,Wisdom tooth consult,2026-08-02,new,google_profile,2026-07-26
+BK-00017,LOC-001,Donald R.,Teeth whitening,2026-08-31,new,phone,2026-08-14
+BK-00018,LOC-001,Christopher F.,Routine cleaning,2026-08-18,confirmed,google_profile,2026-07-29
+BK-00019,LOC-001,Nancy S.,New patient exam,2026-08-31,confirmed,walk_in,2026-08-12
+BK-00020,LOC-001,Sarah J.,Implant consult,2026-07-06,confirmed,walk_in,2026-07-06
+BK-00021,LOC-001,Michael B.,Invisalign consult,2026-08-19,confirmed,website,2026-08-15
+BK-00022,LOC-001,Patricia E.,Kids checkup,2026-09-03,completed,website,2026-08-26
+BK-00023,LOC-001,Lisa M.,Wisdom tooth consult,2026-07-14,confirmed,google_profile,2026-07-02
+BK-00024,LOC-001,Elizabeth H.,Wisdom tooth consult,2026-09-18,confirmed,phone,2026-09-09
+BK-00025,LOC-001,Susan O.,Routine cleaning,2026-08-10,completed,phone,2026-08-06
+BK-00026,LOC-001,Michael B.,New patient exam,2026-08-17,completed,website,2026-07-30
+BK-00027,LOC-001,Jessica P.,Emergency visit,2026-09-03,completed,google_profile,2026-08-21
+BK-00028,LOC-001,Richard G.,New patient exam,2026-07-08,completed,walk_in,2026-07-08
+BK-00029,LOC-001,Joseph C.,Root canal,2026-07-09,completed,walk_in,2026-06-27
+BK-00030,LOC-001,Karen D.,Emergency visit,2026-07-12,new,google_profile,2026-07-02
+BK-00031,LOC-001,William H.,Kids checkup,2026-08-17,new,walk_in,2026-08-09
+BK-00032,LOC-001,Daniel M.,New patient exam,2026-07-17,no_show,phone,2026-07-10
+BK-00033,LOC-001,James M.,Routine cleaning,2026-08-11,confirmed,website,2026-07-28
+BK-00034,LOC-001,James M.,Wisdom tooth consult,2026-08-26,new,phone,2026-08-25
+BK-00035,LOC-001,James M.,Implant consult,2026-06-16,confirmed,phone,2026-06-16
+BK-00036,LOC-001,Patricia E.,Emergency visit,2026-06-28,confirmed,google_profile,2026-06-23
+BK-00037,LOC-001,Jessica L.,Emergency visit,2026-08-28,new,phone,2026-08-22
+BK-00038,LOC-001,Matthew P.,Emergency visit,2026-09-10,cancelled,google_profile,2026-08-30
+BK-00039,LOC-001,Sarah J.,Wisdom tooth consult,2026-08-22,new,walk_in,2026-08-18
+BK-00040,LOC-001,Jessica L.,Emergency visit,2026-07-09,new,phone,2026-06-30
+BK-00041,LOC-001,Patricia E.,Teeth whitening,2026-09-14,cancelled,google_profile,2026-08-29
+BK-00042,LOC-001,Debra K.,Wisdom tooth consult,2026-09-04,cancelled,phone,2026-08-31
+BK-00043,LOC-001,Michael B.,Implant consult,2026-08-17,confirmed,website,2026-08-03
+BK-00044,LOC-001,Donald R.,Root canal,2026-07-27,confirmed,google_profile,2026-07-16
+BK-00045,LOC-001,Debra K.,Root canal,2026-07-21,confirmed,website,2026-07-09
+BK-00046,LOC-001,Michael B.,Implant consult,2026-09-25,completed,website,2026-09-07
+BK-00047,LOC-001,Daniel M.,Teeth whitening,2026-09-08,completed,walk_in,2026-08-21
+BK-00048,LOC-001,Robert T.,Invisalign consult,2026-07-31,confirmed,google_profile,2026-07-21
+BK-00049,LOC-001,Michael B.,Root canal,2026-09-16,confirmed,walk_in,2026-09-03
+BK-00050,LOC-001,Patricia E.,Kids checkup,2026-07-03,confirmed,website,2026-06-18
+BK-00051,LOC-001,Matthew P.,Routine cleaning,2026-08-08,completed,phone,2026-07-24
+BK-00052,LOC-001,Lisa M.,Wisdom tooth consult,2026-08-22,cancelled,google_profile,2026-08-21
+BK-00053,LOC-001,Barbara W.,Routine cleaning,2026-07-27,completed,phone,2026-07-07
+BK-00054,LOC-001,Barbara W.,Routine cleaning,2026-06-30,confirmed,walk_in,2026-06-21
+BK-00055,LOC-001,Jessica L.,Routine cleaning,2026-09-23,confirmed,google_profile,2026-09-10
+BK-00056,LOC-001,Steven T.,Teeth whitening,2026-07-15,cancelled,walk_in,2026-07-12
+BK-00057,LOC-001,Christopher F.,Routine cleaning,2026-07-27,confirmed,google_profile,2026-07-25
+BK-00058,LOC-001,Jennifer K.,Invisalign consult,2026-07-02,cancelled,google_profile,2026-06-20
+BK-00059,LOC-001,Joseph C.,Teeth whitening,2026-06-22,no_show,phone,2026-06-15
+BK-00060,LOC-001,Susan O.,Teeth whitening,2026-08-13,confirmed,website,2026-08-01
+BK-00061,LOC-001,Nancy S.,Invisalign consult,2026-09-23,cancelled,phone,2026-09-02
+BK-00062,LOC-001,James M.,Kids checkup,2026-07-31,confirmed,phone,2026-07-11
+BK-00063,LOC-001,Robert T.,Root canal,2026-08-18,completed,phone,2026-08-06
+BK-00064,LOC-001,Joseph C.,Routine cleaning,2026-08-05,confirmed,website,2026-07-17
+BK-00065,LOC-001,Jennifer K.,New patient exam,2026-08-15,new,google_profile,2026-08-11
+BK-00066,LOC-001,Richard G.,Emergency visit,2026-07-20,confirmed,website,2026-07-05
+BK-00067,LOC-001,Lisa M.,Invisalign consult,2026-08-07,confirmed,walk_in,2026-07-17
+BK-00068,LOC-001,Joseph C.,Teeth whitening,2026-09-03,completed,website,2026-08-26
+BK-00069,LOC-001,Charles N.,Routine cleaning,2026-07-13,confirmed,walk_in,2026-06-26
+BK-00070,LOC-001,Sarah J.,Kids checkup,2026-08-29,new,website,2026-08-14
+BK-00071,LOC-001,Susan O.,Implant consult,2026-07-10,confirmed,website,2026-07-08
+BK-00072,LOC-001,Sarah J.,Wisdom tooth consult,2026-08-14,confirmed,walk_in,2026-08-10
+BK-00073,LOC-001,James M.,Emergency visit,2026-07-15,new,phone,2026-07-09
+BK-00074,LOC-001,Robert T.,Routine cleaning,2026-08-05,confirmed,google_profile,2026-07-28
+BK-00075,LOC-001,Charles N.,New patient exam,2026-08-16,cancelled,google_profile,2026-08-04
+BK-00076,LOC-001,Linda J.,Root canal,2026-07-18,confirmed,google_profile,2026-07-13
+BK-00077,LOC-001,Susan O.,Wisdom tooth consult,2026-07-02,completed,website,2026-06-18
+BK-00078,LOC-001,Richard G.,Routine cleaning,2026-08-07,confirmed,google_profile,2026-07-21
+BK-00079,LOC-001,Barbara W.,Routine cleaning,2026-07-20,confirmed,website,2026-06-29
+BK-00080,LOC-001,David L.,New patient exam,2026-09-07,confirmed,phone,2026-09-02
+BK-00081,LOC-001,Christopher F.,Routine cleaning,2026-09-17,confirmed,website,2026-09-10
+BK-00082,LOC-001,Mark B.,Routine cleaning,2026-08-21,completed,website,2026-08-03
+BK-00083,LOC-001,Donald R.,Root canal,2026-09-12,new,website,2026-08-26
+BK-00084,LOC-001,Susan O.,Kids checkup,2026-09-16,confirmed,walk_in,2026-08-27
+BK-00085,LOC-001,Karen D.,Root canal,2026-08-18,confirmed,walk_in,2026-08-11
+BK-00086,LOC-001,Karen D.,Teeth whitening,2026-08-19,confirmed,walk_in,2026-08-15
+BK-00087,LOC-001,Joseph C.,Invisalign consult,2026-07-12,no_show,google_profile,2026-07-03
+BK-00088,LOC-001,Lisa M.,Emergency visit,2026-07-16,confirmed,website,2026-07-05
+BK-00089,LOC-001,Barbara W.,Teeth whitening,2026-07-04,completed,walk_in,2026-06-20
+BK-00090,LOC-001,Joseph C.,Kids checkup,2026-08-09,confirmed,phone,2026-08-05
+BK-00091,LOC-001,Joseph C.,Root canal,2026-08-21,confirmed,walk_in,2026-08-07
+BK-00092,LOC-001,David L.,Wisdom tooth consult,2026-08-10,confirmed,phone,2026-07-31
+BK-00093,LOC-001,Christopher F.,Teeth whitening,2026-07-18,completed,google_profile,2026-07-11
+BK-00094,LOC-001,Barbara W.,Kids checkup,2026-09-26,cancelled,phone,2026-09-07
+BK-00095,LOC-001,David L.,Root canal,2026-08-21,confirmed,phone,2026-08-01
+BK-00096,LOC-001,Donald R.,Kids checkup,2026-07-15,confirmed,walk_in,2026-06-28
+BK-00097,LOC-001,Steven T.,Emergency visit,2026-06-27,confirmed,google_profile,2026-06-21
+BK-00098,LOC-001,Thomas A.,Routine cleaning,2026-09-19,confirmed,walk_in,2026-09-07
+BK-00099,LOC-001,Emily R.,Invisalign consult,2026-09-17,confirmed,walk_in,2026-09-11
+BK-00100,LOC-001,Christopher F.,Teeth whitening,2026-09-28,confirmed,google_profile,2026-09-10
+BK-00101,LOC-001,Anna G.,Emergency visit,2026-07-17,confirmed,phone,2026-07-04
+BK-00102,LOC-001,Elizabeth H.,New patient exam,2026-08-26,confirmed,website,2026-08-16
+BK-00103,LOC-001,Anna G.,Routine cleaning,2026-06-25,cancelled,website,2026-06-25
+BK-00104,LOC-001,Karen D.,Teeth whitening,2026-07-29,cancelled,phone,2026-07-27
+BK-00105,LOC-001,Karen D.,Implant consult,2026-07-10,completed,phone,2026-07-04
+BK-00106,LOC-001,Emily R.,Invisalign consult,2026-09-11,confirmed,walk_in,2026-08-28
+BK-00107,LOC-001,David L.,Emergency visit,2026-07-26,cancelled,google_profile,2026-07-23
+BK-00108,LOC-001,Barbara W.,Root canal,2026-08-10,confirmed,walk_in,2026-08-07
+BK-00109,LOC-001,David L.,Root canal,2026-07-27,confirmed,website,2026-07-20
+BK-00110,LOC-001,Patricia E.,Kids checkup,2026-06-28,cancelled,google_profile,2026-06-27
+BK-00111,LOC-001,Donald R.,Implant consult,2026-08-20,confirmed,website,2026-08-15
+BK-00112,LOC-001,James M.,Root canal,2026-08-28,confirmed,google_profile,2026-08-10
+BK-00113,LOC-001,Michael B.,Implant consult,2026-09-26,cancelled,phone,2026-09-08
+BK-00114,LOC-001,Jessica L.,Kids checkup,2026-06-28,confirmed,google_profile,2026-06-23
+BK-00115,LOC-001,Richard G.,Invisalign consult,2026-07-07,no_show,google_profile,2026-07-04
+BK-00116,LOC-001,Steven T.,Kids checkup,2026-07-06,new,walk_in,2026-06-25
+BK-00117,LOC-001,William H.,Wisdom tooth consult,2026-07-17,confirmed,phone,2026-07-06
+BK-00118,LOC-001,Sarah J.,Teeth whitening,2026-07-03,cancelled,phone,2026-06-18
+BK-00119,LOC-001,Richard G.,Routine cleaning,2026-08-01,no_show,walk_in,2026-07-24
+BK-00120,LOC-001,Richard G.,Wisdom tooth consult,2026-08-09,confirmed,walk_in,2026-07-19
+BK-00121,LOC-001,James M.,Invisalign consult,2026-06-23,completed,website,2026-06-19
+BK-00122,LOC-001,Sarah J.,Invisalign consult,2026-08-08,confirmed,walk_in,2026-08-02
+BK-00123,LOC-001,Anna G.,Kids checkup,2026-08-12,completed,phone,2026-08-02
+BK-00124,LOC-001,Linda J.,Invisalign consult,2026-08-16,cancelled,google_profile,2026-08-06
+BK-00125,LOC-001,Michael B.,Root canal,2026-08-30,confirmed,walk_in,2026-08-24
+BK-00126,LOC-001,Steven T.,New patient exam,2026-09-10,completed,phone,2026-09-08
+BK-00127,LOC-001,Emily R.,Implant consult,2026-06-21,confirmed,website,2026-06-17
+BK-00128,LOC-001,Anna G.,New patient exam,2026-06-27,completed,google_profile,2026-06-23
+BK-00129,LOC-001,Susan O.,New patient exam,2026-06-16,completed,phone,2026-06-16
+BK-00130,LOC-001,Richard G.,New patient exam,2026-07-22,confirmed,walk_in,2026-07-04
+BK-00131,LOC-001,Robert T.,New patient exam,2026-09-04,completed,website,2026-09-01
+BK-00132,LOC-001,Elizabeth H.,Teeth whitening,2026-07-10,new,website,2026-07-08
+BK-00133,LOC-001,Daniel M.,Wisdom tooth consult,2026-07-12,confirmed,website,2026-07-11
+BK-00134,LOC-001,Patricia E.,Emergency visit,2026-07-24,completed,google_profile,2026-07-09
+BK-00135,LOC-001,Charles N.,Routine cleaning,2026-08-23,confirmed,website,2026-08-14
+BK-00136,LOC-001,Steven T.,Wisdom tooth consult,2026-06-30,confirmed,google_profile,2026-06-25
+BK-00137,LOC-001,Michael B.,Teeth whitening,2026-09-02,completed,website,2026-08-27
+BK-00138,LOC-001,Daniel M.,Invisalign consult,2026-07-18,confirmed,google_profile,2026-07-08
+BK-00139,LOC-001,William H.,Implant consult,2026-09-12,confirmed,phone,2026-08-30
+BK-00140,LOC-001,Jessica L.,Invisalign consult,2026-07-31,confirmed,website,2026-07-15
+BK-00141,LOC-002,Patricia E.,Implant consult,2026-07-26,new,website,2026-07-21
+BK-00142,LOC-002,Mark B.,Root canal,2026-07-11,new,walk_in,2026-06-22
+BK-00143,LOC-002,Mark B.,Implant consult,2026-07-07,confirmed,website,2026-06-16
+BK-00144,LOC-002,Linda J.,Implant consult,2026-09-29,confirmed,website,2026-09-10
+BK-00145,LOC-002,Lisa M.,Root canal,2026-08-22,confirmed,walk_in,2026-08-11
+BK-00146,LOC-002,Emily R.,Routine cleaning,2026-08-11,confirmed,google_profile,2026-07-25
+BK-00147,LOC-002,Thomas A.,Implant consult,2026-09-22,confirmed,walk_in,2026-09-11
+BK-00148,LOC-002,David L.,Kids checkup,2026-08-19,confirmed,walk_in,2026-08-05
+BK-00149,LOC-002,Joseph C.,Emergency visit,2026-08-07,completed,google_profile,2026-08-07
+BK-00150,LOC-002,Donald R.,Emergency visit,2026-08-16,confirmed,website,2026-08-05
+BK-00151,LOC-002,James M.,Kids checkup,2026-07-22,confirmed,google_profile,2026-07-04
+BK-00152,LOC-002,James M.,Root canal,2026-08-18,confirmed,phone,2026-08-14
+BK-00153,LOC-002,Anna G.,Wisdom tooth consult,2026-08-09,completed,phone,2026-08-04
+BK-00154,LOC-002,Linda J.,Root canal,2026-07-27,confirmed,google_profile,2026-07-20
+BK-00155,LOC-002,Jessica L.,Routine cleaning,2026-08-22,confirmed,google_profile,2026-08-09
+BK-00156,LOC-002,Matthew P.,Root canal,2026-08-02,cancelled,website,2026-07-30
+BK-00157,LOC-002,Patricia E.,Teeth whitening,2026-09-09,confirmed,google_profile,2026-08-31
+BK-00158,LOC-002,Daniel M.,Emergency visit,2026-08-22,no_show,website,2026-08-07
+BK-00159,LOC-002,Nancy S.,New patient exam,2026-08-17,confirmed,phone,2026-07-28
+BK-00160,LOC-002,Karen D.,Emergency visit,2026-09-03,confirmed,phone,2026-08-30
+BK-00161,LOC-002,Thomas A.,Implant consult,2026-08-19,new,walk_in,2026-08-01
+BK-00162,LOC-002,Matthew P.,Teeth whitening,2026-08-14,cancelled,google_profile,2026-08-07
+BK-00163,LOC-002,Barbara W.,Implant consult,2026-08-14,completed,walk_in,2026-07-25
+BK-00164,LOC-002,Richard G.,Teeth whitening,2026-09-06,cancelled,google_profile,2026-08-27
+BK-00165,LOC-002,Jessica P.,Root canal,2026-09-17,completed,google_profile,2026-08-29
+BK-00166,LOC-002,Steven T.,New patient exam,2026-09-10,confirmed,website,2026-08-26
+BK-00167,LOC-002,Patricia E.,Root canal,2026-08-07,new,phone,2026-08-03
+BK-00168,LOC-002,Mark B.,Teeth whitening,2026-09-08,confirmed,website,2026-08-31
+BK-00169,LOC-002,Sarah J.,Root canal,2026-07-24,completed,phone,2026-07-20
+BK-00170,LOC-002,Donald R.,Root canal,2026-07-23,confirmed,website,2026-07-16
+BK-00171,LOC-002,Patricia E.,Implant consult,2026-08-29,no_show,phone,2026-08-25
+BK-00172,LOC-002,Daniel M.,Teeth whitening,2026-09-17,completed,google_profile,2026-08-31
+BK-00173,LOC-002,Sarah J.,Teeth whitening,2026-09-18,confirmed,website,2026-08-30
+BK-00174,LOC-002,Joseph C.,Kids checkup,2026-09-06,confirmed,phone,2026-08-21
+BK-00175,LOC-002,Lisa M.,Routine cleaning,2026-06-25,confirmed,phone,2026-06-16
+BK-00176,LOC-002,Thomas A.,Emergency visit,2026-07-08,new,walk_in,2026-06-18
+BK-00177,LOC-002,Susan O.,Root canal,2026-08-31,confirmed,walk_in,2026-08-11
+BK-00178,LOC-002,Robert T.,Root canal,2026-07-28,confirmed,phone,2026-07-25
+BK-00179,LOC-002,James M.,New patient exam,2026-07-26,confirmed,google_profile,2026-07-21
+BK-00180,LOC-002,Richard G.,Kids checkup,2026-07-01,confirmed,walk_in,2026-06-21
+BK-00181,LOC-002,Joseph C.,Emergency visit,2026-08-24,confirmed,walk_in,2026-08-24
+BK-00182,LOC-002,Richard G.,Routine cleaning,2026-08-14,confirmed,website,2026-07-26
+BK-00183,LOC-002,Debra K.,New patient exam,2026-08-20,confirmed,google_profile,2026-08-19
+BK-00184,LOC-002,Matthew P.,Teeth whitening,2026-07-06,confirmed,website,2026-07-02
+BK-00185,LOC-002,Nancy S.,Implant consult,2026-07-07,confirmed,phone,2026-06-26
+BK-00186,LOC-002,Charles N.,Kids checkup,2026-07-08,confirmed,walk_in,2026-06-23
+BK-00187,LOC-002,Michael B.,Teeth whitening,2026-09-17,confirmed,google_profile,2026-09-05
+BK-00188,LOC-002,Anna G.,Invisalign consult,2026-08-16,completed,website,2026-08-11
+BK-00189,LOC-002,Barbara W.,Routine cleaning,2026-07-21,confirmed,website,2026-07-14
+BK-00190,LOC-002,Sarah J.,Teeth whitening,2026-07-11,confirmed,google_profile,2026-06-21
+BK-00191,LOC-002,Richard G.,Kids checkup,2026-07-18,confirmed,google_profile,2026-07-14
+BK-00192,LOC-002,Mark B.,Invisalign consult,2026-09-25,new,walk_in,2026-09-04
+BK-00193,LOC-002,Sarah J.,Teeth whitening,2026-08-17,confirmed,walk_in,2026-08-17
+BK-00194,LOC-002,Patricia E.,Routine cleaning,2026-08-30,confirmed,google_profile,2026-08-29
+BK-00195,LOC-002,Donald R.,Emergency visit,2026-07-31,confirmed,phone,2026-07-29
+BK-00196,LOC-002,Debra K.,Invisalign consult,2026-08-10,confirmed,google_profile,2026-08-04
+BK-00197,LOC-002,Emily R.,Teeth whitening,2026-08-05,confirmed,phone,2026-07-19
+BK-00198,LOC-002,Steven T.,Invisalign consult,2026-09-08,confirmed,phone,2026-08-31
+BK-00199,LOC-002,Thomas A.,Wisdom tooth consult,2026-08-07,confirmed,phone,2026-08-04
+BK-00200,LOC-002,Joseph C.,New patient exam,2026-08-11,new,google_profile,2026-08-05
+BK-00201,LOC-002,Jessica L.,Teeth whitening,2026-07-17,completed,phone,2026-07-11
+BK-00202,LOC-002,Daniel M.,Teeth whitening,2026-09-07,confirmed,phone,2026-08-29
+BK-00203,LOC-002,Lisa M.,Routine cleaning,2026-09-03,confirmed,google_profile,2026-08-26
+BK-00204,LOC-002,Linda J.,Kids checkup,2026-07-17,confirmed,phone,2026-07-12
+BK-00205,LOC-002,Emily R.,Root canal,2026-08-09,confirmed,walk_in,2026-07-26
+BK-00206,LOC-002,Jessica L.,Teeth whitening,2026-09-01,completed,phone,2026-08-15
+BK-00207,LOC-002,Anna G.,Routine cleaning,2026-07-13,cancelled,website,2026-06-24
+BK-00208,LOC-002,Debra K.,Routine cleaning,2026-09-03,cancelled,website,2026-09-02
+BK-00209,LOC-002,Emily R.,New patient exam,2026-08-06,completed,walk_in,2026-07-23
+BK-00210,LOC-002,Nancy S.,Implant consult,2026-07-02,confirmed,google_profile,2026-06-21
+BK-00211,LOC-002,Lisa M.,Routine cleaning,2026-07-02,confirmed,walk_in,2026-06-24
+BK-00212,LOC-002,Debra K.,Teeth whitening,2026-07-09,confirmed,google_profile,2026-06-30
+BK-00213,LOC-002,Debra K.,Root canal,2026-07-20,cancelled,website,2026-06-30
+BK-00214,LOC-002,Jessica P.,Root canal,2026-07-07,new,website,2026-07-07
+BK-00215,LOC-002,Matthew P.,Root canal,2026-09-14,confirmed,phone,2026-08-28
+BK-00216,LOC-003,Jessica L.,Kids checkup,2026-06-27,new,google_profile,2026-06-23
+BK-00217,LOC-003,Thomas A.,Kids checkup,2026-06-19,confirmed,phone,2026-06-18
+BK-00218,LOC-003,Jessica L.,New patient exam,2026-07-07,cancelled,walk_in,2026-07-07
+BK-00219,LOC-003,Elizabeth H.,Invisalign consult,2026-07-29,confirmed,walk_in,2026-07-20
+BK-00220,LOC-003,Robert T.,Teeth whitening,2026-07-09,no_show,phone,2026-06-18
+BK-00221,LOC-003,Sarah J.,Kids checkup,2026-09-25,no_show,google_profile,2026-09-11
+BK-00222,LOC-003,Linda J.,Routine cleaning,2026-09-09,completed,google_profile,2026-08-25
+BK-00223,LOC-003,Thomas A.,Root canal,2026-08-01,confirmed,google_profile,2026-07-21
+BK-00224,LOC-003,Karen D.,Wisdom tooth consult,2026-08-28,confirmed,phone,2026-08-23
+BK-00225,LOC-003,Karen D.,Kids checkup,2026-08-27,completed,phone,2026-08-23
+BK-00226,LOC-003,Karen D.,Invisalign consult,2026-07-25,confirmed,phone,2026-07-07
+BK-00227,LOC-003,Nancy S.,Implant consult,2026-07-24,confirmed,phone,2026-07-03
+BK-00228,LOC-003,David L.,Implant consult,2026-08-11,confirmed,walk_in,2026-08-09
+BK-00229,LOC-003,Barbara W.,Emergency visit,2026-08-19,confirmed,phone,2026-07-30
+BK-00230,LOC-003,Daniel M.,Emergency visit,2026-06-30,cancelled,walk_in,2026-06-20
+BK-00231,LOC-003,Linda J.,Emergency visit,2026-09-09,confirmed,walk_in,2026-08-30
+BK-00232,LOC-003,Joseph C.,New patient exam,2026-08-31,completed,google_profile,2026-08-27
+BK-00233,LOC-003,Charles N.,New patient exam,2026-08-10,confirmed,walk_in,2026-08-07
+BK-00234,LOC-003,Jessica L.,Emergency visit,2026-08-27,cancelled,phone,2026-08-27
+BK-00235,LOC-003,Patricia E.,New patient exam,2026-08-04,completed,walk_in,2026-07-14
+BK-00236,LOC-003,Charles N.,Kids checkup,2026-08-06,cancelled,walk_in,2026-07-26
+BK-00237,LOC-003,Matthew P.,New patient exam,2026-07-31,completed,phone,2026-07-13
+BK-00238,LOC-003,Donald R.,Teeth whitening,2026-08-02,confirmed,walk_in,2026-07-13
+BK-00239,LOC-003,Debra K.,New patient exam,2026-07-01,confirmed,google_profile,2026-06-15
+BK-00240,LOC-003,Lisa M.,Teeth whitening,2026-09-20,completed,google_profile,2026-09-11
+BK-00241,LOC-003,Robert T.,Routine cleaning,2026-09-12,cancelled,google_profile,2026-08-23
+BK-00242,LOC-003,Emily R.,New patient exam,2026-06-17,new,phone,2026-06-17
+BK-00243,LOC-003,Nancy S.,Implant consult,2026-07-01,cancelled,phone,2026-06-23
+BK-00244,LOC-003,Lisa M.,Implant consult,2026-09-19,completed,google_profile,2026-09-07
+BK-00245,LOC-003,Susan O.,Root canal,2026-08-14,confirmed,google_profile,2026-08-03
+BK-00246,LOC-003,Patricia E.,Routine cleaning,2026-09-23,new,walk_in,2026-09-04
+BK-00247,LOC-003,Matthew P.,Root canal,2026-08-27,new,phone,2026-08-17
+BK-00248,LOC-003,Christopher F.,Implant consult,2026-08-20,confirmed,google_profile,2026-08-03
+BK-00249,LOC-003,Patricia E.,New patient exam,2026-09-25,confirmed,google_profile,2026-09-10
+BK-00250,LOC-003,Jessica P.,New patient exam,2026-08-22,new,walk_in,2026-08-14
+BK-00251,LOC-003,Susan O.,Root canal,2026-08-24,confirmed,walk_in,2026-08-12
+BK-00252,LOC-003,Matthew P.,Root canal,2026-06-29,confirmed,phone,2026-06-19
+BK-00253,LOC-003,Jessica L.,Emergency visit,2026-07-31,new,phone,2026-07-12
+BK-00254,LOC-003,Thomas A.,New patient exam,2026-09-19,cancelled,google_profile,2026-08-29
+BK-00255,LOC-003,Christopher F.,Kids checkup,2026-08-23,confirmed,phone,2026-08-18
+BK-00256,LOC-003,Christopher F.,New patient exam,2026-09-11,new,walk_in,2026-08-22
+BK-00257,LOC-003,Lisa M.,Emergency visit,2026-09-04,cancelled,google_profile,2026-08-20
+BK-00258,LOC-003,Jennifer K.,Emergency visit,2026-06-29,confirmed,walk_in,2026-06-20
+BK-00259,LOC-003,James M.,Kids checkup,2026-06-30,confirmed,phone,2026-06-24
+BK-00260,LOC-003,Emily R.,Teeth whitening,2026-09-11,new,phone,2026-09-06
+BK-00261,LOC-003,Jessica P.,Root canal,2026-08-18,completed,walk_in,2026-07-28
+BK-00262,LOC-003,Linda J.,Routine cleaning,2026-07-02,confirmed,google_profile,2026-06-29
+BK-00263,LOC-003,Nancy S.,Routine cleaning,2026-08-25,completed,phone,2026-08-10
+BK-00264,LOC-003,Nancy S.,Root canal,2026-09-01,confirmed,walk_in,2026-08-21
+BK-00265,LOC-003,Nancy S.,New patient exam,2026-06-27,confirmed,phone,2026-06-19
+BK-00266,LOC-003,Jessica L.,Implant consult,2026-06-25,cancelled,phone,2026-06-23
+BK-00267,LOC-003,Debra K.,Emergency visit,2026-08-26,cancelled,walk_in,2026-08-14
+BK-00268,LOC-003,Emily R.,Teeth whitening,2026-06-30,new,google_profile,2026-06-30
+BK-00269,LOC-003,William H.,Root canal,2026-09-01,confirmed,walk_in,2026-08-11
+BK-00270,LOC-003,Jennifer K.,Wisdom tooth consult,2026-07-14,confirmed,google_profile,2026-06-23
+BK-00271,LOC-003,David L.,Kids checkup,2026-06-27,confirmed,google_profile,2026-06-20
+BK-00272,LOC-003,James M.,New patient exam,2026-06-27,confirmed,google_profile,2026-06-16
+BK-00273,LOC-003,James M.,Invisalign consult,2026-09-11,confirmed,phone,2026-08-21
+BK-00274,LOC-003,Elizabeth H.,Teeth whitening,2026-07-12,completed,google_profile,2026-07-02
+BK-00275,LOC-003,Robert T.,New patient exam,2026-07-30,confirmed,phone,2026-07-09
+BK-00276,LOC-004,David L.,Wisdom tooth consult,2026-07-19,confirmed,website,2026-07-07
+BK-00277,LOC-004,Michael B.,Emergency visit,2026-07-05,confirmed,walk_in,2026-07-03
+BK-00278,LOC-004,Karen D.,Teeth whitening,2026-08-05,completed,walk_in,2026-07-16
+BK-00279,LOC-004,Sarah J.,Implant consult,2026-07-31,completed,website,2026-07-18
+BK-00280,LOC-004,Debra K.,Implant consult,2026-08-04,confirmed,google_profile,2026-08-04
+BK-00281,LOC-004,David L.,Root canal,2026-08-18,completed,google_profile,2026-08-04
+BK-00282,LOC-004,Mark B.,Emergency visit,2026-09-17,confirmed,walk_in,2026-09-01
+BK-00283,LOC-004,Michael B.,Kids checkup,2026-08-03,confirmed,phone,2026-07-15
+BK-00284,LOC-004,Michael B.,Emergency visit,2026-08-30,new,walk_in,2026-08-30
+BK-00285,LOC-004,William H.,Root canal,2026-09-06,confirmed,phone,2026-09-05
+BK-00286,LOC-004,Susan O.,Implant consult,2026-09-16,completed,phone,2026-09-06
+BK-00287,LOC-004,Anna G.,Wisdom tooth consult,2026-08-08,confirmed,walk_in,2026-07-24
+BK-00288,LOC-004,Michael B.,Root canal,2026-09-29,confirmed,google_profile,2026-09-10
+BK-00289,LOC-004,William H.,Invisalign consult,2026-08-14,confirmed,website,2026-07-28
+BK-00290,LOC-004,Steven T.,Implant consult,2026-08-09,confirmed,google_profile,2026-07-21
+BK-00291,LOC-004,Lisa M.,Teeth whitening,2026-08-02,confirmed,google_profile,2026-07-15
+BK-00292,LOC-004,Susan O.,Kids checkup,2026-08-12,confirmed,walk_in,2026-07-27
+BK-00293,LOC-004,Steven T.,Emergency visit,2026-09-29,completed,google_profile,2026-09-08
+BK-00294,LOC-004,Karen D.,Wisdom tooth consult,2026-09-20,confirmed,google_profile,2026-09-11
+BK-00295,LOC-004,Christopher F.,Wisdom tooth consult,2026-09-03,completed,google_profile,2026-08-24
+BK-00296,LOC-004,Robert T.,Implant consult,2026-07-10,confirmed,phone,2026-07-07
+BK-00297,LOC-004,Joseph C.,Root canal,2026-07-28,confirmed,walk_in,2026-07-08
+BK-00298,LOC-004,David L.,Invisalign consult,2026-08-06,confirmed,walk_in,2026-07-19
+BK-00299,LOC-004,Joseph C.,Wisdom tooth consult,2026-09-02,new,phone,2026-08-31
+BK-00300,LOC-004,Debra K.,Invisalign consult,2026-08-04,confirmed,website,2026-08-04
+BK-00301,LOC-004,Nancy S.,Teeth whitening,2026-08-31,confirmed,phone,2026-08-17
+BK-00302,LOC-004,Patricia E.,New patient exam,2026-07-20,confirmed,walk_in,2026-07-19
+BK-00303,LOC-004,David L.,Emergency visit,2026-08-27,confirmed,walk_in,2026-08-14
+BK-00304,LOC-004,Michael B.,Invisalign consult,2026-07-11,new,website,2026-06-30
+BK-00305,LOC-004,Jennifer K.,Kids checkup,2026-07-15,new,phone,2026-06-28
+BK-00306,LOC-004,Richard G.,Invisalign consult,2026-07-12,new,website,2026-07-11
+BK-00307,LOC-004,Susan O.,Invisalign consult,2026-08-03,confirmed,google_profile,2026-07-21
+BK-00308,LOC-004,Barbara W.,Implant consult,2026-09-04,confirmed,google_profile,2026-08-24
+BK-00309,LOC-004,Susan O.,Routine cleaning,2026-07-18,confirmed,walk_in,2026-07-13
+BK-00310,LOC-004,Jennifer K.,New patient exam,2026-07-07,completed,phone,2026-07-05
+BK-00311,LOC-004,Susan O.,Emergency visit,2026-07-29,confirmed,google_profile,2026-07-16
+BK-00312,LOC-004,Jessica P.,Invisalign consult,2026-07-14,new,phone,2026-07-07
+BK-00313,LOC-004,Jessica P.,New patient exam,2026-08-27,confirmed,walk_in,2026-08-09
+BK-00314,LOC-004,Linda J.,Kids checkup,2026-07-08,confirmed,walk_in,2026-06-25
+BK-00315,LOC-004,William H.,Teeth whitening,2026-09-13,confirmed,website,2026-09-01
+BK-00316,LOC-004,Charles N.,Implant consult,2026-09-24,completed,walk_in,2026-09-09
+BK-00317,LOC-004,Joseph C.,Root canal,2026-07-26,confirmed,walk_in,2026-07-26
+BK-00318,LOC-004,Michael B.,Kids checkup,2026-09-06,confirmed,phone,2026-08-31
+BK-00319,LOC-004,Karen D.,Kids checkup,2026-07-18,confirmed,google_profile,2026-07-06
+BK-00320,LOC-004,Joseph C.,Root canal,2026-07-27,cancelled,phone,2026-07-20
+BK-00321,LOC-004,Michael B.,Root canal,2026-07-09,confirmed,google_profile,2026-06-18
+BK-00322,LOC-004,James M.,Root canal,2026-06-29,confirmed,phone,2026-06-17
+BK-00323,LOC-004,William H.,Implant consult,2026-08-23,new,walk_in,2026-08-09
+BK-00324,LOC-004,William H.,Root canal,2026-07-22,cancelled,phone,2026-07-14
+BK-00325,LOC-004,Daniel M.,Wisdom tooth consult,2026-07-10,completed,google_profile,2026-07-05
+BK-00326,LOC-004,Joseph C.,Implant consult,2026-09-15,completed,google_profile,2026-08-30
+BK-00327,LOC-004,Emily R.,New patient exam,2026-06-28,completed,website,2026-06-21
+BK-00328,LOC-004,Charles N.,Invisalign consult,2026-09-18,confirmed,website,2026-09-01
+BK-00329,LOC-004,Nancy S.,Invisalign consult,2026-08-15,confirmed,phone,2026-08-11
+BK-00330,LOC-004,Charles N.,New patient exam,2026-07-15,confirmed,walk_in,2026-07-08
+BK-00331,LOC-004,Elizabeth H.,Emergency visit,2026-07-16,confirmed,website,2026-07-14
+BK-00332,LOC-004,Steven T.,Emergency visit,2026-08-07,cancelled,walk_in,2026-07-21
+BK-00333,LOC-004,Michael B.,New patient exam,2026-07-15,confirmed,google_profile,2026-07-15
+BK-00334,LOC-004,Mark B.,Root canal,2026-07-05,confirmed,google_profile,2026-06-27
+BK-00335,LOC-004,Debra K.,Emergency visit,2026-09-04,confirmed,google_profile,2026-08-24
+BK-00336,LOC-004,Mark B.,Invisalign consult,2026-07-16,completed,phone,2026-07-16
+BK-00337,LOC-004,Emily R.,Routine cleaning,2026-08-19,confirmed,website,2026-08-19
+BK-00338,LOC-004,Susan O.,Implant consult,2026-08-18,confirmed,google_profile,2026-08-14
+BK-00339,LOC-004,Emily R.,New patient exam,2026-09-04,confirmed,walk_in,2026-08-27
+BK-00340,LOC-004,Joseph C.,Emergency visit,2026-07-21,new,website,2026-07-16
+BK-00341,LOC-004,Patricia E.,Kids checkup,2026-06-24,confirmed,walk_in,2026-06-15
+BK-00342,LOC-004,Thomas A.,Wisdom tooth consult,2026-09-10,cancelled,walk_in,2026-08-24
+BK-00343,LOC-004,Charles N.,Kids checkup,2026-08-18,completed,walk_in,2026-07-30
+BK-00344,LOC-004,Sarah J.,Teeth whitening,2026-07-22,new,walk_in,2026-07-06
+BK-00345,LOC-004,Jennifer K.,Kids checkup,2026-07-13,completed,phone,2026-06-24
+BK-00346,LOC-004,Richard G.,Root canal,2026-08-14,confirmed,phone,2026-08-02
+BK-00347,LOC-004,Daniel M.,Emergency visit,2026-07-10,confirmed,google_profile,2026-07-10
+BK-00348,LOC-004,Lisa M.,Kids checkup,2026-08-29,confirmed,google_profile,2026-08-11
+BK-00349,LOC-004,Steven T.,Root canal,2026-07-20,cancelled,website,2026-07-16
+BK-00350,LOC-004,Thomas A.,Implant consult,2026-08-01,confirmed,walk_in,2026-07-17
+BK-00351,LOC-004,Sarah J.,Teeth whitening,2026-07-25,confirmed,google_profile,2026-07-11
+BK-00352,LOC-004,Sarah J.,Implant consult,2026-07-23,confirmed,website,2026-07-03
+BK-00353,LOC-004,Lisa M.,Implant consult,2026-08-25,new,walk_in,2026-08-13
+BK-00354,LOC-004,Anna G.,Root canal,2026-09-05,new,walk_in,2026-08-19
+BK-00355,LOC-004,Debra K.,Wisdom tooth consult,2026-07-04,confirmed,phone,2026-06-23
+BK-00356,LOC-004,Matthew P.,Wisdom tooth consult,2026-07-06,confirmed,website,2026-07-06
+BK-00357,LOC-004,Daniel M.,Wisdom tooth consult,2026-07-20,confirmed,website,2026-07-19
+BK-00358,LOC-004,Elizabeth H.,Root canal,2026-08-01,confirmed,walk_in,2026-08-01
+BK-00359,LOC-004,Sarah J.,Wisdom tooth consult,2026-08-17,confirmed,phone,2026-07-29
+BK-00360,LOC-004,Nancy S.,Wisdom tooth consult,2026-08-31,completed,walk_in,2026-08-28
+BK-00361,LOC-004,David L.,Kids checkup,2026-07-10,no_show,website,2026-06-19
+BK-00362,LOC-004,Daniel M.,Invisalign consult,2026-08-17,completed,walk_in,2026-07-27
+BK-00363,LOC-004,Joseph C.,Invisalign consult,2026-07-07,new,google_profile,2026-07-03
+BK-00364,LOC-004,James M.,Emergency visit,2026-08-11,new,website,2026-08-04
+BK-00365,LOC-004,Donald R.,Emergency visit,2026-07-22,confirmed,google_profile,2026-07-09
+BK-00366,LOC-004,Robert T.,Routine cleaning,2026-08-25,no_show,phone,2026-08-08
+BK-00367,LOC-004,Patricia E.,New patient exam,2026-06-28,confirmed,website,2026-06-23
+BK-00368,LOC-004,Patricia E.,New patient exam,2026-07-27,cancelled,google_profile,2026-07-13
+BK-00369,LOC-004,Richard G.,Implant consult,2026-07-16,completed,walk_in,2026-06-25
+BK-00370,LOC-004,Richard G.,Wisdom tooth consult,2026-08-22,confirmed,phone,2026-08-14
+BK-00371,LOC-004,Mark B.,Teeth whitening,2026-07-25,completed,phone,2026-07-04
+BK-00372,LOC-004,Richard G.,Wisdom tooth consult,2026-07-13,confirmed,walk_in,2026-07-13
+BK-00373,LOC-004,Christopher F.,Invisalign consult,2026-08-07,new,walk_in,2026-07-23
+BK-00374,LOC-004,Anna G.,Teeth whitening,2026-07-20,confirmed,google_profile,2026-07-17
+BK-00375,LOC-004,Matthew P.,Wisdom tooth consult,2026-07-30,cancelled,google_profile,2026-07-16
+BK-00376,LOC-004,Nancy S.,Implant consult,2026-08-29,completed,walk_in,2026-08-18
+BK-00377,LOC-004,Patricia E.,New patient exam,2026-07-25,confirmed,google_profile,2026-07-23
+BK-00378,LOC-004,Nancy S.,Emergency visit,2026-07-26,confirmed,walk_in,2026-07-25
+BK-00379,LOC-004,Karen D.,New patient exam,2026-08-22,confirmed,website,2026-08-07
+BK-00380,LOC-004,Patricia E.,Kids checkup,2026-07-31,cancelled,walk_in,2026-07-24
+BK-00381,LOC-004,Jessica P.,Invisalign consult,2026-09-04,confirmed,walk_in,2026-08-29
+BK-00382,LOC-004,Susan O.,Implant consult,2026-08-04,confirmed,google_profile,2026-07-16
+BK-00383,LOC-004,Michael B.,Routine cleaning,2026-09-10,new,website,2026-08-29
+BK-00384,LOC-004,Michael B.,Emergency visit,2026-07-21,confirmed,walk_in,2026-07-04
+BK-00385,LOC-004,David L.,Invisalign consult,2026-06-21,confirmed,walk_in,2026-06-21
+BK-00386,LOC-005,Michael B.,Routine cleaning,2026-08-21,confirmed,phone,2026-07-31
+BK-00387,LOC-005,Christopher F.,New patient exam,2026-07-15,new,phone,2026-07-06
+BK-00388,LOC-005,Robert T.,Emergency visit,2026-07-09,completed,website,2026-06-20
+BK-00389,LOC-005,Lisa M.,Wisdom tooth consult,2026-08-19,confirmed,website,2026-08-04
+BK-00390,LOC-005,Thomas A.,Invisalign consult,2026-07-13,confirmed,phone,2026-06-24
+BK-00391,LOC-005,Jessica P.,Invisalign consult,2026-07-25,confirmed,website,2026-07-05
+BK-00392,LOC-005,Matthew P.,Root canal,2026-07-01,confirmed,phone,2026-06-19
+BK-00393,LOC-005,Matthew P.,Kids checkup,2026-08-22,confirmed,phone,2026-08-11
+BK-00394,LOC-005,Robert T.,Teeth whitening,2026-08-14,confirmed,phone,2026-08-07
+BK-00395,LOC-005,Sarah J.,New patient exam,2026-08-17,new,google_profile,2026-08-13
+BK-00396,LOC-005,Linda J.,New patient exam,2026-07-06,new,walk_in,2026-07-03
+BK-00397,LOC-005,Matthew P.,Root canal,2026-07-31,confirmed,phone,2026-07-21
+BK-00398,LOC-005,Jessica L.,Wisdom tooth consult,2026-08-22,cancelled,website,2026-08-09
+BK-00399,LOC-005,Daniel M.,Routine cleaning,2026-09-07,cancelled,google_profile,2026-08-29
+BK-00400,LOC-005,Michael B.,Routine cleaning,2026-08-05,confirmed,walk_in,2026-07-31
+BK-00401,LOC-005,Patricia E.,Root canal,2026-06-27,confirmed,walk_in,2026-06-19
+BK-00402,LOC-005,Donald R.,Implant consult,2026-09-19,confirmed,phone,2026-09-07
+BK-00403,LOC-005,Mark B.,Emergency visit,2026-08-29,no_show,phone,2026-08-08
+BK-00404,LOC-005,Patricia E.,Implant consult,2026-06-20,confirmed,phone,2026-06-15
+BK-00405,LOC-005,Susan O.,Root canal,2026-07-04,confirmed,google_profile,2026-07-03
+BK-00406,LOC-005,Mark B.,Routine cleaning,2026-07-26,confirmed,google_profile,2026-07-20
+BK-00407,LOC-005,Karen D.,Implant consult,2026-09-14,completed,phone,2026-09-03
+BK-00408,LOC-005,Charles N.,Teeth whitening,2026-06-18,completed,walk_in,2026-06-15
+BK-00409,LOC-005,Anna G.,Wisdom tooth consult,2026-07-16,confirmed,phone,2026-07-12
+BK-00410,LOC-005,Christopher F.,Teeth whitening,2026-08-05,cancelled,walk_in,2026-07-20
+BK-00411,LOC-005,Christopher F.,Wisdom tooth consult,2026-08-10,no_show,walk_in,2026-08-09
+BK-00412,LOC-005,Richard G.,Routine cleaning,2026-08-08,new,walk_in,2026-07-22
+BK-00413,LOC-005,Steven T.,Kids checkup,2026-08-24,confirmed,website,2026-08-06
+BK-00414,LOC-005,Donald R.,Teeth whitening,2026-09-01,cancelled,google_profile,2026-08-13
+BK-00415,LOC-005,Anna G.,Routine cleaning,2026-08-19,cancelled,phone,2026-08-11
+BK-00416,LOC-005,James M.,Wisdom tooth consult,2026-08-04,confirmed,phone,2026-07-14
+BK-00417,LOC-005,Thomas A.,Teeth whitening,2026-07-15,cancelled,google_profile,2026-07-14
+BK-00418,LOC-005,Michael B.,Invisalign consult,2026-08-04,new,walk_in,2026-08-04
+BK-00419,LOC-005,Anna G.,Invisalign consult,2026-09-08,new,walk_in,2026-08-22
+BK-00420,LOC-005,Christopher F.,Teeth whitening,2026-09-20,confirmed,website,2026-08-30
+BK-00421,LOC-005,Anna G.,Teeth whitening,2026-09-12,completed,phone,2026-08-22
+BK-00422,LOC-005,Daniel M.,Teeth whitening,2026-08-20,confirmed,phone,2026-08-03
+BK-00423,LOC-005,Daniel M.,Teeth whitening,2026-07-07,new,walk_in,2026-06-16
+BK-00424,LOC-005,Linda J.,Invisalign consult,2026-08-15,new,website,2026-08-15
+BK-00425,LOC-005,Nancy S.,Emergency visit,2026-07-27,confirmed,phone,2026-07-06
+BK-00426,LOC-005,Mark B.,Invisalign consult,2026-08-14,confirmed,google_profile,2026-08-08
+BK-00427,LOC-005,David L.,New patient exam,2026-08-10,new,website,2026-07-24
+BK-00428,LOC-005,Elizabeth H.,Invisalign consult,2026-06-22,completed,website,2026-06-15
+BK-00429,LOC-005,Charles N.,Wisdom tooth consult,2026-07-10,confirmed,walk_in,2026-07-07
+BK-00430,LOC-005,Susan O.,Invisalign consult,2026-08-29,confirmed,website,2026-08-13
+BK-00431,LOC-005,Joseph C.,Teeth whitening,2026-07-06,confirmed,website,2026-06-25
+BK-00432,LOC-005,Susan O.,New patient exam,2026-08-31,cancelled,website,2026-08-23
+BK-00433,LOC-005,Charles N.,Wisdom tooth consult,2026-06-28,confirmed,google_profile,2026-06-23
+BK-00434,LOC-005,Anna G.,Kids checkup,2026-07-24,new,phone,2026-07-09
+BK-00435,LOC-005,Robert T.,Root canal,2026-08-12,confirmed,walk_in,2026-08-09
+BK-00436,LOC-005,Debra K.,Root canal,2026-08-31,completed,google_profile,2026-08-29
+BK-00437,LOC-005,Karen D.,Teeth whitening,2026-09-08,confirmed,walk_in,2026-08-25
+BK-00438,LOC-005,Christopher F.,Implant consult,2026-06-21,confirmed,walk_in,2026-06-20
+BK-00439,LOC-005,Nancy S.,Routine cleaning,2026-07-08,confirmed,phone,2026-06-17
+BK-00440,LOC-005,Jennifer K.,Wisdom tooth consult,2026-08-08,new,website,2026-07-25
+BK-00441,LOC-005,Barbara W.,Wisdom tooth consult,2026-08-28,confirmed,google_profile,2026-08-25
+BK-00442,LOC-005,Daniel M.,Implant consult,2026-07-31,completed,website,2026-07-28
+BK-00443,LOC-005,Anna G.,New patient exam,2026-07-25,confirmed,walk_in,2026-07-16
+BK-00444,LOC-005,Donald R.,Kids checkup,2026-07-01,completed,google_profile,2026-06-22
+BK-00445,LOC-005,Michael B.,Wisdom tooth consult,2026-07-12,completed,phone,2026-07-04
+BK-00446,LOC-005,Lisa M.,Kids checkup,2026-08-02,confirmed,walk_in,2026-07-31
+BK-00447,LOC-005,Matthew P.,New patient exam,2026-06-17,confirmed,phone,2026-06-17
+BK-00448,LOC-005,Jennifer K.,Invisalign consult,2026-07-18,confirmed,website,2026-07-02
+BK-00449,LOC-005,Robert T.,New patient exam,2026-08-06,confirmed,website,2026-07-27
+BK-00450,LOC-005,Mark B.,Wisdom tooth consult,2026-07-15,confirmed,phone,2026-07-14
+BK-00451,LOC-005,Jessica L.,Invisalign consult,2026-08-25,cancelled,phone,2026-08-23
+BK-00452,LOC-005,Steven T.,Kids checkup,2026-07-09,confirmed,website,2026-06-27
+BK-00453,LOC-005,Sarah J.,Emergency visit,2026-07-17,confirmed,phone,2026-06-26
+BK-00454,LOC-005,Patricia E.,Routine cleaning,2026-06-26,new,website,2026-06-23
+BK-00455,LOC-005,William H.,Emergency visit,2026-08-25,confirmed,walk_in,2026-08-14
+BK-00456,LOC-005,Emily R.,Emergency visit,2026-09-15,new,google_profile,2026-08-29
+BK-00457,LOC-005,James M.,Root canal,2026-09-24,confirmed,website,2026-09-06
+BK-00458,LOC-005,Donald R.,Wisdom tooth consult,2026-07-16,completed,google_profile,2026-07-12
+BK-00459,LOC-005,Steven T.,Invisalign consult,2026-07-28,confirmed,website,2026-07-15
+BK-00460,LOC-005,Sarah J.,Kids checkup,2026-09-02,confirmed,walk_in,2026-08-27
+BK-00461,LOC-005,Charles N.,Invisalign consult,2026-07-31,confirmed,walk_in,2026-07-12
+BK-00462,LOC-005,Nancy S.,Invisalign consult,2026-08-02,no_show,walk_in,2026-07-29
+BK-00463,LOC-005,William H.,Root canal,2026-07-26,completed,website,2026-07-19
+BK-00464,LOC-005,Linda J.,Invisalign consult,2026-06-18,confirmed,walk_in,2026-06-15
+BK-00465,LOC-005,Christopher F.,New patient exam,2026-09-15,completed,google_profile,2026-09-11
+BK-00466,LOC-005,Jessica P.,Teeth whitening,2026-09-15,completed,google_profile,2026-09-08
+BK-00467,LOC-005,Robert T.,Invisalign consult,2026-06-22,new,walk_in,2026-06-20
+BK-00468,LOC-005,Matthew P.,New patient exam,2026-07-17,confirmed,website,2026-06-29
+BK-00469,LOC-005,Thomas A.,Emergency visit,2026-06-29,confirmed,website,2026-06-16
+BK-00470,LOC-005,Richard G.,Kids checkup,2026-07-23,completed,website,2026-07-03
+BK-00471,LOC-005,Robert T.,Emergency visit,2026-08-23,confirmed,phone,2026-08-02
+BK-00472,LOC-005,Jessica L.,Teeth whitening,2026-07-23,confirmed,phone,2026-07-11
+BK-00473,LOC-005,William H.,Routine cleaning,2026-08-31,confirmed,phone,2026-08-16
+BK-00474,LOC-005,Steven T.,Routine cleaning,2026-08-23,new,google_profile,2026-08-09
+BK-00475,LOC-005,Jennifer K.,Invisalign consult,2026-08-28,confirmed,phone,2026-08-12
+BK-00476,LOC-005,Mark B.,Routine cleaning,2026-07-12,confirmed,phone,2026-07-03
+BK-00477,LOC-005,Karen D.,Invisalign consult,2026-08-30,confirmed,website,2026-08-14
+BK-00478,LOC-005,Anna G.,Invisalign consult,2026-09-12,confirmed,walk_in,2026-09-05
+BK-00479,LOC-005,Jessica P.,Root canal,2026-08-27,confirmed,phone,2026-08-15
+BK-00480,LOC-005,Joseph C.,Teeth whitening,2026-07-02,confirmed,google_profile,2026-07-02
+BK-00481,LOC-005,Linda J.,Implant consult,2026-09-09,new,google_profile,2026-08-24
+BK-00482,LOC-005,Jessica L.,Wisdom tooth consult,2026-08-28,confirmed,website,2026-08-20
+BK-00483,LOC-005,Steven T.,New patient exam,2026-08-05,new,website,2026-07-24
+BK-00484,LOC-005,Mark B.,Wisdom tooth consult,2026-07-24,completed,phone,2026-07-15
+BK-00485,LOC-005,Charles N.,Routine cleaning,2026-09-19,confirmed,google_profile,2026-09-01
+BK-00486,LOC-005,Mark B.,Wisdom tooth consult,2026-07-04,completed,phone,2026-07-04
+BK-00487,LOC-005,Robert T.,Emergency visit,2026-08-25,new,phone,2026-08-07
+BK-00488,LOC-005,Elizabeth H.,Invisalign consult,2026-07-07,confirmed,walk_in,2026-06-28
+BK-00489,LOC-005,Susan O.,Implant consult,2026-09-04,confirmed,walk_in,2026-08-29
+BK-00490,LOC-005,Steven T.,Teeth whitening,2026-07-09,confirmed,walk_in,2026-06-27
+BK-00491,LOC-005,Mark B.,Teeth whitening,2026-07-27,confirmed,phone,2026-07-26
+BK-00492,LOC-005,Barbara W.,Routine cleaning,2026-09-01,confirmed,walk_in,2026-08-22
+BK-00493,LOC-005,David L.,Teeth whitening,2026-09-13,confirmed,website,2026-09-11
+BK-00494,LOC-005,Barbara W.,New patient exam,2026-08-07,confirmed,google_profile,2026-08-06
+BK-00495,LOC-005,Jessica P.,Teeth whitening,2026-07-19,completed,walk_in,2026-06-28
+BK-00496,LOC-005,James M.,Kids checkup,2026-07-23,new,website,2026-07-12
+BK-00497,LOC-005,Michael B.,Implant consult,2026-07-08,cancelled,walk_in,2026-06-30
+BK-00498,LOC-005,William H.,Wisdom tooth consult,2026-08-03,new,website,2026-07-15
+BK-00499,LOC-005,William H.,Wisdom tooth consult,2026-09-10,confirmed,website,2026-09-03
+BK-00500,LOC-005,Patricia E.,Teeth whitening,2026-07-27,cancelled,website,2026-07-06
+BK-00501,LOC-005,Christopher F.,Teeth whitening,2026-08-16,new,website,2026-08-06
+BK-00502,LOC-005,Karen D.,Implant consult,2026-09-04,confirmed,website,2026-08-27
+BK-00503,LOC-005,Jennifer K.,Routine cleaning,2026-08-28,new,google_profile,2026-08-11
+BK-00504,LOC-005,Emily R.,Teeth whitening,2026-09-16,confirmed,google_profile,2026-09-08
+BK-00505,LOC-005,Robert T.,Emergency visit,2026-06-25,completed,google_profile,2026-06-20
+BK-00506,LOC-005,Jessica P.,Emergency visit,2026-08-05,confirmed,website,2026-07-22
+BK-00507,LOC-005,Mark B.,Invisalign consult,2026-06-22,confirmed,google_profile,2026-06-19
+BK-00508,LOC-005,Donald R.,Emergency visit,2026-09-23,confirmed,google_profile,2026-09-10
+BK-00509,LOC-005,Sarah J.,Wisdom tooth consult,2026-08-26,confirmed,website,2026-08-14
+BK-00510,LOC-005,Mark B.,Emergency visit,2026-07-28,new,walk_in,2026-07-07
+BK-00511,LOC-005,Nancy S.,Teeth whitening,2026-07-14,confirmed,google_profile,2026-07-12
+BK-00512,LOC-005,Emily R.,Wisdom tooth consult,2026-07-14,cancelled,phone,2026-07-06
+BK-00513,LOC-005,Nancy S.,Emergency visit,2026-09-25,cancelled,google_profile,2026-09-07
+BK-00514,LOC-005,Susan O.,Teeth whitening,2026-09-15,confirmed,phone,2026-09-01
+BK-00515,LOC-005,Mark B.,Wisdom tooth consult,2026-06-23,confirmed,walk_in,2026-06-17
+BK-00516,LOC-005,David L.,Routine cleaning,2026-08-15,completed,website,2026-08-13
+BK-00517,LOC-005,Joseph C.,Emergency visit,2026-07-31,confirmed,website,2026-07-14
+BK-00518,LOC-005,Jessica P.,Emergency visit,2026-07-07,confirmed,google_profile,2026-06-21
+BK-00519,LOC-005,Barbara W.,New patient exam,2026-07-16,confirmed,website,2026-07-15
+BK-00520,LOC-005,Richard G.,Wisdom tooth consult,2026-08-13,confirmed,website,2026-07-28
+BK-00521,LOC-005,Anna G.,Teeth whitening,2026-07-07,confirmed,website,2026-07-02
+BK-00522,LOC-005,Susan O.,Root canal,2026-07-09,confirmed,website,2026-07-02
+BK-00523,LOC-005,Richard G.,Root canal,2026-07-07,completed,website,2026-06-24
+BK-00524,LOC-005,Richard G.,Routine cleaning,2026-07-27,no_show,phone,2026-07-06
+BK-00525,LOC-005,Matthew P.,Routine cleaning,2026-06-19,completed,website,2026-06-19
+BK-00526,LOC-005,Linda J.,New patient exam,2026-06-20,confirmed,phone,2026-06-18
+BK-00527,LOC-005,Jennifer K.,Root canal,2026-07-01,cancelled,walk_in,2026-06-25
+BK-00528,LOC-005,Daniel M.,Routine cleaning,2026-09-11,new,phone,2026-08-22
+BK-00529,LOC-005,Jennifer K.,Wisdom tooth consult,2026-07-15,confirmed,phone,2026-07-04
+BK-00530,LOC-005,Michael B.,Wisdom tooth consult,2026-09-14,confirmed,phone,2026-09-05
+BK-00531,LOC-005,Charles N.,New patient exam,2026-07-22,confirmed,walk_in,2026-07-03
+BK-00532,LOC-005,Elizabeth H.,Routine cleaning,2026-07-09,confirmed,phone,2026-07-04
+BK-00533,LOC-005,Nancy S.,Root canal,2026-08-06,new,walk_in,2026-07-25
+BK-00534,LOC-005,William H.,Teeth whitening,2026-06-19,new,website,2026-06-18
+BK-00535,LOC-005,Linda J.,Wisdom tooth consult,2026-08-13,new,phone,2026-08-02
+BK-00536,LOC-005,Christopher F.,New patient exam,2026-08-05,confirmed,google_profile,2026-07-20
+BK-00537,LOC-005,Charles N.,Teeth whitening,2026-07-28,completed,google_profile,2026-07-15
+BK-00538,LOC-005,Donald R.,Emergency visit,2026-08-06,confirmed,website,2026-07-26
+BK-00539,LOC-005,Sarah J.,Root canal,2026-09-08,confirmed,website,2026-08-27
+BK-00540,LOC-005,Susan O.,Wisdom tooth consult,2026-07-04,confirmed,google_profile,2026-06-21
+BK-00541,LOC-005,James M.,Wisdom tooth consult,2026-08-31,completed,phone,2026-08-12
+BK-00542,LOC-005,Elizabeth H.,Routine cleaning,2026-07-12,new,website,2026-07-08
+BK-00543,LOC-005,Jennifer K.,Wisdom tooth consult,2026-07-12,completed,phone,2026-06-30
+BK-00544,LOC-005,William H.,Emergency visit,2026-08-21,confirmed,phone,2026-08-21
+BK-00545,LOC-005,Jessica P.,Wisdom tooth consult,2026-09-08,cancelled,walk_in,2026-08-24
+BK-00546,LOC-005,Michael B.,Kids checkup,2026-07-21,confirmed,google_profile,2026-07-09
+BK-00547,LOC-005,David L.,Kids checkup,2026-07-26,confirmed,google_profile,2026-07-19
+BK-00548,LOC-005,Charles N.,Invisalign consult,2026-09-23,completed,phone,2026-09-02
+BK-00549,LOC-005,Steven T.,Kids checkup,2026-08-15,new,google_profile,2026-08-06
+BK-00550,LOC-005,Lisa M.,Invisalign consult,2026-07-12,confirmed,walk_in,2026-07-01
+BK-00551,LOC-006,Lisa M.,Kids checkup,2026-07-09,completed,website,2026-06-25
+BK-00552,LOC-006,Anna G.,Routine cleaning,2026-07-16,completed,phone,2026-07-05
+BK-00553,LOC-006,Karen D.,Implant consult,2026-07-20,completed,google_profile,2026-07-08
+BK-00554,LOC-006,Anna G.,Routine cleaning,2026-09-13,confirmed,google_profile,2026-08-23
+BK-00555,LOC-006,Nancy S.,Invisalign consult,2026-09-10,confirmed,walk_in,2026-09-08
+BK-00556,LOC-006,Linda J.,New patient exam,2026-08-07,completed,website,2026-07-22
+BK-00557,LOC-006,William H.,Implant consult,2026-08-08,completed,google_profile,2026-08-01
+BK-00558,LOC-006,Richard G.,Routine cleaning,2026-07-16,confirmed,website,2026-07-02
+BK-00559,LOC-006,Lisa M.,Teeth whitening,2026-08-12,no_show,website,2026-07-22
+BK-00560,LOC-006,Donald R.,Implant consult,2026-07-17,no_show,google_profile,2026-07-11
+BK-00561,LOC-006,Steven T.,New patient exam,2026-07-25,confirmed,phone,2026-07-09
+BK-00562,LOC-006,Michael B.,New patient exam,2026-08-11,completed,google_profile,2026-08-04
+BK-00563,LOC-006,Elizabeth H.,New patient exam,2026-09-13,completed,walk_in,2026-08-30
+BK-00564,LOC-006,Michael B.,Teeth whitening,2026-08-24,confirmed,google_profile,2026-08-23
+BK-00565,LOC-006,Richard G.,Teeth whitening,2026-08-23,confirmed,google_profile,2026-08-17
+BK-00566,LOC-006,Michael B.,Wisdom tooth consult,2026-07-03,completed,website,2026-06-20
+BK-00567,LOC-006,Charles N.,Kids checkup,2026-08-27,new,walk_in,2026-08-17
+BK-00568,LOC-006,Emily R.,Teeth whitening,2026-09-09,new,website,2026-08-24
+BK-00569,LOC-006,Nancy S.,New patient exam,2026-06-18,confirmed,website,2026-06-18
+BK-00570,LOC-006,Joseph C.,Implant consult,2026-08-28,confirmed,website,2026-08-24
+BK-00571,LOC-006,Lisa M.,New patient exam,2026-09-03,confirmed,walk_in,2026-08-14
+BK-00572,LOC-006,Susan O.,Implant consult,2026-08-07,confirmed,google_profile,2026-08-07
+BK-00573,LOC-006,Michael B.,New patient exam,2026-07-03,confirmed,website,2026-07-02
+BK-00574,LOC-006,Lisa M.,Teeth whitening,2026-09-10,new,phone,2026-08-21
+BK-00575,LOC-006,James M.,Emergency visit,2026-07-26,confirmed,walk_in,2026-07-14
+BK-00576,LOC-006,Emily R.,Teeth whitening,2026-08-12,completed,google_profile,2026-08-06
+BK-00577,LOC-006,Thomas A.,Invisalign consult,2026-09-19,new,google_profile,2026-08-31
+BK-00578,LOC-006,William H.,Routine cleaning,2026-08-06,new,walk_in,2026-07-27
+BK-00579,LOC-006,Sarah J.,Implant consult,2026-07-26,cancelled,walk_in,2026-07-22
+BK-00580,LOC-006,Debra K.,Kids checkup,2026-09-03,confirmed,phone,2026-09-03
+BK-00581,LOC-006,Jennifer K.,New patient exam,2026-08-21,confirmed,website,2026-08-08
+BK-00582,LOC-006,Robert T.,Routine cleaning,2026-07-14,cancelled,website,2026-07-01
+BK-00583,LOC-006,Steven T.,New patient exam,2026-08-26,confirmed,phone,2026-08-20
+BK-00584,LOC-006,Michael B.,Implant consult,2026-06-30,confirmed,google_profile,2026-06-18
+BK-00585,LOC-006,William H.,Implant consult,2026-07-15,completed,google_profile,2026-07-12
+BK-00586,LOC-006,Emily R.,Kids checkup,2026-07-31,confirmed,walk_in,2026-07-30
+BK-00587,LOC-006,Patricia E.,Kids checkup,2026-08-30,confirmed,walk_in,2026-08-27
+BK-00588,LOC-006,Charles N.,Invisalign consult,2026-09-14,confirmed,google_profile,2026-08-25
+BK-00589,LOC-006,Steven T.,Wisdom tooth consult,2026-07-23,confirmed,website,2026-07-22
+BK-00590,LOC-006,Richard G.,Invisalign consult,2026-07-01,completed,walk_in,2026-06-15
+BK-00591,LOC-006,Robert T.,Teeth whitening,2026-07-30,confirmed,google_profile,2026-07-15
+BK-00592,LOC-006,Jessica L.,Implant consult,2026-09-16,new,website,2026-09-05
+BK-00593,LOC-006,Christopher F.,New patient exam,2026-08-11,confirmed,website,2026-08-11
+BK-00594,LOC-006,Matthew P.,Root canal,2026-07-31,cancelled,google_profile,2026-07-22
+BK-00595,LOC-006,Susan O.,Kids checkup,2026-08-04,confirmed,google_profile,2026-07-17
+BK-00596,LOC-006,Jessica L.,Invisalign consult,2026-09-20,completed,walk_in,2026-09-02
+BK-00597,LOC-006,Charles N.,Invisalign consult,2026-09-13,new,walk_in,2026-08-24
+BK-00598,LOC-006,Daniel M.,Teeth whitening,2026-07-20,confirmed,phone,2026-07-03
+BK-00599,LOC-006,Mark B.,Wisdom tooth consult,2026-07-13,confirmed,website,2026-07-03
+BK-00600,LOC-006,Steven T.,Teeth whitening,2026-08-11,cancelled,google_profile,2026-07-24
+BK-00601,LOC-006,David L.,Kids checkup,2026-07-03,confirmed,google_profile,2026-06-28
+BK-00602,LOC-006,Matthew P.,Routine cleaning,2026-08-23,confirmed,website,2026-08-05
+BK-00603,LOC-006,Jennifer K.,Root canal,2026-09-09,confirmed,google_profile,2026-08-25
+BK-00604,LOC-006,Robert T.,Invisalign consult,2026-08-07,confirmed,walk_in,2026-08-07
+BK-00605,LOC-006,Jessica L.,Implant consult,2026-09-01,confirmed,google_profile,2026-08-25
+BK-00606,LOC-006,Barbara W.,Routine cleaning,2026-09-13,confirmed,google_profile,2026-09-06
+BK-00607,LOC-006,Steven T.,New patient exam,2026-07-21,no_show,phone,2026-07-21
+BK-00608,LOC-006,Barbara W.,Emergency visit,2026-07-21,confirmed,walk_in,2026-07-03
+BK-00609,LOC-006,David L.,Kids checkup,2026-08-23,confirmed,phone,2026-08-05
+BK-00610,LOC-006,Joseph C.,Kids checkup,2026-09-15,completed,website,2026-09-07
+BK-00611,LOC-006,Robert T.,Routine cleaning,2026-08-11,cancelled,website,2026-07-29
+BK-00612,LOC-006,Donald R.,Emergency visit,2026-09-09,new,walk_in,2026-08-25
+BK-00613,LOC-006,Debra K.,New patient exam,2026-07-25,confirmed,phone,2026-07-09
+BK-00614,LOC-006,David L.,Teeth whitening,2026-07-23,confirmed,phone,2026-07-17
+BK-00615,LOC-006,Sarah J.,Routine cleaning,2026-09-07,confirmed,phone,2026-08-29
+BK-00616,LOC-006,Jessica L.,Wisdom tooth consult,2026-07-21,new,google_profile,2026-07-06
+BK-00617,LOC-006,Joseph C.,New patient exam,2026-08-28,cancelled,walk_in,2026-08-09
+BK-00618,LOC-006,Michael B.,New patient exam,2026-06-25,confirmed,walk_in,2026-06-22
+BK-00619,LOC-006,Donald R.,Routine cleaning,2026-09-14,completed,phone,2026-09-08
+BK-00620,LOC-006,Susan O.,Invisalign consult,2026-06-23,confirmed,walk_in,2026-06-21
+BK-00621,LOC-007,Richard G.,Routine cleaning,2026-07-04,completed,website,2026-06-25
+BK-00622,LOC-007,Charles N.,Teeth whitening,2026-08-25,completed,google_profile,2026-08-12
+BK-00623,LOC-007,Sarah J.,Implant consult,2026-09-11,confirmed,walk_in,2026-08-28
+BK-00624,LOC-007,Steven T.,Root canal,2026-08-02,confirmed,phone,2026-07-13
+BK-00625,LOC-007,Sarah J.,Root canal,2026-08-24,confirmed,phone,2026-08-10
+BK-00626,LOC-007,Susan O.,Emergency visit,2026-07-14,confirmed,walk_in,2026-07-02
+BK-00627,LOC-007,Patricia E.,Root canal,2026-07-29,completed,website,2026-07-29
+BK-00628,LOC-007,Debra K.,New patient exam,2026-08-04,confirmed,google_profile,2026-08-03
+BK-00629,LOC-007,Jessica L.,Wisdom tooth consult,2026-07-18,cancelled,walk_in,2026-07-18
+BK-00630,LOC-007,Thomas A.,Teeth whitening,2026-07-20,confirmed,google_profile,2026-07-18
+BK-00631,LOC-007,Debra K.,Emergency visit,2026-06-30,confirmed,phone,2026-06-26
+BK-00632,LOC-007,Barbara W.,New patient exam,2026-07-21,new,walk_in,2026-07-10
+BK-00633,LOC-007,Steven T.,Emergency visit,2026-08-13,completed,google_profile,2026-08-13
+BK-00634,LOC-007,James M.,Kids checkup,2026-09-12,confirmed,website,2026-09-09
+BK-00635,LOC-007,Charles N.,Implant consult,2026-07-06,confirmed,walk_in,2026-06-29
+BK-00636,LOC-007,Karen D.,Kids checkup,2026-07-15,confirmed,walk_in,2026-07-01
+BK-00637,LOC-007,Steven T.,Wisdom tooth consult,2026-07-06,confirmed,google_profile,2026-06-30
+BK-00638,LOC-007,Linda J.,Emergency visit,2026-07-31,confirmed,phone,2026-07-22
+BK-00639,LOC-007,Joseph C.,Invisalign consult,2026-09-07,confirmed,website,2026-08-28
+BK-00640,LOC-007,Lisa M.,Routine cleaning,2026-08-20,confirmed,website,2026-08-19
+BK-00641,LOC-007,Donald R.,New patient exam,2026-07-29,confirmed,google_profile,2026-07-15
+BK-00642,LOC-007,Steven T.,Root canal,2026-08-19,cancelled,website,2026-08-04
+BK-00643,LOC-007,Michael B.,Routine cleaning,2026-09-07,cancelled,google_profile,2026-08-17
+BK-00644,LOC-007,Steven T.,Wisdom tooth consult,2026-07-25,cancelled,website,2026-07-05
+BK-00645,LOC-007,Debra K.,Kids checkup,2026-07-11,confirmed,google_profile,2026-07-08
+BK-00646,LOC-007,Patricia E.,Root canal,2026-07-24,completed,phone,2026-07-06
+BK-00647,LOC-007,Barbara W.,Teeth whitening,2026-07-27,cancelled,google_profile,2026-07-14
+BK-00648,LOC-007,Richard G.,Kids checkup,2026-07-15,confirmed,google_profile,2026-06-29
+BK-00649,LOC-007,Thomas A.,Routine cleaning,2026-06-28,confirmed,google_profile,2026-06-18
+BK-00650,LOC-007,Debra K.,New patient exam,2026-09-04,confirmed,walk_in,2026-08-17
+BK-00651,LOC-007,Patricia E.,Teeth whitening,2026-08-27,confirmed,website,2026-08-12
+BK-00652,LOC-007,James M.,Implant consult,2026-08-21,completed,google_profile,2026-08-05
+BK-00653,LOC-007,Donald R.,Emergency visit,2026-06-27,new,google_profile,2026-06-15
+BK-00654,LOC-007,Emily R.,New patient exam,2026-07-15,confirmed,phone,2026-07-08
+BK-00655,LOC-007,Richard G.,Wisdom tooth consult,2026-08-25,new,phone,2026-08-04
+BK-00656,LOC-007,David L.,New patient exam,2026-08-14,confirmed,phone,2026-08-11
+BK-00657,LOC-007,Christopher F.,Emergency visit,2026-09-09,new,google_profile,2026-08-20
+BK-00658,LOC-007,Mark B.,Routine cleaning,2026-08-13,no_show,walk_in,2026-07-26
+BK-00659,LOC-007,Susan O.,Wisdom tooth consult,2026-09-12,confirmed,phone,2026-08-25
+BK-00660,LOC-007,David L.,Routine cleaning,2026-08-07,cancelled,website,2026-07-21
+BK-00661,LOC-007,Barbara W.,Kids checkup,2026-07-28,confirmed,google_profile,2026-07-27
+BK-00662,LOC-007,Lisa M.,Implant consult,2026-09-07,confirmed,phone,2026-08-30
+BK-00663,LOC-007,Lisa M.,Implant consult,2026-09-17,confirmed,website,2026-09-01
+BK-00664,LOC-007,Mark B.,Routine cleaning,2026-08-31,no_show,walk_in,2026-08-11
+BK-00665,LOC-007,Debra K.,Emergency visit,2026-10-01,new,walk_in,2026-09-11
+BK-00666,LOC-007,Patricia E.,Teeth whitening,2026-08-01,confirmed,walk_in,2026-07-15
+BK-00667,LOC-007,Susan O.,Root canal,2026-09-13,new,google_profile,2026-08-23
+BK-00668,LOC-007,Michael B.,Root canal,2026-08-01,no_show,website,2026-07-20
+BK-00669,LOC-007,David L.,Kids checkup,2026-09-05,confirmed,walk_in,2026-08-17
+BK-00670,LOC-007,David L.,Implant consult,2026-09-02,completed,google_profile,2026-08-18
+BK-00671,LOC-007,Linda J.,Routine cleaning,2026-09-07,confirmed,google_profile,2026-08-20
+BK-00672,LOC-007,James M.,Kids checkup,2026-09-22,confirmed,phone,2026-09-05
+BK-00673,LOC-007,Matthew P.,Invisalign consult,2026-09-10,confirmed,google_profile,2026-09-05
+BK-00674,LOC-007,Joseph C.,Kids checkup,2026-07-09,completed,phone,2026-06-18
+BK-00675,LOC-007,James M.,New patient exam,2026-09-12,confirmed,walk_in,2026-09-02
+BK-00676,LOC-007,Richard G.,Implant consult,2026-07-14,completed,google_profile,2026-07-06
+BK-00677,LOC-007,Joseph C.,Root canal,2026-07-27,cancelled,google_profile,2026-07-19
+BK-00678,LOC-007,Donald R.,Invisalign consult,2026-09-10,confirmed,google_profile,2026-08-29
+BK-00679,LOC-007,David L.,Wisdom tooth consult,2026-07-28,confirmed,google_profile,2026-07-08
+BK-00680,LOC-007,Jessica P.,Teeth whitening,2026-09-04,completed,walk_in,2026-08-27
+BK-00681,LOC-007,Emily R.,Invisalign consult,2026-09-10,confirmed,website,2026-08-23
+BK-00682,LOC-007,Mark B.,Implant consult,2026-07-16,confirmed,phone,2026-06-25
+BK-00683,LOC-007,Christopher F.,Emergency visit,2026-08-20,confirmed,phone,2026-08-15
+BK-00684,LOC-007,Jessica P.,Implant consult,2026-08-23,completed,google_profile,2026-08-05
+BK-00685,LOC-007,Anna G.,Wisdom tooth consult,2026-09-09,new,phone,2026-08-21
+BK-00686,LOC-007,James M.,Root canal,2026-07-15,confirmed,walk_in,2026-06-28
+BK-00687,LOC-007,Barbara W.,Implant consult,2026-08-28,cancelled,walk_in,2026-08-20
+BK-00688,LOC-007,Mark B.,Invisalign consult,2026-07-06,completed,phone,2026-06-17
+BK-00689,LOC-007,Daniel M.,New patient exam,2026-07-25,confirmed,website,2026-07-18
+BK-00690,LOC-007,Jennifer K.,Root canal,2026-09-25,cancelled,website,2026-09-09
+BK-00691,LOC-007,Charles N.,Implant consult,2026-09-14,new,google_profile,2026-08-30
+BK-00692,LOC-007,Michael B.,Implant consult,2026-09-04,completed,phone,2026-08-28
+BK-00693,LOC-007,Lisa M.,Root canal,2026-07-23,new,phone,2026-07-11
+BK-00694,LOC-007,Robert T.,Emergency visit,2026-07-08,confirmed,phone,2026-06-28
+BK-00695,LOC-007,Patricia E.,Wisdom tooth consult,2026-08-19,completed,google_profile,2026-07-31
+BK-00696,LOC-007,Richard G.,Routine cleaning,2026-07-04,confirmed,walk_in,2026-06-27
+BK-00697,LOC-007,David L.,New patient exam,2026-07-06,cancelled,phone,2026-06-17
+BK-00698,LOC-007,Emily R.,Root canal,2026-07-23,completed,website,2026-07-21
+BK-00699,LOC-007,Charles N.,Root canal,2026-08-22,completed,website,2026-08-03
+BK-00700,LOC-007,James M.,Invisalign consult,2026-08-26,completed,google_profile,2026-08-25
+BK-00701,LOC-007,Charles N.,Wisdom tooth consult,2026-08-04,completed,google_profile,2026-07-31
+BK-00702,LOC-007,Debra K.,Implant consult,2026-08-10,cancelled,google_profile,2026-07-29
+BK-00703,LOC-007,Richard G.,Wisdom tooth consult,2026-09-07,new,walk_in,2026-08-25
+BK-00704,LOC-007,Anna G.,Emergency visit,2026-08-21,confirmed,walk_in,2026-08-07
+BK-00705,LOC-007,Linda J.,Invisalign consult,2026-07-17,confirmed,phone,2026-07-02
+BK-00706,LOC-007,Nancy S.,Implant consult,2026-09-12,completed,phone,2026-08-23
+BK-00707,LOC-007,David L.,Invisalign consult,2026-08-13,confirmed,phone,2026-07-25
+BK-00708,LOC-007,Nancy S.,Implant consult,2026-09-04,completed,website,2026-09-01
+BK-00709,LOC-007,Sarah J.,Emergency visit,2026-06-22,cancelled,website,2026-06-18
+BK-00710,LOC-007,Steven T.,Teeth whitening,2026-08-04,confirmed,google_profile,2026-07-24
+BK-00711,LOC-007,Donald R.,New patient exam,2026-07-01,confirmed,google_profile,2026-06-24
+BK-00712,LOC-007,Richard G.,Implant consult,2026-08-05,confirmed,website,2026-07-26
+BK-00713,LOC-007,Nancy S.,Wisdom tooth consult,2026-08-16,confirmed,google_profile,2026-08-15
+BK-00714,LOC-007,Lisa M.,Wisdom tooth consult,2026-07-29,confirmed,website,2026-07-08
+BK-00715,LOC-007,Susan O.,Root canal,2026-09-09,confirmed,walk_in,2026-08-21
+BK-00716,LOC-008,Steven T.,Root canal,2026-07-18,confirmed,google_profile,2026-07-03
+BK-00717,LOC-008,James M.,Emergency visit,2026-08-11,confirmed,walk_in,2026-07-22
+BK-00718,LOC-008,Lisa M.,Teeth whitening,2026-08-16,cancelled,google_profile,2026-07-31
+BK-00719,LOC-008,Emily R.,Wisdom tooth consult,2026-07-09,completed,google_profile,2026-06-23
+BK-00720,LOC-008,David L.,Teeth whitening,2026-07-02,completed,google_profile,2026-06-28
+BK-00721,LOC-008,Susan O.,New patient exam,2026-09-04,confirmed,website,2026-08-31
+BK-00722,LOC-008,Charles N.,Teeth whitening,2026-07-04,cancelled,website,2026-06-22
+BK-00723,LOC-008,Matthew P.,Wisdom tooth consult,2026-08-15,confirmed,walk_in,2026-08-07
+BK-00724,LOC-008,Mark B.,Root canal,2026-08-24,confirmed,website,2026-08-13
+BK-00725,LOC-008,Emily R.,Emergency visit,2026-08-21,confirmed,website,2026-08-05
+BK-00726,LOC-008,Linda J.,Implant consult,2026-08-13,confirmed,walk_in,2026-07-29
+BK-00727,LOC-008,Joseph C.,Emergency visit,2026-09-14,confirmed,phone,2026-08-25
+BK-00728,LOC-008,Michael B.,Wisdom tooth consult,2026-08-28,confirmed,phone,2026-08-27
+BK-00729,LOC-008,Barbara W.,Teeth whitening,2026-09-22,cancelled,walk_in,2026-09-08
+BK-00730,LOC-008,Emily R.,Root canal,2026-07-10,confirmed,website,2026-06-28
+BK-00731,LOC-008,Thomas A.,Teeth whitening,2026-07-20,confirmed,walk_in,2026-06-30
+BK-00732,LOC-008,Daniel M.,Emergency visit,2026-07-24,cancelled,google_profile,2026-07-10
+BK-00733,LOC-008,Christopher F.,Teeth whitening,2026-06-28,confirmed,google_profile,2026-06-18
+BK-00734,LOC-008,Elizabeth H.,Implant consult,2026-08-11,completed,website,2026-08-06
+BK-00735,LOC-008,Jessica P.,Wisdom tooth consult,2026-09-25,confirmed,website,2026-09-07
+BK-00736,LOC-008,Richard G.,Implant consult,2026-08-28,cancelled,google_profile,2026-08-24
+BK-00737,LOC-008,Lisa M.,Invisalign consult,2026-08-03,confirmed,google_profile,2026-07-16
+BK-00738,LOC-008,Thomas A.,Root canal,2026-08-10,completed,walk_in,2026-08-07
+BK-00739,LOC-008,James M.,Implant consult,2026-07-18,confirmed,walk_in,2026-07-13
+BK-00740,LOC-008,Linda J.,New patient exam,2026-07-26,confirmed,walk_in,2026-07-18
+BK-00741,LOC-008,Christopher F.,Emergency visit,2026-07-22,new,walk_in,2026-07-08
+BK-00742,LOC-008,Jessica P.,Root canal,2026-08-12,new,google_profile,2026-08-10
+BK-00743,LOC-008,Matthew P.,Implant consult,2026-09-05,confirmed,website,2026-08-21
+BK-00744,LOC-008,James M.,New patient exam,2026-07-20,new,google_profile,2026-07-02
+BK-00745,LOC-008,Linda J.,Routine cleaning,2026-07-13,completed,walk_in,2026-07-02
+BK-00746,LOC-008,Sarah J.,Invisalign consult,2026-08-30,new,google_profile,2026-08-24
+BK-00747,LOC-008,Charles N.,Root canal,2026-09-08,confirmed,walk_in,2026-08-24
+BK-00748,LOC-008,Linda J.,Implant consult,2026-08-19,completed,google_profile,2026-07-29
+BK-00749,LOC-008,Daniel M.,Wisdom tooth consult,2026-09-24,confirmed,phone,2026-09-08
+BK-00750,LOC-008,William H.,Invisalign consult,2026-08-05,confirmed,website,2026-08-04
+BK-00751,LOC-008,Anna G.,Implant consult,2026-07-27,completed,website,2026-07-15
+BK-00752,LOC-008,Anna G.,Emergency visit,2026-07-13,confirmed,website,2026-06-29
+BK-00753,LOC-008,David L.,Emergency visit,2026-07-29,new,website,2026-07-11
+BK-00754,LOC-008,Robert T.,Root canal,2026-09-09,new,website,2026-08-29
+BK-00755,LOC-008,Donald R.,Teeth whitening,2026-08-09,new,google_profile,2026-07-20
+BK-00756,LOC-008,Michael B.,Teeth whitening,2026-07-03,no_show,walk_in,2026-06-15
+BK-00757,LOC-008,Jennifer K.,Emergency visit,2026-09-28,new,walk_in,2026-09-10
+BK-00758,LOC-008,Jennifer K.,Teeth whitening,2026-08-05,completed,google_profile,2026-08-04
+BK-00759,LOC-008,Mark B.,Emergency visit,2026-07-08,confirmed,walk_in,2026-07-05
+BK-00760,LOC-008,Joseph C.,Kids checkup,2026-06-24,new,website,2026-06-21
+BK-00761,LOC-008,Susan O.,Routine cleaning,2026-07-02,new,google_profile,2026-06-28
+BK-00762,LOC-008,Debra K.,Wisdom tooth consult,2026-08-15,confirmed,phone,2026-08-11
+BK-00763,LOC-008,Linda J.,Teeth whitening,2026-08-17,cancelled,google_profile,2026-08-10
+BK-00764,LOC-008,Richard G.,Teeth whitening,2026-06-28,confirmed,google_profile,2026-06-19
+BK-00765,LOC-008,Steven T.,Invisalign consult,2026-08-22,confirmed,google_profile,2026-08-22
+BK-00766,LOC-009,Lisa M.,Emergency visit,2026-08-23,completed,google_profile,2026-08-20
+BK-00767,LOC-009,Barbara W.,Kids checkup,2026-06-29,new,phone,2026-06-27
+BK-00768,LOC-009,Anna G.,Routine cleaning,2026-09-19,cancelled,google_profile,2026-09-03
+BK-00769,LOC-009,David L.,Invisalign consult,2026-09-17,no_show,phone,2026-08-27
+BK-00770,LOC-009,Christopher F.,Teeth whitening,2026-08-06,completed,website,2026-08-02
+BK-00771,LOC-010,Michael B.,Routine cleaning,2026-08-11,completed,walk_in,2026-07-31
+BK-00772,LOC-010,Matthew P.,Root canal,2026-08-02,new,phone,2026-07-12
+BK-00773,LOC-010,Jennifer K.,Emergency visit,2026-06-20,no_show,google_profile,2026-06-17
+BK-00774,LOC-010,Barbara W.,Implant consult,2026-07-26,cancelled,walk_in,2026-07-20
+BK-00775,LOC-010,Debra K.,Emergency visit,2026-09-03,confirmed,walk_in,2026-08-23
+BK-00776,LOC-010,Steven T.,Emergency visit,2026-07-12,cancelled,phone,2026-07-12
+BK-00777,LOC-010,Nancy S.,New patient exam,2026-06-22,cancelled,walk_in,2026-06-18
+BK-00778,LOC-010,Barbara W.,Root canal,2026-08-19,confirmed,google_profile,2026-07-31
+BK-00779,LOC-010,Sarah J.,Root canal,2026-07-21,confirmed,google_profile,2026-07-20
+BK-00780,LOC-010,James M.,Kids checkup,2026-07-08,completed,walk_in,2026-06-25
+BK-00781,LOC-010,Charles N.,New patient exam,2026-07-18,completed,google_profile,2026-07-14
+BK-00782,LOC-010,Emily R.,Routine cleaning,2026-08-07,cancelled,phone,2026-07-28
+BK-00783,LOC-010,Jennifer K.,Routine cleaning,2026-07-22,confirmed,website,2026-07-13
+BK-00784,LOC-010,Christopher F.,Root canal,2026-09-12,no_show,walk_in,2026-09-01
+BK-00785,LOC-010,Karen D.,Root canal,2026-08-14,confirmed,phone,2026-08-01
+BK-00786,LOC-010,Nancy S.,Emergency visit,2026-09-19,confirmed,phone,2026-08-29
+BK-00787,LOC-010,David L.,Invisalign consult,2026-07-24,completed,walk_in,2026-07-16
+BK-00788,LOC-010,Barbara W.,Routine cleaning,2026-08-26,new,website,2026-08-13
+BK-00789,LOC-010,James M.,Kids checkup,2026-07-16,new,website,2026-06-30
+BK-00790,LOC-010,William H.,New patient exam,2026-08-31,confirmed,website,2026-08-24
+BK-00791,LOC-010,Barbara W.,Routine cleaning,2026-08-21,confirmed,walk_in,2026-08-16
+BK-00792,LOC-010,David L.,Routine cleaning,2026-08-23,confirmed,phone,2026-08-20
+BK-00793,LOC-010,Robert T.,Wisdom tooth consult,2026-07-08,confirmed,website,2026-06-28
+BK-00794,LOC-010,Sarah J.,Root canal,2026-07-03,new,walk_in,2026-06-20
+BK-00795,LOC-010,Donald R.,Invisalign consult,2026-07-24,no_show,website,2026-07-14
+BK-00796,LOC-010,Robert T.,Kids checkup,2026-08-16,confirmed,phone,2026-07-31
+BK-00797,LOC-010,Christopher F.,Kids checkup,2026-07-10,new,google_profile,2026-07-07
+BK-00798,LOC-010,Matthew P.,Kids checkup,2026-07-19,confirmed,phone,2026-07-08
+BK-00799,LOC-010,Jennifer K.,Wisdom tooth consult,2026-09-07,new,walk_in,2026-08-30
+BK-00800,LOC-010,Elizabeth H.,Teeth whitening,2026-06-25,no_show,google_profile,2026-06-15
+BK-00801,LOC-010,Debra K.,Root canal,2026-09-12,completed,google_profile,2026-08-31
+BK-00802,LOC-010,David L.,New patient exam,2026-07-30,confirmed,walk_in,2026-07-17
+BK-00803,LOC-010,Donald R.,Emergency visit,2026-08-17,confirmed,website,2026-07-30
+BK-00804,LOC-010,William H.,Kids checkup,2026-08-14,new,website,2026-08-14
+BK-00805,LOC-010,Richard G.,Routine cleaning,2026-08-20,confirmed,website,2026-08-07
+BK-00806,LOC-010,Patricia E.,Root canal,2026-06-26,confirmed,website,2026-06-23
+BK-00807,LOC-010,Daniel M.,Invisalign consult,2026-07-08,new,website,2026-06-30
+BK-00808,LOC-010,Christopher F.,Invisalign consult,2026-09-04,completed,website,2026-08-28
+BK-00809,LOC-010,Matthew P.,New patient exam,2026-08-27,confirmed,phone,2026-08-27
+BK-00810,LOC-010,Susan O.,Wisdom tooth consult,2026-07-30,confirmed,website,2026-07-25
+BK-00811,LOC-010,Susan O.,Root canal,2026-07-07,confirmed,phone,2026-06-19
+BK-00812,LOC-010,Daniel M.,New patient exam,2026-08-23,confirmed,walk_in,2026-08-04
+BK-00813,LOC-010,Donald R.,Kids checkup,2026-07-24,confirmed,walk_in,2026-07-10
+BK-00814,LOC-010,Debra K.,Kids checkup,2026-08-21,new,phone,2026-08-02
+BK-00815,LOC-010,Sarah J.,Root canal,2026-07-01,confirmed,google_profile,2026-06-27
+BK-00816,LOC-010,Donald R.,Emergency visit,2026-09-02,confirmed,phone,2026-08-15
+BK-00817,LOC-010,Matthew P.,Wisdom tooth consult,2026-08-08,confirmed,google_profile,2026-07-26
+BK-00818,LOC-010,Debra K.,New patient exam,2026-09-26,confirmed,phone,2026-09-08
+BK-00819,LOC-010,Donald R.,Invisalign consult,2026-09-15,new,website,2026-09-01
+BK-00820,LOC-010,Thomas A.,Routine cleaning,2026-07-19,new,google_profile,2026-07-06
+BK-00821,LOC-010,Nancy S.,Routine cleaning,2026-09-02,new,google_profile,2026-08-19
+BK-00822,LOC-010,Jessica L.,Invisalign consult,2026-07-26,confirmed,website,2026-07-05
+BK-00823,LOC-010,Jessica L.,Wisdom tooth consult,2026-07-14,confirmed,website,2026-06-27
+BK-00824,LOC-010,Steven T.,New patient exam,2026-09-15,cancelled,walk_in,2026-08-30
+BK-00825,LOC-010,Barbara W.,Wisdom tooth consult,2026-07-09,completed,website,2026-06-25
+BK-00826,LOC-010,Charles N.,Routine cleaning,2026-09-21,cancelled,phone,2026-09-03
+BK-00827,LOC-010,Lisa M.,Wisdom tooth consult,2026-07-11,cancelled,walk_in,2026-06-24
+BK-00828,LOC-010,Steven T.,Implant consult,2026-07-07,confirmed,website,2026-07-02
+BK-00829,LOC-010,Thomas A.,Wisdom tooth consult,2026-09-05,confirmed,google_profile,2026-08-20
+BK-00830,LOC-010,Sarah J.,Routine cleaning,2026-08-15,confirmed,website,2026-08-01
+BK-00831,LOC-010,Richard G.,Root canal,2026-08-04,confirmed,website,2026-07-18
+BK-00832,LOC-010,Joseph C.,New patient exam,2026-09-10,completed,google_profile,2026-09-08
+BK-00833,LOC-010,Daniel M.,New patient exam,2026-08-11,new,walk_in,2026-07-23
+BK-00834,LOC-010,Christopher F.,Invisalign consult,2026-07-21,confirmed,walk_in,2026-07-05
+BK-00835,LOC-010,Charles N.,Emergency visit,2026-07-25,confirmed,walk_in,2026-07-06
+BK-00836,LOC-010,Sarah J.,Invisalign consult,2026-08-25,confirmed,walk_in,2026-08-13
+BK-00837,LOC-010,Jennifer K.,Invisalign consult,2026-07-08,confirmed,phone,2026-06-20
+BK-00838,LOC-010,Nancy S.,Routine cleaning,2026-07-14,new,walk_in,2026-06-26
+BK-00839,LOC-010,Lisa M.,Wisdom tooth consult,2026-09-03,confirmed,google_profile,2026-08-17
+BK-00840,LOC-010,Karen D.,New patient exam,2026-09-01,completed,phone,2026-08-25
+BK-00841,LOC-010,Daniel M.,Routine cleaning,2026-08-30,confirmed,walk_in,2026-08-12
+BK-00842,LOC-010,Joseph C.,Kids checkup,2026-09-13,completed,phone,2026-08-31
+BK-00843,LOC-010,Nancy S.,Routine cleaning,2026-08-30,cancelled,phone,2026-08-23
+BK-00844,LOC-010,Thomas A.,Routine cleaning,2026-08-02,confirmed,phone,2026-07-19
+BK-00845,LOC-010,David L.,Emergency visit,2026-07-21,new,phone,2026-07-04
+BK-00846,LOC-010,Nancy S.,Invisalign consult,2026-08-17,completed,google_profile,2026-07-30
+BK-00847,LOC-010,Christopher F.,Teeth whitening,2026-09-09,new,google_profile,2026-08-23
+BK-00848,LOC-010,Charles N.,Teeth whitening,2026-08-05,confirmed,walk_in,2026-07-19
+BK-00849,LOC-010,William H.,Kids checkup,2026-09-02,new,walk_in,2026-09-01
+BK-00850,LOC-010,Michael B.,Kids checkup,2026-08-19,confirmed,walk_in,2026-08-15
+BK-00851,LOC-010,Michael B.,Teeth whitening,2026-07-06,new,website,2026-06-17
+BK-00852,LOC-010,Mark B.,Emergency visit,2026-07-17,confirmed,google_profile,2026-06-29
+BK-00853,LOC-010,Patricia E.,Kids checkup,2026-07-24,confirmed,website,2026-07-11
+BK-00854,LOC-010,Sarah J.,Invisalign consult,2026-06-25,no_show,google_profile,2026-06-15
+BK-00855,LOC-010,Mark B.,Routine cleaning,2026-08-12,confirmed,website,2026-07-26
+BK-00856,LOC-010,Patricia E.,Emergency visit,2026-07-17,completed,phone,2026-07-06
+BK-00857,LOC-010,Daniel M.,Routine cleaning,2026-07-21,confirmed,website,2026-07-18
+BK-00858,LOC-010,Christopher F.,Kids checkup,2026-07-18,new,phone,2026-07-09
+BK-00859,LOC-010,Patricia E.,New patient exam,2026-08-07,completed,walk_in,2026-08-05
+BK-00860,LOC-010,Christopher F.,Wisdom tooth consult,2026-08-24,confirmed,phone,2026-08-20
+BK-00861,LOC-010,Thomas A.,Wisdom tooth consult,2026-09-04,completed,website,2026-09-03
+BK-00862,LOC-010,William H.,Kids checkup,2026-07-06,new,phone,2026-07-03
+BK-00863,LOC-010,Susan O.,Emergency visit,2026-08-23,completed,google_profile,2026-08-20
+BK-00864,LOC-010,Barbara W.,Kids checkup,2026-08-24,cancelled,walk_in,2026-08-04
+BK-00865,LOC-010,Christopher F.,Kids checkup,2026-09-22,completed,google_profile,2026-09-01
+BK-00866,LOC-010,Charles N.,Kids checkup,2026-09-19,confirmed,walk_in,2026-09-02
+BK-00867,LOC-010,Christopher F.,Invisalign consult,2026-09-04,confirmed,website,2026-08-26
+BK-00868,LOC-010,Susan O.,Emergency visit,2026-08-15,new,website,2026-07-25
+BK-00869,LOC-010,Jessica L.,Root canal,2026-09-20,new,google_profile,2026-08-30
+BK-00870,LOC-010,Sarah J.,Implant consult,2026-08-07,cancelled,walk_in,2026-07-31
+BK-00871,LOC-010,Jessica L.,Routine cleaning,2026-07-01,new,walk_in,2026-06-29
+BK-00872,LOC-010,Richard G.,Teeth whitening,2026-08-02,confirmed,walk_in,2026-07-14
+BK-00873,LOC-010,Christopher F.,Invisalign consult,2026-08-26,new,google_profile,2026-08-06
+BK-00874,LOC-010,James M.,Routine cleaning,2026-08-06,confirmed,website,2026-07-26
+BK-00875,LOC-010,Lisa M.,Wisdom tooth consult,2026-07-07,completed,phone,2026-06-18
+BK-00876,LOC-011,Debra K.,Kids checkup,2026-09-05,new,google_profile,2026-08-28
+BK-00877,LOC-011,Linda J.,Wisdom tooth consult,2026-08-23,completed,phone,2026-08-02
+BK-00878,LOC-011,Sarah J.,Implant consult,2026-09-14,confirmed,walk_in,2026-09-01
+BK-00879,LOC-011,Elizabeth H.,Invisalign consult,2026-08-17,new,google_profile,2026-08-09
+BK-00880,LOC-011,Thomas A.,Implant consult,2026-08-07,confirmed,phone,2026-07-25
+BK-00881,LOC-011,Lisa M.,Implant consult,2026-08-22,completed,walk_in,2026-08-22
+BK-00882,LOC-011,Jessica P.,Implant consult,2026-07-19,confirmed,website,2026-07-13
+BK-00883,LOC-011,Anna G.,Emergency visit,2026-07-30,completed,walk_in,2026-07-18
+BK-00884,LOC-011,Joseph C.,Implant consult,2026-08-17,new,phone,2026-08-07
+BK-00885,LOC-011,Sarah J.,Routine cleaning,2026-09-19,confirmed,phone,2026-08-31
+BK-00886,LOC-011,Emily R.,New patient exam,2026-10-02,confirmed,walk_in,2026-09-11
+BK-00887,LOC-011,Mark B.,Root canal,2026-07-11,confirmed,phone,2026-07-07
+BK-00888,LOC-011,David L.,Implant consult,2026-08-23,confirmed,walk_in,2026-08-08
+BK-00889,LOC-011,Michael B.,Emergency visit,2026-09-03,new,walk_in,2026-09-01
+BK-00890,LOC-011,Anna G.,Wisdom tooth consult,2026-07-23,confirmed,website,2026-07-20
+BK-00891,LOC-011,James M.,Wisdom tooth consult,2026-08-03,no_show,walk_in,2026-07-17
+BK-00892,LOC-011,Joseph C.,Root canal,2026-06-19,confirmed,walk_in,2026-06-16
+BK-00893,LOC-011,Michael B.,Emergency visit,2026-09-03,confirmed,google_profile,2026-08-17
+BK-00894,LOC-011,Elizabeth H.,Routine cleaning,2026-09-15,confirmed,phone,2026-08-27
+BK-00895,LOC-011,Nancy S.,Invisalign consult,2026-08-02,no_show,google_profile,2026-07-19
+BK-00896,LOC-011,Linda J.,New patient exam,2026-07-26,new,walk_in,2026-07-06
+BK-00897,LOC-011,Jessica P.,Root canal,2026-07-07,confirmed,google_profile,2026-07-06
+BK-00898,LOC-011,Christopher F.,Kids checkup,2026-08-04,confirmed,walk_in,2026-07-28
+BK-00899,LOC-011,Donald R.,Emergency visit,2026-08-23,confirmed,walk_in,2026-08-22
+BK-00900,LOC-011,Jennifer K.,Wisdom tooth consult,2026-08-09,confirmed,google_profile,2026-08-01
+BK-00901,LOC-011,Karen D.,Invisalign consult,2026-09-18,cancelled,phone,2026-09-11
+BK-00902,LOC-011,Daniel M.,Implant consult,2026-06-22,confirmed,walk_in,2026-06-21
+BK-00903,LOC-011,David L.,Teeth whitening,2026-08-10,confirmed,walk_in,2026-07-21
+BK-00904,LOC-011,David L.,Root canal,2026-06-27,cancelled,google_profile,2026-06-24
+BK-00905,LOC-011,Susan O.,New patient exam,2026-08-07,confirmed,walk_in,2026-07-21
+BK-00906,LOC-011,Jessica P.,Invisalign consult,2026-08-25,completed,walk_in,2026-08-11
+BK-00907,LOC-011,James M.,Teeth whitening,2026-09-25,confirmed,google_profile,2026-09-05
+BK-00908,LOC-011,Donald R.,New patient exam,2026-09-11,confirmed,walk_in,2026-08-25
+BK-00909,LOC-011,Sarah J.,New patient exam,2026-08-25,confirmed,website,2026-08-14
+BK-00910,LOC-011,William H.,Implant consult,2026-09-12,completed,google_profile,2026-08-31
+BK-00911,LOC-011,Elizabeth H.,Teeth whitening,2026-09-10,confirmed,website,2026-09-04
+BK-00912,LOC-011,Steven T.,Teeth whitening,2026-08-12,confirmed,google_profile,2026-07-26
+BK-00913,LOC-011,Anna G.,New patient exam,2026-08-03,new,phone,2026-07-27
+BK-00914,LOC-011,Charles N.,Invisalign consult,2026-08-21,confirmed,walk_in,2026-08-19
+BK-00915,LOC-011,Emily R.,Invisalign consult,2026-08-21,confirmed,walk_in,2026-08-19
+BK-00916,LOC-011,Nancy S.,Routine cleaning,2026-07-25,confirmed,phone,2026-07-17
+BK-00917,LOC-011,Patricia E.,Teeth whitening,2026-08-28,completed,phone,2026-08-22
+BK-00918,LOC-011,Jessica L.,Implant consult,2026-08-28,new,website,2026-08-11
+BK-00919,LOC-011,Thomas A.,Wisdom tooth consult,2026-08-04,confirmed,website,2026-07-15
+BK-00920,LOC-011,Linda J.,Kids checkup,2026-09-09,cancelled,phone,2026-08-19
+BK-00921,LOC-011,Charles N.,Wisdom tooth consult,2026-09-20,no_show,walk_in,2026-09-02
+BK-00922,LOC-011,Richard G.,Root canal,2026-07-23,confirmed,website,2026-07-04
+BK-00923,LOC-011,Donald R.,Root canal,2026-09-01,new,walk_in,2026-08-28
+BK-00924,LOC-011,Sarah J.,New patient exam,2026-09-14,confirmed,phone,2026-09-10
+BK-00925,LOC-011,Emily R.,Invisalign consult,2026-09-16,completed,walk_in,2026-08-30
+BK-00926,LOC-011,Emily R.,Wisdom tooth consult,2026-07-07,confirmed,google_profile,2026-07-01
+BK-00927,LOC-011,Jennifer K.,Wisdom tooth consult,2026-07-22,confirmed,website,2026-07-15
+BK-00928,LOC-011,Emily R.,Teeth whitening,2026-08-17,cancelled,walk_in,2026-08-17
+BK-00929,LOC-011,Barbara W.,Teeth whitening,2026-07-23,completed,website,2026-07-07
+BK-00930,LOC-011,Jennifer K.,Routine cleaning,2026-07-10,new,website,2026-07-06
+BK-00931,LOC-011,James M.,New patient exam,2026-07-15,cancelled,google_profile,2026-07-08
+BK-00932,LOC-011,Joseph C.,New patient exam,2026-09-27,confirmed,walk_in,2026-09-11
+BK-00933,LOC-011,Jennifer K.,Routine cleaning,2026-06-20,completed,walk_in,2026-06-20
+BK-00934,LOC-011,Joseph C.,New patient exam,2026-08-26,confirmed,phone,2026-08-24
+BK-00935,LOC-011,Lisa M.,Implant consult,2026-07-22,cancelled,google_profile,2026-07-21
+BK-00936,LOC-011,Mark B.,Routine cleaning,2026-09-13,confirmed,website,2026-09-06
+BK-00937,LOC-011,Mark B.,Wisdom tooth consult,2026-08-23,completed,walk_in,2026-08-15
+BK-00938,LOC-011,Nancy S.,Implant consult,2026-09-09,confirmed,google_profile,2026-09-05
+BK-00939,LOC-011,Linda J.,Routine cleaning,2026-09-12,new,website,2026-09-09
+BK-00940,LOC-011,Donald R.,Invisalign consult,2026-08-24,new,google_profile,2026-08-12
+BK-00941,LOC-011,Michael B.,Implant consult,2026-08-14,confirmed,walk_in,2026-07-27
+BK-00942,LOC-011,Steven T.,Kids checkup,2026-06-18,confirmed,walk_in,2026-06-17
+BK-00943,LOC-011,Steven T.,Kids checkup,2026-08-16,new,website,2026-08-08
+BK-00944,LOC-011,Matthew P.,Teeth whitening,2026-08-10,completed,website,2026-08-01
+BK-00945,LOC-011,Jennifer K.,Kids checkup,2026-07-21,confirmed,walk_in,2026-07-21
+BK-00946,LOC-011,Patricia E.,Routine cleaning,2026-09-19,completed,phone,2026-09-01
+BK-00947,LOC-011,Barbara W.,Teeth whitening,2026-09-08,confirmed,website,2026-08-20
+BK-00948,LOC-011,David L.,Kids checkup,2026-08-22,confirmed,google_profile,2026-08-09
+BK-00949,LOC-011,Susan O.,Root canal,2026-09-09,confirmed,walk_in,2026-08-22
+BK-00950,LOC-011,Barbara W.,Wisdom tooth consult,2026-07-02,confirmed,google_profile,2026-06-16
+BK-00951,LOC-011,Jessica L.,Root canal,2026-09-09,confirmed,website,2026-08-20
+BK-00952,LOC-011,Elizabeth H.,Kids checkup,2026-09-03,new,phone,2026-09-01
+BK-00953,LOC-011,Christopher F.,Root canal,2026-07-19,completed,walk_in,2026-07-08
+BK-00954,LOC-011,Michael B.,Emergency visit,2026-08-02,new,google_profile,2026-08-02
+BK-00955,LOC-011,Daniel M.,Wisdom tooth consult,2026-08-20,completed,walk_in,2026-08-09
+BK-00956,LOC-011,Lisa M.,New patient exam,2026-09-13,confirmed,google_profile,2026-08-27
+BK-00957,LOC-011,Michael B.,Root canal,2026-08-24,cancelled,phone,2026-08-24
+BK-00958,LOC-011,Jennifer K.,Root canal,2026-08-10,no_show,phone,2026-07-31
+BK-00959,LOC-011,Jessica L.,Emergency visit,2026-08-30,completed,phone,2026-08-16
+BK-00960,LOC-011,Elizabeth H.,New patient exam,2026-08-25,confirmed,walk_in,2026-08-16
+BK-00961,LOC-012,Susan O.,Kids checkup,2026-07-14,confirmed,google_profile,2026-06-27
+BK-00962,LOC-012,David L.,Root canal,2026-07-15,confirmed,phone,2026-07-02
+BK-00963,LOC-012,Elizabeth H.,Invisalign consult,2026-08-12,confirmed,website,2026-07-27
+BK-00964,LOC-012,Barbara W.,Implant consult,2026-08-08,new,google_profile,2026-07-31
+BK-00965,LOC-012,Donald R.,Routine cleaning,2026-09-19,confirmed,phone,2026-09-10
+BK-00966,LOC-012,Christopher F.,Emergency visit,2026-08-07,new,google_profile,2026-07-25
+BK-00967,LOC-012,Matthew P.,Routine cleaning,2026-07-12,completed,walk_in,2026-07-01
+BK-00968,LOC-012,Matthew P.,Implant consult,2026-06-23,confirmed,walk_in,2026-06-21
+BK-00969,LOC-012,Robert T.,Emergency visit,2026-08-14,confirmed,website,2026-08-06
+BK-00970,LOC-012,Debra K.,Wisdom tooth consult,2026-08-04,confirmed,google_profile,2026-07-20
+BK-00971,LOC-012,Michael B.,Root canal,2026-09-11,new,phone,2026-09-01
+BK-00972,LOC-012,William H.,Root canal,2026-09-09,confirmed,google_profile,2026-08-20
+BK-00973,LOC-012,Michael B.,Kids checkup,2026-07-17,no_show,google_profile,2026-07-15
+BK-00974,LOC-012,Sarah J.,Implant consult,2026-09-03,confirmed,website,2026-08-23
+BK-00975,LOC-012,Christopher F.,Implant consult,2026-09-14,new,website,2026-08-25
+BK-00976,LOC-012,Steven T.,New patient exam,2026-07-04,completed,google_profile,2026-06-15
+BK-00977,LOC-012,Michael B.,Routine cleaning,2026-09-09,confirmed,phone,2026-09-07
+BK-00978,LOC-012,Christopher F.,Emergency visit,2026-08-07,new,walk_in,2026-07-31
+BK-00979,LOC-012,Elizabeth H.,Kids checkup,2026-07-11,confirmed,website,2026-07-10
+BK-00980,LOC-012,Patricia E.,Invisalign consult,2026-09-08,new,website,2026-08-29
+BK-00981,LOC-012,Richard G.,Invisalign consult,2026-09-08,confirmed,phone,2026-09-06
+BK-00982,LOC-012,Charles N.,Root canal,2026-08-03,completed,google_profile,2026-07-14
+BK-00983,LOC-012,Nancy S.,Implant consult,2026-08-24,completed,google_profile,2026-08-06
+BK-00984,LOC-012,Patricia E.,New patient exam,2026-07-20,confirmed,phone,2026-07-01
+BK-00985,LOC-012,Robert T.,Invisalign consult,2026-08-08,no_show,google_profile,2026-08-06
+BK-00986,LOC-012,Linda J.,New patient exam,2026-08-24,cancelled,google_profile,2026-08-22
+BK-00987,LOC-012,Karen D.,Wisdom tooth consult,2026-06-27,new,phone,2026-06-19
+BK-00988,LOC-012,Emily R.,New patient exam,2026-09-26,confirmed,walk_in,2026-09-07
+BK-00989,LOC-012,Elizabeth H.,Implant consult,2026-08-22,no_show,google_profile,2026-08-13
+BK-00990,LOC-012,Debra K.,Emergency visit,2026-08-18,confirmed,google_profile,2026-08-10
+BK-00991,LOC-012,William H.,Wisdom tooth consult,2026-08-23,confirmed,website,2026-08-07
+BK-00992,LOC-012,Christopher F.,Wisdom tooth consult,2026-08-10,confirmed,walk_in,2026-08-09
+BK-00993,LOC-012,Charles N.,Teeth whitening,2026-07-21,cancelled,phone,2026-07-13
+BK-00994,LOC-012,Jessica P.,Kids checkup,2026-09-02,confirmed,google_profile,2026-08-24
+BK-00995,LOC-012,Barbara W.,Routine cleaning,2026-09-12,cancelled,walk_in,2026-09-03
+BK-00996,LOC-012,Thomas A.,Invisalign consult,2026-08-06,confirmed,website,2026-07-27
+BK-00997,LOC-012,Richard G.,Implant consult,2026-07-03,confirmed,phone,2026-06-21
+BK-00998,LOC-012,Christopher F.,Emergency visit,2026-07-06,confirmed,walk_in,2026-06-25
+BK-00999,LOC-012,Richard G.,Implant consult,2026-07-05,confirmed,website,2026-06-16
+BK-01000,LOC-012,Lisa M.,Routine cleaning,2026-06-29,confirmed,walk_in,2026-06-28
