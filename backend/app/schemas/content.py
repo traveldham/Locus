@@ -35,6 +35,7 @@ class PostResponse(BaseModel):
 
     id: UUID
     location_id: UUID
+    location_title: str | None = None
     google_post_id: str
     post_type: PostType
     summary: str | None = None
@@ -46,4 +47,6 @@ class PostResponse(BaseModel):
 class PostListResponse(BaseModel):
     items: list[PostResponse]
     total: int
+    limit: int = 0
+    offset: int = 0
     source: DataSource = DataSource.google

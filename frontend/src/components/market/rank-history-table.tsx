@@ -9,6 +9,7 @@ import {
   TableRow,
 } from "@/components/tailgrids/core/table";
 import type { RankPoint } from "@/services/api/market";
+import { Link1AngularRight } from "@tailgrids/icons";
 import { formatWeekLong, isNotFound, localPackLabel, NOT_FOUND_LABEL } from "./rank-format";
 
 /**
@@ -28,6 +29,7 @@ export function RankHistoryTable({ points }: { points: RankPoint[] }) {
           <TableHead scope="col">Week</TableHead>
           <TableHead scope="col">Position</TableHead>
           <TableHead scope="col">Local pack</TableHead>
+          <TableHead scope="col">Result</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -41,6 +43,13 @@ export function RankHistoryTable({ points }: { points: RankPoint[] }) {
             </TableCell>
             <TableCell className="whitespace-nowrap text-text-secondary tabular-nums">
               {localPackLabel(point.rank_in_local_pack)}
+            </TableCell>
+            <TableCell>
+              {point.result_url ? (
+                <a href={point.result_url} target="_blank" rel="noreferrer noopener" className="inline-flex min-h-11 items-center gap-1 text-sm font-medium text-text-secondary hover:text-text-primary hover:underline">
+                  Open result <Link1AngularRight aria-hidden="true" className="size-3.5" />
+                </a>
+              ) : <span className="text-text-disable">—</span>}
             </TableCell>
           </TableRow>
         ))}

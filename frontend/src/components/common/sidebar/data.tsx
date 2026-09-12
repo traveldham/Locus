@@ -4,6 +4,7 @@ import {
   InsightsIcon,
   IntegrationsIcon,
   LocationsIcon,
+  PostsIcon,
   RankingsIcon,
   ReviewsIcon,
 } from "./icon";
@@ -28,6 +29,7 @@ export const NAV_DATA: NavigationSection[] = [
     items: [
       { title: "Locations", icon: <LocationsIcon />, url: "/locations", items: [] },
       { title: "Reviews", icon: <ReviewsIcon />, url: "/reviews", items: [] },
+      { title: "Posts", icon: <PostsIcon />, url: "/posts", items: [] },
       // One entry: performance, search terms and photos are tabs inside the page.
       { title: "Insights", icon: <InsightsIcon />, url: "/insights", items: [] },
     ],

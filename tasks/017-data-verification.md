@@ -30,11 +30,11 @@ Also verified: every filter returns the CSV's own count, pagination reports an h
 
 ## Open items — not yet fixed
 
-### 1. Posts are loaded but unreachable
+### 1. Posts were loaded but unreachable — resolved 2026-09-13
 
-69 posts sit in the database, byte-for-byte correct (all 69 verified by `google_post_id`; the 12 empty `cta_type` values are `NULL`, not coerced). There is **no API route**, so nothing can read them.
+69 posts sit in the database, byte-for-byte correct (all 69 verified by `google_post_id`; the 12 empty `cta_type` values are `NULL`, not coerced). `GET /api/v1/posts` now exposes them with location/type filters and pagination, and `/posts` renders every field in the application.
 
-Loader: `app/services/sample_datasets.py`. Needs an endpoint plus a UI surface, or the data is dead weight.
+Loader: `app/services/sample_datasets.py`. API: `app/api/posts.py`. UI: `frontend/src/components/posts/posts-view.tsx`.
 
 ### 2. `GET /locations` returns a bare array
 

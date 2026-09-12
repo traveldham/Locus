@@ -95,7 +95,10 @@ export function CompetitorsTable({ competitors, yourRank }: CompetitorsTableProp
           <TableRow key={competitor.competitor_place_id}>
             <TableCell className="text-text-primary">
               <span className="block max-w-56 truncate" title={competitor.competitor_name}>
-                {competitor.competitor_name}
+              {competitor.competitor_name}
+              <span className="mt-0.5 block max-w-48 truncate text-xs font-normal text-text-tertiary" title={competitor.competitor_place_id}>
+                {competitor.competitor_place_id}
+              </span>
               </span>
             </TableCell>
             <TableCell className="whitespace-nowrap text-text-primary tabular-nums">

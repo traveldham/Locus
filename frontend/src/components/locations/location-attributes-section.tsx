@@ -29,6 +29,7 @@ export function LocationAttributesSection({ attributes }: { attributes: Location
     .map((attribute) => ({
       attributeId: attribute.attribute_id,
       label: attributeLabel(attribute.attribute_id),
+      valueType: attribute.value_type.replaceAll("_", " "),
       values: attribute.values
         .map(formatValue)
         .filter((value): value is string => value !== null),
@@ -54,6 +55,7 @@ export function LocationAttributesSection({ attributes }: { attributes: Location
             >
               <dt className="min-w-0 text-sm font-medium break-words text-text-primary">
                 {row.label}
+                <span className="ml-2 text-[11px] font-normal tracking-wide text-text-tertiary uppercase">{row.valueType}</span>
               </dt>
               <dd className="text-right text-sm text-text-secondary">
                 {row.values.length === 0 ? (

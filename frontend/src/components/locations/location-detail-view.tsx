@@ -157,6 +157,17 @@ function LocationProfile({ location }: { location: LocationDetail }) {
               <DataField label="Google location name">
                 <span className="break-all">{location.google_location_name}</span>
               </DataField>
+              <DataField label="Google resource name">
+                {location.google_resource_name ? <span className="break-all">{location.google_resource_name}</span> : null}
+              </DataField>
+              <DataField label="Locality / region">
+                {[location.locality, location.administrative_area, location.postal_code, location.region_code].filter(Boolean).join(", ") || null}
+              </DataField>
+              <DataField label="Coordinates">
+                {location.latitude !== null && location.longitude !== null ? (
+                  <span className="tabular-nums">{location.latitude}, {location.longitude}</span>
+                ) : null}
+              </DataField>
             </dl>
           </SectionCard>
 
@@ -169,6 +180,8 @@ function LocationProfile({ location }: { location: LocationDetail }) {
           <SectionCard title="Sync" bodyClassName="px-5 py-4">
             <dl className="grid gap-5">
               <DataField label="Last synced">{formatDateTime(location.last_synced_at)}</DataField>
+              <DataField label="Added to Locus">{formatDateTime(location.created_at)}</DataField>
+              <DataField label="Last updated">{formatDateTime(location.updated_at)}</DataField>
             </dl>
           </SectionCard>
         </div>

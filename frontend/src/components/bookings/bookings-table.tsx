@@ -60,6 +60,9 @@ export function BookingsTable({
               <span className="block max-w-48 truncate" title={booking.customer_name}>
                 {booking.customer_name}
               </span>
+              <span className="mt-0.5 block text-xs text-text-tertiary tabular-nums" title={booking.external_booking_id}>
+                {booking.external_booking_id}
+              </span>
             </TableCell>
             <TableCell className="text-text-secondary">
               <span className="block max-w-56 truncate" title={booking.service}>

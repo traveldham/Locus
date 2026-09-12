@@ -13,6 +13,7 @@ from app.api.insights import router as insights_router
 from app.api.integrations import router as integrations_router
 from app.api.locations import router as locations_router
 from app.api.market import router as market_router
+from app.api.posts import router as posts_router
 from app.api.projects import router as projects_router
 from app.api.reviews import router as reviews_router
 from app.core.config import get_settings
@@ -58,6 +59,7 @@ for router in (
     auth_router,
     integrations_router,
     projects_router,
+    posts_router,
     locations_router,
     reviews_router,
     insights_router,

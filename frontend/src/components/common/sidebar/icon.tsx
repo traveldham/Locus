@@ -6,6 +6,7 @@ import {
   Close,
   MenuMeatballs1,
   Plug1,
+  FileText,
   StarIcon,
   TrendUp2,
   UserMultiple1,
@@ -17,6 +18,10 @@ export function LocationsIcon() {
 
 export function ReviewsIcon() {
   return <StarIcon className="size-4.5" aria-hidden="true" />;
+}
+
+export function PostsIcon() {
+  return <FileText className="size-4.5" aria-hidden="true" />;
 }
 
 export function InsightsIcon() {

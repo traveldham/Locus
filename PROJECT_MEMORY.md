@@ -1,6 +1,6 @@
 # Locus Workspace Memory
 
-Last updated: 2026-09-12
+Last updated: 2026-09-13
 
 ## Workspace structure
 
@@ -55,6 +55,8 @@ review sync run inline and still record a `SyncRun` row each. Do not reintroduce
 without a real quota and a real fleet of locations.
 
 ## Handoff log
+
+- 2026-09-13: Closed the data-to-UI omissions audit. Added a paginated/filterable Posts API and `/posts` UI for all 69 seeded posts. Also surfaced location coordinates/resource metadata and timestamps, booking external IDs, keyword result URLs, competitor Place IDs, and attribute value types. Verification: backend pytest/ruff and frontend ESLint/TypeScript.
 
 - 2026-09-12: Analysed the assignment brief, `DATA.md` and all 14 CSVs. Confirmed the dataset is largely Google Business Profile data — `locations.csv` carries `gbp_location_id`, and `location_daily_kpis.csv` maps one-to-one onto the Performance API's daily metrics.
 - 2026-09-12: Built the FastAPI foundation — auth, organizations, memberships, migrations — and adapted the frontend template into a branded application shell.

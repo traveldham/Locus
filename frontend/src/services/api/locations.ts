@@ -49,13 +49,23 @@ export interface LocationAttribute {
 
 export interface LocationDetail extends LocationSummary {
   google_location_name: string;
+  google_resource_name: string | null;
   place_id: string | null;
+  address_lines: string[] | null;
+  locality: string | null;
+  administrative_area: string | null;
+  postal_code: string | null;
+  region_code: string | null;
+  latitude: number | null;
+  longitude: number | null;
   phone_primary: string | null;
   website_uri: string | null;
   description: string | null;
   opening_date: string | null;
   maps_uri: string | null;
   new_review_uri: string | null;
+  created_at: string | null;
+  updated_at: string | null;
   categories: LocationCategory[];
   hours_periods: LocationHoursPeriod[];
   attributes: LocationAttribute[];

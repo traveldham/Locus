@@ -38,6 +38,7 @@ export interface RankPoint {
   /** Position within the three-result local pack, 1–3, or null when outside it. */
   rank_in_local_pack: number | null;
   found: boolean;
+  result_url: string | null;
 }
 
 export interface Competitor {
@@ -61,6 +62,8 @@ export interface RankHistory {
 
 export interface CompetitorList {
   items: Competitor[];
+  total: number;
+  week_start: string | null;
   source: DataSource;
 }
 
