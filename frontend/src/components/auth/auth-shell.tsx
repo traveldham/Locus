@@ -1,4 +1,24 @@
 import { BrandLogo } from "@/components/common/brand-logo";
+import { Buildings11, MapMarker5, Shield1Check } from "@tailgrids/icons";
+import Image from "next/image";
+
+const PILLARS = [
+  {
+    icon: Buildings11,
+    title: "One workspace per organization",
+    description: "Every teammate signs into a shared, secured workspace scoped to your organization.",
+  },
+  {
+    icon: MapMarker5,
+    title: "Every location, one place",
+    description: "See the locations your organization operates from a single dashboard.",
+  },
+  {
+    icon: Shield1Check,
+    title: "Evidence before action",
+    description: "Built so every future recommendation traces back to the data behind it.",
+  },
+];
 
 export function AuthShell({ title, description, children }: { title: string; description: string; children: React.ReactNode }) {
   return (
@@ -11,10 +31,25 @@ export function AuthShell({ title, description, children }: { title: string; des
           {children}
         </div>
       </section>
-      <aside className="hidden items-end bg-background-gray-primary p-12 lg:flex">
+      <aside className="hidden flex-col justify-between bg-[#44131B] p-12 lg:flex">
+        <Image src="/brand/locus-logo.svg" alt="Locus Intelligence" width={300} height={106} className="h-14 w-auto brightness-0 invert" />
         <div className="max-w-lg">
-          <p className="text-4xl leading-tight font-semibold tracking-[-0.035em] text-text-primary">Turn location data into the next clear business decision.</p>
-          <p className="mt-5 max-w-md text-base leading-7 text-text-tertiary">One secure workspace for your organization, locations, evidence, and recommendations.</p>
+          <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs font-medium tracking-wide text-white/70 uppercase">Workspace</span>
+          <p className="mt-6 text-4xl leading-tight font-semibold tracking-[-0.035em] text-white">Turn location data into the next clear business decision.</p>
+          <p className="mt-5 max-w-md text-base leading-7 text-white/60">A multi-location decision-support workspace for operators and managers who need to know which locations need attention, and why.</p>
+          <ul className="mt-10 space-y-5">
+            {PILLARS.map(({ icon: Icon, title, description }) => (
+              <li key={title} className="flex items-start gap-4">
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-white/10 text-white">
+                  <Icon aria-hidden="true" focusable="false" className="size-4.5" />
+                </span>
+                <div>
+                  <p className="text-sm font-medium text-white">{title}</p>
+                  <p className="mt-1 text-sm leading-6 text-white/55">{description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </aside>
     </main>

@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     default: "Locus Intelligence",
   },
   description: "Location intelligence that turns evidence into clear business actions.",
+  icons: {
+    icon: "/brand/favicon.webp",
+    shortcut: "/brand/favicon.webp",
+    apple: "/brand/favicon.webp",
+  },
 };
 
 export default function RootLayout({
