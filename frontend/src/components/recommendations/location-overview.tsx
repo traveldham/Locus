@@ -1,22 +1,10 @@
 "use client";
 
 import { SectionCard } from "@/components/common/section-card";
-import type {
-  AuditLocation,
-  Benchmark,
-  Severity,
-} from "@/services/api/recommendations";
+import type { AuditLocation, Severity } from "@/services/api/recommendations";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
-import {
-  SEVERITY_ORDER,
-  TONE_TEXT,
-  changeTone,
-  formatChange,
-  formatMetric,
-  formatSigned,
-  scoreTone,
-} from "./audit-format";
+import { SEVERITY_ORDER, TONE_TEXT } from "./audit-format";
 import { issueHref, sectionHref, withParam } from "./audit-nav";
 import { issueSentence } from "./issue-row";
 import { ScoreBar, ScoreRing } from "./score-ring";
@@ -28,15 +16,8 @@ const SEVERITY_TONE = {
 } as const;
 const RANK: Record<Severity, number> = { critical: 0, warning: 1, notice: 2 };
 
-export function LocationOverview({
-  location,
-  benchmark,
-}: {
-  location: AuditLocation;
-  benchmark?: Benchmark;
-}) {
+export function LocationOverview({ location }: { location: AuditLocation }) {
   const health = location.health;
-  const change = health.score_change ?? null;
 
   const severityCount = (level: Severity) =>
     location.by_rule.reduce(
@@ -80,39 +61,13 @@ export function LocationOverview({
             score={health.score}
             grade={health.grade}
             label={
-              change === null
-                ? "No earlier audit to compare"
-                : `${formatSigned(change) ?? "no change"} since the previous audit`
+              health.score === null
+                ? "No category has checks yet, so there is nothing to score."
+                : `${Math.round(health.coverage * 100)}% of checks had enough evidence to run.`
             }
           />
-          <dl className="mt-5 space-y-2 border-t border-card-border pt-4 text-sm">
-            <div className="flex items-center justify-between">
-              <dt className="text-text-secondary">This profile</dt>
-              <dd
-                className={cn(
-                  "font-medium",
-                  TONE_TEXT[scoreTone(health.score)],
-                )}
-              >
-                {health.score ?? "—"}
-              </dd>
-            </div>
-            <div className="flex items-center justify-between">
-              <dt className="text-text-secondary">Median profile here</dt>
-              <dd className="font-medium text-text-primary">
-                {benchmark?.median_score ?? "—"}
-              </dd>
-            </div>
-            <div className="flex items-center justify-between">
-              <dt className="text-text-secondary">Best quarter</dt>
-              <dd className="font-medium text-text-primary">
-                {benchmark?.top_quartile_score ?? "—"}
-              </dd>
-            </div>
-          </dl>
-          <p className="mt-3 text-xs leading-5 text-text-tertiary">
-            {benchmark?.basis ??
-              "Compared against the other locations in this organization."}
+          <p className="mt-4 border-t border-card-border pt-3 text-xs leading-5 text-text-tertiary">
+            {health.basis}
           </p>
         </SectionCard>
 
@@ -157,12 +112,17 @@ export function LocationOverview({
           </p>
         </SectionCard>
 
-        <SectionCard title="Scores by area">
+        <SectionCard title="Scores by category">
           <ul className="space-y-3.5">
             {health.categories.map((row) => (
               <li key={row.category}>
                 <div className="flex flex-wrap items-baseline justify-between gap-x-3">
-                  <span className="text-sm text-text-primary">{row.label}</span>
+                  <span className="text-sm text-text-primary">
+                    {row.label}
+                    <span className="ml-1.5 text-xs text-text-tertiary">
+                      {row.weight}%
+                    </span>
+                  </span>
                   <span className="text-xs text-text-tertiary">
                     {row.score === null
                       ? "not evaluated"
@@ -250,48 +210,6 @@ export function LocationOverview({
             </li>
           ) : null}
         </ul>
-      </SectionCard>
-
-      <SectionCard title="Measurements" bodyClassName="px-5 py-4">
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {location.metrics.map((metric) => {
-            const tone = changeTone(metric);
-            const delta = formatChange(metric.change_pct);
-            return (
-              <div
-                key={metric.key}
-                className="rounded-xl border border-card-border px-4 py-3.5"
-              >
-                <p className="text-[11px] font-medium tracking-[0.08em] text-text-tertiary uppercase">
-                  {metric.label}
-                </p>
-                <p
-                  className={cn(
-                    "mt-1.5 text-xl leading-7 font-semibold tracking-[-0.02em]",
-                    metric.available
-                      ? "text-text-primary"
-                      : "text-text-disable",
-                  )}
-                >
-                  {formatMetric(metric)}
-                </p>
-                {delta ? (
-                  <p
-                    className={cn(
-                      "mt-0.5 text-xs font-medium",
-                      TONE_TEXT[tone],
-                    )}
-                  >
-                    {delta} vs previous window
-                  </p>
-                ) : null}
-                <p className="mt-1.5 text-xs leading-5 text-text-tertiary">
-                  {metric.basis}
-                </p>
-              </div>
-            );
-          })}
-        </div>
       </SectionCard>
     </div>
   );

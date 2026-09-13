@@ -31,6 +31,9 @@ def serialize_project(project: Project, location_count: int) -> ProjectResponse:
     return ProjectResponse(
         id=project.id,
         name=project.name,
+        website_url=project.website_url,
+        description=project.description,
+        services=project.services,
         slug=project.slug,
         status=project.status,
         location_count=location_count,
@@ -42,6 +45,9 @@ def serialize_detail(project: Project, locations: list[LocationSummary]) -> Proj
     return ProjectDetailResponse(
         id=project.id,
         name=project.name,
+        website_url=project.website_url,
+        description=project.description,
+        services=project.services,
         slug=project.slug,
         status=project.status,
         location_count=len(locations),
@@ -173,6 +179,9 @@ async def create_project(
     project = Project(
         organization_id=organization_id,
         name=payload.name,
+        website_url=payload.website_url,
+        description=payload.description,
+        services=payload.services,
         slug=await unique_slug(db, organization_id, payload.name),
         google_connection_id=payload.google_connection_id,
         created_by_user_id=current_user.id,
@@ -209,6 +218,9 @@ async def update_project(
         project.name = payload.name
     if payload.status is not None:
         project.status = payload.status
+    for field in ("website_url", "description", "services"):
+        if field in payload.model_fields_set:
+            setattr(project, field, getattr(payload, field))
     await db.commit()
     count = await db.scalar(
         select(func.count(ProjectLocation.id)).where(ProjectLocation.project_id == project.id)

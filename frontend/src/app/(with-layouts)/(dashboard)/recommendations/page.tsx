@@ -31,10 +31,7 @@ export default function LocationsIndexPage() {
             onRetry={() => void directory.refetch()}
           />
         ) : (
-          <LocationDirectory
-            rows={directory.data?.items ?? []}
-            benchmark={directory.data?.benchmark}
-          />
+          <LocationDirectory rows={directory.data?.items ?? []} />
         )}
       </div>
     </div>

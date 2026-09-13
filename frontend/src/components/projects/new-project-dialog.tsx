@@ -22,6 +22,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState, type FormEvent } from "react";
 import {
+  BusinessFields,
+  businessPayload,
+  emptyBusiness,
+} from "./business-fields";
+import {
   PROJECT_NAME_MAX_LENGTH,
   PROJECT_NAME_MIN_LENGTH,
   projectNameError,
@@ -37,6 +42,7 @@ export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
   const createProject = useCreateProjectMutation();
 
   const [name, setName] = useState("");
+  const [business, setBusiness] = useState(emptyBusiness);
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState<ReadonlySet<string>>(
     new Set<string>(),
@@ -90,6 +96,7 @@ export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
     const project = await createProject
       .mutateAsync({
         name: trimmedName,
+        ...businessPayload(business),
         ...(locationIds.length > 0 ? { location_ids: locationIds } : {}),
       })
       .catch(() => null);
@@ -110,8 +117,7 @@ export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
           <DialogHeader className="border-b border-card-border px-6 py-5 pr-14">
             <DialogTitle>New project</DialogTitle>
             <p className="text-sm leading-6 text-text-tertiary">
-              Name the project, then choose which of your imported locations
-              belong in it. A location can sit in more than one project.
+              Add your business details, then choose its imported locations.
             </p>
           </DialogHeader>
 
@@ -124,10 +130,10 @@ export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
               className="gap-1.5"
               aria-describedby="new-project-name-hint"
             >
-              <FieldLabel>Project name</FieldLabel>
+              <FieldLabel>Business name</FieldLabel>
               <Input
                 className="h-11 w-full"
-                placeholder="For example, Northern region"
+                placeholder="For example, Brightpath Dental"
               />
               <p
                 id="new-project-name-hint"
@@ -138,6 +144,12 @@ export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
                 locations.
               </p>
             </TextField>
+
+            <BusinessFields
+              value={business}
+              onChange={setBusiness}
+              disabled={createProject.isPending}
+            />
 
             <div className="mt-7">
               <div className="flex flex-wrap items-end justify-between gap-3">

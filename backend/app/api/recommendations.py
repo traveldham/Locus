@@ -4,6 +4,7 @@ from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Query
 from sqlalchemy import select
+from sqlalchemy.orm import selectinload
 
 from app.api.dependencies import DbSession
 from app.api.scoping import OrganizationId
@@ -20,15 +21,15 @@ from app.services.recommendations.policy import (
     CATEGORIES,
     CRITICAL_SCORE,
     ENUMERATED_FLOOR,
+    GRADES,
     RULE_DOCS,
     SEVERITY_PENALTY,
     WARNING_SCORE,
 )
+from app.services.recommendations.queue import ACTIVE, active_job, start_audit
 from app.services.recommendations.runs import latest_run, latest_runs, serialize
-from app.services.recommendations.scoring import median
 from app.services.recommendations.snapshot import fingerprint, read_snapshot
 from app.services.recommendations.types import ENGINE_VERSION, GenerateRequest
-from app.tasks.audit import generate_audit
 
 router = APIRouter(prefix="/recommendations", tags=["Recommendations"])
 
@@ -55,7 +56,7 @@ async def policy(organization_id: OrganizationId):
         "severity_bands": {"critical": CRITICAL_SCORE, "warning": WARNING_SCORE, "notice": 0},
         "severity_penalty": SEVERITY_PENALTY,
         "enumerated_floor": ENUMERATED_FLOOR,
-        "grades": {"excellent": 90, "good": 75, "fair": 50, "poor": 0},
+        "grades": dict(GRADES),
         "rules": [{"rule": rule, **docs} for rule, docs in RULE_DOCS.items()],
         "notes": [
             "Checks without enough evidence are excluded from the score, not scored as passes.",
@@ -65,36 +66,46 @@ async def policy(organization_id: OrganizationId):
     }
 
 
-ACTIVE = (AuditJobStatus.pending, AuditJobStatus.running)
-
-
 def serialize_job(job: AuditJob) -> dict:
+    """The pipeline and its six workers. Progress is the share of workers finished."""
+    workers = sorted(job.workers, key=lambda w: list(CATEGORIES).index(w.category))
+    done = sum(w.status in (AuditJobStatus.succeeded, AuditJobStatus.failed) for w in workers)
+    if job.status == AuditJobStatus.pending:
+        stage, progress = "Queued", 0
+    elif job.status == AuditJobStatus.running:
+        stage = (
+            "Reading stored records"
+            if job.snapshot is None
+            else f"{done} of {len(workers)} workers finished"
+        )
+        progress = round(100 * done / len(workers)) if workers else 0
+    else:
+        stage, progress = ("Done" if job.status == AuditJobStatus.succeeded else "Failed"), 100
     return {
         "id": str(job.id),
         "location_id": str(job.location_id),
         "status": job.status.value,
-        "stage": job.stage,
-        "progress": job.progress,
+        "stage": stage,
+        "progress": progress,
         "as_of": str(job.as_of),
         "run_id": str(job.run_id) if job.run_id else None,
         "error": job.error,
         "created_at": job.created_at.isoformat(),
         "started_at": job.started_at.isoformat() if job.started_at else None,
         "finished_at": job.finished_at.isoformat() if job.finished_at else None,
+        "workers": [
+            {
+                "category": w.category,
+                "label": CATEGORIES[w.category]["label"],
+                "status": w.status.value,
+                "stage": w.stage,
+                "error": w.error,
+                "started_at": w.started_at.isoformat() if w.started_at else None,
+                "finished_at": w.finished_at.isoformat() if w.finished_at else None,
+            }
+            for w in workers
+        ],
     }
-
-
-async def active_job(db, organization_id: UUID, location_id: UUID) -> AuditJob | None:
-    return await db.scalar(
-        select(AuditJob)
-        .where(
-            AuditJob.organization_id == organization_id,
-            AuditJob.location_id == location_id,
-            AuditJob.status.in_(ACTIVE),
-        )
-        .order_by(AuditJob.created_at.desc())
-        .limit(1)
-    )
 
 
 async def owned_location(db, organization_id: UUID, location_id: UUID) -> Location:
@@ -116,30 +127,17 @@ async def create_run(payload: GenerateRequest, organization_id: OrganizationId, 
     if as_of > today:
         raise HTTPException(422, "Analysis date must not be in the future")
     await owned_location(db, organization_id, payload.location_id)
-    running = await active_job(db, organization_id, payload.location_id)
-    if running is not None:
-        # One audit at a time per profile: two concurrent runs would compare against
-        # the same prior audit and race to become that profile's current one.
-        return serialize_job(running)
-    job = AuditJob(
-        organization_id=organization_id,
-        location_id=payload.location_id,
-        as_of=as_of,
-        config=payload.config.model_dump(),
-    )
-    db.add(job)
-    await db.commit()
-    task = generate_audit.delay(str(job.id))
-    job.task_id = task.id
-    await db.commit()
-    await db.refresh(job)
+    job = await start_audit(db, organization_id, payload.location_id, as_of, payload.config)
+    await db.refresh(job, ["workers"])
     return serialize_job(job)
 
 
 @router.get("/jobs/{job_id}")
 async def job_status(job_id: UUID, organization_id: OrganizationId, db: DbSession):
     job = await db.scalar(
-        select(AuditJob).where(AuditJob.id == job_id, AuditJob.organization_id == organization_id)
+        select(AuditJob)
+        .options(selectinload(AuditJob.workers))
+        .where(AuditJob.id == job_id, AuditJob.organization_id == organization_id)
     )
     if job is None:
         raise HTTPException(404, "Audit job not found")
@@ -177,16 +175,16 @@ async def overview(
         job.location_id: job
         for job in (
             await db.scalars(
-                select(AuditJob).where(
-                    AuditJob.organization_id == organization_id, AuditJob.status.in_(ACTIVE)
-                )
+                select(AuditJob)
+                .options(selectinload(AuditJob.workers))
+                .where(AuditJob.organization_id == organization_id, AuditJob.status.in_(ACTIVE))
             )
         ).all()
     }
     items = []
     for location in locations:
         run = runs.get(location.id)
-        summary = run.report["locations"][0] if run and run.report.get("locations") else None
+        summary = run.report.get("location") if run else None
         items.append(
             {
                 "location_id": str(location.id),
@@ -203,7 +201,7 @@ async def overview(
                 "job": serialize_job(jobs[location.id]) if location.id in jobs else None,
             }
         )
-    return {"items": items, "benchmark": benchmark(list(runs.values()))}
+    return {"items": items}
 
 
 def severity_counts(run: RecommendationRun) -> dict:
@@ -213,38 +211,13 @@ def severity_counts(run: RecommendationRun) -> dict:
     return counts
 
 
-def benchmark(runs: list[RecommendationRun]) -> dict:
-    """Compared against the other profiles in this organization, nothing external."""
-    scores = [
-        run.report["locations"][0]["health"]["score"]
-        for run in runs
-        if run.report.get("locations") and run.report["locations"][0]["health"]["score"] is not None
-    ]
-    return {
-        "median_score": median(scores),
-        "top_quartile_score": (
-            sorted(scores)[max(0, round(len(scores) * 0.75) - 1)] if scores else None
-        ),
-        "locations_scored": len(scores),
-        "basis": (
-            "Compared against the other locations in this organization. "
-            "No external or industry benchmark is used."
-        ),
-    }
-
-
 @router.get("/latest")
 async def latest(location_id: UUID, organization_id: OrganizationId, db: DbSession):
     """One profile's audit, plus any job still working on its next one."""
     await owned_location(db, organization_id, location_id)
     job = await active_job(db, organization_id, location_id)
     run = await latest_run(db, organization_id, location_id)
-    payload = {
-        "run": None,
-        "inputs_changed": False,
-        "job": serialize_job(job) if job else None,
-        "benchmark": benchmark(await latest_runs(db, organization_id)),
-    }
+    payload = {"run": None, "inputs_changed": False, "job": serialize_job(job) if job else None}
     if run is None:
         return payload
     current = await read_snapshot(db, organization_id, location_id)

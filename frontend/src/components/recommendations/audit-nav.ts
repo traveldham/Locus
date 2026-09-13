@@ -31,9 +31,10 @@ export function sectionCounts(location: AuditLocation | undefined) {
   return location ? { "/issues": location.count } : {};
 }
 
+/** The run's one location, if it is the one the route is about. */
 export function findLocation(
   run: RecommendationRun | null | undefined,
   locationId: string,
 ) {
-  return run?.locations.find((l) => l.id === locationId);
+  return run && run.location.id === locationId ? run.location : undefined;
 }

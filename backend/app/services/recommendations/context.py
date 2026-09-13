@@ -1,3 +1,6 @@
+"""What a worker is handed: one profile's snapshot, the analysis date, and a way to
+record verdicts and findings. Workers never touch the database."""
+
 from datetime import date, timedelta
 from math import isfinite
 
@@ -43,11 +46,8 @@ class Context:
         start = end - timedelta(days=days - 1)
         return [r for r in rows if day(r.get(field)) and start <= day(r[field]) <= end]
 
-    def fresh(self, rows: list[dict], field: str) -> bool:
-        return bool(self.window(rows, field, self.config.freshness_days + 1))
-
     def assess(self, rule: str, state: State, reason: str, issues: int = 0, evaluated: int = 1):
-        """Exactly one coverage verdict per location and rule, including when it fires."""
+        """Exactly one coverage verdict per rule, including when it fires."""
         self.evaluations.append(
             Evaluation(
                 location_id=self.location["id"],
@@ -85,7 +85,7 @@ class Context:
         subject: str = "",
     ):
         """Record one finding. Rules that enumerate every affected keyword, term or
-        field pass a `subject` so each finding keeps a stable identity across runs."""
+        field pass a `subject` so each finding keeps a stable identity."""
         category = RULE_CATEGORY[rule]
         self.items.append(
             Recommendation(

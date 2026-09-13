@@ -37,6 +37,7 @@ from app.models import (
     User,
     utcnow,
 )
+from app.sample_business import populate_business
 from app.services.gbp_sync import (
     link_locations_to_project,
     upsert_external_accounts,
@@ -178,6 +179,7 @@ async def seed_project(
         db.add(project)
         await db.flush()
     project.google_connection_id = connection.id
+    populate_business(project)
     await link_locations_to_project(db, project, locations)
     return project
 

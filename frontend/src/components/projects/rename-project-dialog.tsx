@@ -13,6 +13,8 @@ import { Backdrop } from "@/components/tailgrids/core/overlay";
 import { TextField } from "@/components/tailgrids/core/text-field";
 import { useUpdateProjectMutation } from "@/hooks/use-projects";
 import { useState, type FormEvent } from "react";
+import type { Project } from "@/services/api/projects";
+import { BusinessFields, businessPayload } from "./business-fields";
 import { apiErrorMessage } from "./errors";
 import {
   PROJECT_NAME_MAX_LENGTH,
@@ -23,6 +25,7 @@ import {
 interface RenameProjectDialogProps {
   projectId: string;
   currentName: string;
+  business: Pick<Project, "website_url" | "description" | "services">;
   onClose: () => void;
   onRenamed: (name: string) => void;
 }
@@ -30,17 +33,22 @@ interface RenameProjectDialogProps {
 export function RenameProjectDialog({
   projectId,
   currentName,
+  business,
   onClose,
   onRenamed,
 }: RenameProjectDialogProps) {
   const rename = useUpdateProjectMutation(projectId);
   const [name, setName] = useState(currentName);
+  const [details, setDetails] = useState({
+    website: business.website_url ?? "",
+    description: business.description ?? "",
+    services: (business.services ?? []).join("\n"),
+  });
   const [wasSubmitted, setWasSubmitted] = useState(false);
 
   const validationError = projectNameError(name);
   const showValidationError = wasSubmitted && validationError !== null;
   const trimmed = name.trim();
-  const isUnchanged = trimmed === currentName.trim();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -49,14 +57,9 @@ export function RenameProjectDialog({
     setWasSubmitted(true);
     if (validationError) return;
 
-    if (isUnchanged) {
-      onClose();
-      return;
-    }
-
     // A failure keeps the dialog open with what was typed still in the field.
     const project = await rename
-      .mutateAsync({ name: trimmed })
+      .mutateAsync({ name: trimmed, ...businessPayload(details) })
       .catch(() => null);
     if (!project) return;
 
@@ -72,10 +75,13 @@ export function RenameProjectDialog({
         if (!isOpen) onClose();
       }}
     >
-      <Dialog className="w-full max-w-lg p-0" showCloseButton={false}>
+      <Dialog
+        className="max-h-[90vh] w-full max-w-lg overflow-y-auto p-0"
+        showCloseButton={false}
+      >
         <form onSubmit={handleSubmit}>
           <DialogHeader className="px-6 pt-6">
-            <DialogTitle>Rename project</DialogTitle>
+            <DialogTitle>Edit business details</DialogTitle>
             <p className="text-sm leading-6 text-text-tertiary">
               The web address of this project does not change, so existing links
               keep working. Its locations are not affected.
@@ -96,7 +102,7 @@ export function RenameProjectDialog({
                   : "rename-project-hint"
               }
             >
-              <FieldLabel>Project name</FieldLabel>
+              <FieldLabel>Business name</FieldLabel>
               <Input className="h-11 w-full" />
               {showValidationError ? (
                 <p
@@ -117,6 +123,12 @@ export function RenameProjectDialog({
               )}
             </TextField>
 
+            <BusinessFields
+              value={details}
+              onChange={setDetails}
+              disabled={rename.isPending}
+            />
+
             {rename.isError ? (
               <p
                 role="alert"
@@ -124,7 +136,7 @@ export function RenameProjectDialog({
               >
                 {apiErrorMessage(
                   rename.error,
-                  "We could not rename this project. Please try again.",
+                  "We could not save the business details. Please try again.",
                 )}
               </p>
             ) : null}
@@ -142,7 +154,7 @@ export function RenameProjectDialog({
               Cancel
             </Button>
             <Button type="submit" size="xl" isDisabled={rename.isPending}>
-              {rename.isPending ? "Saving…" : "Save name"}
+              {rename.isPending ? "Saving…" : "Save business details"}
             </Button>
           </DialogFooter>
         </form>

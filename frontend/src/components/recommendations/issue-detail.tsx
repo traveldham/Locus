@@ -7,7 +7,7 @@ import type {
 } from "@/services/api/recommendations";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { SEVERITY_COLOR, TONE_TEXT } from "./audit-format";
 import { sectionHref } from "./audit-nav";
 import { EvidencePanel } from "./evidence-panel";
@@ -139,11 +139,6 @@ export function IssueDetail({
                 {cluster.worst_severity}
               </Badge>
             ) : null}
-            {cluster.new_issues ? (
-              <Badge color="blue" size="md">
-                {cluster.new_issues} new
-              </Badge>
-            ) : null}
           </div>
         </div>
 
@@ -207,7 +202,7 @@ export function IssueDetail({
 
       <div className="flex flex-wrap items-center gap-3">
         <label className="sr-only" htmlFor="finding-search">
-          Search affected locations
+          Search affected subjects
         </label>
         <input
           id="finding-search"
@@ -217,7 +212,7 @@ export function IssueDetail({
             setSearch(e.target.value);
             setPage(0);
           }}
-          placeholder="Search locations or subjects"
+          placeholder="Search subjects"
           className="min-h-9 w-64 rounded-lg border border-card-border bg-card-background px-3 text-sm text-text-primary focus-visible:outline-primary-500"
         />
         <span className="text-sm text-text-tertiary">
@@ -253,8 +248,8 @@ export function IssueDetail({
           </thead>
           <tbody>
             {visible.map((item) => (
-              <>
-                <tr key={item.key} className="border-b border-card-border">
+              <Fragment key={item.key}>
+                <tr className="border-b border-card-border">
                   <th
                     scope="row"
                     className="px-5 py-3 text-left align-top font-normal text-text-primary"
@@ -283,10 +278,7 @@ export function IssueDetail({
                   </td>
                 </tr>
                 {openKey === item.key ? (
-                  <tr
-                    key={`${item.key}-evidence`}
-                    className="border-b border-card-border"
-                  >
+                  <tr className="border-b border-card-border">
                     <td
                       colSpan={3}
                       className="bg-background-gray-secondary px-5 pb-4"
@@ -298,7 +290,7 @@ export function IssueDetail({
                     </td>
                   </tr>
                 ) : null}
-              </>
+              </Fragment>
             ))}
             {!visible.length ? (
               <tr>

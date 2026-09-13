@@ -4,7 +4,7 @@ import { SectionCard } from "@/components/common/section-card";
 import { Badge } from "@/components/tailgrids/core/badge";
 import { Button } from "@/components/tailgrids/core/button";
 import { useGenerateRecommendations } from "@/hooks/use-recommendations";
-import type { Benchmark, DirectoryRow } from "@/services/api/recommendations";
+import type { DirectoryRow } from "@/services/api/recommendations";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
 import {
@@ -27,29 +27,12 @@ function audited(row: DirectoryRow): string {
 }
 
 /** Every profile with its own audit. Each is audited separately, on its own schedule. */
-export function LocationDirectory({
-  rows,
-  benchmark,
-}: {
-  rows: DirectoryRow[];
-  benchmark?: Benchmark;
-}) {
+export function LocationDirectory({ rows }: { rows: DirectoryRow[] }) {
   const generate = useGenerateRecommendations();
   const never = rows.filter((row) => !row.audited_at).length;
 
   return (
-    <SectionCard
-      title={`Locations (${rows.length})`}
-      bodyClassName="px-0 py-0"
-      actions={
-        benchmark && benchmark.locations_scored > 1 ? (
-          <span className="text-xs text-text-tertiary">
-            Median {benchmark.median_score} · best quarter{" "}
-            {benchmark.top_quartile_score}
-          </span>
-        ) : null
-      }
-    >
+    <SectionCard title={`Locations (${rows.length})`} bodyClassName="px-0 py-0">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[52rem] border-collapse text-sm">
           <thead>

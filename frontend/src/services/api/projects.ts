@@ -6,6 +6,9 @@ export type ProjectStatus = "active" | "archived";
 export interface Project {
   id: string;
   name: string;
+  website_url: string | null;
+  description: string | null;
+  services: string[];
   slug: string;
   status: ProjectStatus;
   location_count: number;
@@ -18,6 +21,9 @@ export interface ProjectDetail extends Project {
 
 export interface CreateProjectInput {
   name: string;
+  website_url?: string | null;
+  description?: string | null;
+  services?: string[];
   /** Optional when the locations were already imported into the organization. */
   google_connection_id?: string;
   location_ids?: string[];
@@ -26,6 +32,9 @@ export interface CreateProjectInput {
 /** A rename leaves the slug untouched on the API side. */
 export interface UpdateProjectInput {
   name?: string;
+  website_url?: string | null;
+  description?: string | null;
+  services?: string[];
   status?: ProjectStatus;
 }
 

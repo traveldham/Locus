@@ -129,7 +129,7 @@ export function ProjectDetailView({ projectId }: { projectId: string }) {
                   onPress={() => setIsRenameOpen(true)}
                 >
                   <Pencil1 aria-hidden="true" focusable="false" />
-                  Rename
+                  Edit business details
                   <span className="sr-only"> {data.name}</span>
                 </Button>
                 <Button
@@ -197,6 +197,59 @@ export function ProjectDetailView({ projectId }: { projectId: string }) {
             </div>
           ) : null}
 
+          <section
+            aria-label="Business details"
+            className="mt-6 rounded-xl border border-card-border bg-card-background p-5"
+          >
+            <h2 className="text-lg font-semibold text-text-primary">
+              Business details
+            </h2>
+            <dl className="mt-4 space-y-4 text-sm">
+              <div>
+                <dt className="font-medium text-text-primary">Website</dt>
+                <dd className="mt-1 break-all text-text-secondary">
+                  {data.website_url ? (
+                    <a
+                      href={data.website_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-11 items-center underline underline-offset-4"
+                    >
+                      {data.website_url}
+                    </a>
+                  ) : (
+                    "Not supplied"
+                  )}
+                </dd>
+              </div>
+              <div>
+                <dt className="font-medium text-text-primary">Services</dt>
+                <dd className="mt-2 text-text-secondary">
+                  {data.services?.length ? (
+                    <ul className="flex flex-wrap gap-2">
+                      {data.services.map((service) => (
+                        <li
+                          key={service}
+                          className="rounded-lg bg-background-gray-secondary px-3 py-2"
+                        >
+                          {service}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    "Not supplied"
+                  )}
+                </dd>
+              </div>
+              <div>
+                <dt className="font-medium text-text-primary">Description</dt>
+                <dd className="mt-1 max-w-3xl whitespace-pre-wrap break-words leading-6 text-text-secondary">
+                  {data.description || "Not supplied"}
+                </dd>
+              </div>
+            </dl>
+          </section>
+
           <ProjectLocationsPanel
             projectId={projectId}
             projectName={data.name}
@@ -214,9 +267,10 @@ export function ProjectDetailView({ projectId }: { projectId: string }) {
             <RenameProjectDialog
               projectId={projectId}
               currentName={data.name}
+              business={data}
               onClose={() => setIsRenameOpen(false)}
               onRenamed={(name) =>
-                setStatusMessage(`This project is now called ${name}.`)
+                setStatusMessage(`Business details saved for ${name}.`)
               }
             />
           ) : null}

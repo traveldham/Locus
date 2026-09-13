@@ -1,10 +1,8 @@
 "use client";
 
 import type { RuleCluster } from "@/services/api/recommendations";
-import { cn } from "@/utils/cn";
 import Link from "next/link";
 import { useState } from "react";
-import { TONE_TEXT } from "./audit-format";
 import { issueHref } from "./audit-nav";
 
 export function plural(n: number, noun: string) {
@@ -65,16 +63,11 @@ export function IssueRow({
             How to fix
           </button>
         </p>
-        {rule.new_issues ? (
-          <Link
-            href={issueHref(locationId, rule.rule)}
-            className={cn("shrink-0 text-sm", TONE_TEXT.error)}
-          >
-            {rule.new_issues} new
-          </Link>
-        ) : (
-          <span className="shrink-0 text-sm text-text-tertiary">no change</span>
-        )}
+        {rule.worst_severity ? (
+          <span className="shrink-0 text-sm text-text-tertiary">
+            {rule.worst_severity}
+          </span>
+        ) : null}
       </div>
       {open ? (
         <div className="grid gap-4 border-t border-card-border bg-background-gray-secondary px-5 py-4 text-sm leading-6 sm:grid-cols-2">

@@ -20,7 +20,7 @@ from app.models.organization import (
 )
 from app.models.performance import PerformanceDaily, SearchTermMonthly
 from app.models.project import Project, ProjectLocation, ProjectStatus
-from app.models.recommendation import AuditJob, AuditJobStatus, RecommendationRun
+from app.models.recommendation import AuditJob, AuditJobStatus, AuditWorker, RecommendationRun
 from app.models.review import Review
 from app.models.seo import (
     CompetitorObservation,
@@ -35,6 +35,7 @@ __all__ = [
     "ActionStatus",
     "AuditJob",
     "AuditJobStatus",
+    "AuditWorker",
     "AuthProvider",
     "AttributeCatalogItem",
     "Base",

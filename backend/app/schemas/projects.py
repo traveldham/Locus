@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import Annotated
 from uuid import UUID
 
-from pydantic import AfterValidator, BaseModel, ConfigDict
+from pydantic import AfterValidator, BaseModel, ConfigDict, Field, HttpUrl, field_validator
 
 from app.models import ProjectStatus
 from app.schemas.locations import LocationSummary
@@ -21,13 +21,47 @@ def clean_name(value: str) -> str:
 ProjectName = Annotated[str, AfterValidator(clean_name)]
 
 
-class ProjectCreate(BaseModel):
+class BusinessFields(BaseModel):
+    website_url: str | None = Field(None, max_length=2083)
+    description: str | None = Field(None, max_length=5000)
+    services: list[str] = Field(default_factory=list, max_length=100)
+
+    @field_validator("website_url")
+    @classmethod
+    def validate_website(cls, value):
+        if value is None or not value.strip():
+            return None
+        url = HttpUrl(value.strip())
+        if url.username or url.password:
+            raise ValueError("Website URL must not include credentials")
+        return str(url)
+
+    @field_validator("description")
+    @classmethod
+    def trim_description(cls, value):
+        return value.strip() or None if value is not None else None
+
+    @field_validator("services")
+    @classmethod
+    def clean_services(cls, values):
+        result, seen = [], set()
+        for value in values:
+            value = value.strip()
+            if not 1 <= len(value) <= 120:
+                raise ValueError("Each service must be between 1 and 120 characters")
+            if value.casefold() not in seen:
+                result.append(value)
+                seen.add(value.casefold())
+        return result
+
+
+class ProjectCreate(BusinessFields):
     name: ProjectName
     google_connection_id: UUID | None = None
     location_ids: list[UUID] | None = None
 
 
-class ProjectUpdate(BaseModel):
+class ProjectUpdate(BusinessFields):
     name: ProjectName | None = None
     status: ProjectStatus | None = None
 
@@ -41,6 +75,9 @@ class ProjectResponse(BaseModel):
 
     id: UUID
     name: str
+    website_url: str | None = None
+    description: str | None = None
+    services: list[str] = Field(default_factory=list)
     slug: str
     status: ProjectStatus
     location_count: int = 0

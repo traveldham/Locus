@@ -4,27 +4,20 @@ from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field
 
-ENGINE_VERSION = "2.0.0"
+ENGINE_VERSION = "3.0.0"
 
 Severity = Literal["critical", "warning", "notice"]
 State = Literal["triggered", "clear", "insufficient_data", "suppressed"]
 
 
 class EngineConfig(BaseModel):
+    """Tunable thresholds. Empty until a worker declares the knobs it needs.
+
+    Each worker adds its own fields here as it is built, so a threshold is never buried
+    in a rule body. `extra="forbid"` rejects a knob no worker reads.
+    """
+
     model_config = ConfigDict(extra="forbid", frozen=True)
-    window_days: int = Field(28, ge=14, le=84, multiple_of=7)
-    outcome_window_days: int = Field(90, ge=28, le=365)
-    min_daily_coverage: float = Field(0.8, ge=0.5, le=1)
-    decline_fraction: float = Field(0.2, gt=0, le=0.8)
-    decline_notice_fraction: float = Field(0.1, gt=0, le=0.8)
-    min_impressions: int = Field(200, ge=1)
-    min_reviews: int = Field(5, ge=3)
-    reply_wait_days: int = Field(3, ge=1, le=30)
-    booking_wait_days: int = Field(2, ge=1, le=30)
-    min_completed_visits: int = Field(20, ge=5)
-    failed_visit_fraction: float = Field(0.2, gt=0, le=1)
-    post_gap_days: int = Field(45, ge=14, le=180)
-    freshness_days: int = Field(14, ge=1, le=90)
 
 
 class GenerateRequest(BaseModel):
@@ -61,7 +54,6 @@ class Recommendation(BaseModel):
     limitation: str
     evidence: list[Evidence]
     href: str
-    change: str = "new"
     explanation_source: str = "deterministic"
 
 
@@ -97,16 +89,3 @@ class HealthScore(BaseModel):
     issues: int
     categories: list[CategoryScore]
     basis: str
-
-
-class Metric(BaseModel):
-    key: str
-    label: str
-    category: str
-    value: float | None = None
-    unit: Literal["count", "percent", "rating", "days", "rank"] = "count"
-    previous: float | None = None
-    change_pct: float | None = None
-    direction: Literal["up_is_good", "down_is_good", "neutral"] = "neutral"
-    available: bool = True
-    basis: str = ""

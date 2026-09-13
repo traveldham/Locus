@@ -1,16 +1,10 @@
-from collections.abc import Awaitable, Callable
-from datetime import date
 from uuid import UUID
 
 from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models import Location, RecommendationRun
-from app.services.recommendations.engine import analyze, compare
-from app.services.recommendations.snapshot import read_snapshot
-from app.services.recommendations.types import ENGINE_VERSION, EngineConfig
-
-Progress = Callable[[str, int], Awaitable[None]]
+from app.models import AuditJob, RecommendationRun
+from app.services.recommendations.types import ENGINE_VERSION
 
 
 async def latest_run(
@@ -43,54 +37,28 @@ async def latest_runs(db: AsyncSession, organization_id: UUID) -> list[Recommend
     return list(seen.values())
 
 
-async def generate(
-    db: AsyncSession,
-    organization_id: UUID,
-    location_id: UUID,
-    as_of: date,
-    config: EngineConfig | None = None,
-    on_stage: Progress | None = None,
-) -> RecommendationRun:
-    async def stage(label: str, percent: int) -> None:
-        if on_stage is not None:
-            await on_stage(label, percent)
+async def save_run(db: AsyncSession, job: AuditJob, report: dict) -> RecommendationRun:
+    """Publish a finished audit as the profile's current one, replacing the last.
 
-    owner = await db.scalar(
-        select(Location.id).where(
-            Location.id == location_id, Location.organization_id == organization_id
-        )
-    )
-    if owner is None:
-        raise LookupError("Location not found in this organization")
-
-    await stage("Reading stored records", 10)
-    snapshot = await read_snapshot(db, organization_id, location_id)
-    await stage("Running checks", 45)
-    report = analyze(snapshot, as_of, config)
-    await stage("Comparing with the previous audit", 80)
-    previous = await latest_run(db, organization_id, location_id)
-    compare(report, previous.report if previous else None)
-    await stage("Saving evidence", 90)
+    One audit per profile: the previous one is deleted, not archived.
+    """
     run = RecommendationRun(
-        organization_id=organization_id,
-        location_id=location_id,
-        as_of=as_of,
+        organization_id=job.organization_id,
+        location_id=job.location_id,
+        as_of=job.as_of,
         engine_version=ENGINE_VERSION,
         fingerprint=report["fingerprint"],
         report=report,
-        snapshot=snapshot,
+        snapshot=job.snapshot,
     )
     db.add(run)
-    await db.commit()
-    # One audit per profile. The previous one is kept only long enough to compare
-    # against, then replaced: there is no audit history to browse or store.
+    await db.flush()
     await db.execute(
         delete(RecommendationRun).where(
-            RecommendationRun.location_id == location_id,
+            RecommendationRun.location_id == job.location_id,
             RecommendationRun.id != run.id,
         )
     )
-    await db.commit()
     return run
 
 

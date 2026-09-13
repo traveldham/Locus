@@ -6,7 +6,11 @@ export const metadata: Metadata = {
   description: "A health score, issues and evidence for each location.",
 };
 
-export default function RecommendationsLayout({ children }: { children: ReactNode }) {
+export default function RecommendationsLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   // The audit reads `?run=` and its filters from the URL, which needs a boundary above.
   return <Suspense fallback={null}>{children}</Suspense>;
 }

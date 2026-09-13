@@ -1,9 +1,23 @@
 "use client";
 
-import type { AuditJob } from "@/services/api/recommendations";
+import type { AuditJob, AuditWorker } from "@/services/api/recommendations";
 import { cn } from "@/utils/cn";
 
-/** Live status of a queued audit. The audit already on screen stays readable. */
+const WORKER_TONE: Record<AuditWorker["status"], string> = {
+  pending: "bg-text-disable",
+  running: "bg-primary-500 animate-pulse",
+  succeeded: "bg-badge-success-text",
+  failed: "bg-badge-error-text",
+};
+
+const WORKER_TEXT: Record<AuditWorker["status"], string> = {
+  pending: "Queued",
+  running: "Running",
+  succeeded: "Done",
+  failed: "Failed",
+};
+
+/** Live status of one audit pipeline and the six workers inside it. */
 export function AuditProgress({
   job,
   hasPrevious = true,
@@ -22,9 +36,12 @@ export function AuditProgress({
       >
         <p className="font-medium">This audit did not finish.</p>
         <p className="mt-1 leading-6">
-          {job.error ?? "The worker stopped without recording a reason."} The
-          audit below is the last one that completed.
+          {job.error ?? "The worker stopped without recording a reason."}
+          {hasPrevious
+            ? " The audit below is the last one that completed."
+            : ""}
         </p>
+        <WorkerList workers={job.workers} />
       </div>
     );
   }
@@ -73,6 +90,33 @@ export function AuditProgress({
           style={{ width: `${Math.max(job.progress, 4)}%` }}
         />
       </div>
+      <WorkerList workers={job.workers} />
     </div>
+  );
+}
+
+/** One line per worker. Progress above is how many of these have finished. */
+function WorkerList({ workers }: { workers: AuditWorker[] }) {
+  if (!workers.length) return null;
+  return (
+    <ul className="mt-3 grid gap-x-6 gap-y-1.5 text-xs sm:grid-cols-2 lg:grid-cols-3">
+      {workers.map((worker) => (
+        <li key={worker.category} className="flex items-center gap-2">
+          <span
+            className={cn(
+              "size-2 shrink-0 rounded-full",
+              WORKER_TONE[worker.status],
+            )}
+            aria-hidden="true"
+          />
+          <span className="text-text-primary">{worker.label}</span>
+          <span className="ml-auto text-text-tertiary">
+            {worker.status === "failed" && worker.error
+              ? worker.error
+              : WORKER_TEXT[worker.status]}
+          </span>
+        </li>
+      ))}
+    </ul>
   );
 }

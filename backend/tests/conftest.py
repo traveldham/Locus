@@ -60,7 +60,7 @@ def stub_queue(monkeypatch: pytest.MonkeyPatch) -> Iterator[list[str]]:
         queued.append(job_id)
         return Queued()
 
-    monkeypatch.setattr("app.api.recommendations.generate_audit.delay", delay)
+    monkeypatch.setattr("app.tasks.audit.generate_audit.delay", delay)
     yield queued
 
 

@@ -60,6 +60,32 @@ without a real quota and a real fleet of locations.
 
 ## Handoff log
 
+- 2026-09-13: Projects now retain business website_url, description and services JSON list
+  alongside the existing name/IDs/status/ownership fields. Migration `20260913_0011`
+  applied locally. Create/update/list/detail APIs expose these fields; partial updates
+  preserve omitted values, null clears URL/description, [] clears services. HTTP(S)-only
+  URL validation, service length/count limits and case-insensitive deduplication added.
+  Frontend New project, Edit business details and project detail now capture/show them.
+  `app/sample_business.py` derives the demo domain/services from supplied CSVs and fills
+  missing metadata during future seeding without replacing operator-entered values.
+  Backfilled the six existing Brightpath-linked projects only; kept their names, IDs,
+  location memberships and all operational data. No full reseed. Verified 9 project tests,
+  targeted ruff, frontend TypeScript/ESLint/build. Existing audit-engine edits preserved.
+
+- 2026-09-13 (evening): **Audit engine reset to a six-worker skeleton.** Decision by the
+  user: one audit = one pipeline of six independent category workers (profile,
+  reputation, visibility, operations, performance, content; weights 20/20/25/15/10/10),
+  every rerun runs all six, each worker's status is tracked on its own and the job's
+  progress is the share of workers finished. Removed: all ten previous rules and their
+  thresholds, the previous-vs-current comparison, the metrics panel, the organization
+  benchmark, the export CLI and the committed assignment output. Kept: snapshot, evidence
+  model, verdict states, category-weighted scoring, job queue, API and UI shell. Workers
+  live in `backend/app/services/recommendations/categories/` and are empty; the next
+  step is building the profile worker in depth, then the other five one at a time.
+  Migration `20260913_0010` (applied locally) adds `audit_workers`, moves the snapshot
+  onto the job, drops job stage/progress, and deletes old runs. Engine version 3.0.0.
+  Verification: 106 backend tests, ruff, tsc and eslint all clean.
+
 - 2026-09-13: Reviews now shows server-total badges for Needs reply, All and Replied.
   The shared count query follows the list's active-project/location/rating/search scope
   and existing reply/remove/sync invalidation. Counts are not page-length counts; stale

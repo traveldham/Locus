@@ -2,8 +2,8 @@ from datetime import date, datetime
 from enum import StrEnum
 from uuid import UUID, uuid4
 
-from sqlalchemy import JSON, Date, DateTime, Enum, ForeignKey, Integer, String, Text
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import JSON, Date, DateTime, Enum, ForeignKey, String, Text
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import Base, utcnow
 
@@ -35,10 +35,11 @@ class AuditJobStatus(StrEnum):
 
 
 class AuditJob(Base):
-    """One queued request to audit a single business profile.
+    """One audit of a single business profile: the pipeline that holds six workers.
 
-    The job is the unit the API hands back and the UI polls. It owns the outcome so a
-    finished audit stays findable after the broker has forgotten the task.
+    The job reads the profile's records once, so every worker judges the same inputs,
+    and it owns the outcome so a finished audit stays findable after the broker has
+    forgotten the tasks. Progress is not stored here; it is the workers' progress.
     """
 
     __tablename__ = "audit_jobs"
@@ -56,9 +57,8 @@ class AuditJob(Base):
     as_of: Mapped[date] = mapped_column(Date)
     config: Mapped[dict] = mapped_column(JSON)
     task_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
-    # What the worker is doing right now, in words the dashboard can show directly.
-    stage: Mapped[str] = mapped_column(String(80), default="Queued")
-    progress: Mapped[int] = mapped_column(Integer, default=0)
+    # The inputs every worker reads. Filled once when the job starts.
+    snapshot: Mapped[dict | None] = mapped_column(JSON, nullable=True)
     run_id: Mapped[UUID | None] = mapped_column(
         ForeignKey("recommendation_runs.id", ondelete="SET NULL"), nullable=True
     )
@@ -66,3 +66,36 @@ class AuditJob(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
     started_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     finished_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+
+    workers: Mapped[list["AuditWorker"]] = relationship(
+        back_populates="job", cascade="all, delete-orphan", order_by="AuditWorker.category"
+    )
+
+
+class AuditWorker(Base):
+    """One category's share of an audit, run and tracked on its own.
+
+    Six of these make up a job. Each owns its status, stage and result, so the dashboard
+    can show which category is still working and a failure in one names that category.
+    """
+
+    __tablename__ = "audit_workers"
+
+    id: Mapped[UUID] = mapped_column(primary_key=True, default=uuid4)
+    job_id: Mapped[UUID] = mapped_column(
+        ForeignKey("audit_jobs.id", ondelete="CASCADE"), index=True
+    )
+    category: Mapped[str] = mapped_column(String(32))
+    status: Mapped[AuditJobStatus] = mapped_column(
+        Enum(AuditJobStatus, name="audit_job_status", create_constraint=False),
+        default=AuditJobStatus.pending,
+    )
+    stage: Mapped[str] = mapped_column(String(80), default="Queued")
+    task_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    # The worker's findings and verdicts, assembled into the report once all six land.
+    result: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    error: Mapped[str | None] = mapped_column(Text, nullable=True)
+    started_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    finished_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+
+    job: Mapped[AuditJob] = relationship(back_populates="workers")

@@ -2,7 +2,7 @@ from datetime import datetime
 from enum import StrEnum
 from uuid import UUID, uuid4
 
-from sqlalchemy import DateTime, Enum, ForeignKey, String, UniqueConstraint
+from sqlalchemy import JSON, DateTime, Enum, ForeignKey, String, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import Base, TimestampMixin, utcnow
@@ -25,6 +25,9 @@ class Project(TimestampMixin, Base):
         ForeignKey("organizations.id", ondelete="CASCADE"), index=True
     )
     name: Mapped[str] = mapped_column(String(160))
+    website_url: Mapped[str | None] = mapped_column(String(2083), nullable=True)
+    description: Mapped[str | None] = mapped_column(Text, nullable=True)
+    services: Mapped[list[str]] = mapped_column(JSON, default=list)
     slug: Mapped[str] = mapped_column(String(100))
     status: Mapped[ProjectStatus] = mapped_column(
         Enum(ProjectStatus, name="project_status"), default=ProjectStatus.active

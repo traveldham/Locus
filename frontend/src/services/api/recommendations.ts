@@ -8,6 +8,11 @@ export interface Evidence {
   values: Record<string, unknown>;
 }
 export type Severity = "critical" | "warning" | "notice";
+export type VerdictState =
+  | "triggered"
+  | "clear"
+  | "insufficient_data"
+  | "suppressed";
 export interface Recommendation {
   key: string;
   rule: string;
@@ -26,7 +31,6 @@ export interface Recommendation {
   limitation: string;
   evidence: Evidence[];
   href: string;
-  change: string;
 }
 export interface CategoryScore {
   category: string;
@@ -49,40 +53,15 @@ export interface HealthScore {
   issues: number;
   categories: CategoryScore[];
   basis: string;
-  previous_score?: number | null;
-  score_change?: number | null;
 }
-export interface LocationMetric {
-  key: string;
-  label: string;
-  category: string;
-  value: number | null;
-  unit: "count" | "percent" | "rating" | "days" | "rank";
-  previous: number | null;
-  change_pct: number | null;
-  direction: "up_is_good" | "down_is_good" | "neutral";
-  available: boolean;
-  basis: string;
-}
-export interface AuditLocation {
-  id: string;
-  name: string;
-  source: string;
-  source_location_id: string | null;
-  count: number;
-  health: HealthScore;
-  metrics: LocationMetric[];
-  /** This location's own check inventory — every check, not only the failing ones. */
-  by_rule: RuleCluster[];
-}
+/** One check as the audit reports it: whether it fired, passed or could not be judged. */
 export interface RuleCluster {
   rule: string;
   category: string;
   category_label: string;
   /** What this check is, in one phrase — not one finding's title. */
   label: string;
-  /** Set only on a single-location inventory, where one verdict exists. */
-  state: "triggered" | "clear" | "insufficient_data" | "suppressed" | null;
+  state: VerdictState | null;
   reason: string;
   /** `<count> <unit(s)> <predicate>` composes the one-line issue row. */
   unit: string;
@@ -95,72 +74,63 @@ export interface RuleCluster {
   checks: string;
   fix: string;
   issues: number;
-  new_issues: number;
-  locations_affected: number;
-  locations_passed: number;
-  locations_not_evaluated: number;
   subjects_failed: number;
   subjects_examined: number;
   worst_severity: Severity | null;
   max_score: number;
   severity: Partial<Record<Severity, number>>;
 }
-export interface FleetHealth {
-  score: number | null;
-  grade: HealthScore["grade"];
-  locations_scored: number;
-  locations_total: number;
-  worst_locations: { id: string; name: string; score: number }[];
-  severity: Partial<Record<Severity, number>>;
-  by_category: {
-    category: string;
-    label: string;
-    weight: number;
-    issues: number;
-    locations_affected: number;
-    worst_severity: Severity | null;
-    average_score: number | null;
-  }[];
+export interface AuditLocation {
+  id: string;
+  name: string;
+  source: string | null;
+  source_location_id: string | null;
+  count: number;
+  health: HealthScore;
+  /** Every check, not only the failing ones. */
   by_rule: RuleCluster[];
-  basis: string;
-  previous_score?: number | null;
-  score_change?: number | null;
 }
 export interface RecommendationRun {
   id: string;
+  location_id: string;
   created_at: string;
   as_of: string;
   engine_version: string;
   fingerprint: string;
-  items: Recommendation[];
   config: Record<string, number>;
-  health: FleetHealth;
   categories: { category: string; label: string; weight: number }[];
-  locations: AuditLocation[];
+  location: AuditLocation;
+  items: Recommendation[];
   evaluations: {
     location_id: string;
     rule: string;
     category: string;
-    state: string;
+    state: VerdictState;
     reason: string;
     issues: number;
     evaluated: number;
   }[];
-  changes: {
-    key: string;
-    location_name: string;
-    title: string;
-    change: string;
-    reason: string;
-  }[];
   limitations: string[];
 }
+export type JobStatus = "pending" | "running" | "succeeded" | "failed";
+/** One category's share of an audit, tracked on its own. */
+export interface AuditWorker {
+  category: string;
+  label: string;
+  status: JobStatus;
+  stage: string;
+  error: string | null;
+  started_at: string | null;
+  finished_at: string | null;
+}
+/** One audit of one profile: the pipeline the six workers run inside. */
 export interface AuditJob {
   id: string;
   location_id: string;
-  status: "pending" | "running" | "succeeded" | "failed";
-  /** What the worker is doing right now, in words the dashboard shows directly. */
+  status: JobStatus;
+  /** What the pipeline is doing right now, in words the dashboard shows directly. */
   stage: string;
+  /** Share of workers finished. Says nothing about how complete the profile is. */
   progress: number;
   as_of: string;
   run_id: string | null;
@@ -168,12 +138,7 @@ export interface AuditJob {
   created_at: string;
   started_at: string | null;
   finished_at: string | null;
-}
-export interface Benchmark {
-  median_score: number | null;
-  top_quartile_score: number | null;
-  locations_scored: number;
-  basis: string;
+  workers: AuditWorker[];
 }
 /** One row of the profile directory: each location carries its own audit. */
 export interface DirectoryRow {
@@ -192,7 +157,7 @@ export interface DirectoryRow {
 }
 export const recommendationApi = {
   overview: (projectId?: string | null) =>
-    apiRequest<{ items: DirectoryRow[]; benchmark: Benchmark }>(
+    apiRequest<{ items: DirectoryRow[] }>(
       `/recommendations/overview${projectId ? `?project_id=${encodeURIComponent(projectId)}` : ""}`,
     ),
   latest: (locationId: string) =>
@@ -201,7 +166,6 @@ export const recommendationApi = {
       inputs_changed: boolean;
       /** Set while an audit is being generated. The run above stays readable. */
       job: AuditJob | null;
-      benchmark: Benchmark;
     }>(`/recommendations/latest?location_id=${encodeURIComponent(locationId)}`),
   generate: (locationId: string) =>
     apiRequest<AuditJob>("/recommendations/runs", {

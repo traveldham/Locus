@@ -8,7 +8,9 @@ export default function IssueDetailPage() {
   const rule = String(useParams().rule ?? "");
   return (
     <LocationScope>
-      {(run, location) => <IssueDetail run={run} location={location} rule={rule} />}
+      {(run, location) => (
+        <IssueDetail run={run} location={location} rule={rule} />
+      )}
     </LocationScope>
   );
 }

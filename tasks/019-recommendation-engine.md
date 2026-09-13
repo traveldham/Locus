@@ -1,6 +1,9 @@
 # 019 — Changing-data location audit engine
 
-Status: COMPLETE. Authorized 2026-09-13.
+Status: RESET on 2026-09-13. The rule set below was retired; the engine is now an
+empty six-worker skeleton (see PROJECT_MEMORY.md handoff and
+`backend/app/services/recommendations/README.md`). Workers are built one at a time,
+profile first. The text below describes the retired version.
 
 Build a reusable engine over the current organization's database: versioned field contracts,
 immutable evidence snapshots, configurable rules, explicit abstentions, graded severity,
