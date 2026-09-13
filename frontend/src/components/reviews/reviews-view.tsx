@@ -10,10 +10,13 @@ import { useLocationsQuery } from "@/hooks/use-locations";
 import {
   useReviewsQuery,
   useSyncReviewsMutation,
-  useUnrepliedReviewCountQuery,
+  useReviewStatusCountsQuery,
 } from "@/hooks/use-reviews";
 import { LOCATIONS_MAX_PAGE_SIZE } from "@/services/api/locations";
-import { REVIEWS_PAGE_SIZE, type ReviewListParams } from "@/services/api/reviews";
+import {
+  REVIEWS_PAGE_SIZE,
+  type ReviewListParams,
+} from "@/services/api/reviews";
 import { cn } from "@/utils/cn";
 import { Comment1 } from "@tailgrids/icons";
 import { useMemo, useState } from "react";
@@ -35,7 +38,9 @@ function repliedParam(replied: ReviewFilterState["replied"]) {
 }
 
 export function ReviewsView() {
-  const [filters, setFilters] = useState<ReviewFilterState>(DEFAULT_REVIEW_FILTERS);
+  const [filters, setFilters] = useState<ReviewFilterState>(
+    DEFAULT_REVIEW_FILTERS,
+  );
   const [offset, setOffset] = useState(0);
 
   // The search box drives a server query, so it settles before a request is sent.
@@ -62,7 +67,7 @@ export function ReviewsView() {
   );
 
   const reviews = useReviewsQuery(listParams);
-  const unrepliedCount = useUnrepliedReviewCountQuery(scope);
+  const statusCounts = useReviewStatusCountsQuery(scope);
   const locations = useLocationsQuery();
   const sync = useSyncReviewsMutation();
 
@@ -89,7 +94,9 @@ export function ReviewsView() {
       <PageHeader
         title="Reviews"
         description="Every Google review across your locations, with the replies you have published under your business name."
-        actions={<SyncReviewsButton onSync={handleSync} isSyncing={sync.isPending} />}
+        actions={
+          <SyncReviewsButton onSync={handleSync} isSyncing={sync.isPending} />
+        }
       />
 
       {sync.isSuccess ? (
@@ -98,7 +105,8 @@ export function ReviewsView() {
           className="mt-6 rounded-lg bg-badge-success-background px-3.5 py-2.5 text-sm leading-5 text-badge-success-text"
         >
           Synced {sync.data.total} review{sync.data.total === 1 ? "" : "s"} from{" "}
-          {sync.data.locations_synced} location{sync.data.locations_synced === 1 ? "" : "s"}.
+          {sync.data.locations_synced} location
+          {sync.data.locations_synced === 1 ? "" : "s"}.
         </p>
       ) : null}
 
@@ -118,9 +126,19 @@ export function ReviewsView() {
           onClear={clearFilters}
           locations={locationOptions}
           isLoadingLocations={locations.isPending}
-          isLocationListPartial={locationOptions.length === LOCATIONS_MAX_PAGE_SIZE}
-          unrepliedCount={unrepliedCount.data}
+          isLocationListPartial={
+            locationOptions.length === LOCATIONS_MAX_PAGE_SIZE
+          }
+          counts={statusCounts.isError ? undefined : statusCounts.data}
         />
+        {statusCounts.isError ? (
+          <button
+            className="mt-2 min-h-11 text-sm text-text-secondary underline"
+            onClick={() => void statusCounts.refetch()}
+          >
+            Review counts unavailable. Retry
+          </button>
+        ) : null}
       </div>
 
       <div className="mt-5">
@@ -179,7 +197,10 @@ export function ReviewsView() {
                     isSyncing={sync.isPending}
                     appearance="fill"
                   />
-                  <LinkButton href="/settings/integrations" appearance="outline">
+                  <LinkButton
+                    href="/settings/integrations"
+                    appearance="outline"
+                  >
                     Check Google connection
                   </LinkButton>
                 </>

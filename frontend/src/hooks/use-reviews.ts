@@ -55,28 +55,36 @@ export function useReviewQuery(id: string) {
 }
 
 /**
- * Counts the reviews still waiting on a reply within the caller's other filters.
+ * Counts all reply states within the same scope as the review list.
  * Only `total` is read, so the page size is the smallest the API accepts.
  */
-export function useUnrepliedReviewCountQuery(
-  scoped: Omit<ReviewListParams, "replied" | "limit" | "offset"> = {},
-  { enabled = true }: { enabled?: boolean } = {},
+export function useReviewStatusCountsQuery(
+  params: Omit<ReviewListParams, "replied" | "limit" | "offset"> = {},
 ) {
+  const projectId = useActiveProjectId();
   const resolved: ReviewListParams = {
-    ...scoped,
-    replied: false,
+    projectId: params.locationId ? undefined : (projectId ?? undefined),
+    ...params,
     limit: 1,
     offset: 0,
   };
 
   return useQuery({
-    queryKey: reviewKeys.list(resolved),
-    queryFn: () => reviewsApi.list(resolved),
-    enabled,
-    placeholderData: keepPreviousData,
+    queryKey: [...reviewKeys.all, "status-counts", resolved],
+    queryFn: async () => {
+      const [all, unreplied, replied] = await Promise.all([
+        reviewsApi.list(resolved),
+        reviewsApi.list({ ...resolved, replied: false }),
+        reviewsApi.list({ ...resolved, replied: true }),
+      ]);
+      return {
+        all: all.total,
+        unreplied: unreplied.total,
+        replied: replied.total,
+      };
+    },
     retry: 1,
     staleTime: 30_000,
-    select: (data) => data.total,
   });
 }
 

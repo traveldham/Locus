@@ -8,6 +8,7 @@ import { ThreeDots } from "@/components/common/sidebar/icon";
 import { cn } from "@/utils/cn";
 import { BrandLogo } from "@/components/common/brand-logo";
 import React from "react";
+import { ConnectionStatus } from "./connection-status";
 
 //  Main Header
 export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
@@ -53,6 +54,10 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
           </div>
         </div>
 
+        <div className="mt-2 flex justify-center xl:hidden">
+          <ConnectionStatus />
+        </div>
+
         {/* Desktop layout (xl+) - original layout */}
         <div className="hidden items-center justify-between xl:flex">
           {/* Left Side - project switcher, replacing the sidebar's Projects entry */}
@@ -60,6 +65,7 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
 
           {/* Right Side - Actions */}
           <div className="flex items-center gap-2.5">
+            <ConnectionStatus />
             <ThemeToggle />
             <UserProfileButton />
           </div>

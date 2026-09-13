@@ -60,6 +60,17 @@ without a real quota and a real fleet of locations.
 
 ## Handoff log
 
+- 2026-09-13: Reviews now shows server-total badges for Needs reply, All and Replied.
+  The shared count query follows the list's active-project/location/rating/search scope
+  and existing reply/remove/sync invalidation. Counts are not page-length counts; stale
+  previous-scope values are not carried across filter changes. Mobile badges stack to fit.
+
+- 2026-09-13: Removed sidebar Integrations/empty Settings group; integration details are
+  now reached from a header connection-status link on desktop and mobile. It reads the
+  shared Google connection query and says “Google account connected” with a small “Demo” label
+  for active demo connections. No Search Console integration exists; do not mislabel GBP
+  demo data as Search Console connected. Loading, disconnected and error states are shown.
+
 - 2026-09-13: Added Google-style preview as the default location-detail view, with a
   switch back to management and preserved edit workflow. Components:
   `frontend/src/components/locations/preview/`. Overview, all paginated reviews/replies,
