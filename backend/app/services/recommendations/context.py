@@ -2,7 +2,6 @@
 record verdicts and findings. Workers never touch the database."""
 
 from datetime import date, timedelta
-from math import isfinite
 
 from app.services.recommendations.policy import CATEGORIES, RULE_CATEGORY, severity_of
 from app.services.recommendations.types import (
@@ -12,22 +11,9 @@ from app.services.recommendations.types import (
     Recommendation,
     State,
 )
+from app.services.recommendations.values import day, number
 
-
-def day(value) -> date | None:
-    try:
-        return date.fromisoformat(str(value)[:10])
-    except (ValueError, TypeError):
-        return None
-
-
-def number(value) -> bool:
-    return (
-        isinstance(value, (int, float))
-        and not isinstance(value, bool)
-        and isfinite(value)
-        and value >= 0
-    )
+__all__ = ["Context", "day", "number"]
 
 
 class Context:

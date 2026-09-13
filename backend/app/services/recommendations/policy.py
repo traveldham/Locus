@@ -6,6 +6,7 @@ themselves live with their worker under `categories/`; this module only gathers 
 """
 
 from app.services.recommendations.categories import WORKERS
+from app.services.recommendations.grading import graded
 from app.services.recommendations.types import Severity
 
 # One entry per worker, in audit order. Weights sum to 100.
@@ -55,10 +56,16 @@ def grade_of(score: int | None) -> str:
     return next(name for name, floor in GRADES if score >= floor)
 
 
-def graded(base: int, magnitude: float, span: int, cap: int) -> int:
-    """Scale a rule's floor score by how far past its threshold the finding sits.
-
-    `magnitude` is a 0..1 fraction of the way from the trigger point to the point
-    the policy treats as fully severe. Bands are policy, not calibrated risk.
-    """
-    return int(min(cap, base + round(span * max(0.0, min(1.0, magnitude)))))
+__all__ = [
+    "CATEGORIES",
+    "CRITICAL_SCORE",
+    "ENUMERATED_FLOOR",
+    "GRADES",
+    "RULE_CATEGORY",
+    "RULE_DOCS",
+    "SEVERITY_PENALTY",
+    "WARNING_SCORE",
+    "grade_of",
+    "graded",
+    "severity_of",
+]

@@ -11,13 +11,21 @@ State = Literal["triggered", "clear", "insufficient_data", "suppressed"]
 
 
 class EngineConfig(BaseModel):
-    """Tunable thresholds. Empty until a worker declares the knobs it needs.
+    """Tunable thresholds, declared by the worker that reads them.
 
     Each worker adds its own fields here as it is built, so a threshold is never buried
-    in a rule body. `extra="forbid"` rejects a knob no worker reads.
+    in a rule body. `extra="forbid"` rejects a knob no worker reads. Every value is an
+    operating policy, not a Google rule, unless the comment says otherwise.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
+
+    # Profile worker
+    description_min_chars: int = Field(250, ge=50, le=750)
+    description_max_chars: int = Field(750, ge=100, le=750)  # Google's hard cap
+    description_max_term_repeats: int = Field(4, ge=2, le=20)
+    min_additional_categories: int = Field(2, ge=0, le=9)  # Google allows up to 9
+    attribute_coverage_min: float = Field(0.5, gt=0, le=1)
 
 
 class GenerateRequest(BaseModel):
@@ -34,6 +42,23 @@ class Evidence(BaseModel):
     fields: list[str]
     calculation: str
     values: dict
+
+
+class Suggestion(BaseModel):
+    """A generated draft for a field the audit found missing or weak.
+
+    Never a fact: the deterministic verdict stands on its own, and a person reviews the
+    suggestion before anything is published. Facts only the business knows (phone,
+    address, hours, website) are never drafted.
+    """
+
+    field: str
+    value: str | list[str] | dict
+    reason: str
+    confidence: Literal["high", "medium", "low"]
+    source: str
+    model: str
+    generated_at: str
 
 
 class Recommendation(BaseModel):
@@ -55,6 +80,7 @@ class Recommendation(BaseModel):
     evidence: list[Evidence]
     href: str
     explanation_source: str = "deterministic"
+    suggestion: Suggestion | None = None
 
 
 class Evaluation(BaseModel):

@@ -13,6 +13,17 @@ export type VerdictState =
   | "clear"
   | "insufficient_data"
   | "suppressed";
+/** A generated draft for a field the audit found missing or weak. Reviewed by a
+ *  person before anything is published; never a fact. */
+export interface Suggestion {
+  field: string;
+  value: string | string[] | Record<string, boolean>;
+  reason: string;
+  confidence: "high" | "medium" | "low";
+  source: string;
+  model: string;
+  generated_at: string;
+}
 export interface Recommendation {
   key: string;
   rule: string;
@@ -31,6 +42,8 @@ export interface Recommendation {
   limitation: string;
   evidence: Evidence[];
   href: string;
+  explanation_source: string;
+  suggestion: Suggestion | null;
 }
 export interface CategoryScore {
   category: string;
@@ -73,12 +86,55 @@ export interface RuleCluster {
   subject_predicate: string | null;
   checks: string;
   fix: string;
+  /** Which part of the category the check belongs to, for the completeness strip. */
+  group?: string;
+  /** How long the fix usually takes: minutes, hour, afternoon. */
+  effort?: string;
+  suggests?: string | null;
   issues: number;
   subjects_failed: number;
   subjects_examined: number;
   worst_severity: Severity | null;
   max_score: number;
   severity: Partial<Record<Severity, number>>;
+}
+/** The profile as a customer sees it, from the profile worker. */
+export interface ProfileCard {
+  name: string | null;
+  primary_category: string | null;
+  additional_categories: (string | null)[];
+  phone: string | null;
+  website: string | null;
+  description: string | null;
+  address: {
+    lines: string[];
+    locality: string | null;
+    administrative_area: string | null;
+    postal_code: string | null;
+  };
+  has_pin: boolean;
+  hours: { day: string; open: string; close: string }[];
+  verified: boolean | null;
+  open_status: string | null;
+  opening_date: string | null;
+  has_logo: boolean | null;
+  has_cover: boolean | null;
+  photo_count: number | null;
+  attributes_yes: string[];
+  attributes_no: string[];
+}
+export interface AuditSummary {
+  text: string;
+  source: string;
+  model: string | null;
+  generated_at: string;
+}
+export interface AuditChanges {
+  previous_audit_at: string | null;
+  first_audit: boolean;
+  fixed: string[];
+  new: string[];
+  previous_state: Record<string, VerdictState | null>;
 }
 export interface AuditLocation {
   id: string;
@@ -89,6 +145,22 @@ export interface AuditLocation {
   health: HealthScore;
   /** Every check, not only the failing ones. */
   by_rule: RuleCluster[];
+  /** Finding keys to do first: worst severity, draft ready, quickest. */
+  priorities: string[];
+  cards: { profile?: ProfileCard };
+  summaries: Record<string, AuditSummary>;
+  suggestions: Record<
+    string,
+    { status: string; reason?: string; error?: string; model?: string }
+  >;
+  changes?: AuditChanges;
+}
+export interface ScorePoint {
+  run_id: string;
+  at: string;
+  score: number | null;
+  issues: number;
+  coverage: number;
 }
 export interface RecommendationRun {
   id: string;
@@ -166,6 +238,8 @@ export const recommendationApi = {
       inputs_changed: boolean;
       /** Set while an audit is being generated. The run above stays readable. */
       job: AuditJob | null;
+      /** Past audits' scores, oldest first. */
+      history: ScorePoint[];
     }>(`/recommendations/latest?location_id=${encodeURIComponent(locationId)}`),
   generate: (locationId: string) =>
     apiRequest<AuditJob>("/recommendations/runs", {

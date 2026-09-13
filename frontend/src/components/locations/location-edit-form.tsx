@@ -9,7 +9,11 @@ import {
   AlertTitle,
 } from "@/components/tailgrids/core/alert";
 import { Button } from "@/components/tailgrids/core/button";
-import { FieldDescription, FieldError, FieldLabel } from "@/components/tailgrids/core/field";
+import {
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+} from "@/components/tailgrids/core/field";
 import { Input } from "@/components/tailgrids/core/input";
 import { Spinner } from "@/components/tailgrids/core/spinner";
 import { TextArea } from "@/components/tailgrids/core/text-area";
@@ -30,6 +34,7 @@ import { cn } from "@/utils/cn";
 import { Buildings11, ClockThree } from "@tailgrids/icons";
 import { useMemo, useState, type FormEvent } from "react";
 import { Label, Radio, RadioGroup } from "react-aria-components";
+import type { DraftHandoff } from "@/components/recommendations/draft-handoff";
 import { EditPreviewDialog } from "./edit-preview-dialog";
 import { editFieldLabel } from "./edit-fields";
 import { HoursEditor } from "./hours-editor";
@@ -44,10 +49,22 @@ import {
 
 const DESCRIPTION_MAX_LENGTH = 750;
 
-const OPEN_STATUS_OPTIONS: { value: LocationOpenStatus; label: string; hint: string }[] = [
+const OPEN_STATUS_OPTIONS: {
+  value: LocationOpenStatus;
+  label: string;
+  hint: string;
+}[] = [
   { value: "open", label: "Open", hint: "Trading as normal" },
-  { value: "closed_temporarily", label: "Temporarily closed", hint: "Reopening later" },
-  { value: "closed_permanently", label: "Permanently closed", hint: "Will not reopen" },
+  {
+    value: "closed_temporarily",
+    label: "Temporarily closed",
+    hint: "Reopening later",
+  },
+  {
+    value: "closed_permanently",
+    label: "Permanently closed",
+    hint: "Will not reopen",
+  },
 ];
 
 export interface AppliedEdit {
@@ -57,6 +74,8 @@ export interface AppliedEdit {
 
 interface LocationEditFormProps {
   location: LocationDetail;
+  /** A value drafted by the audit, prefilled into its field for review. */
+  draft?: DraftHandoff | null;
   onCancel: () => void;
   onApplied: (result: AppliedEdit) => void;
 }
@@ -71,27 +90,44 @@ function toNullable(value: string) {
  * through: it dry-runs the edit, shows the API's own diff, and only the confirmation
  * in that dialog reaches the live listing.
  */
-export function LocationEditForm({ location, onCancel, onApplied }: LocationEditFormProps) {
-  const [title, setTitle] = useState(location.title);
+export function LocationEditForm({
+  location,
+  draft = null,
+  onCancel,
+  onApplied,
+}: LocationEditFormProps) {
+  const [title, setTitle] = useState(
+    draft?.field === "title" ? draft.value : location.title,
+  );
   const [phone, setPhone] = useState(location.phone_primary ?? "");
   const [website, setWebsite] = useState(location.website_uri ?? "");
-  const [description, setDescription] = useState(location.description ?? "");
-  const [openStatus, setOpenStatus] = useState<LocationOpenStatus | null>(location.open_status);
-  const [periods, setPeriods] = useState<HoursDraftPeriod[]>(() => toDraftPeriods(location.hours_periods));
+  const [description, setDescription] = useState(
+    draft?.field === "description" ? draft.value : (location.description ?? ""),
+  );
+  const [openStatus, setOpenStatus] = useState<LocationOpenStatus | null>(
+    location.open_status,
+  );
+  const [periods, setPeriods] = useState<HoursDraftPeriod[]>(() =>
+    toDraftPeriods(location.hours_periods),
+  );
 
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   /**
    * The exact payload that was sent for preview. Confirming must apply this and not a
    * payload rebuilt later, so the diff the person approved is the diff Google gets.
    */
-  const [reviewedRequest, setReviewedRequest] = useState<LocationEditRequest | null>(null);
+  const [reviewedRequest, setReviewedRequest] =
+    useState<LocationEditRequest | null>(null);
   /** A response that succeeded as a request but came back as a failed action. */
   const [rejection, setRejection] = useState<ApiError | null>(null);
 
   const preview = useLocationEditPreviewMutation(location.id);
   const apply = useApplyLocationEditMutation(location.id);
 
-  const preservedHours = useMemo(() => nonRegularPeriods(location.hours_periods), [location.hours_periods]);
+  const preservedHours = useMemo(
+    () => nonRegularPeriods(location.hours_periods),
+    [location.hours_periods],
+  );
   const hoursErrors = useMemo(() => draftPeriodErrors(periods), [periods]);
   const hadRegularHours = useMemo(
     () => regularPeriods(location.hours_periods).length > 0,
@@ -112,7 +148,9 @@ export function LocationEditForm({ location, onCancel, onApplied }: LocationEdit
     website_uri: toNullable(website),
     description: toNullable(description),
     ...(openStatus ? { open_status: openStatus } : {}),
-    ...(isHoursUnset ? {} : { hours_periods: toApiPeriods(periods, preservedHours) }),
+    ...(isHoursUnset
+      ? {}
+      : { hours_periods: toApiPeriods(periods, preservedHours) }),
   };
 
   function clearFieldError(field: string) {
@@ -133,7 +171,8 @@ export function LocationEditForm({ location, onCancel, onApplied }: LocationEdit
 
     const site = website.trim();
     if (site && !/^https?:\/\/\S+$/i.test(site)) {
-      errors.website_uri = "Enter a full web address, starting with http:// or https://.";
+      errors.website_uri =
+        "Enter a full web address, starting with http:// or https://.";
     }
 
     if (Object.keys(hoursErrors).length > 0) {
@@ -174,7 +213,8 @@ export function LocationEditForm({ location, onCancel, onApplied }: LocationEdit
         if (action.status === "failed") {
           setRejection(
             new ApiError(
-              action.error ?? "Google did not apply this change. No reason was returned.",
+              action.error ??
+                "Google did not apply this change. No reason was returned.",
               502,
             ),
           );
@@ -197,7 +237,28 @@ export function LocationEditForm({ location, onCancel, onApplied }: LocationEdit
 
   return (
     <>
-      <form onSubmit={handleSubmit} noValidate className="flex min-w-0 flex-col gap-5">
+      <form
+        onSubmit={handleSubmit}
+        noValidate
+        className="flex min-w-0 flex-col gap-5"
+      >
+        {draft ? (
+          <Alert status="info" className="max-w-none">
+            <AlertIndicator />
+            <AlertContent>
+              <AlertTitle>
+                The audit&apos;s draft{" "}
+                {draft.field === "title" ? "name" : "description"} is prefilled
+                below
+              </AlertTitle>
+              <AlertDescription>
+                {draft.reason ? `${draft.reason} ` : ""}Review it, change
+                anything you like, then preview. Nothing reaches Google until
+                you confirm the preview.
+              </AlertDescription>
+            </AlertContent>
+          </Alert>
+        ) : null}
         {invalidFields.length > 0 ? (
           <Alert status="error" className="max-w-none">
             <AlertIndicator />
@@ -211,7 +272,9 @@ export function LocationEditForm({ location, onCancel, onApplied }: LocationEdit
                 <ul className="space-y-1.5">
                   {invalidFields.map((field) => (
                     <li key={field}>
-                      <span className="font-medium">{editFieldLabel(field)}:</span>{" "}
+                      <span className="font-medium">
+                        {editFieldLabel(field)}:
+                      </span>{" "}
                       {fieldErrors[field]}
                     </li>
                   ))}
@@ -239,8 +302,14 @@ export function LocationEditForm({ location, onCancel, onApplied }: LocationEdit
               className="gap-1.5 sm:col-span-2"
             >
               <FieldLabel>Business name</FieldLabel>
-              <Input autoFocus className="w-full" placeholder="The name customers see" />
-              {fieldErrors.title ? <FieldError>{fieldErrors.title}</FieldError> : null}
+              <Input
+                autoFocus
+                className="w-full"
+                placeholder="The name customers see"
+              />
+              {fieldErrors.title ? (
+                <FieldError>{fieldErrors.title}</FieldError>
+              ) : null}
             </TextField>
 
             <TextField
@@ -256,7 +325,11 @@ export function LocationEditForm({ location, onCancel, onApplied }: LocationEdit
               className="gap-1.5"
             >
               <FieldLabel>Phone</FieldLabel>
-              <Input className="w-full" autoComplete="tel" placeholder="+44 20 7946 0000" />
+              <Input
+                className="w-full"
+                autoComplete="tel"
+                placeholder="+44 20 7946 0000"
+              />
               {fieldErrors.phone_primary ? (
                 <FieldError>{fieldErrors.phone_primary}</FieldError>
               ) : (
@@ -279,7 +352,11 @@ export function LocationEditForm({ location, onCancel, onApplied }: LocationEdit
               className="gap-1.5"
             >
               <FieldLabel>Website</FieldLabel>
-              <Input className="w-full" autoComplete="url" placeholder="https://example.com" />
+              <Input
+                className="w-full"
+                autoComplete="url"
+                placeholder="https://example.com"
+              />
               {fieldErrors.website_uri ? (
                 <FieldError>{fieldErrors.website_uri}</FieldError>
               ) : (
@@ -339,7 +416,8 @@ export function LocationEditForm({ location, onCancel, onApplied }: LocationEdit
                         isSelected
                           ? "border-button-primary-background bg-background-gray-secondary"
                           : "border-card-border hover:bg-background-gray-secondary",
-                        isFocusVisible && "ring-4 ring-button-primary-focus-ring outline-none",
+                        isFocusVisible &&
+                          "ring-4 ring-button-primary-focus-ring outline-none",
                         isDisabled && "cursor-not-allowed opacity-60",
                       )
                     }
@@ -362,10 +440,13 @@ export function LocationEditForm({ location, onCancel, onApplied }: LocationEdit
                 ))}
               </div>
               {fieldErrors.open_status ? (
-                <p className="text-sm text-input-error">{fieldErrors.open_status}</p>
+                <p className="text-sm text-input-error">
+                  {fieldErrors.open_status}
+                </p>
               ) : openStatus === null ? (
                 <p className="text-xs text-text-tertiary">
-                  This profile has no open status set. Choosing one sends it to Google.
+                  This profile has no open status set. Choosing one sends it to
+                  Google.
                 </p>
               ) : null}
             </RadioGroup>
@@ -394,7 +475,8 @@ export function LocationEditForm({ location, onCancel, onApplied }: LocationEdit
         <div className="sticky bottom-4 z-10 rounded-xl border border-card-border bg-card-background px-5 py-4 shadow-sm">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-xs leading-5 text-text-tertiary">
-              Nothing reaches Google until you review the changes and confirm them.
+              Nothing reaches Google until you review the changes and confirm
+              them.
             </p>
             <div className="flex flex-wrap items-center gap-2.5">
               <Button

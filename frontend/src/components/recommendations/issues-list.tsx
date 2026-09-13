@@ -177,6 +177,11 @@ export function IssuesList({
                     key={rule.rule}
                     rule={rule}
                     locationId={location.id}
+                    isNew={Boolean(
+                      location.changes &&
+                      !location.changes.first_audit &&
+                      location.changes.new.includes(rule.rule),
+                    )}
                   />
                 ))}
               </ul>
@@ -204,6 +209,13 @@ export function IssuesList({
                 >
                   <span className="flex-1 text-text-primary">{rule.label}</span>
                   <span className="text-text-tertiary">
+                    {location.changes?.fixed.includes(rule.rule) ? (
+                      <span
+                        className={cn("mr-2 font-medium", TONE_TEXT.success)}
+                      >
+                        Fixed since last audit
+                      </span>
+                    ) : null}
                     {rule.state === "clear"
                       ? "Passed"
                       : rule.state === "suppressed"

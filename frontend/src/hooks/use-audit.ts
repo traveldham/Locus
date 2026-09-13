@@ -14,6 +14,7 @@ export function useAuditRun(locationId: string) {
   const activeJob = job.data ?? latest.data?.job ?? null;
   return {
     run: latest.data?.run,
+    history: latest.data?.history ?? [],
     job: activeJob,
     isAuditing:
       activeJob?.status === "pending" || activeJob?.status === "running",

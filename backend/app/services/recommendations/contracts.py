@@ -12,6 +12,7 @@ from app.models import (
     MediaSummary,
     PerformanceDaily,
     Post,
+    Project,
     Review,
     SearchTermMonthly,
     TrackedKeyword,
@@ -32,6 +33,9 @@ TABLES = {
     "keywords": TrackedKeyword,
     "ranks": KeywordRank,
     "competitors": CompetitorObservation,
+    # The projects a location belongs to: the operator's own description of the
+    # business and its services, used as context for relevance and suggestions.
+    "projects": Project,
 }
 
 # Operational identifiers and dates are sufficient for the rules. Never copy customer
@@ -45,6 +49,8 @@ EXCLUDED = {
     "reviewer_photo_url",
     "created_at",
     "updated_at",
+    "google_connection_id",
+    "created_by_user_id",
 }
 MEASURES = {
     "photo_count",

@@ -11,6 +11,7 @@ import { Fragment, useState } from "react";
 import { SEVERITY_COLOR, TONE_TEXT } from "./audit-format";
 import { sectionHref } from "./audit-nav";
 import { EvidencePanel } from "./evidence-panel";
+import { SuggestionPanel } from "./suggestion-panel";
 import { issueSentence, plural } from "./issue-row";
 
 const PAGE_SIZE = 25;
@@ -286,6 +287,12 @@ export function IssueDetail({
                       <p className="pt-3 text-sm leading-6 text-text-primary">
                         {item.action}
                       </p>
+                      {item.suggestion ? (
+                        <SuggestionPanel
+                          suggestion={item.suggestion}
+                          locationId={location.id}
+                        />
+                      ) : null}
                       <EvidencePanel runId={run.id} item={item} />
                     </td>
                   </tr>

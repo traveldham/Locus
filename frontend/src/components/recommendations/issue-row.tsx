@@ -34,11 +34,14 @@ export function IssueRow({
   rule,
   locationId,
   why,
+  isNew = false,
 }: {
   rule: RuleCluster;
   locationId: string;
   /** The finding's own wording, used where the check has nothing countable. */
   why?: string;
+  /** Triggered now, not triggered in the previous audit. */
+  isNew?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const sentence = issueSentence(rule, why);
@@ -63,6 +66,11 @@ export function IssueRow({
             How to fix
           </button>
         </p>
+        {isNew ? (
+          <span className="shrink-0 text-xs font-medium text-badge-error-text">
+            new
+          </span>
+        ) : null}
         {rule.worst_severity ? (
           <span className="shrink-0 text-sm text-text-tertiary">
             {rule.worst_severity}

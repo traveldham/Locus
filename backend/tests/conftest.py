@@ -65,6 +65,15 @@ def stub_queue(monkeypatch: pytest.MonkeyPatch) -> Iterator[list[str]]:
 
 
 @pytest.fixture(autouse=True)
+def no_llm(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Tests never reach a language model, whatever the developer's .env says."""
+    from app.core.config import Settings
+
+    offline = Settings(_env_file=None, llm_provider="gemini", gemini_api_key=None)
+    monkeypatch.setattr("app.services.recommendations.suggestions.get_settings", lambda: offline)
+
+
+@pytest.fixture(autouse=True)
 def stub_providers(monkeypatch: pytest.MonkeyPatch) -> Iterator[StubReviewsProvider]:
     """Serve every provider read and write from the in-memory stubs in `tests/stubs.py`.
 

@@ -8,10 +8,28 @@ from datetime import date
 
 from app.services.recommendations.categories import WORKERS, worker_for
 from app.services.recommendations.context import Context
-from app.services.recommendations.policy import CATEGORIES
+from app.services.recommendations.policy import CATEGORIES, RULE_DOCS
 from app.services.recommendations.scoring import check_inventory, score_location
 from app.services.recommendations.snapshot import fingerprint
 from app.services.recommendations.types import ENGINE_VERSION, EngineConfig
+
+SEVERITY_RANK = {"critical": 0, "warning": 1, "notice": 2}
+EFFORT_RANK = {"minutes": 0, "hour": 1, "afternoon": 2}
+
+
+def priorities(items: list[dict], limit: int = 3) -> list[str]:
+    """The few findings to do first: worst severity, then those with a draft ready,
+    then the quickest. Keys, so the UI can look the findings up."""
+    ranked = sorted(
+        items,
+        key=lambda i: (
+            SEVERITY_RANK[i["severity"]],
+            0 if i.get("suggestion") else 1,
+            EFFORT_RANK.get(RULE_DOCS.get(i["rule"], {}).get("effort", "hour"), 1),
+            -i["score"],
+        ),
+    )
+    return [i["key"] for i in ranked[:limit]]
 
 
 def run_worker(snapshot: dict, as_of: date, config: EngineConfig, category: str) -> dict:
@@ -50,6 +68,20 @@ def assemble(snapshot: dict, as_of: date, config: EngineConfig, results: list[di
             "count": len(items),
             "health": score_location(evaluations, items).model_dump(mode="json"),
             "by_rule": check_inventory(items, evaluations),
+            "priorities": priorities(items),
+            # What each worker wants shown beside its findings: the profile card, a
+            # summary. Workers that have not built these leave them out.
+            "cards": {
+                worker.KEY: worker.card(snapshot) for worker in WORKERS if hasattr(worker, "card")
+            },
+            "summaries": {
+                result["category"]: result["summary"] for result in results if result.get("summary")
+            },
+            "suggestions": {
+                result["category"]: result["suggestions"]
+                for result in results
+                if result.get("suggestions")
+            },
         },
         "items": items,
         "evaluations": evaluations,

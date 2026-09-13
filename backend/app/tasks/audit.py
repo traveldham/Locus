@@ -16,11 +16,12 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_asyn
 from sqlalchemy.orm import selectinload
 
 from app.core.config import get_settings
-from app.models import AuditJob, AuditJobStatus
+from app.models import AuditCheckHistory, AuditJob, AuditJobStatus, AuditScoreHistory
 from app.services.recommendations.categories import WORKERS
 from app.services.recommendations.engine import assemble, run_worker
 from app.services.recommendations.runs import save_run
 from app.services.recommendations.snapshot import read_snapshot
+from app.services.recommendations.suggestions import enrich
 from app.services.recommendations.types import EngineConfig
 from app.worker import celery_app
 
@@ -73,9 +74,10 @@ async def run_category(job_id: UUID, category: str, session_factory: SessionFact
         worker.started_at = now()
         await db.commit()
         try:
-            worker.result = run_worker(
-                job.snapshot, job.as_of, EngineConfig(**job.config), category
-            )
+            result = run_worker(job.snapshot, job.as_of, EngineConfig(**job.config), category)
+            worker.stage = "Drafting suggestions"
+            await db.commit()
+            worker.result = await enrich(category, job.snapshot, result)
         except Exception as error:  # noqa: BLE001 - recorded on the worker
             worker.status = AuditJobStatus.failed
             worker.stage = "Failed"
@@ -108,7 +110,9 @@ async def finish_job(job_id: UUID, session_factory: SessionFactory) -> None:
                 EngineConfig(**job.config),
                 [w.result for w in job.workers],
             )
+            report["location"]["changes"] = await changes_since_last(db, job, report)
             run = await save_run(db, job, report)
+            record_history(db, job, run.id, report)
         except Exception as error:  # noqa: BLE001 - the job records every failure
             await db.rollback()
             await fail_job(db, job_id, f"{type(error).__name__}: {error}")
@@ -119,6 +123,68 @@ async def finish_job(job_id: UUID, session_factory: SessionFactory) -> None:
         # The inputs now live on the run; the job does not need its own copy.
         job.snapshot = None
         await db.commit()
+
+
+async def changes_since_last(db: AsyncSession, job: AuditJob, report: dict) -> dict:
+    """Fixed, new and unchanged checks against the previous audit's recorded states."""
+    rows = (
+        await db.scalars(
+            select(AuditCheckHistory)
+            .where(AuditCheckHistory.location_id == job.location_id)
+            .order_by(AuditCheckHistory.created_at.desc())
+        )
+    ).all()
+    previous: dict[str, str] = {}
+    previous_at = rows[0].created_at.isoformat() if rows else None
+    for row in rows:
+        if row.run_id != (rows[0].run_id if rows else None):
+            break
+        previous.setdefault(row.rule, row.state)
+    fixed, new = [], []
+    by_rule = {}
+    for verdict in report["evaluations"]:
+        rule, state = verdict["rule"], verdict["state"]
+        before = previous.get(rule)
+        by_rule[rule] = before
+        if before == "triggered" and state == "clear":
+            fixed.append(rule)
+        elif state == "triggered" and before in (None, "clear", "insufficient_data", "suppressed"):
+            new.append(rule)
+    return {
+        "previous_audit_at": previous_at,
+        "first_audit": previous_at is None,
+        "fixed": fixed,
+        "new": new,
+        "previous_state": by_rule,
+    }
+
+
+def record_history(db: AsyncSession, job: AuditJob, run_id: UUID, report: dict) -> None:
+    items = report["items"]
+    for verdict in report["evaluations"]:
+        scores = [i["score"] for i in items if i["rule"] == verdict["rule"]]
+        db.add(
+            AuditCheckHistory(
+                organization_id=job.organization_id,
+                location_id=job.location_id,
+                run_id=run_id,
+                rule=verdict["rule"],
+                state=verdict["state"],
+                score=max(scores, default=0),
+                issues=len(scores),
+            )
+        )
+    health = report["location"]["health"]
+    db.add(
+        AuditScoreHistory(
+            organization_id=job.organization_id,
+            location_id=job.location_id,
+            run_id=run_id,
+            score=health["score"],
+            issues=health["issues"],
+            coverage=health["coverage"],
+        )
+    )
 
 
 async def fail_job(db: AsyncSession, job_id: UUID, error: str) -> None:

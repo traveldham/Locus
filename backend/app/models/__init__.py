@@ -20,7 +20,14 @@ from app.models.organization import (
 )
 from app.models.performance import PerformanceDaily, SearchTermMonthly
 from app.models.project import Project, ProjectLocation, ProjectStatus
-from app.models.recommendation import AuditJob, AuditJobStatus, AuditWorker, RecommendationRun
+from app.models.recommendation import (
+    AuditCheckHistory,
+    AuditJob,
+    AuditJobStatus,
+    AuditScoreHistory,
+    AuditWorker,
+    RecommendationRun,
+)
 from app.models.review import Review
 from app.models.seo import (
     CompetitorObservation,
@@ -33,6 +40,8 @@ from app.models.user import AuthProvider, User, UserIdentity
 
 __all__ = [
     "ActionStatus",
+    "AuditCheckHistory",
+    "AuditScoreHistory",
     "AuditJob",
     "AuditJobStatus",
     "AuditWorker",

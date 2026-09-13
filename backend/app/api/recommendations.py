@@ -11,6 +11,7 @@ from app.api.scoping import OrganizationId
 from app.models import (
     AuditJob,
     AuditJobStatus,
+    AuditScoreHistory,
     Location,
     Project,
     ProjectLocation,
@@ -217,7 +218,12 @@ async def latest(location_id: UUID, organization_id: OrganizationId, db: DbSessi
     await owned_location(db, organization_id, location_id)
     job = await active_job(db, organization_id, location_id)
     run = await latest_run(db, organization_id, location_id)
-    payload = {"run": None, "inputs_changed": False, "job": serialize_job(job) if job else None}
+    payload = {
+        "run": None,
+        "inputs_changed": False,
+        "job": serialize_job(job) if job else None,
+        "history": await score_history(db, organization_id, location_id),
+    }
     if run is None:
         return payload
     current = await read_snapshot(db, organization_id, location_id)
@@ -226,6 +232,31 @@ async def latest(location_id: UUID, organization_id: OrganizationId, db: DbSessi
         fingerprint(current) != run.fingerprint or run.engine_version != ENGINE_VERSION
     )
     return payload
+
+
+async def score_history(db, organization_id: UUID, location_id: UUID, limit: int = 12) -> list:
+    """The last audits' scores, oldest first, for a small trend line."""
+    rows = (
+        await db.scalars(
+            select(AuditScoreHistory)
+            .where(
+                AuditScoreHistory.organization_id == organization_id,
+                AuditScoreHistory.location_id == location_id,
+            )
+            .order_by(AuditScoreHistory.created_at.desc())
+            .limit(limit)
+        )
+    ).all()
+    return [
+        {
+            "run_id": str(row.run_id),
+            "at": row.created_at.isoformat(),
+            "score": row.score,
+            "issues": row.issues,
+            "coverage": row.coverage,
+        }
+        for row in reversed(rows)
+    ]
 
 
 async def owned_run(db, organization_id, run_id):

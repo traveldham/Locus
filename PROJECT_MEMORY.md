@@ -60,6 +60,21 @@ without a real quota and a real fleet of locations.
 
 ## Handoff log
 
+- 2026-09-13 (night): **Profile worker built** with 24 deterministic checks in five groups
+  (reach, identity, trust, hours, attributes) and a Gemini suggestion layer
+  (`services/recommendations/suggestions/`) that drafts description, additional
+  categories, attribute answers and name for failed checks, using the profile plus the
+  location's projects (name, website, description, services) as context. Suggestions are
+  optional: no key, disabled, or an API error is recorded on the worker result and the
+  audit still succeeds. Tests never reach a model (conftest forces an unconfigured
+  provider). The Gemini Developer API key's project has no prepaid credit (429 on every
+  endpoint), so the user switched to **Vertex AI with the device's application default
+  credentials**: `suggestions/llm.py` is a provider service (`LLM_PROVIDER=vertex|gemini`),
+  `.env` carries `VERTEX_PROJECT=traveldham-d253e`, global endpoint, `gemini-3.8-flash`.
+  Live run on LOC-003 and LOC-011 through Vertex: both succeeded in 6-8 s with every
+  draftable finding suggested. Docs: `docs/engine/ARCHITECTURE.md`,
+  `docs/engine/workers/profile.md`, research under `docs/engine/research/`.
+
 - 2026-09-13: Projects now retain business website_url, description and services JSON list
   alongside the existing name/IDs/status/ownership fields. Migration `20260913_0011`
   applied locally. Create/update/list/detail APIs expose these fields; partial updates

@@ -9,7 +9,7 @@ from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession
 
-from app.models import Location, TrackedKeyword
+from app.models import Location, ProjectLocation, TrackedKeyword
 from app.services.recommendations.contracts import EXCLUDED, TABLES
 
 
@@ -45,6 +45,15 @@ async def read_snapshot(
 
 
 def _scope(name: str, model, statement, organization_id: UUID, location_id: UUID | None):
+    if name == "projects":
+        statement = statement.where(model.organization_id == organization_id)
+        if location_id is None:
+            return statement
+        return statement.where(
+            model.id.in_(
+                select(ProjectLocation.project_id).where(ProjectLocation.location_id == location_id)
+            )
+        )
     if hasattr(model, "organization_id"):
         statement = statement.where(model.organization_id == organization_id)
     else:

@@ -1,216 +1,208 @@
 "use client";
 
 import { SectionCard } from "@/components/common/section-card";
-import type { AuditLocation, Severity } from "@/services/api/recommendations";
+import { Badge } from "@/components/tailgrids/core/badge";
+import type {
+  AuditLocation,
+  RecommendationRun,
+  ScorePoint,
+} from "@/services/api/recommendations";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
-import { SEVERITY_ORDER, TONE_TEXT } from "./audit-format";
-import { issueHref, sectionHref, withParam } from "./audit-nav";
-import { issueSentence } from "./issue-row";
-import { ScoreBar, ScoreRing } from "./score-ring";
+import { SEVERITY_COLOR, TONE_TEXT, scoreTone } from "./audit-format";
+import { issueHref, sectionHref } from "./audit-nav";
+import { CategoryRings } from "./category-rings";
+import { ProfileBeforeAfter } from "./profile-card";
+import { ScoreRing } from "./score-ring";
+import { ScoreTrend } from "./score-trend";
 
-const SEVERITY_TONE = {
-  critical: "error",
-  warning: "warning",
-  notice: "muted",
-} as const;
-const RANK: Record<Severity, number> = { critical: 0, warning: 1, notice: 2 };
+const EFFORT_LABEL: Record<string, string> = {
+  minutes: "a few minutes",
+  hour: "about an hour",
+  afternoon: "an afternoon",
+};
 
-export function LocationOverview({ location }: { location: AuditLocation }) {
+export function LocationOverview({
+  run,
+  location,
+  history,
+}: {
+  run: RecommendationRun;
+  location: AuditLocation;
+  history: ScorePoint[];
+}) {
   const health = location.health;
-
-  const severityCount = (level: Severity) =>
-    location.by_rule.reduce(
-      (sum, rule) => sum + (rule.severity[level] ?? 0),
-      0,
-    );
-
-  const top = [...location.by_rule]
-    .filter((rule) => rule.issues > 0)
-    .sort(
-      (a, b) =>
-        RANK[a.worst_severity ?? "notice"] -
-          RANK[b.worst_severity ?? "notice"] || b.issues - a.issues,
-    )
-    .slice(0, 5);
-
-  const checks = [
-    {
-      label: "Passed",
-      value: health.checks_passed,
-      fill: "bg-badge-success-text",
-    },
-    {
-      label: "Found an issue",
-      value: health.checks_failed,
-      fill: "bg-badge-error-text",
-    },
-    {
-      label: "Not evaluated",
-      value: health.checks_not_evaluated,
-      fill: "bg-text-disable",
-    },
-  ];
-  const totalChecks = checks.reduce((sum, row) => sum + row.value, 0);
+  const summary = location.summaries?.profile ?? null;
+  const changes = location.changes;
+  const byKey = new Map(run.items.map((item) => [item.key, item]));
+  const byRule = new Map(location.by_rule.map((row) => [row.rule, row]));
+  const todo = (location.priorities ?? [])
+    .map((key) => byKey.get(key))
+    .filter((item): item is NonNullable<typeof item> => Boolean(item));
+  const card = location.cards?.profile;
+  const profileItems = run.items.filter((item) => item.category === "profile");
+  const draftStatus = location.suggestions?.profile;
 
   return (
     <div className="space-y-5">
-      <div className="grid gap-5 lg:grid-cols-3">
+      {summary ? (
+        <SectionCard
+          title="In short"
+          actions={
+            <span className="text-xs text-text-tertiary">
+              {summary.source === "deterministic"
+                ? "Written from the findings"
+                : `Written by ${summary.model} from the findings`}
+            </span>
+          }
+        >
+          <p className="text-[15px] leading-7 text-text-primary">
+            {summary.text}
+          </p>
+          {draftStatus?.status === "failed" ? (
+            <p className="mt-3 text-xs leading-5 text-badge-warning-text">
+              Drafts could not be generated this time: {draftStatus.error}
+            </p>
+          ) : null}
+        </SectionCard>
+      ) : null}
+
+      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
         <SectionCard title="Health score">
           <ScoreRing
             score={health.score}
             grade={health.grade}
             label={
               health.score === null
-                ? "No category has checks yet, so there is nothing to score."
+                ? "No category has checks that could run."
                 : `${Math.round(health.coverage * 100)}% of checks had enough evidence to run.`
             }
           />
-          <p className="mt-4 border-t border-card-border pt-3 text-xs leading-5 text-text-tertiary">
-            {health.basis}
-          </p>
-        </SectionCard>
-
-        <SectionCard title="Checks run">
-          <p className="text-[34px] leading-10 font-semibold tracking-[-0.03em] text-text-primary">
-            {totalChecks}
-          </p>
-          <div
-            className="mt-4 flex h-2.5 w-full overflow-hidden rounded-full bg-background-gray-secondary"
-            role="presentation"
-          >
-            {checks.map((row) =>
-              row.value ? (
-                <div
-                  key={row.label}
-                  className={row.fill}
-                  style={{ width: `${(row.value / totalChecks) * 100}%` }}
-                />
-              ) : null,
-            )}
+          <div className="mt-4 border-t border-card-border pt-4">
+            <ScoreTrend history={history} />
           </div>
-          <dl className="mt-4 space-y-2.5">
-            {checks.map((row) => (
-              <div
-                key={row.label}
-                className="flex items-center gap-2.5 text-sm"
+          {changes && !changes.first_audit ? (
+            <p className="mt-3 text-xs leading-5 text-text-tertiary">
+              Since the last audit:{" "}
+              <span className={cn("font-medium", TONE_TEXT.success)}>
+                {changes.fixed.length} fixed
+              </span>
+              {" · "}
+              <span
+                className={cn(
+                  "font-medium",
+                  changes.new.length ? TONE_TEXT.error : "",
+                )}
               >
-                <span
-                  className={`size-2.5 shrink-0 rounded-full ${row.fill}`}
-                  aria-hidden="true"
-                />
-                <dt className="text-text-secondary">{row.label}</dt>
-                <dd className="ml-auto font-medium text-text-primary">
-                  {row.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-          <p className="mt-4 border-t border-card-border pt-3 text-xs leading-5 text-text-tertiary">
-            A check without enough evidence is left out of the score, not
-            counted as a pass.
-          </p>
+                {changes.new.length} new
+              </span>
+            </p>
+          ) : null}
         </SectionCard>
 
         <SectionCard title="Scores by category">
-          <ul className="space-y-3.5">
-            {health.categories.map((row) => (
-              <li key={row.category}>
-                <div className="flex flex-wrap items-baseline justify-between gap-x-3">
-                  <span className="text-sm text-text-primary">
-                    {row.label}
-                    <span className="ml-1.5 text-xs text-text-tertiary">
-                      {row.weight}%
-                    </span>
-                  </span>
-                  <span className="text-xs text-text-tertiary">
-                    {row.score === null
-                      ? "not evaluated"
-                      : `${row.issues} ${row.issues === 1 ? "issue" : "issues"}`}
-                  </span>
-                </div>
-                <ScoreBar score={row.score} className="mt-1.5" />
-              </li>
-            ))}
-          </ul>
+          <CategoryRings
+            locationId={location.id}
+            categories={health.categories}
+          />
         </SectionCard>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-3">
-        {SEVERITY_ORDER.map((level) => {
-          const count = severityCount(level);
-          return (
-            <SectionCard
-              key={level}
-              title={level[0].toUpperCase() + level.slice(1)}
-            >
-              <div className="flex items-baseline gap-2">
-                <Link
-                  href={withParam(
-                    sectionHref(location.id, "/issues"),
-                    "severity",
-                    level,
-                  )}
-                  className={cn(
-                    "text-[32px] leading-10 font-semibold tracking-[-0.03em] underline-offset-4 hover:underline",
-                    TONE_TEXT[SEVERITY_TONE[level]],
-                  )}
-                >
-                  {count}
-                </Link>
-              </div>
-            </SectionCard>
-          );
-        })}
-      </div>
-
       <SectionCard
-        title="Top issues"
+        title="Do these first"
         bodyClassName="px-0 py-0"
         actions={
           <Link
             href={sectionHref(location.id, "/issues")}
             className="min-h-11 text-sm text-text-secondary underline underline-offset-4 focus-visible:outline-primary-500"
           >
-            View all issues
+            All issues
           </Link>
         }
       >
-        <ul>
-          {top.map((rule) => {
-            const sentence = issueSentence(rule);
+        <ol>
+          {todo.map((item, index) => {
+            const rule = byRule.get(item.rule);
             return (
               <li
-                key={rule.rule}
-                className="flex flex-wrap items-center gap-x-3 border-b border-card-border px-5 py-3.5 text-sm last:border-b-0"
+                key={item.key}
+                className="flex flex-wrap items-start gap-x-4 gap-y-2 border-b border-card-border px-5 py-4 last:border-b-0"
               >
-                <p className="min-w-0 flex-1 leading-6 text-text-primary">
-                  <Link
-                    href={issueHref(location.id, rule.rule)}
-                    className="font-medium text-primary-500 underline-offset-4 hover:underline"
-                  >
-                    {sentence.count}
-                  </Link>{" "}
-                  {sentence.predicate}
-                </p>
-                <span
-                  className={cn(
-                    "text-xs",
-                    TONE_TEXT[SEVERITY_TONE[rule.worst_severity ?? "notice"]],
-                  )}
-                >
-                  {rule.worst_severity}
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-background-gray-secondary text-sm font-semibold text-text-primary">
+                  {index + 1}
                 </span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm leading-6 text-text-primary">
+                    <Link
+                      href={issueHref(location.id, item.rule)}
+                      className="font-medium text-primary-500 underline-offset-4 hover:underline"
+                    >
+                      {item.title}
+                    </Link>
+                  </p>
+                  <p className="mt-0.5 text-sm leading-6 text-text-secondary">
+                    {item.why}
+                  </p>
+                  <p className="mt-1 flex flex-wrap items-center gap-2 text-xs text-text-tertiary">
+                    <Badge color={SEVERITY_COLOR[item.severity]} size="sm">
+                      {item.severity}
+                    </Badge>
+                    {rule?.effort ? (
+                      <span>
+                        Takes {EFFORT_LABEL[rule.effort] ?? rule.effort}
+                      </span>
+                    ) : null}
+                    {item.suggestion ? (
+                      <span className={TONE_TEXT.success}>Draft ready</span>
+                    ) : null}
+                    {changes?.new.includes(item.rule) &&
+                    !changes.first_audit ? (
+                      <span className={TONE_TEXT.error}>
+                        New since last audit
+                      </span>
+                    ) : null}
+                  </p>
+                </div>
               </li>
             );
           })}
-          {!top.length ? (
+          {!todo.length ? (
             <li className="px-5 py-8 text-sm text-text-secondary">
-              No check found an issue at this location.
+              Nothing to do. Every check that could run passed.
             </li>
           ) : null}
-        </ul>
+        </ol>
       </SectionCard>
+
+      {card ? (
+        <SectionCard
+          title="The profile, before and after"
+          bodyClassName="px-5 py-5"
+          actions={
+            <span className="text-xs text-text-tertiary">
+              Flagged elements are outlined in red
+            </span>
+          }
+        >
+          <ProfileBeforeAfter card={card} items={profileItems} />
+        </SectionCard>
+      ) : null}
+
+      <p className="text-xs leading-5 text-text-tertiary">
+        {health.basis}
+        {health.score !== null ? (
+          <>
+            {" "}
+            Overall grade:{" "}
+            <span
+              className={cn("font-medium", TONE_TEXT[scoreTone(health.score)])}
+            >
+              {health.grade}
+            </span>
+            .
+          </>
+        ) : null}
+      </p>
     </div>
   );
 }

@@ -15,6 +15,7 @@ dependencies = [
   "pyjwt>=2.9,<3",
   "sqlalchemy[asyncio]>=2.0,<3",
   "uvicorn[standard]>=0.32,<1",
+  "google-auth>=2.30,<3",
 ]
 
 [project.optional-dependencies]

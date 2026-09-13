@@ -10,6 +10,7 @@ from sqlalchemy import select
 
 from app.models import AuditJob, AuditJobStatus, Location, OpenStatus, RecommendationRun
 from app.services.recommendations.categories import WORKERS
+from app.services.recommendations.categories import profile as profile_worker
 from app.services.recommendations.engine import analyze
 from app.services.recommendations.policy import CATEGORIES
 from app.services.recommendations.types import EngineConfig
@@ -52,15 +53,18 @@ def test_six_workers_in_a_fixed_order_with_weights_summing_to_100():
     assert sum(spec["weight"] for spec in CATEGORIES.values()) == 100
 
 
-def test_empty_workers_report_not_evaluated_and_no_score():
+def test_only_built_workers_contribute_to_the_score():
+    """A bare profile: the profile worker judges it, the five empty workers abstain."""
     report = analyze(data(), AS_OF)
-    assert report["items"] == [] and report["evaluations"] == []
+    assert report["items"] and all(i["category"] == "profile" for i in report["items"])
+    assert all(e["category"] == "profile" for e in report["evaluations"])
     health = report["location"]["health"]
-    assert health["score"] is None and health["grade"] == "not_evaluated"
-    assert health["coverage"] == 0.0
+    assert health["score"] is not None and health["score"] < 50
     assert [c["category"] for c in health["categories"]] == KEYS
-    assert all(c["score"] is None for c in health["categories"])
-    assert report["location"]["by_rule"] == []
+    by_category = {c["category"]: c for c in health["categories"]}
+    assert by_category["profile"]["score"] is not None
+    assert all(by_category[k]["score"] is None for k in KEYS if k != "profile")
+    assert all(row["category"] == "profile" for row in report["location"]["by_rule"])
     assert report["location"]["name"] == "An unrelated business"
     assert report["counts"] == {"locations": 1}
     # Same inputs, same report.
@@ -86,7 +90,7 @@ async def test_pipeline_runs_six_workers_and_publishes_one_run(client, session_f
             params={"location_id": str(location_id)},
         )
     ).json()
-    assert empty == {"run": None, "inputs_changed": False, "job": None}
+    assert empty == {"run": None, "inputs_changed": False, "job": None, "history": []}
 
     response = await client.post(
         "/api/v1/recommendations/runs",
@@ -158,8 +162,15 @@ async def test_pipeline_runs_six_workers_and_publishes_one_run(client, session_f
         await client.get(f"/api/v1/recommendations/runs/{finished['run_id']}", headers=headers)
     ).json()
     assert run["location_id"] == str(location_id)
-    assert run["location"]["health"]["score"] is None
-    assert run["items"] == []
+    assert run["location"]["health"]["score"] is not None
+    assert run["items"] and all(i["suggestion"] is None for i in run["items"])
+    # No Gemini key in tests: the suggestion pass is skipped, never attempted.
+    async with session_factory() as db:
+        from app.models import AuditWorker
+
+        workers = (await db.scalars(select(AuditWorker))).all()
+        statuses = {w.category: w.result["suggestions"]["status"] for w in workers}
+        assert statuses["profile"] == "skipped"
     latest = (
         await client.get(
             "/api/v1/recommendations/latest",
@@ -173,11 +184,12 @@ async def test_pipeline_runs_six_workers_and_publishes_one_run(client, session_f
     directory = (await client.get("/api/v1/recommendations/overview", headers=headers)).json()
     assert [row["location_id"] for row in directory["items"]] == [str(location_id)]
     row = directory["items"][0]
-    assert row["issues"] == 0 and row["score"] is None and row["audited_at"] and row["job"] is None
+    assert row["issues"] > 0 and row["score"] is not None and row["audited_at"]
+    assert row["job"] is None
 
     policy = (await client.get("/api/v1/recommendations/policy", headers=headers)).json()
     assert sum(c["weight"] for c in policy["categories"]) == 100
-    assert policy["rules"] == []
+    assert {r["rule"] for r in policy["rules"]} == set(profile_worker.CHECKS)
 
     # Changing an input the snapshot covers makes the audit stale.
     async with session_factory() as db:
@@ -263,8 +275,28 @@ async def test_only_the_current_audit_is_kept(client, session_factory, stub_queu
         return finished["run_id"]
 
     first = await audit()
+    # Fix something between audits so "fixed since last audit" has something to say.
+    async with session_factory() as db:
+        location = await db.get(Location, location_id)
+        location.website_uri = "https://example.org"
+        await db.commit()
     second = await audit()
     assert first != second
+
+    latest_payload = (
+        await client.get(
+            "/api/v1/recommendations/latest",
+            headers=headers,
+            params={"location_id": str(location_id)},
+        )
+    ).json()
+    assert [point["run_id"] for point in latest_payload["history"]] == [first, second]
+    changes = latest_payload["run"]["location"]["changes"]
+    assert not changes["first_audit"] and changes["previous_audit_at"]
+    assert "website_missing" in changes["fixed"]
+    assert changes["previous_state"]["website_missing"] == "triggered"
+    assert latest_payload["run"]["location"]["summaries"]["profile"]["source"] == "deterministic"
+    assert latest_payload["run"]["location"]["priorities"]
 
     async with session_factory() as db:
         stored = (await db.scalars(select(RecommendationRun.id))).all()

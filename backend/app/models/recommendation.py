@@ -2,7 +2,7 @@ from datetime import date, datetime
 from enum import StrEnum
 from uuid import UUID, uuid4
 
-from sqlalchemy import JSON, Date, DateTime, Enum, ForeignKey, String, Text
+from sqlalchemy import JSON, Date, DateTime, Enum, Float, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import Base, utcnow
@@ -99,3 +99,43 @@ class AuditWorker(Base):
     finished_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
     job: Mapped[AuditJob] = relationship(back_populates="workers")
+
+
+class AuditCheckHistory(Base):
+    """One row per check per audit: enough to say fixed, new or unchanged, and to draw
+    a trend, without keeping the audits themselves."""
+
+    __tablename__ = "audit_check_history"
+
+    id: Mapped[UUID] = mapped_column(primary_key=True, default=uuid4)
+    organization_id: Mapped[UUID] = mapped_column(
+        ForeignKey("organizations.id", ondelete="CASCADE"), index=True
+    )
+    location_id: Mapped[UUID] = mapped_column(
+        ForeignKey("locations.id", ondelete="CASCADE"), index=True
+    )
+    run_id: Mapped[UUID] = mapped_column()
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+    rule: Mapped[str] = mapped_column(String(64))
+    state: Mapped[str] = mapped_column(String(24))
+    score: Mapped[int] = mapped_column(Integer, default=0)
+    issues: Mapped[int] = mapped_column(Integer, default=0)
+
+
+class AuditScoreHistory(Base):
+    """The health score of every audit a location has had, oldest to newest."""
+
+    __tablename__ = "audit_score_history"
+
+    id: Mapped[UUID] = mapped_column(primary_key=True, default=uuid4)
+    organization_id: Mapped[UUID] = mapped_column(
+        ForeignKey("organizations.id", ondelete="CASCADE"), index=True
+    )
+    location_id: Mapped[UUID] = mapped_column(
+        ForeignKey("locations.id", ondelete="CASCADE"), index=True
+    )
+    run_id: Mapped[UUID] = mapped_column()
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+    score: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    issues: Mapped[int] = mapped_column(Integer, default=0)
+    coverage: Mapped[float] = mapped_column(Float, default=0.0)

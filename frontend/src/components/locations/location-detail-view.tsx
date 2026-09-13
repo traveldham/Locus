@@ -23,6 +23,10 @@ import {
   StarFat,
 } from "@tailgrids/icons";
 import { useState } from "react";
+import {
+  takeDraft,
+  type DraftHandoff,
+} from "@/components/recommendations/draft-handoff";
 import { EditAppliedAlert } from "./edit-applied-alert";
 import { LocationAttributesSection } from "./location-attributes-section";
 import { LocationBusinessInfo } from "./location-business-info";
@@ -77,8 +81,13 @@ export function LocationDetailView({ locationId }: { locationId: string }) {
 }
 
 function LocationProfile({ location }: { location: LocationDetail }) {
-  const [showPreview, setShowPreview] = useState(true);
-  const [isEditing, setIsEditing] = useState(false);
+  // A draft handed over from the audit opens the editor prefilled, once. It is read
+  // during the first render, so the editor mounts already in the right mode.
+  const [draft, setDraft] = useState<DraftHandoff | null>(() =>
+    takeDraft(location.id),
+  );
+  const [showPreview, setShowPreview] = useState(() => draft === null);
+  const [isEditing, setIsEditing] = useState(() => draft !== null);
   const [applied, setApplied] = useState<AppliedEdit | null>(null);
   const catalog = useAttributeCatalogQuery();
 
@@ -179,8 +188,13 @@ function LocationProfile({ location }: { location: LocationDetail }) {
               <LocationEditForm
                 key={location.id}
                 location={location}
-                onCancel={() => setIsEditing(false)}
+                draft={draft}
+                onCancel={() => {
+                  setDraft(null);
+                  setIsEditing(false);
+                }}
                 onApplied={(result) => {
+                  setDraft(null);
                   setIsEditing(false);
                   setApplied(result);
                 }}
