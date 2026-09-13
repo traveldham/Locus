@@ -60,6 +60,18 @@ without a real quota and a real fleet of locations.
 
 ## Handoff log
 
+- 2026-09-14: **All six workers built.** Five parallel agents built reputation (10
+  checks), visibility (11), operations (10), performance (9) and content (9) following
+  the profile pattern: research doc, checks with config knobs in their own `types.py`
+  block, `card()`, a `suggestions/<key>.py` AI layer with code-enforced constraints,
+  mutation tests, `docs/engine/workers/<key>.md`, and a frontend card in
+  `components/recommendations/cards/` registered in `cards/registry.ts`. Generic tab
+  `/recommendations/[locationId]/category/[category]` renders summary, card and checks.
+  Suggestion registry auto-discovers modules. Added `suggestions/matching.py` because
+  models sometimes return the field name as the rule id. Engine version 4.0.0.
+  Verification: 237 backend tests, ruff, tsc, eslint, next build; live six-worker audit
+  through Vertex on LOC-003 and LOC-011. Restart the Celery worker.
+
 - 2026-09-13 (profile audit navigation): Moved the customer-facing current-versus-draft
   profile comparison out of the general recommendation Overview into a dedicated
   `/recommendations/[locationId]/profile` tab. The tab keeps the aligned before/after

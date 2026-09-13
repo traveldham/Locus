@@ -123,8 +123,15 @@ export interface ProfileCard {
   attributes_yes: string[];
   attributes_no: string[];
 }
+export interface AuditPoint {
+  category: string;
+  text: string;
+}
 export interface AuditSummary {
   text: string;
+  /** Whole-audit summaries carry these; per-worker summaries do not. */
+  strengths?: AuditPoint[];
+  attention?: AuditPoint[];
   source: string;
   model: string | null;
   generated_at: string;
@@ -147,8 +154,12 @@ export interface AuditLocation {
   by_rule: RuleCluster[];
   /** Finding keys to do first: worst severity, draft ready, quickest. */
   priorities: string[];
-  cards: { profile?: ProfileCard };
+  /** Per-worker visuals, keyed by category. Profile's is typed; others are their own shape. */
+  cards: { profile?: ProfileCard } & Record<string, unknown>;
+  /** Per-worker summaries, shown on each category tab. */
   summaries: Record<string, AuditSummary>;
+  /** The whole-audit summary, shown on the Overview. */
+  summary?: AuditSummary;
   suggestions: Record<
     string,
     { status: string; reason?: string; error?: string; model?: string }

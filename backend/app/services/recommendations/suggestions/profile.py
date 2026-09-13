@@ -15,7 +15,11 @@ from app.services.recommendations.categories.profile import (
     attribute_name,
     truthy,
 )
+from app.services.recommendations.suggestions.matching import resolve_target
 from app.services.recommendations.types import Suggestion
+
+# Which field each check may have drafted, for matching a reply back to its finding.
+SUGGESTS = {rule: spec["suggests"] for rule, spec in CHECKS.items() if spec.get("suggests")}
 
 # Which suggestion fields may be drafted, and what shape the value takes.
 FIELD_SHAPES = {
@@ -284,7 +288,7 @@ def apply(result: dict, response: dict, source: str, model: str, context: dict) 
             "generated_at": stamped,
         }
     for raw in response.get("suggestions", []):
-        item = by_key.get((raw.get("rule"), raw.get("subject") or ""))
+        item = resolve_target(by_key, raw, SUGGESTS)
         if item is None:
             continue
         identity = (item["rule"], item.get("subject") or "")

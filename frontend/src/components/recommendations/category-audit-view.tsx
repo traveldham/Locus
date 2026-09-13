@@ -7,43 +7,47 @@ import type {
 } from "@/services/api/recommendations";
 import Link from "next/link";
 import { issueHref } from "./audit-nav";
+import { CATEGORY_CARDS } from "./cards/registry";
 import { ProfileBeforeAfter } from "./profile-card";
 
-export function ProfileAuditView({
+/** One category's tab: its summary, its visual, and its checks. Same shape for all six. */
+export function CategoryAuditView({
   run,
   location,
+  category,
 }: {
   run: RecommendationRun;
   location: AuditLocation;
+  category: string;
 }) {
-  const card = location.cards?.profile;
-  const summary = location.summaries?.profile ?? null;
-  const items = run.items.filter((item) => item.category === "profile");
-  const checks = location.by_rule.filter((rule) => rule.category === "profile");
+  const spec = run.categories.find((c) => c.category === category);
+  const items = run.items.filter((item) => item.category === category);
+  const checks = location.by_rule.filter((rule) => rule.category === category);
   const failing = checks.filter((rule) => rule.issues > 0);
   const passed = checks.filter((rule) => rule.state === "clear");
   const notEvaluated = checks.filter(
     (rule) => rule.state === "insufficient_data" || rule.state === "suppressed",
   );
+  const summary = location.summaries?.[category];
+  const card = location.cards?.[category];
+  const Card = CATEGORY_CARDS[category];
+  const profileCard =
+    category === "profile" ? location.cards?.profile : undefined;
 
   return (
     <div className="space-y-5">
       <div>
         <h2 className="text-xl font-semibold tracking-[-0.02em] text-text-primary">
-          Profile audit
+          {spec?.label ?? category} audit
         </h2>
         {summary ? (
           <p className="mt-1 max-w-3xl text-[15px] leading-7 text-text-primary">
             {summary.text}
           </p>
         ) : null}
-        <p className="mt-2 max-w-3xl text-sm leading-6 text-text-secondary">
-          Compare the profile customers see today with the available AI drafts,
-          then review each profile issue before making changes.
-        </p>
       </div>
 
-      {card ? (
+      {profileCard ? (
         <SectionCard
           title="Current profile and suggested version"
           bodyClassName="px-5 py-5"
@@ -53,16 +57,17 @@ export function ProfileAuditView({
             </span>
           }
         >
-          <ProfileBeforeAfter card={card} items={items} />
+          <ProfileBeforeAfter card={profileCard} items={items} />
         </SectionCard>
-      ) : (
+      ) : card && Card ? (
+        <Card card={card} items={items} location={location} />
+      ) : !checks.length ? (
         <p className="rounded-xl border border-card-border bg-card-background px-5 py-6 text-sm text-text-secondary">
-          The saved audit does not contain a profile preview. Rerun the audit to
-          create one.
+          This category has no checks built yet.
         </p>
-      )}
+      ) : null}
 
-      <SectionCard title="Profile checks" bodyClassName="px-0 py-0">
+      <SectionCard title="Checks" bodyClassName="px-0 py-0">
         <div className="flex flex-wrap gap-x-5 gap-y-2 border-b border-card-border px-5 py-3 text-sm">
           <span className="font-medium text-badge-error-text">
             {failing.length} need attention
@@ -99,9 +104,9 @@ export function ProfileAuditView({
               </Link>
             </li>
           ))}
-          {!failing.length ? (
+          {!failing.length && checks.length ? (
             <li className="px-5 py-8 text-sm text-text-secondary">
-              Every profile check that could run passed.
+              Every check that could run passed.
             </li>
           ) : null}
         </ul>

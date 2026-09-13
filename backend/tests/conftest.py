@@ -71,6 +71,9 @@ def no_llm(monkeypatch: pytest.MonkeyPatch) -> None:
 
     offline = Settings(_env_file=None, llm_provider="gemini", gemini_api_key=None)
     monkeypatch.setattr("app.services.recommendations.suggestions.get_settings", lambda: offline)
+    monkeypatch.setattr(
+        "app.services.recommendations.suggestions.overall.get_settings", lambda: offline
+    )
 
 
 @pytest.fixture(autouse=True)

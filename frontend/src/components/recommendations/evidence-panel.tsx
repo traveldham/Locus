@@ -29,8 +29,13 @@ export function EvidencePanel({
       </div>
       <ul className="space-y-2">
         {item.evidence.map((e, index) => (
-          <li key={`${e.source}-${index}`} className="leading-6 text-text-secondary">
-            <span className="font-medium text-text-primary">{e.calculation}.</span>{" "}
+          <li
+            key={`${e.source}-${index}`}
+            className="leading-6 text-text-secondary"
+          >
+            <span className="font-medium text-text-primary">
+              {e.calculation}.
+            </span>{" "}
             {Object.entries(e.values).map(([key, value], valueIndex) => (
               <span key={key}>
                 {valueIndex ? " · " : ""}
@@ -40,9 +45,7 @@ export function EvidencePanel({
           </li>
         ))}
       </ul>
-      <p className="text-xs leading-5 text-text-tertiary">
-        {item.limitation}
-      </p>
+      <p className="text-xs leading-5 text-text-tertiary">{item.limitation}</p>
       <details className="border-t border-card-border pt-3">
         <summary className="min-h-11 cursor-pointer py-3 font-medium text-text-secondary underline-offset-4 hover:text-text-primary hover:underline focus-visible:outline-primary-500">
           View source records
@@ -52,58 +55,58 @@ export function EvidencePanel({
             {item.confidence_reason}
           </p>
           <label className="block text-sm text-text-secondary">
-        Evidence source
-        <select
-          value={source}
-          onChange={(e) => {
-            setSource(e.target.value);
-            setOffset(0);
-          }}
-          className="mt-2 block min-h-11 w-full rounded-lg border border-card-border bg-card-background px-3 text-text-primary focus-visible:outline-primary-500"
-        >
-          {[...new Set(item.evidence.map((e) => e.source))].map((s) => (
-            <option key={s} value={s}>
-              {s.replaceAll("_", " ")}
-            </option>
-          ))}
-        </select>
-      </label>
-      {rows.isPending ? <p role="status">Loading evidence…</p> : null}
-      {rows.isError ? (
-        <button
-          type="button"
-          onClick={() => void rows.refetch()}
-          className="min-h-11 underline"
-        >
-          Evidence could not load. Retry
-        </button>
-      ) : null}
-      {rows.data ? (
-        <>
-          <EvidenceTable rows={rows.data.items} />
-          <div className="flex flex-wrap items-center gap-4">
-            <span>
-              {rows.data.total} records · page {Math.floor(offset / 50) + 1}
-            </span>
+            Evidence source
+            <select
+              value={source}
+              onChange={(e) => {
+                setSource(e.target.value);
+                setOffset(0);
+              }}
+              className="mt-2 block min-h-11 w-full rounded-lg border border-card-border bg-card-background px-3 text-text-primary focus-visible:outline-primary-500"
+            >
+              {[...new Set(item.evidence.map((e) => e.source))].map((s) => (
+                <option key={s} value={s}>
+                  {s.replaceAll("_", " ")}
+                </option>
+              ))}
+            </select>
+          </label>
+          {rows.isPending ? <p role="status">Loading evidence…</p> : null}
+          {rows.isError ? (
             <button
               type="button"
-              disabled={offset === 0}
-              onClick={() => setOffset(offset - 50)}
-              className="min-h-11 underline disabled:opacity-40"
+              onClick={() => void rows.refetch()}
+              className="min-h-11 underline"
             >
-              Previous records
+              Evidence could not load. Retry
             </button>
-            <button
-              type="button"
-              disabled={offset + 50 >= rows.data.total}
-              onClick={() => setOffset(offset + 50)}
-              className="min-h-11 underline disabled:opacity-40"
-            >
-              Next records
-            </button>
-          </div>
-        </>
-      ) : null}
+          ) : null}
+          {rows.data ? (
+            <>
+              <EvidenceTable rows={rows.data.items} />
+              <div className="flex flex-wrap items-center gap-4">
+                <span>
+                  {rows.data.total} records · page {Math.floor(offset / 50) + 1}
+                </span>
+                <button
+                  type="button"
+                  disabled={offset === 0}
+                  onClick={() => setOffset(offset - 50)}
+                  className="min-h-11 underline disabled:opacity-40"
+                >
+                  Previous records
+                </button>
+                <button
+                  type="button"
+                  disabled={offset + 50 >= rows.data.total}
+                  onClick={() => setOffset(offset + 50)}
+                  className="min-h-11 underline disabled:opacity-40"
+                >
+                  Next records
+                </button>
+              </div>
+            </>
+          ) : null}
         </div>
       </details>
     </div>

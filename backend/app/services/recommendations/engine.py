@@ -17,9 +17,10 @@ SEVERITY_RANK = {"critical": 0, "warning": 1, "notice": 2}
 EFFORT_RANK = {"minutes": 0, "hour": 1, "afternoon": 2}
 
 
-def priorities(items: list[dict], limit: int = 3) -> list[str]:
-    """The few findings to do first: worst severity, then those with a draft ready,
-    then the quickest. Keys, so the UI can look the findings up."""
+def priorities(items: list[dict], limit: int = 5) -> list[str]:
+    """The few findings to do first: one per check, worst severity first, drafts and
+    quick fixes ahead of the rest, and no category taking more than two slots while
+    another still has something to say. Keys, so the UI can look the findings up."""
     ranked = sorted(
         items,
         key=lambda i: (
@@ -27,9 +28,29 @@ def priorities(items: list[dict], limit: int = 3) -> list[str]:
             0 if i.get("suggestion") else 1,
             EFFORT_RANK.get(RULE_DOCS.get(i["rule"], {}).get("effort", "hour"), 1),
             -i["score"],
+            i["key"],
         ),
     )
-    return [i["key"] for i in ranked[:limit]]
+    chosen: list[dict] = []
+    seen_rules: set[str] = set()
+    per_category: dict[str, int] = {}
+    # First pass: one per check, at most two per category.
+    for item in ranked:
+        if item["rule"] in seen_rules or per_category.get(item["category"], 0) >= 2:
+            continue
+        chosen.append(item)
+        seen_rules.add(item["rule"])
+        per_category[item["category"]] = per_category.get(item["category"], 0) + 1
+        if len(chosen) == limit:
+            break
+    # Second pass: fill remaining slots with other checks regardless of category.
+    for item in ranked:
+        if len(chosen) == limit:
+            break
+        if item["rule"] not in seen_rules:
+            chosen.append(item)
+            seen_rules.add(item["rule"])
+    return [i["key"] for i in chosen[:limit]]
 
 
 def run_worker(snapshot: dict, as_of: date, config: EngineConfig, category: str) -> dict:

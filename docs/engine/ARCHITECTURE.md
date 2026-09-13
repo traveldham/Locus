@@ -1,6 +1,6 @@
 # Audit engine architecture
 
-Status: skeleton, 2026-09-13. Engine version 3.0.0. No checks are built yet.
+Status: all six workers built, 2026-09-14. Engine version 4.0.0.
 
 ## The one idea
 
@@ -28,7 +28,7 @@ Every audit runs every worker. A worker never reads another worker's result.
 
 ## Categories and weights
 
-| Order | Worker | Key | Weight | Scope of the checks (to be built) |
+| Order | Worker | Key | Weight | Scope of the checks |
 | --- | --- | --- | --- | --- |
 | 1 | Profile completeness | `profile` | 20 | Business info: name, categories, phone, website, description, address, hours, attributes, verification |
 | 2 | Reputation | `reputation` | 20 | Reviews: rating, count, velocity, reply rate, reply speed, unanswered critical reviews |
@@ -136,6 +136,12 @@ field and its role.
    in user-facing text.
 5. Mutation tests: changed inputs change findings; missing evidence abstains.
 6. Bump `ENGINE_VERSION` for any semantic change.
+
+## Worker docs
+
+Each worker's checks, thresholds, abstentions and AI drafts are documented in
+`docs/engine/workers/<key>.md`, with the research behind them in
+`docs/engine/research/`.
 
 ## What was deliberately removed on 2026-09-13
 

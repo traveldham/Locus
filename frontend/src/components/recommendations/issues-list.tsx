@@ -232,8 +232,8 @@ export function IssuesList({
       </div>
 
       <p className="text-xs leading-5 text-text-tertiary">
-        Issue counts refer to checks. Open a check to see every affected item and the
-        saved records that support it.
+        Issue counts refer to checks. Open a check to see every affected item
+        and the saved records that support it.
       </p>
     </div>
   );

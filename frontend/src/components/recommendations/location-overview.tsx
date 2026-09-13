@@ -15,6 +15,58 @@ import { CategoryRings } from "./category-rings";
 import { ScoreRing } from "./score-ring";
 import { ScoreTrend } from "./score-trend";
 
+function InsightList({
+  title,
+  tone,
+  points,
+  labels,
+  locationId,
+}: {
+  title: string;
+  tone: "success" | "error";
+  points: { category: string; text: string }[];
+  labels: Map<string, string>;
+  locationId: string;
+}) {
+  const dot =
+    tone === "success" ? "bg-badge-success-text" : "bg-badge-error-text";
+  const href = (category: string) =>
+    category === "profile"
+      ? sectionHref(locationId, "/profile")
+      : sectionHref(locationId, `/category/${category}`);
+  return (
+    <div>
+      <h3 className={cn("text-sm font-semibold", TONE_TEXT[tone])}>{title}</h3>
+      {points.length ? (
+        <ul className="mt-2 space-y-2">
+          {points.map((point, index) => (
+            <li
+              key={`${point.category}-${index}`}
+              className="flex gap-2.5 text-sm leading-6"
+            >
+              <span
+                className={cn("mt-2 size-2 shrink-0 rounded-full", dot)}
+                aria-hidden="true"
+              />
+              <span className="min-w-0">
+                <span className="text-text-primary">{point.text}</span>{" "}
+                <Link
+                  href={href(point.category)}
+                  className="text-xs text-text-tertiary underline-offset-4 hover:underline"
+                >
+                  {labels.get(point.category) ?? point.category}
+                </Link>
+              </span>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="mt-2 text-sm text-text-tertiary">Nothing to list.</p>
+      )}
+    </div>
+  );
+}
+
 const EFFORT_LABEL: Record<string, string> = {
   minutes: "a few minutes",
   hour: "about an hour",
@@ -31,7 +83,8 @@ export function LocationOverview({
   history: ScorePoint[];
 }) {
   const health = location.health;
-  const summary = location.summaries?.profile ?? null;
+  // The whole-audit paragraph. Per-category summaries live on their own tabs.
+  const summary = location.summary ?? null;
   const changes = location.changes;
   const byKey = new Map(run.items.map((item) => [item.key, item]));
   const byRule = new Map(location.by_rule.map((row) => [row.rule, row]));
@@ -39,6 +92,9 @@ export function LocationOverview({
     .map((key) => byKey.get(key))
     .filter((item): item is NonNullable<typeof item> => Boolean(item));
   const draftStatus = location.suggestions?.profile;
+  const categoryLabels = new Map(
+    run.categories.map((c) => [c.category, c.label]),
+  );
 
   return (
     <div className="space-y-5">
@@ -49,13 +105,31 @@ export function LocationOverview({
             <span className="text-xs text-text-tertiary">
               {summary.source === "deterministic"
                 ? "Written from the findings"
-                : `Written by ${summary.model} from the findings`}
+                : `Written by ${summary.model} from all six audits`}
             </span>
           }
         >
           <p className="text-[15px] leading-7 text-text-primary">
             {summary.text}
           </p>
+          {summary.strengths?.length || summary.attention?.length ? (
+            <div className="mt-5 grid gap-4 border-t border-card-border pt-5 md:grid-cols-2">
+              <InsightList
+                title="Working well"
+                tone="success"
+                points={summary.strengths ?? []}
+                labels={categoryLabels}
+                locationId={location.id}
+              />
+              <InsightList
+                title="Needs attention"
+                tone="error"
+                points={summary.attention ?? []}
+                labels={categoryLabels}
+                locationId={location.id}
+              />
+            </div>
+          ) : null}
           {draftStatus?.status === "failed" ? (
             <p className="mt-3 text-xs leading-5 text-badge-warning-text">
               Drafts could not be generated this time: {draftStatus.error}

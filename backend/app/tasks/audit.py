@@ -22,6 +22,7 @@ from app.services.recommendations.engine import assemble, run_worker
 from app.services.recommendations.runs import save_run
 from app.services.recommendations.snapshot import read_snapshot
 from app.services.recommendations.suggestions import enrich
+from app.services.recommendations.suggestions.overall import overall_summary
 from app.services.recommendations.types import EngineConfig
 from app.worker import celery_app
 
@@ -111,6 +112,8 @@ async def finish_job(job_id: UUID, session_factory: SessionFactory) -> None:
                 [w.result for w in job.workers],
             )
             report["location"]["changes"] = await changes_since_last(db, job, report)
+            # One paragraph across all six workers, for the Overview.
+            report["location"]["summary"] = await overall_summary(report)
             run = await save_run(db, job, report)
             record_history(db, job, run.id, report)
         except Exception as error:  # noqa: BLE001 - the job records every failure

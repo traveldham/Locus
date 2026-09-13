@@ -10,7 +10,6 @@ from sqlalchemy import select
 
 from app.models import AuditJob, AuditJobStatus, Location, OpenStatus, RecommendationRun
 from app.services.recommendations.categories import WORKERS
-from app.services.recommendations.categories import profile as profile_worker
 from app.services.recommendations.engine import analyze
 from app.services.recommendations.policy import CATEGORIES
 from app.services.recommendations.types import EngineConfig
@@ -53,18 +52,19 @@ def test_six_workers_in_a_fixed_order_with_weights_summing_to_100():
     assert sum(spec["weight"] for spec in CATEGORIES.values()) == 100
 
 
-def test_only_built_workers_contribute_to_the_score():
-    """A bare profile: the profile worker judges it, the five empty workers abstain."""
+def test_every_worker_assesses_every_check_it_declares():
+    """A bare profile: each worker assesses all of its checks, and only its own."""
     report = analyze(data(), AS_OF)
-    assert report["items"] and all(i["category"] == "profile" for i in report["items"])
-    assert all(e["category"] == "profile" for e in report["evaluations"])
+    assessed = {(e["category"], e["rule"]) for e in report["evaluations"]}
+    for worker in WORKERS:
+        assert {(worker.KEY, rule) for rule in worker.CHECKS} <= assessed
+    assert {i["category"] for i in report["items"]} <= set(KEYS)
     health = report["location"]["health"]
     assert health["score"] is not None and health["score"] < 50
     assert [c["category"] for c in health["categories"]] == KEYS
     by_category = {c["category"]: c for c in health["categories"]}
     assert by_category["profile"]["score"] is not None
-    assert all(by_category[k]["score"] is None for k in KEYS if k != "profile")
-    assert all(row["category"] == "profile" for row in report["location"]["by_rule"])
+    assert {row["category"] for row in report["location"]["by_rule"]} == set(KEYS)
     assert report["location"]["name"] == "An unrelated business"
     assert report["counts"] == {"locations": 1}
     # Same inputs, same report.
@@ -189,7 +189,9 @@ async def test_pipeline_runs_six_workers_and_publishes_one_run(client, session_f
 
     policy = (await client.get("/api/v1/recommendations/policy", headers=headers)).json()
     assert sum(c["weight"] for c in policy["categories"]) == 100
-    assert {r["rule"] for r in policy["rules"]} == set(profile_worker.CHECKS)
+    assert {r["rule"] for r in policy["rules"]} == {
+        rule for worker in WORKERS for rule in worker.CHECKS
+    }
 
     # Changing an input the snapshot covers makes the audit stale.
     async with session_factory() as db:
@@ -296,6 +298,7 @@ async def test_only_the_current_audit_is_kept(client, session_factory, stub_queu
     assert "website_missing" in changes["fixed"]
     assert changes["previous_state"]["website_missing"] == "triggered"
     assert latest_payload["run"]["location"]["summaries"]["profile"]["source"] == "deterministic"
+    assert latest_payload["run"]["location"]["summary"]["source"] == "deterministic"
     assert latest_payload["run"]["location"]["priorities"]
 
     async with session_factory() as db:

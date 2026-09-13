@@ -13,6 +13,13 @@ const CONFIDENCE_COLOR = {
   low: "gray",
 } as const;
 
+const FIELD_LABEL: Record<string, string> = {
+  description: "description",
+  additional_categories: "additional categories",
+  attributes: "attribute answers",
+  title: "business name",
+};
+
 function asText(value: Suggestion["value"]): string {
   if (typeof value === "string") return value;
   if (Array.isArray(value)) return value.join(", ");
@@ -66,6 +73,9 @@ export function SuggestionPanel({
       <div className="flex flex-wrap items-center gap-2">
         <h3 className="font-medium text-text-primary">
           Suggested fix
+          <span className="ml-1.5 font-normal text-text-tertiary">
+            · {FIELD_LABEL[suggestion.field] ?? suggestion.field}
+          </span>
         </h3>
         <Badge color={CONFIDENCE_COLOR[suggestion.confidence]} size="sm">
           {suggestion.confidence} confidence
@@ -78,8 +88,12 @@ export function SuggestionPanel({
         <SuggestedValue value={suggestion.value} />
       </div>
       <div className="mt-3 border-t border-card-border pt-3">
-        <p className="text-xs font-medium text-text-primary">Why this draft fits</p>
-        <p className="mt-1 text-xs leading-5 text-text-secondary">{suggestion.reason}</p>
+        <p className="text-xs font-medium text-text-primary">
+          Why this draft fits
+        </p>
+        <p className="mt-1 text-xs leading-5 text-text-secondary">
+          {suggestion.reason}
+        </p>
       </div>
       <div className="mt-3 flex flex-wrap items-center gap-2">
         {editable ? (

@@ -22,7 +22,8 @@ export function issueSentence(rule: RuleCluster, why?: string) {
     return {
       count: plural(n, rule.subject),
       predicate: rule.subject_predicate,
-      detail: why,
+      // The count sentence already says it; a single finding's wording would repeat.
+      detail: undefined,
       countable: true,
     };
   }

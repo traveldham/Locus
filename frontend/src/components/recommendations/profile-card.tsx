@@ -218,10 +218,12 @@ function Card({
           {note("category")}
         </p>
         <p className={cn("mt-1 text-xs", mark("verified"))}>
-          {card.verified ? (
+          {card.verified === true ? (
             <span className="text-[#1e8e3e]">Verified</span>
-          ) : (
+          ) : card.verified === false ? (
             <span className="text-[#d93025]">Not verified</span>
+          ) : (
+            <span className="text-[#5f6368]">Verification unknown</span>
           )}
           {note("verified")}
           {card.open_status && card.open_status !== "open" ? (

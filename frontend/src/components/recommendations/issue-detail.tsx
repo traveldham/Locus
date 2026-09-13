@@ -16,6 +16,23 @@ import { issueSentence, plural } from "./issue-row";
 
 const PAGE_SIZE = 25;
 
+/** Why a finding has no draft: the honest reason, not a blanket excuse. */
+function noDraftReason(
+  suggests: string | null | undefined,
+  status: { status: string; reason?: string; error?: string } | undefined,
+) {
+  if (!suggests) {
+    return "No AI draft is shown because this fix needs information only the business can confirm.";
+  }
+  if (status?.status === "failed") {
+    return `A draft was possible but could not be generated this time: ${status.error ?? "the model did not answer"}. Rerun the audit to try again.`;
+  }
+  if (status?.status === "skipped") {
+    return `No draft was generated: ${status.reason ?? "drafts are not configured"}.`;
+  }
+  return "The model returned no usable draft for this finding. Rerun the audit to try again.";
+}
+
 export function IssueDetail({
   run,
   location,
@@ -229,7 +246,9 @@ export function IssueDetail({
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="text-xs text-text-tertiary">
-                  {cluster.unit === "location" ? item.location_name : item.subject}
+                  {cluster.unit === "location"
+                    ? item.location_name
+                    : item.subject}
                 </p>
                 <h2 className="mt-1 text-base font-semibold text-text-primary">
                   {item.title}
@@ -241,17 +260,27 @@ export function IssueDetail({
             </div>
 
             <div className="mt-4">
-              <h3 className="text-sm font-medium text-text-primary">What to do</h3>
-              <p className="mt-1 text-sm leading-6 text-text-secondary">{item.action}</p>
+              <h3 className="text-sm font-medium text-text-primary">
+                What to do
+              </h3>
+              <p className="mt-1 text-sm leading-6 text-text-secondary">
+                {item.action}
+              </p>
             </div>
 
             {item.suggestion ? (
               <div className="mt-4">
-                <SuggestionPanel suggestion={item.suggestion} locationId={location.id} />
+                <SuggestionPanel
+                  suggestion={item.suggestion}
+                  locationId={location.id}
+                />
               </div>
             ) : (
               <p className="mt-4 rounded-lg bg-background-gray-secondary px-4 py-3 text-xs leading-5 text-text-tertiary">
-                No AI draft is shown because this fix needs information only the business can confirm.
+                {noDraftReason(
+                  cluster.suggests,
+                  location.suggestions?.[cluster.category],
+                )}
               </p>
             )}
 
