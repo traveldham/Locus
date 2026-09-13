@@ -45,7 +45,9 @@ export function ProjectCard({ project }: { project: Project }) {
           color={isArchived ? "gray" : "success"}
           size="sm"
           prefixIcon={
-            isArchived ? <BoxArchive1 aria-hidden="true" focusable="false" /> : undefined
+            isArchived ? (
+              <BoxArchive1 aria-hidden="true" focusable="false" />
+            ) : undefined
           }
         >
           {isArchived ? "Archived" : "Active"}

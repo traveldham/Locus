@@ -16,10 +16,18 @@ import {
 import { Badge } from "@/components/tailgrids/core/badge";
 import { Button } from "@/components/tailgrids/core/button";
 import { Skeleton } from "@/components/tailgrids/core/skeleton";
-import { useProjectQuery, useUpdateProjectMutation } from "@/hooks/use-projects";
+import {
+  useProjectQuery,
+  useUpdateProjectMutation,
+} from "@/hooks/use-projects";
 import { ApiError } from "@/services/api/client";
 import { formatDate } from "@/utils/format-date";
-import { BoxArchive1, Folder1, Pencil1, RefreshCircle1Clockwise } from "@tailgrids/icons";
+import {
+  BoxArchive1,
+  Folder1,
+  Pencil1,
+  RefreshCircle1Clockwise,
+} from "@tailgrids/icons";
 import { useState } from "react";
 import { apiErrorMessage } from "./errors";
 import { DeleteProjectSection } from "./delete-project-section";
@@ -27,7 +35,8 @@ import { ProjectLocationsPanel } from "./project-locations-panel";
 import { RenameProjectDialog } from "./rename-project-dialog";
 
 export function ProjectDetailView({ projectId }: { projectId: string }) {
-  const { data, isPending, isError, error, refetch, isFetching } = useProjectQuery(projectId);
+  const { data, isPending, isError, error, refetch, isFetching } =
+    useProjectQuery(projectId);
   const changeStatus = useUpdateProjectMutation(projectId);
 
   const [isRenameOpen, setIsRenameOpen] = useState(false);
@@ -41,7 +50,9 @@ export function ProjectDetailView({ projectId }: { projectId: string }) {
     if (!data || changeStatus.isPending) return;
     const nextStatus = data.status === "archived" ? "active" : "archived";
     setStatusMessage(null);
-    const project = await changeStatus.mutateAsync({ status: nextStatus }).catch(() => null);
+    const project = await changeStatus
+      .mutateAsync({ status: nextStatus })
+      .catch(() => null);
     // A failure leaves the badge as it was; the message below the header says why.
     if (!project) return;
     setStatusMessage(
@@ -99,10 +110,13 @@ export function ProjectDetailView({ projectId }: { projectId: string }) {
                   {isArchived ? "Archived" : "Active"}
                 </Badge>
                 <span className="text-sm text-text-tertiary">
-                  {data.location_count} {data.location_count === 1 ? "location" : "locations"}
+                  {data.location_count}{" "}
+                  {data.location_count === 1 ? "location" : "locations"}
                 </span>
                 {created ? (
-                  <span className="text-sm text-text-tertiary">Created {created}</span>
+                  <span className="text-sm text-text-tertiary">
+                    Created {created}
+                  </span>
                 ) : null}
               </>
             }
@@ -126,7 +140,10 @@ export function ProjectDetailView({ projectId }: { projectId: string }) {
                   isDisabled={changeStatus.isPending}
                 >
                   {isArchived ? (
-                    <RefreshCircle1Clockwise aria-hidden="true" focusable="false" />
+                    <RefreshCircle1Clockwise
+                      aria-hidden="true"
+                      focusable="false"
+                    />
                   ) : (
                     <BoxArchive1 aria-hidden="true" focusable="false" />
                   )}
@@ -153,7 +170,9 @@ export function ProjectDetailView({ projectId }: { projectId: string }) {
               <Alert status="error" className="max-w-none">
                 <AlertIndicator />
                 <AlertContent>
-                  <AlertTitle>We could not change the status of this project</AlertTitle>
+                  <AlertTitle>
+                    We could not change the status of this project
+                  </AlertTitle>
                   <AlertDescription>
                     {apiErrorMessage(changeStatus.error, "Please try again.")}
                   </AlertDescription>
@@ -169,9 +188,9 @@ export function ProjectDetailView({ projectId }: { projectId: string }) {
                 <AlertContent>
                   <AlertTitle>This project is archived</AlertTitle>
                   <AlertDescription>
-                    Archiving marks a project as finished. Its locations are untouched and still
-                    available everywhere else in Locus. Restore the project to mark it active
-                    again.
+                    Archiving marks a project as finished. Its locations are
+                    untouched and still available everywhere else in Locus.
+                    Restore the project to mark it active again.
                   </AlertDescription>
                 </AlertContent>
               </Alert>
@@ -196,7 +215,9 @@ export function ProjectDetailView({ projectId }: { projectId: string }) {
               projectId={projectId}
               currentName={data.name}
               onClose={() => setIsRenameOpen(false)}
-              onRenamed={(name) => setStatusMessage(`This project is now called ${name}.`)}
+              onRenamed={(name) =>
+                setStatusMessage(`This project is now called ${name}.`)
+              }
             />
           ) : null}
         </>

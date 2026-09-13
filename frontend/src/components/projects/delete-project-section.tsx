@@ -25,7 +25,9 @@ export function DeleteProjectSection({
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
   const locationsPhrase =
-    locationCount === 1 ? "The 1 location in it" : `The ${locationCount} locations in it`;
+    locationCount === 1
+      ? "The 1 location in it"
+      : `The ${locationCount} locations in it`;
 
   function close() {
     if (deleteProject.isPending) return;
@@ -48,12 +50,16 @@ export function DeleteProjectSection({
     >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="min-w-0">
-          <h2 id={headingId} className="text-sm font-semibold text-alert-danger-title">
+          <h2
+            id={headingId}
+            className="text-sm font-semibold text-alert-danger-title"
+          >
             Delete this project
           </h2>
           <p className="mt-1.5 max-w-2xl text-sm leading-6 text-alert-danger-description">
-            The project and its links to locations are removed. {locationsPhrase} stay in your
-            workspace and in every other project they belong to.
+            The project and its links to locations are removed.{" "}
+            {locationsPhrase} stay in your workspace and in every other project
+            they belong to.
           </p>
         </div>
         <Button
@@ -76,12 +82,16 @@ export function DeleteProjectSection({
           description={
             <>
               <p>
-                <span className="font-medium text-text-secondary">{projectName}</span> and its
-                links to locations will be deleted. This cannot be undone.
+                <span className="font-medium text-text-secondary">
+                  {projectName}
+                </span>{" "}
+                and its links to locations will be deleted. This cannot be
+                undone.
               </p>
               <p className="mt-3">
-                {locationsPhrase} are not deleted. They stay in your workspace with their Google
-                Business Profile data, and in any other project they belong to.
+                {locationsPhrase} are not deleted. They stay in your workspace
+                with their Google Business Profile data, and in any other
+                project they belong to.
               </p>
             </>
           }

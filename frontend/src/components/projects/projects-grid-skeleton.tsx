@@ -8,7 +8,10 @@ export function ProjectsGridSkeleton({ cards = 6 }: { cards?: number }) {
       className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
     >
       {Array.from({ length: cards }, (_, index) => (
-        <div key={index} className="rounded-xl border border-card-border bg-card-background p-5">
+        <div
+          key={index}
+          className="rounded-xl border border-card-border bg-card-background p-5"
+        >
           <div className="flex items-start justify-between gap-3">
             <Skeleton className="size-10 rounded-lg" />
             <Skeleton className="h-5 w-16 rounded-full" />

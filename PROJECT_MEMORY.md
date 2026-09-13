@@ -14,9 +14,13 @@ Last updated: 2026-09-13
 
 Build an end-to-end **Google Business Profile management platform**: a business connects their Google account once, we discover the locations that account manages, they import a selection into a named Project, and then they manage those profiles — details, hours, attributes, photos, posts, reviews — across many locations from one dashboard.
 
-## Scope change (2026-09-12)
+## Scope changes
 
-The user explicitly dropped the recommendation/ML engine from current scope and redirected to the management platform. The earlier framing in `FOUNDATION_PLAN.md` and in `researched/GBP_Recommendation_Engine_Architecture.md` describes work that is **not being built right now**. Treat the assignment deliverables as historical context.
+The user redirected to the management platform on 2026-09-12, then explicitly restored
+the changing-data recommendation engine on 2026-09-13. Recommendation code and generated
+assignment output are active work, not historical-only scope. The app currently uses
+seeded synthetic data, not a live Google connection. Earlier foundation details below
+are historical; consult the current backend README and latest handoff entries.
 
 ## Current state
 
@@ -55,6 +59,21 @@ review sync run inline and still record a `SyncRun` row each. Do not reintroduce
 without a real quota and a real fleet of locations.
 
 ## Handoff log
+
+- 2026-09-13: Added Google-style preview as the default location-detail view, with a
+  switch back to management and preserved edit workflow. Components:
+  `frontend/src/components/locations/preview/`. Overview, all paginated reviews/replies,
+  updates and recorded attributes use live application API reads. Operator recommendations
+  remain outside the public-style preview and link to the existing location audit.
+  Added tenant-scoped `GET /api/v1/reviews/summary`, aggregating all valid stored reviews;
+  11 targeted review tests passed, including >200 reviews, changed ratings and tenant isolation.
+- 2026-09-13: User explicitly requires Google colors/typography inside the preview,
+  **not Locus branding**. `google-profile.module.css` isolates a white Google-style panel,
+  blue actions, gray dividers, gold stars, Google Sans headings/controls and Arial body.
+  Fonts are locally hosted in `frontend/public/fonts/google-sans/` with OFL and provenance.
+  No invented business imagery or live open-now status; synthetic calls/directions disabled.
+  Browser checked preview sections, review pagination and management switching. No database
+  reseed, public writes, server starts or migrations were needed for the preview.
 
 - 2026-09-13: Closed the data-to-UI omissions audit. Added a paginated/filterable Posts API and `/posts` UI for all 69 seeded posts. Also surfaced location coordinates/resource metadata and timestamps, booking external IDs, keyword result URLs, competitor Place IDs, and attribute value types. Verification: backend pytest/ruff and frontend ESLint/TypeScript.
 - 2026-09-13: Completed the full CSV → database → API → UI reconciliation in `tasks/018-csv-database-ui-reconciliation.md`. Added migration `20260913_0005` and persistent storage/UI for all 34 attribute-catalog rows, including unset versus false. Applied the migration and reseeded the local database; all 14 CSV files now have a deliberate visible destination.

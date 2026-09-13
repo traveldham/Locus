@@ -17,6 +17,17 @@ class Settings(BaseSettings):
     refresh_token_days: int = 30
     cookie_secure: bool = False
 
+    # Celery moves audit generation off the request. `always_eager` runs tasks inline
+    # in the calling process, which is what the test suite and the CLI export use.
+    redis_url: str = "redis://localhost:6379/0"
+    celery_always_eager: bool = False
+    audit_job_timeout_seconds: int = Field(default=900, ge=30, le=7200)
+
+    # A snapshot read runs in its own repeatable-read session, so a request that takes
+    # one holds two connections at once. Size the pool for that, not for one each.
+    db_pool_size: int = Field(default=10, ge=1, le=100)
+    db_max_overflow: int = Field(default=20, ge=0, le=100)
+
     # Where the sample CSVs live. Blank falls back to the dataset checked out beside the
     # backend; see app/services/providers/sample_data.py.
     sample_data_dir: str | None = None

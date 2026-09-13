@@ -15,7 +15,8 @@ export const insightKeys = {
     [...insightKeys.all, "performance", params] as const,
   searchTerms: (params: SearchTermParams) =>
     [...insightKeys.all, "search-terms", params] as const,
-  media: (params: MediaParams) => [...insightKeys.all, "media", params] as const,
+  media: (params: MediaParams) =>
+    [...insightKeys.all, "media", params] as const,
 };
 
 /**

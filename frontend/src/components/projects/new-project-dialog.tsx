@@ -14,14 +14,18 @@ import { Input } from "@/components/tailgrids/core/input";
 import { Backdrop } from "@/components/tailgrids/core/overlay";
 import { Skeleton } from "@/components/tailgrids/core/skeleton";
 import { TextField } from "@/components/tailgrids/core/text-field";
-import { useLocationsQuery } from "@/hooks/use-locations";
+import { useAllLocationsQuery } from "@/hooks/use-locations";
 import { useCreateProjectMutation } from "@/hooks/use-projects";
 import { cn } from "@/utils/cn";
 import { Search1 } from "@tailgrids/icons";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState, type FormEvent } from "react";
-import { PROJECT_NAME_MAX_LENGTH, PROJECT_NAME_MIN_LENGTH, projectNameError } from "./project-name";
+import {
+  PROJECT_NAME_MAX_LENGTH,
+  PROJECT_NAME_MIN_LENGTH,
+  projectNameError,
+} from "./project-name";
 
 interface NewProjectDialogProps {
   onOpenChange: (isOpen: boolean) => void;
@@ -29,14 +33,19 @@ interface NewProjectDialogProps {
 
 export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
   const router = useRouter();
-  const locationsQuery = useLocationsQuery();
+  const locationsQuery = useAllLocationsQuery();
   const createProject = useCreateProjectMutation();
 
   const [name, setName] = useState("");
   const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState<ReadonlySet<string>>(new Set<string>());
+  const [selected, setSelected] = useState<ReadonlySet<string>>(
+    new Set<string>(),
+  );
 
-  const locations = useMemo(() => locationsQuery.data ?? [], [locationsQuery.data]);
+  const locations = useMemo(
+    () => locationsQuery.data ?? [],
+    [locationsQuery.data],
+  );
   const query = search.trim().toLowerCase();
 
   const visible = useMemo(
@@ -53,7 +62,8 @@ export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
 
   const trimmedName = name.trim();
   // The same 2 to 160 character rule the API enforces.
-  const isSubmittable = projectNameError(name) === null && !createProject.isPending;
+  const isSubmittable =
+    projectNameError(name) === null && !createProject.isPending;
 
   function toggle(id: string) {
     setSelected((current) => {
@@ -90,14 +100,18 @@ export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
   }
 
   return (
-    <Backdrop isOpen onOpenChange={onOpenChange} isDismissable={!createProject.isPending}>
+    <Backdrop
+      isOpen
+      onOpenChange={onOpenChange}
+      isDismissable={!createProject.isPending}
+    >
       <Dialog className="flex max-h-[min(90vh,46rem)] w-full max-w-2xl flex-col overflow-hidden p-0">
         <form onSubmit={handleSubmit} className="flex min-h-0 flex-col">
           <DialogHeader className="border-b border-card-border px-6 py-5 pr-14">
             <DialogTitle>New project</DialogTitle>
             <p className="text-sm leading-6 text-text-tertiary">
-              Name the project, then choose which of your imported locations belong in it. A
-              location can sit in more than one project.
+              Name the project, then choose which of your imported locations
+              belong in it. A location can sit in more than one project.
             </p>
           </DialogHeader>
 
@@ -111,18 +125,30 @@ export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
               aria-describedby="new-project-name-hint"
             >
               <FieldLabel>Project name</FieldLabel>
-              <Input className="h-11 w-full" placeholder="For example, Northern region" />
-              <p id="new-project-name-hint" className="text-xs text-text-tertiary">
-                Between {PROJECT_NAME_MIN_LENGTH} and {PROJECT_NAME_MAX_LENGTH} characters. You can
-                rename a project later without affecting its locations.
+              <Input
+                className="h-11 w-full"
+                placeholder="For example, Northern region"
+              />
+              <p
+                id="new-project-name-hint"
+                className="text-xs text-text-tertiary"
+              >
+                Between {PROJECT_NAME_MIN_LENGTH} and {PROJECT_NAME_MAX_LENGTH}{" "}
+                characters. You can rename a project later without affecting its
+                locations.
               </p>
             </TextField>
 
             <div className="mt-7">
               <div className="flex flex-wrap items-end justify-between gap-3">
                 <div>
-                  <h3 className="text-sm font-semibold text-text-primary">Locations</h3>
-                  <p className="mt-1 text-xs leading-5 text-text-tertiary" aria-live="polite">
+                  <h3 className="text-sm font-semibold text-text-primary">
+                    Locations
+                  </h3>
+                  <p
+                    className="mt-1 text-xs leading-5 text-text-tertiary"
+                    aria-live="polite"
+                  >
                     {selected.size} selected
                   </p>
                 </div>
@@ -163,14 +189,16 @@ export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
                   />
                 ) : null}
 
-                {!locationsQuery.isPending && !locationsQuery.isError && locations.length === 0 ? (
+                {!locationsQuery.isPending &&
+                !locationsQuery.isError &&
+                locations.length === 0 ? (
                   <div className="rounded-lg border border-dashed border-card-border px-4 py-5">
                     <p className="text-sm font-medium text-text-primary">
                       No locations have loaded yet
                     </p>
                     <p className="mt-1.5 text-sm leading-6 text-text-tertiary">
-                      There is nothing to pick from right now. You can create this project and add
-                      locations afterwards.
+                      There is nothing to pick from right now. You can create
+                      this project and add locations afterwards.
                     </p>
                     <Link
                       href="/settings/integrations"
@@ -181,7 +209,9 @@ export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
                   </div>
                 ) : null}
 
-                {!locationsQuery.isPending && !locationsQuery.isError && locations.length > 0 ? (
+                {!locationsQuery.isPending &&
+                !locationsQuery.isError &&
+                locations.length > 0 ? (
                   <div className="rounded-lg border border-card-border">
                     <div className="relative border-b border-card-border p-2">
                       <Search1
@@ -226,7 +256,9 @@ export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
                                     </span>
                                     <span className="mt-0.5 block truncate text-xs text-text-tertiary">
                                       {location.address ?? "Address not set"}
-                                      {location.store_code ? ` · ${location.store_code}` : ""}
+                                      {location.store_code
+                                        ? ` · ${location.store_code}`
+                                        : ""}
                                     </span>
                                   </span>
                                 </Checkbox>

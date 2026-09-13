@@ -5,7 +5,7 @@ import { ErrorState } from "@/components/common/error-state";
 import { LinkButton } from "@/components/common/link-button";
 import { PageHeader } from "@/components/common/page-header";
 import { Button } from "@/components/tailgrids/core/button";
-import { useLocationsQuery } from "@/hooks/use-locations";
+import { useAllLocationsQuery } from "@/hooks/use-locations";
 import { useProjectsQuery } from "@/hooks/use-projects";
 import { Folder1, Plus } from "@tailgrids/icons";
 import { useState } from "react";
@@ -16,14 +16,16 @@ import { ProjectsGridSkeleton } from "./projects-grid-skeleton";
 export function ProjectsView() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const projectsQuery = useProjectsQuery();
-  const locationsQuery = useLocationsQuery();
+  const locationsQuery = useAllLocationsQuery();
 
   const projects = projectsQuery.data ?? [];
   const importedCount = locationsQuery.data?.length ?? 0;
   const hasImportedLocations = importedCount > 0;
   // The empty state depends on whether any locations have loaded, so it waits for both
   // queries rather than flashing the wrong next step.
-  const isLoading = projectsQuery.isPending || (projects.length === 0 && locationsQuery.isPending);
+  const isLoading =
+    projectsQuery.isPending ||
+    (projects.length === 0 && locationsQuery.isPending);
 
   return (
     <div className="px-5 py-8 lg:px-8 lg:py-10">
@@ -81,7 +83,10 @@ export function ProjectsView() {
                   <Button size="xl" onPress={() => setIsDialogOpen(true)}>
                     Create an empty project
                   </Button>
-                  <LinkButton href="/settings/integrations" appearance="outline">
+                  <LinkButton
+                    href="/settings/integrations"
+                    appearance="outline"
+                  >
                     View integration
                   </LinkButton>
                 </>
@@ -106,7 +111,9 @@ export function ProjectsView() {
         ) : null}
       </div>
 
-      {isDialogOpen ? <NewProjectDialog onOpenChange={setIsDialogOpen} /> : null}
+      {isDialogOpen ? (
+        <NewProjectDialog onOpenChange={setIsDialogOpen} />
+      ) : null}
     </div>
   );
 }

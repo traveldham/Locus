@@ -2,7 +2,12 @@ import { apiRequest } from "./client";
 import type { DataSource } from "./insights";
 
 export type PostType = "standard" | "event" | "offer" | "alert";
-export type PostCtaType = "book" | "call" | "learn_more" | "sign_up" | "get_offer";
+export type PostCtaType =
+  | "book"
+  | "call"
+  | "learn_more"
+  | "sign_up"
+  | "get_offer";
 
 export interface Post {
   id: string;
@@ -25,6 +30,8 @@ export interface PostList {
 }
 
 export interface PostListParams {
+  /** Narrows the request to one project's locations. */
+  projectId?: string;
   locationId?: string;
   postType?: PostType;
   limit?: number;
@@ -37,6 +44,7 @@ export const postsApi = {
   list(params: PostListParams = {}) {
     const query = new URLSearchParams();
     if (params.locationId) query.set("location_id", params.locationId);
+    if (params.projectId) query.set("project_id", params.projectId);
     if (params.postType) query.set("post_type", params.postType);
     if (params.limit !== undefined) query.set("limit", String(params.limit));
     if (params.offset !== undefined) query.set("offset", String(params.offset));

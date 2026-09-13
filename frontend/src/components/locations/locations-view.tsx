@@ -1,5 +1,7 @@
 "use client";
 
+import { useActiveProject } from "@/contexts/active-project";
+
 import { EmptyState } from "@/components/common/empty-state";
 import { ErrorState } from "@/components/common/error-state";
 import { LinkButton } from "@/components/common/link-button";
@@ -12,15 +14,22 @@ import { LocationsTable } from "./locations-table";
 import { LocationsTableSkeleton } from "./locations-table-skeleton";
 
 export function LocationsView() {
+  const { project } = useActiveProject();
   const { data, isPending, isError, refetch, isFetching } = useLocationsQuery();
   const locations = data ?? [];
-  const hasSampleData = locations.some((location) => location.source === "fixture");
+  const hasSampleData = locations.some(
+    (location) => location.source === "fixture",
+  );
 
   return (
     <div className="px-5 py-8 lg:px-8 lg:py-10">
       <PageHeader
         title="Locations"
-        description="Every business location imported into this organization, exactly as it stands on Google."
+        description={
+          project
+            ? `The locations in ${project.name}, exactly as they stand on Google.`
+            : "Every business location imported into this organization, exactly as it stands on Google."
+        }
       />
 
       {hasSampleData ? <SampleDataNotice className="mt-6" /> : null}
@@ -56,8 +65,8 @@ export function LocationsView() {
             <LocationsTable locations={locations} />
             {locations.length === LOCATIONS_MAX_PAGE_SIZE ? (
               <p className="mt-3 text-xs leading-5 text-text-tertiary">
-                Showing the first {LOCATIONS_MAX_PAGE_SIZE} locations. Search narrows what is
-                listed here.
+                Showing the first {LOCATIONS_MAX_PAGE_SIZE} locations. Search
+                narrows what is listed here.
               </p>
             ) : null}
           </>

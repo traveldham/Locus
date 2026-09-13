@@ -57,7 +57,9 @@ export function ConfirmDialog({
           <DialogTitle>{title}</DialogTitle>
         </DialogHeader>
 
-        <div className="px-6 pt-3 pb-1 text-sm leading-6 text-text-tertiary">{description}</div>
+        <div className="px-6 pt-3 pb-1 text-sm leading-6 text-text-tertiary">
+          {description}
+        </div>
 
         {error ? (
           <div className="px-6 pt-4">
@@ -92,7 +94,10 @@ export function ConfirmDialog({
             isDisabled={isPending}
           >
             {isPending ? (
-              <span aria-hidden="true" className="flex size-5 shrink-0 items-center justify-center">
+              <span
+                aria-hidden="true"
+                className="flex size-5 shrink-0 items-center justify-center"
+              >
                 <Spinner size="sm" className="size-5" />
               </span>
             ) : null}

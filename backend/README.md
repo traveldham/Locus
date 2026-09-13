@@ -22,6 +22,28 @@ uv run python -m app.seed
 uv run uvicorn app.main:app --reload --port 8000
 ```
 
+Audit generation runs on a Celery worker, so it needs Redis and a second process:
+
+```bash
+brew services start redis    # or any Redis reachable on REDIS_URL
+./start.sh                   # starts the worker in the background
+./stop.sh                    # warm shutdown: finishes the current audit first
+```
+
+**Restart the worker after changing backend code.** Celery loads your modules once at
+startup and does not reload like `uvicorn --reload`; a stale worker will keep running the
+previous version and fail in confusing ways. `./stop.sh && ./start.sh` after any change
+to the engine, models or tasks.
+
+`./start.sh` checks the broker before launching, refuses to start a second worker
+against the same queue, and logs to `.celery/worker.log`. Pass `--foreground` to watch
+it instead, or set `LOGLEVEL` and `CONCURRENCY` to override the defaults. `./stop.sh`
+sends a warm shutdown and waits `TIMEOUT` seconds (default 30) before forcing it.
+
+Without a worker the API still accepts the request and the job stays `pending`, which
+the dashboard shows as "Audit queued". Set `CELERY_ALWAYS_EAGER=true` to run audits in
+the API process instead — useful with no worker, at the cost of a blocked request.
+
 The default database URL uses the current operating-system user and PostgreSQL's
 local Unix socket. Change `DATABASE_URL` in `.env` if your local server requires a
 host, username, or password.

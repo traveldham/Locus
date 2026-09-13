@@ -1,4 +1,5 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000/api/v1";
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000/api/v1";
 const TOKEN_KEY = "locus_access_token";
 
 interface RefreshResponse {
@@ -17,7 +18,9 @@ export class ApiError extends Error {
 }
 
 export function getAccessToken() {
-  return typeof window === "undefined" ? null : window.localStorage.getItem(TOKEN_KEY);
+  return typeof window === "undefined"
+    ? null
+    : window.localStorage.getItem(TOKEN_KEY);
 }
 
 export function setAccessToken(token: string | null) {
@@ -58,11 +61,18 @@ async function request(path: string, init: RequestInit, token: string | null) {
   });
 }
 
-export async function apiRequest<T>(path: string, init: RequestInit = {}): Promise<T> {
+export async function apiRequest<T>(
+  path: string,
+  init: RequestInit = {},
+): Promise<T> {
   const token = getAccessToken();
   let response = await request(path, init, token);
 
-  if (response.status === 401 && path !== "/auth/refresh" && path !== "/auth/login") {
+  if (
+    response.status === 401 &&
+    path !== "/auth/refresh" &&
+    path !== "/auth/login"
+  ) {
     const refreshedToken = await refreshAccessToken();
     if (refreshedToken) response = await request(path, init, refreshedToken);
   }
@@ -71,7 +81,9 @@ export async function apiRequest<T>(path: string, init: RequestInit = {}): Promi
     const body = await response.json().catch(() => null);
     if (response.status === 401) setAccessToken(null);
     throw new ApiError(
-      body?.detail ?? body?.message ?? "Something went wrong. Please try again.",
+      body?.detail ??
+        body?.message ??
+        "Something went wrong. Please try again.",
       response.status,
     );
   }

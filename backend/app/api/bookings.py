@@ -13,7 +13,7 @@ from fastapi import APIRouter, HTTPException, Query
 from sqlalchemy import func, select
 
 from app.api.dependencies import DbSession
-from app.api.scoping import OrganizationId
+from app.api.scoping import OrganizationId, project_locations
 from app.models import Booking, BookingChannel, BookingStatus, DataSource, Location
 from app.schemas import BookingListResponse, BookingResponse
 
@@ -47,6 +47,7 @@ async def list_bookings(
     organization_id: OrganizationId,
     db: DbSession,
     location_id: UUID | None = None,
+    project_id: UUID | None = None,
     status: BookingStatus | None = None,
     booking_source: BookingChannel | None = None,
     limit: Annotated[int, Query(ge=1, le=MAX_LIMIT)] = DEFAULT_LIMIT,
@@ -58,6 +59,10 @@ async def list_bookings(
     if location_id is not None:
         await owned_location(db, organization_id, location_id)
         conditions.append(Booking.location_id == location_id)
+    if project_id is not None:
+        conditions.append(
+            Booking.location_id.in_(await project_locations(db, organization_id, project_id))
+        )
     if booking_source is not None:
         conditions.append(Booking.booking_source == booking_source)
 

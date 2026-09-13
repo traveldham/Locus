@@ -14,7 +14,11 @@ import { TextField } from "@/components/tailgrids/core/text-field";
 import { useUpdateProjectMutation } from "@/hooks/use-projects";
 import { useState, type FormEvent } from "react";
 import { apiErrorMessage } from "./errors";
-import { PROJECT_NAME_MAX_LENGTH, PROJECT_NAME_MIN_LENGTH, projectNameError } from "./project-name";
+import {
+  PROJECT_NAME_MAX_LENGTH,
+  PROJECT_NAME_MIN_LENGTH,
+  projectNameError,
+} from "./project-name";
 
 interface RenameProjectDialogProps {
   projectId: string;
@@ -51,7 +55,9 @@ export function RenameProjectDialog({
     }
 
     // A failure keeps the dialog open with what was typed still in the field.
-    const project = await rename.mutateAsync({ name: trimmed }).catch(() => null);
+    const project = await rename
+      .mutateAsync({ name: trimmed })
+      .catch(() => null);
     if (!project) return;
 
     onRenamed(project.name);
@@ -71,8 +77,8 @@ export function RenameProjectDialog({
           <DialogHeader className="px-6 pt-6">
             <DialogTitle>Rename project</DialogTitle>
             <p className="text-sm leading-6 text-text-tertiary">
-              The web address of this project does not change, so existing links keep working.
-              Its locations are not affected.
+              The web address of this project does not change, so existing links
+              keep working. Its locations are not affected.
             </p>
           </DialogHeader>
 
@@ -85,18 +91,28 @@ export function RenameProjectDialog({
               disabled={rename.isPending}
               className="gap-1.5"
               aria-describedby={
-                showValidationError ? "rename-project-error" : "rename-project-hint"
+                showValidationError
+                  ? "rename-project-error"
+                  : "rename-project-hint"
               }
             >
               <FieldLabel>Project name</FieldLabel>
               <Input className="h-11 w-full" />
               {showValidationError ? (
-                <p id="rename-project-error" role="alert" className="text-xs text-input-error">
+                <p
+                  id="rename-project-error"
+                  role="alert"
+                  className="text-xs text-input-error"
+                >
                   {validationError}
                 </p>
               ) : (
-                <p id="rename-project-hint" className="text-xs text-text-tertiary">
-                  Between {PROJECT_NAME_MIN_LENGTH} and {PROJECT_NAME_MAX_LENGTH} characters.
+                <p
+                  id="rename-project-hint"
+                  className="text-xs text-text-tertiary"
+                >
+                  Between {PROJECT_NAME_MIN_LENGTH} and{" "}
+                  {PROJECT_NAME_MAX_LENGTH} characters.
                 </p>
               )}
             </TextField>
@@ -106,7 +122,10 @@ export function RenameProjectDialog({
                 role="alert"
                 className="mt-4 rounded-lg bg-alert-danger-background px-3 py-2.5 text-sm text-alert-danger-description"
               >
-                {apiErrorMessage(rename.error, "We could not rename this project. Please try again.")}
+                {apiErrorMessage(
+                  rename.error,
+                  "We could not rename this project. Please try again.",
+                )}
               </p>
             ) : null}
           </div>

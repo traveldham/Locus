@@ -1,16 +1,24 @@
 "use client";
 
+import { useActiveProjectId } from "@/contexts/active-project";
+
 import {
   reviewsApi,
   type ReplyToReviewInput,
   type ReviewListParams,
   type SyncReviewsInput,
 } from "@/services/api/reviews";
-import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  keepPreviousData,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 
 export const reviewKeys = {
   all: ["reviews"] as const,
-  list: (params: ReviewListParams) => [...reviewKeys.all, "list", params] as const,
+  list: (params: ReviewListParams) =>
+    [...reviewKeys.all, "list", params] as const,
   detail: (id: string) => [...reviewKeys.all, "detail", id] as const,
 };
 
@@ -19,9 +27,17 @@ export const reviewKeys = {
  * next one loads rather than collapsing the inbox back to a skeleton.
  */
 export function useReviewsQuery(params: ReviewListParams = {}) {
+  const projectId = useActiveProjectId();
+  // An explicit project on the caller wins; otherwise the dashboard's active one.
+  // A caller naming one location has already chosen its scope; narrowing that by the
+  // active project as well would return nothing whenever the location sits outside it.
+  const scoped = {
+    projectId: params.locationId ? undefined : (projectId ?? undefined),
+    ...params,
+  };
   return useQuery({
-    queryKey: reviewKeys.list(params),
-    queryFn: () => reviewsApi.list(params),
+    queryKey: reviewKeys.list(scoped),
+    queryFn: () => reviewsApi.list(scoped),
     placeholderData: keepPreviousData,
     retry: 1,
     staleTime: 30_000,
@@ -43,10 +59,15 @@ export function useReviewQuery(id: string) {
  * Only `total` is read, so the page size is the smallest the API accepts.
  */
 export function useUnrepliedReviewCountQuery(
-  params: Omit<ReviewListParams, "replied" | "limit" | "offset"> = {},
+  scoped: Omit<ReviewListParams, "replied" | "limit" | "offset"> = {},
   { enabled = true }: { enabled?: boolean } = {},
 ) {
-  const resolved: ReviewListParams = { ...params, replied: false, limit: 1, offset: 0 };
+  const resolved: ReviewListParams = {
+    ...scoped,
+    replied: false,
+    limit: 1,
+    offset: 0,
+  };
 
   return useQuery({
     queryKey: reviewKeys.list(resolved),
@@ -89,6 +110,7 @@ export function useSyncReviewsMutation() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (input: SyncReviewsInput = {}) => reviewsApi.sync(input),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: reviewKeys.all }),
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: reviewKeys.all }),
   });
 }

@@ -9,11 +9,19 @@ import { PageHeader } from "@/components/common/page-header";
 import { SectionCard } from "@/components/common/section-card";
 import { Button } from "@/components/tailgrids/core/button";
 import { Skeleton } from "@/components/tailgrids/core/skeleton";
-import { useAttributeCatalogQuery, useLocationQuery } from "@/hooks/use-locations";
+import {
+  useAttributeCatalogQuery,
+  useLocationQuery,
+} from "@/hooks/use-locations";
 import { ApiError } from "@/services/api/client";
 import type { LocationDetail } from "@/services/api/locations";
 import { formatDateTime } from "@/utils/format-date";
-import { Link1AngularRight, MapMarker5, PenToSquare, StarFat } from "@tailgrids/icons";
+import {
+  Link1AngularRight,
+  MapMarker5,
+  PenToSquare,
+  StarFat,
+} from "@tailgrids/icons";
 import { useState } from "react";
 import { EditAppliedAlert } from "./edit-applied-alert";
 import { LocationAttributesSection } from "./location-attributes-section";
@@ -22,10 +30,15 @@ import { LocationChangeHistory } from "./location-change-history";
 import { LocationEditForm, type AppliedEdit } from "./location-edit-form";
 import { LocationGoogleStatus } from "./location-google-status";
 import { LocationHoursSection } from "./location-hours-section";
-import { LocationStatusChip, locationStatusKinds } from "./location-status-chip";
+import { BusinessProfilePreview } from "./preview/business-profile-preview";
+import {
+  LocationStatusChip,
+  locationStatusKinds,
+} from "./location-status-chip";
 
 export function LocationDetailView({ locationId }: { locationId: string }) {
-  const { data, isPending, isError, error, refetch, isFetching } = useLocationQuery(locationId);
+  const { data, isPending, isError, error, refetch, isFetching } =
+    useLocationQuery(locationId);
   const isNotFound = error instanceof ApiError && error.status === 404;
 
   return (
@@ -64,11 +77,13 @@ export function LocationDetailView({ locationId }: { locationId: string }) {
 }
 
 function LocationProfile({ location }: { location: LocationDetail }) {
+  const [showPreview, setShowPreview] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
   const [applied, setApplied] = useState<AppliedEdit | null>(null);
   const catalog = useAttributeCatalogQuery();
 
   function startEditing() {
+    setShowPreview(false);
     setApplied(null);
     setIsEditing(true);
   }
@@ -78,20 +93,30 @@ function LocationProfile({ location }: { location: LocationDetail }) {
       <PageHeader
         title={location.title}
         description={location.address ?? undefined}
-        meta={locationStatusKinds(location, { includeVerified: true }).map((kind) => (
-          <LocationStatusChip key={kind} kind={kind} />
-        ))}
+        meta={locationStatusKinds(location, { includeVerified: true }).map(
+          (kind) => (
+            <LocationStatusChip key={kind} kind={kind} />
+          ),
+        )}
         actions={
           isEditing ? null : (
             <>
               {location.maps_uri ? (
-                <LinkButton href={location.maps_uri} external appearance="outline">
+                <LinkButton
+                  href={location.maps_uri}
+                  external
+                  appearance="outline"
+                >
                   <Link1AngularRight aria-hidden="true" focusable="false" />
                   Open in Google
                 </LinkButton>
               ) : null}
               {location.new_review_uri ? (
-                <LinkButton href={location.new_review_uri} external appearance="outline">
+                <LinkButton
+                  href={location.new_review_uri}
+                  external
+                  appearance="outline"
+                >
                   <StarFat aria-hidden="true" focusable="false" />
                   Ask for a review
                 </LinkButton>
@@ -100,6 +125,12 @@ function LocationProfile({ location }: { location: LocationDetail }) {
                 <PenToSquare aria-hidden="true" focusable="false" />
                 Edit profile
               </Button>
+              <LinkButton
+                href={`/recommendations/${location.id}`}
+                appearance="outline"
+              >
+                Audit this location
+              </LinkButton>
             </>
           )
         }
@@ -107,95 +138,155 @@ function LocationProfile({ location }: { location: LocationDetail }) {
 
       {applied ? (
         <div className="mt-6">
-          <EditAppliedAlert result={applied} onDismiss={() => setApplied(null)} />
+          <EditAppliedAlert
+            result={applied}
+            onDismiss={() => setApplied(null)}
+          />
         </div>
       ) : null}
 
-      <div className="mt-8 grid gap-5 lg:grid-cols-3">
-        <div className="flex min-w-0 flex-col gap-5 lg:col-span-2">
-          {isEditing ? (
-            <LocationEditForm
-              key={location.id}
-              location={location}
-              onCancel={() => setIsEditing(false)}
-              onApplied={(result) => {
-                setIsEditing(false);
-                setApplied(result);
-              }}
-            />
-          ) : (
-            <>
-              <LocationBusinessInfo location={location} />
-              <LocationHoursSection
-                hours={location.hours_periods}
-                actions={
-                  <Button
-                    type="button"
-                    variant="primary"
-                    appearance="outline"
-                    size="sm"
-                    className="h-11 px-3.5"
-                    onPress={startEditing}
-                  >
-                    <PenToSquare aria-hidden="true" focusable="false" />
-                    Edit hours
-                  </Button>
-                }
+      {!isEditing ? (
+        <div className="mt-6 flex flex-wrap gap-2" aria-label="Location view">
+          <Button
+            type="button"
+            size="xl"
+            appearance={showPreview ? "fill" : "outline"}
+            onPress={() => setShowPreview(true)}
+          >
+            Google-style preview
+          </Button>
+          <Button
+            type="button"
+            size="xl"
+            appearance={!showPreview ? "fill" : "outline"}
+            onPress={() => setShowPreview(false)}
+          >
+            Manage profile data
+          </Button>
+        </div>
+      ) : null}
+
+      {showPreview && !isEditing ? (
+        <BusinessProfilePreview
+          key={location.id}
+          location={location}
+          onEdit={startEditing}
+        />
+      ) : (
+        <div className="mt-8 grid gap-5 lg:grid-cols-3">
+          <div className="flex min-w-0 flex-col gap-5 lg:col-span-2">
+            {isEditing ? (
+              <LocationEditForm
+                key={location.id}
+                location={location}
+                onCancel={() => setIsEditing(false)}
+                onApplied={(result) => {
+                  setIsEditing(false);
+                  setApplied(result);
+                }}
               />
-            </>
-          )}
+            ) : (
+              <>
+                <LocationBusinessInfo location={location} />
+                <LocationHoursSection
+                  hours={location.hours_periods}
+                  actions={
+                    <Button
+                      type="button"
+                      variant="primary"
+                      appearance="outline"
+                      size="sm"
+                      className="h-11 px-3.5"
+                      onPress={startEditing}
+                    >
+                      <PenToSquare aria-hidden="true" focusable="false" />
+                      Edit hours
+                    </Button>
+                  }
+                />
+              </>
+            )}
 
-          <SectionCard title="Address" icon={<MapMarker5 aria-hidden="true" focusable="false" />}>
-            <dl className="grid gap-5 sm:grid-cols-2">
-              <DataField label="Address" className="sm:col-span-2">
-                {location.address}
-              </DataField>
-              <DataField label="Place ID">
-                {location.place_id ? (
-                  <span className="break-all tabular-nums">{location.place_id}</span>
-                ) : null}
-              </DataField>
-              <DataField label="Google location name">
-                <span className="break-all">{location.google_location_name}</span>
-              </DataField>
-              <DataField label="Dataset location ID">
-                {location.source_location_id ? (
-                  <span className="tabular-nums">{location.source_location_id}</span>
-                ) : null}
-              </DataField>
-              <DataField label="Google resource name">
-                {location.google_resource_name ? <span className="break-all">{location.google_resource_name}</span> : null}
-              </DataField>
-              <DataField label="Locality / region">
-                {[location.locality, location.administrative_area, location.postal_code, location.region_code].filter(Boolean).join(", ") || null}
-              </DataField>
-              <DataField label="Coordinates">
-                {location.latitude !== null && location.longitude !== null ? (
-                  <span className="tabular-nums">{location.latitude}, {location.longitude}</span>
-                ) : null}
-              </DataField>
-            </dl>
-          </SectionCard>
+            <SectionCard
+              title="Address"
+              icon={<MapMarker5 aria-hidden="true" focusable="false" />}
+            >
+              <dl className="grid gap-5 sm:grid-cols-2">
+                <DataField label="Address" className="sm:col-span-2">
+                  {location.address}
+                </DataField>
+                <DataField label="Place ID">
+                  {location.place_id ? (
+                    <span className="break-all tabular-nums">
+                      {location.place_id}
+                    </span>
+                  ) : null}
+                </DataField>
+                <DataField label="Google location name">
+                  <span className="break-all">
+                    {location.google_location_name}
+                  </span>
+                </DataField>
+                <DataField label="Dataset location ID">
+                  {location.source_location_id ? (
+                    <span className="tabular-nums">
+                      {location.source_location_id}
+                    </span>
+                  ) : null}
+                </DataField>
+                <DataField label="Google resource name">
+                  {location.google_resource_name ? (
+                    <span className="break-all">
+                      {location.google_resource_name}
+                    </span>
+                  ) : null}
+                </DataField>
+                <DataField label="Locality / region">
+                  {[
+                    location.locality,
+                    location.administrative_area,
+                    location.postal_code,
+                    location.region_code,
+                  ]
+                    .filter(Boolean)
+                    .join(", ") || null}
+                </DataField>
+                <DataField label="Coordinates">
+                  {location.latitude !== null && location.longitude !== null ? (
+                    <span className="tabular-nums">
+                      {location.latitude}, {location.longitude}
+                    </span>
+                  ) : null}
+                </DataField>
+              </dl>
+            </SectionCard>
 
-          <LocationAttributesSection
-            attributes={location.attributes}
-            catalog={catalog.data?.items}
-            isCatalogLoading={catalog.isPending}
-          />
-          <LocationChangeHistory locationId={location.id} />
+            <LocationAttributesSection
+              attributes={location.attributes}
+              catalog={catalog.data?.items}
+              isCatalogLoading={catalog.isPending}
+            />
+            <LocationChangeHistory locationId={location.id} />
+          </div>
+
+          <div className="flex min-w-0 flex-col gap-5">
+            <LocationGoogleStatus location={location} />
+            <SectionCard title="Sync" bodyClassName="px-5 py-4">
+              <dl className="grid gap-5">
+                <DataField label="Last synced">
+                  {formatDateTime(location.last_synced_at)}
+                </DataField>
+                <DataField label="Added to Locus">
+                  {formatDateTime(location.created_at)}
+                </DataField>
+                <DataField label="Last updated">
+                  {formatDateTime(location.updated_at)}
+                </DataField>
+              </dl>
+            </SectionCard>
+          </div>
         </div>
-
-        <div className="flex min-w-0 flex-col gap-5">
-          <LocationGoogleStatus location={location} />
-          <SectionCard title="Sync" bodyClassName="px-5 py-4">
-            <dl className="grid gap-5">
-              <DataField label="Last synced">{formatDateTime(location.last_synced_at)}</DataField>
-              <DataField label="Added to Locus">{formatDateTime(location.created_at)}</DataField>
-              <DataField label="Last updated">{formatDateTime(location.updated_at)}</DataField>
-            </dl>
-          </SectionCard>
-        </div>
-      </div>
+      )}
     </>
   );
 }
@@ -212,7 +303,10 @@ function LocationDetailSkeleton() {
       <div className="mt-8 grid gap-5 lg:grid-cols-3">
         <div className="flex flex-col gap-5 lg:col-span-2">
           {[0, 1, 2].map((index) => (
-            <div key={index} className="rounded-xl border border-card-border bg-card-background">
+            <div
+              key={index}
+              className="rounded-xl border border-card-border bg-card-background"
+            >
               <div className="border-b border-card-border px-5 py-4">
                 <Skeleton className="h-4 w-32" />
               </div>
@@ -233,7 +327,10 @@ function LocationDetailSkeleton() {
           </div>
           <div className="flex flex-col gap-5 px-5 py-5">
             {[0, 1, 2, 3].map((field) => (
-              <div key={field} className="flex items-center justify-between gap-4">
+              <div
+                key={field}
+                className="flex items-center justify-between gap-4"
+              >
                 <Skeleton className="h-3.5 w-32" />
                 <Skeleton className="h-6 w-24 rounded-full" />
               </div>

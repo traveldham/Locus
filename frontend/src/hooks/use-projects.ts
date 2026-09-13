@@ -13,7 +13,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 export const projectKeys = {
   all: ["projects"] as const,
   lists: () => [...projectKeys.all, "list"] as const,
-  list: (params: ProjectListParams) => [...projectKeys.lists(), params] as const,
+  list: (params: ProjectListParams) =>
+    [...projectKeys.lists(), params] as const,
   detail: (id: string) => [...projectKeys.all, "detail", id] as const,
 };
 
@@ -40,7 +41,8 @@ export function useCreateProjectMutation() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (input: CreateProjectInput) => projectsApi.create(input),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: projectKeys.all }),
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: projectKeys.all }),
   });
 }
 
@@ -53,8 +55,9 @@ export function useUpdateProjectMutation(id: string) {
   return useMutation({
     mutationFn: (input: UpdateProjectInput) => projectsApi.update(id, input),
     onSuccess: (project) => {
-      queryClient.setQueryData<ProjectDetail>(projectKeys.detail(id), (current) =>
-        current ? { ...current, ...project } : current,
+      queryClient.setQueryData<ProjectDetail>(
+        projectKeys.detail(id),
+        (current) => (current ? { ...current, ...project } : current),
       );
       return queryClient.invalidateQueries({ queryKey: projectKeys.all });
     },
@@ -68,7 +71,8 @@ export function useUpdateProjectMutation(id: string) {
 export function useAddProjectLocationsMutation(id: string) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (locationIds: string[]) => projectsApi.addLocations(id, locationIds),
+    mutationFn: (locationIds: string[]) =>
+      projectsApi.addLocations(id, locationIds),
     onSuccess: async (detail) => {
       queryClient.setQueryData(projectKeys.detail(id), detail);
       await Promise.all([
@@ -84,7 +88,8 @@ export function useAddProjectLocationsMutation(id: string) {
 export function useRemoveProjectLocationMutation(id: string) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (locationId: string) => projectsApi.removeLocation(id, locationId),
+    mutationFn: (locationId: string) =>
+      projectsApi.removeLocation(id, locationId),
     onSuccess: async () => {
       await Promise.all([
         queryClient.invalidateQueries({ queryKey: projectKeys.all }),

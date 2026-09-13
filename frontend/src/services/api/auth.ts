@@ -31,5 +31,6 @@ export const authApi = {
     }),
   me: () => apiRequest<AuthUser>("/auth/me"),
   refresh: () => apiRequest<TokenResponse>("/auth/refresh", { method: "POST" }),
-  logout: () => apiRequest<{ message: string }>("/auth/logout", { method: "POST" }),
+  logout: () =>
+    apiRequest<{ message: string }>("/auth/logout", { method: "POST" }),
 };

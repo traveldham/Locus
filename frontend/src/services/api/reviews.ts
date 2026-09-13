@@ -80,7 +80,21 @@ function reviewReplyPath(id: string) {
 }
 
 export const reviewsApi = {
-  list: ({ projectId, locationId, rating, replied, q, limit, offset }: ReviewListParams = {}) => {
+  summary: (locationId: string) =>
+    apiRequest<{
+      total: number;
+      average: number | null;
+      distribution: Record<string, number>;
+    }>(`/reviews/summary?location_id=${encodeURIComponent(locationId)}`),
+  list: ({
+    projectId,
+    locationId,
+    rating,
+    replied,
+    q,
+    limit,
+    offset,
+  }: ReviewListParams = {}) => {
     const query = new URLSearchParams();
     if (projectId) query.set("project_id", projectId);
     if (locationId) query.set("location_id", locationId);
@@ -100,7 +114,8 @@ export const reviewsApi = {
       body: JSON.stringify({ comment }),
     }),
   /** Removes the owner reply only. Google offers no way to remove the review itself. */
-  removeReply: (id: string) => apiRequest<Review>(reviewReplyPath(id), { method: "DELETE" }),
+  removeReply: (id: string) =>
+    apiRequest<Review>(reviewReplyPath(id), { method: "DELETE" }),
   sync: (input: SyncReviewsInput = {}) =>
     apiRequest<ReviewSyncResult>("/reviews/sync", {
       method: "POST",

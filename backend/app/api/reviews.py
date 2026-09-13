@@ -186,6 +186,34 @@ async def list_reviews(
     )
 
 
+@router.get("/summary")
+async def review_summary(location_id: UUID, organization_id: OrganizationId, db: DbSession):
+    """Aggregate the entire stored review collection, never just a visible page."""
+    await owned_location(db, organization_id, location_id)
+    rows = (
+        await db.execute(
+            select(Review.star_rating, func.count(Review.id))
+            .where(
+                Review.organization_id == organization_id,
+                Review.location_id == location_id,
+                Review.star_rating.between(1, 5),
+            )
+            .group_by(Review.star_rating)
+        )
+    ).all()
+    distribution = {str(rating): count for rating, count in rows}
+    total = sum(distribution.values())
+    return {
+        "total": total,
+        "average": round(
+            sum(int(rating) * count for rating, count in distribution.items()) / total, 2
+        )
+        if total
+        else None,
+        "distribution": {str(rating): distribution.get(str(rating), 0) for rating in range(1, 6)},
+    }
+
+
 @router.get("/{review_id}", response_model=ReviewResponse)
 async def get_review(
     review_id: UUID, organization_id: OrganizationId, db: DbSession

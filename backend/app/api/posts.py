@@ -7,7 +7,7 @@ from fastapi import APIRouter, HTTPException, Query
 from sqlalchemy import func, select
 
 from app.api.dependencies import DbSession
-from app.api.scoping import OrganizationId
+from app.api.scoping import OrganizationId, project_locations
 from app.models import DataSource, Location, Post, PostType
 from app.schemas import PostListResponse, PostResponse
 
@@ -21,6 +21,7 @@ async def list_posts(
     organization_id: OrganizationId,
     db: DbSession,
     location_id: UUID | None = None,
+    project_id: UUID | None = None,
     post_type: PostType | None = None,
     limit: Annotated[int, Query(ge=1, le=MAX_LIMIT)] = DEFAULT_LIMIT,
     offset: Annotated[int, Query(ge=0)] = 0,
@@ -35,6 +36,10 @@ async def list_posts(
         if owns is None:
             raise HTTPException(status_code=404, detail="Location not found")
         conditions.append(Post.location_id == location_id)
+    if project_id is not None:
+        conditions.append(
+            Post.location_id.in_(await project_locations(db, organization_id, project_id))
+        )
     if post_type is not None:
         conditions.append(Post.post_type == post_type)
 

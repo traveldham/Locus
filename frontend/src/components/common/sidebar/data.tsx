@@ -27,6 +27,7 @@ export const NAV_DATA: NavigationSection[] = [
   {
     label: "WORKSPACE",
     items: [
+      { title: "Location audit", icon: <InsightsIcon />, url: "/recommendations", items: [] },
       { title: "Locations", icon: <LocationsIcon />, url: "/locations", items: [] },
       { title: "Reviews", icon: <ReviewsIcon />, url: "/reviews", items: [] },
       { title: "Posts", icon: <PostsIcon />, url: "/posts", items: [] },

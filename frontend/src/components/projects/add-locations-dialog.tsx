@@ -11,7 +11,7 @@ import {
 } from "@/components/tailgrids/core/dialog";
 import { Backdrop } from "@/components/tailgrids/core/overlay";
 import { Skeleton } from "@/components/tailgrids/core/skeleton";
-import { useLocationsQuery } from "@/hooks/use-locations";
+import { useAllLocationsQuery } from "@/hooks/use-locations";
 import { useAddProjectLocationsMutation } from "@/hooks/use-projects";
 import { cn } from "@/utils/cn";
 import { Search1 } from "@tailgrids/icons";
@@ -35,15 +35,20 @@ export function AddLocationsDialog({
   onClose,
   onAdded,
 }: AddLocationsDialogProps) {
-  const locationsQuery = useLocationsQuery();
+  const locationsQuery = useAllLocationsQuery();
   const addLocations = useAddProjectLocationsMutation(projectId);
 
   const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState<ReadonlySet<string>>(new Set<string>());
+  const [selected, setSelected] = useState<ReadonlySet<string>>(
+    new Set<string>(),
+  );
 
   const members = useMemo(() => new Set(memberIds), [memberIds]);
   const available = useMemo(
-    () => (locationsQuery.data ?? []).filter((location) => !members.has(location.id)),
+    () =>
+      (locationsQuery.data ?? []).filter(
+        (location) => !members.has(location.id),
+      ),
     [locationsQuery.data, members],
   );
 
@@ -77,7 +82,9 @@ export function AddLocationsDialog({
 
     const locationIds = [...selected];
     // A failure keeps the dialog open with the same locations still ticked.
-    const detail = await addLocations.mutateAsync(locationIds).catch(() => null);
+    const detail = await addLocations
+      .mutateAsync(locationIds)
+      .catch(() => null);
     if (!detail) return;
 
     onAdded(locationIds.length);
@@ -101,9 +108,11 @@ export function AddLocationsDialog({
             <DialogTitle>Add locations</DialogTitle>
             <p className="text-sm leading-6 text-text-tertiary">
               Choose which of your workspace locations to add to{" "}
-              <span className="font-medium text-text-secondary">{projectName}</span>. A location
-              can sit in more than one project, so adding it here does not remove it from
-              anywhere else.
+              <span className="font-medium text-text-secondary">
+                {projectName}
+              </span>
+              . A location can sit in more than one project, so adding it here
+              does not remove it from anywhere else.
             </p>
           </DialogHeader>
 
@@ -138,7 +147,9 @@ export function AddLocationsDialog({
                 />
               ) : null}
 
-              {!locationsQuery.isPending && !locationsQuery.isError && available.length === 0 ? (
+              {!locationsQuery.isPending &&
+              !locationsQuery.isError &&
+              available.length === 0 ? (
                 <div className="rounded-lg border border-dashed border-card-border px-4 py-5">
                   <p className="text-sm font-medium text-text-primary">
                     Nothing left to add
@@ -155,7 +166,9 @@ export function AddLocationsDialog({
                 </div>
               ) : null}
 
-              {!locationsQuery.isPending && !locationsQuery.isError && available.length > 0 ? (
+              {!locationsQuery.isPending &&
+              !locationsQuery.isError &&
+              available.length > 0 ? (
                 <div className="rounded-lg border border-card-border">
                   <div className="relative border-b border-card-border p-2">
                     <Search1
@@ -176,7 +189,8 @@ export function AddLocationsDialog({
                   <div className="scrollbar-thin max-h-64 overflow-y-auto p-1.5">
                     {visible.length === 0 ? (
                       <p className="px-3 py-6 text-center text-sm text-text-tertiary">
-                        No location outside this project matches “{search.trim()}”.
+                        No location outside this project matches “
+                        {search.trim()}”.
                       </p>
                     ) : (
                       <ul>
@@ -201,7 +215,9 @@ export function AddLocationsDialog({
                                   </span>
                                   <span className="mt-0.5 block truncate text-xs text-text-tertiary">
                                     {location.address ?? "Address not set"}
-                                    {location.store_code ? ` · ${location.store_code}` : ""}
+                                    {location.store_code
+                                      ? ` · ${location.store_code}`
+                                      : ""}
                                   </span>
                                 </span>
                               </Checkbox>

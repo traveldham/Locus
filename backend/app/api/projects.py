@@ -20,6 +20,7 @@ from app.schemas import (
     ProjectResponse,
     ProjectUpdate,
 )
+from app.services.recommendations.queue import enqueue_audits
 
 router = APIRouter(prefix="/projects", tags=["Projects"])
 
@@ -186,6 +187,8 @@ async def create_project(
         raise HTTPException(
             status_code=409, detail="A project with this name already exists"
         ) from None
+    # A profile entering the product should not sit unaudited behind an empty screen.
+    await enqueue_audits(db, organization_id, location_ids)
     return serialize_project(project, len(location_ids))
 
 
@@ -224,6 +227,7 @@ async def add_project_locations(
     location_ids = await owned_location_ids(db, organization_id, payload.location_ids)
     await link_locations(db, project.id, location_ids)
     await db.commit()
+    await enqueue_audits(db, organization_id, location_ids)
     return serialize_detail(project, await project_locations(db, project.id))
 
 

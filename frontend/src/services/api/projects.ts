@@ -50,11 +50,18 @@ export const projectsApi = {
     return apiRequest<Project[]>(`/projects${search ? `?${search}` : ""}`);
   },
   create: (input: CreateProjectInput) =>
-    apiRequest<Project>("/projects", { method: "POST", body: JSON.stringify(input) }),
+    apiRequest<Project>("/projects", {
+      method: "POST",
+      body: JSON.stringify(input),
+    }),
   get: (id: string) => apiRequest<ProjectDetail>(projectPath(id)),
   update: (id: string, input: UpdateProjectInput) =>
-    apiRequest<Project>(projectPath(id), { method: "PATCH", body: JSON.stringify(input) }),
-  remove: (id: string) => apiRequest<MessageResponse>(projectPath(id), { method: "DELETE" }),
+    apiRequest<Project>(projectPath(id), {
+      method: "PATCH",
+      body: JSON.stringify(input),
+    }),
+  remove: (id: string) =>
+    apiRequest<MessageResponse>(projectPath(id), { method: "DELETE" }),
   /** Returns the whole project with its locations, so the view can be refreshed from it. */
   addLocations: (id: string, locationIds: string[]) =>
     apiRequest<ProjectDetail>(`${projectPath(id)}/locations`, {

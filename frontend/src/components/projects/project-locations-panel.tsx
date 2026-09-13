@@ -36,7 +36,9 @@ export function ProjectLocationsPanel({
   const removeLocation = useRemoveProjectLocationMutation(projectId);
 
   const [isAddOpen, setIsAddOpen] = useState(false);
-  const [pendingRemoval, setPendingRemoval] = useState<LocationSummary | null>(null);
+  const [pendingRemoval, setPendingRemoval] = useState<LocationSummary | null>(
+    null,
+  );
 
   function closeRemoval() {
     if (removeLocation.isPending) return;
@@ -47,7 +49,9 @@ export function ProjectLocationsPanel({
   async function confirmRemoval() {
     if (!pendingRemoval) return;
     const removed = pendingRemoval;
-    const response = await removeLocation.mutateAsync(removed.id).catch(() => null);
+    const response = await removeLocation
+      .mutateAsync(removed.id)
+      .catch(() => null);
     // On failure the dialog stays open and shows what the API said.
     if (!response) return;
     setPendingRemoval(null);
@@ -66,7 +70,8 @@ export function ProjectLocationsPanel({
             Locations in this project
           </h2>
           <p className="mt-1 text-sm text-text-tertiary" aria-live="polite">
-            {locations.length} {locations.length === 1 ? "location" : "locations"}
+            {locations.length}{" "}
+            {locations.length === 1 ? "location" : "locations"}
           </p>
         </div>
         <Button size="xl" onPress={() => setIsAddOpen(true)}>
@@ -102,7 +107,10 @@ export function ProjectLocationsPanel({
             </TableHeader>
             <TableBody>
               {locations.map((location) => (
-                <TableRow key={location.id} className="transition hover:bg-background-gray-secondary">
+                <TableRow
+                  key={location.id}
+                  className="transition hover:bg-background-gray-secondary"
+                >
                   <TableCell className="py-2">
                     <Link
                       href={`/locations/${location.id}`}
@@ -113,7 +121,10 @@ export function ProjectLocationsPanel({
                   </TableCell>
                   <TableCell className="py-2 text-text-secondary">
                     {location.address ? (
-                      <span className="block max-w-80 truncate" title={location.address}>
+                      <span
+                        className="block max-w-80 truncate"
+                        title={location.address}
+                      >
                         {location.address}
                       </span>
                     ) : (
@@ -136,7 +147,10 @@ export function ProjectLocationsPanel({
                     >
                       <Trash1 aria-hidden="true" focusable="false" />
                       Remove
-                      <span className="sr-only"> {location.title} from this project</span>
+                      <span className="sr-only">
+                        {" "}
+                        {location.title} from this project
+                      </span>
                     </Button>
                   </TableCell>
                 </TableRow>
@@ -168,14 +182,20 @@ export function ProjectLocationsPanel({
           description={
             <>
               <p>
-                <span className="font-medium text-text-secondary">{pendingRemoval.title}</span>{" "}
+                <span className="font-medium text-text-secondary">
+                  {pendingRemoval.title}
+                </span>{" "}
                 will no longer be part of{" "}
-                <span className="font-medium text-text-secondary">{projectName}</span>.
+                <span className="font-medium text-text-secondary">
+                  {projectName}
+                </span>
+                .
               </p>
               <p className="mt-3">
-                The location itself is not deleted. It stays in your workspace, keeps its Google
-                Business Profile data, and remains in any other project it belongs to. You can add
-                it back to this project at any time.
+                The location itself is not deleted. It stays in your workspace,
+                keeps its Google Business Profile data, and remains in any other
+                project it belongs to. You can add it back to this project at
+                any time.
               </p>
             </>
           }

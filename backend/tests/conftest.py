@@ -45,6 +45,26 @@ register_router(reviews_router)
 
 
 @pytest.fixture(autouse=True)
+def stub_queue(monkeypatch: pytest.MonkeyPatch) -> Iterator[list[str]]:
+    """Capture queued audit jobs instead of reaching a broker.
+
+    Celery's eager mode would run the task against the configured database rather than
+    the test one, so tests enqueue here and invoke `run_job` themselves.
+    """
+    queued: list[str] = []
+
+    class Queued:
+        id = "test-task-id"
+
+    def delay(job_id: str) -> Queued:
+        queued.append(job_id)
+        return Queued()
+
+    monkeypatch.setattr("app.api.recommendations.generate_audit.delay", delay)
+    yield queued
+
+
+@pytest.fixture(autouse=True)
 def stub_providers(monkeypatch: pytest.MonkeyPatch) -> Iterator[StubReviewsProvider]:
     """Serve every provider read and write from the in-memory stubs in `tests/stubs.py`.
 

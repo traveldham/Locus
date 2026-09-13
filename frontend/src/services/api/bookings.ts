@@ -1,7 +1,12 @@
 import { apiRequest } from "./client";
 import type { DataSource } from "./market";
 
-export type BookingStatus = "new" | "confirmed" | "completed" | "cancelled" | "no_show";
+export type BookingStatus =
+  | "new"
+  | "confirmed"
+  | "completed"
+  | "cancelled"
+  | "no_show";
 
 export type BookingSource = "website" | "google_profile" | "phone" | "walk_in";
 
@@ -28,6 +33,8 @@ export interface BookingList {
 }
 
 export interface BookingListParams {
+  /** Narrows the request to one project's locations. */
+  projectId?: string;
   locationId?: string;
   status?: BookingStatus;
   bookingSource?: BookingSource;
@@ -77,6 +84,7 @@ export function bookingSourceLabel(source: BookingSource | string) {
 
 function bookingsQuery({
   locationId,
+  projectId,
   status,
   bookingSource,
   limit,
@@ -84,6 +92,7 @@ function bookingsQuery({
 }: BookingListParams) {
   const query = new URLSearchParams();
   if (locationId) query.set("location_id", locationId);
+  if (projectId) query.set("project_id", projectId);
   if (status) query.set("status", status);
   if (bookingSource) query.set("booking_source", bookingSource);
   if (limit !== undefined) query.set("limit", String(limit));

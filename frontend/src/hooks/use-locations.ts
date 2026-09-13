@@ -1,5 +1,7 @@
 "use client";
 
+import { useActiveProjectId } from "@/contexts/active-project";
+
 import {
   LOCATIONS_MAX_PAGE_SIZE,
   locationsApi,
@@ -11,21 +13,53 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const locationKeys = {
   all: ["locations"] as const,
-  list: (params: LocationListParams) => [...locationKeys.all, "list", params] as const,
+  list: (params: LocationListParams) =>
+    [...locationKeys.all, "list", params] as const,
   detail: (id: string) => [...locationKeys.all, "detail", id] as const,
   actions: (id: string) => [...locationKeys.all, "actions", id] as const,
   attributeCatalog: () => [...locationKeys.all, "attribute-catalog"] as const,
 };
 
 /** Statuses that are still moving, so the audit trail is worth re-reading. */
-const IN_FLIGHT_STATUSES: ProfileAction["status"][] = ["pending", "approved", "executing"];
+const IN_FLIGHT_STATUSES: ProfileAction["status"][] = [
+  "pending",
+  "approved",
+  "executing",
+];
 
 /**
  * The API pages at 50 by default and caps at 200. The list surfaces ask for the
  * full page so their in-page search and sort act on everything that was loaded.
  */
 export function useLocationsQuery(params: LocationListParams = {}) {
-  const resolved: LocationListParams = { limit: LOCATIONS_MAX_PAGE_SIZE, ...params };
+  const projectId = useActiveProjectId();
+  // An explicit project on the caller wins; otherwise the dashboard's active one.
+  const scoped = { projectId: projectId ?? undefined, ...params };
+  const resolved: LocationListParams = {
+    limit: LOCATIONS_MAX_PAGE_SIZE,
+    ...scoped,
+  };
+
+  return useQuery({
+    queryKey: locationKeys.list(resolved),
+    queryFn: () => locationsApi.list(resolved),
+    retry: 1,
+    staleTime: 30_000,
+  });
+}
+
+/**
+ * Every location in the organization, ignoring the active project.
+ *
+ * For the screens that decide what belongs to a project: filtering the picker by the
+ * project being edited would only ever offer locations it already contains.
+ */
+export function useAllLocationsQuery(params: LocationListParams = {}) {
+  const resolved: LocationListParams = {
+    limit: LOCATIONS_MAX_PAGE_SIZE,
+    ...params,
+    projectId: undefined,
+  };
 
   return useQuery({
     queryKey: locationKeys.list(resolved),
@@ -66,7 +100,9 @@ export function useLocationActionsQuery(id: string) {
     retry: 1,
     staleTime: 15_000,
     refetchInterval: (query) =>
-      query.state.data?.some((action) => IN_FLIGHT_STATUSES.includes(action.status))
+      query.state.data?.some((action) =>
+        IN_FLIGHT_STATUSES.includes(action.status),
+      )
         ? 8_000
         : false,
   });
@@ -78,7 +114,8 @@ export function useLocationActionsQuery(id: string) {
  */
 export function useLocationEditPreviewMutation(id: string) {
   return useMutation({
-    mutationFn: (input: LocationEditRequest) => locationsApi.previewEdit(id, input),
+    mutationFn: (input: LocationEditRequest) =>
+      locationsApi.previewEdit(id, input),
   });
 }
 
@@ -86,7 +123,9 @@ export function useLocationEditPreviewMutation(id: string) {
 export function useApplyLocationEditMutation(id: string) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (input: LocationEditRequest) => locationsApi.applyEdit(id, input),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: locationKeys.all }),
+    mutationFn: (input: LocationEditRequest) =>
+      locationsApi.applyEdit(id, input),
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: locationKeys.all }),
   });
 }

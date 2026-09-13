@@ -19,7 +19,7 @@ from fastapi import APIRouter, HTTPException, Query
 from sqlalchemy import and_, func, select
 
 from app.api.dependencies import DbSession
-from app.api.scoping import OrganizationId
+from app.api.scoping import OrganizationId, project_locations
 from app.models import (
     CompetitorObservation,
     DataSource,
@@ -68,6 +68,7 @@ async def list_keywords(
     organization_id: OrganizationId,
     db: DbSession,
     location_id: UUID | None = None,
+    project_id: UUID | None = None,
 ) -> TrackedKeywordListResponse:
     """Every tracked keyword with where it stood at the last check.
 
@@ -98,6 +99,10 @@ async def list_keywords(
         )
         .where(TrackedKeyword.organization_id == organization_id)
     )
+    if project_id is not None:
+        statement = statement.where(
+            TrackedKeyword.location_id.in_(await project_locations(db, organization_id, project_id))
+        )
     if location_id is not None:
         await owned_location(db, organization_id, location_id)
         statement = statement.where(TrackedKeyword.location_id == location_id)

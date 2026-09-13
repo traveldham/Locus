@@ -14,5 +14,6 @@ export interface Connection {
 export const integrationsApi = {
   // Null when the workspace has not been seeded yet — the API returns no connection
   // rather than an error, so the caller must render that state instead of assuming one.
-  getGoogleConnection: () => apiRequest<Connection | null>("/integrations/google"),
+  getGoogleConnection: () =>
+    apiRequest<Connection | null>("/integrations/google"),
 };

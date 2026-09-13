@@ -15,6 +15,7 @@ from app.api.locations import router as locations_router
 from app.api.market import router as market_router
 from app.api.posts import router as posts_router
 from app.api.projects import router as projects_router
+from app.api.recommendations import router as recommendations_router
 from app.api.reviews import router as reviews_router
 from app.core.config import get_settings
 
@@ -62,6 +63,7 @@ for router in (
     posts_router,
     locations_router,
     reviews_router,
+    recommendations_router,
     insights_router,
     market_router,
     bookings_router,

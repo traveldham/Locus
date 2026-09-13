@@ -9,8 +9,10 @@ import { useQuery } from "@tanstack/react-query";
 
 export const marketKeys = {
   all: ["market"] as const,
-  keywords: (locationId: string) => [...marketKeys.all, "keywords", locationId] as const,
-  rankings: (params: RankHistoryParams) => [...marketKeys.all, "rankings", params] as const,
+  keywords: (locationId: string) =>
+    [...marketKeys.all, "keywords", locationId] as const,
+  rankings: (params: RankHistoryParams) =>
+    [...marketKeys.all, "rankings", params] as const,
   competitors: (params: CompetitorParams) =>
     [...marketKeys.all, "competitors", params] as const,
 };
@@ -32,7 +34,10 @@ export function useRankHistoryQuery(
   trackedKeywordId: string | null,
   range: { from?: string; to?: string } = {},
 ) {
-  const params: RankHistoryParams = { trackedKeywordId: trackedKeywordId ?? "", ...range };
+  const params: RankHistoryParams = {
+    trackedKeywordId: trackedKeywordId ?? "",
+    ...range,
+  };
 
   return useQuery({
     queryKey: marketKeys.rankings(params),

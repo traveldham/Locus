@@ -108,7 +108,9 @@ export function searchIntentLabel(intent: SearchIntent | string) {
 export const marketApi = {
   listKeywords: (locationId: string) => {
     const query = new URLSearchParams({ location_id: locationId });
-    return apiRequest<TrackedKeywordList>(`/market/keywords?${query.toString()}`);
+    return apiRequest<TrackedKeywordList>(
+      `/market/keywords?${query.toString()}`,
+    );
   },
   getRankings: ({ trackedKeywordId, from, to }: RankHistoryParams) => {
     const query = new URLSearchParams({ tracked_keyword_id: trackedKeywordId });
@@ -119,6 +121,8 @@ export const marketApi = {
   listCompetitors: ({ trackedKeywordId, weekStart }: CompetitorParams) => {
     const query = new URLSearchParams({ tracked_keyword_id: trackedKeywordId });
     if (weekStart) query.set("week_start", weekStart);
-    return apiRequest<CompetitorList>(`/market/competitors?${query.toString()}`);
+    return apiRequest<CompetitorList>(
+      `/market/competitors?${query.toString()}`,
+    );
   },
 };

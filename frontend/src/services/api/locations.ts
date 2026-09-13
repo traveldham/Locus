@@ -1,6 +1,9 @@
 import { apiRequest } from "./client";
 
-export type LocationOpenStatus = "open" | "closed_temporarily" | "closed_permanently";
+export type LocationOpenStatus =
+  | "open"
+  | "closed_temporarily"
+  | "closed_permanently";
 
 /**
  * Where a profile came from. `fixture` is the sample dataset the API serves while Google
@@ -170,10 +173,13 @@ export const locationsApi = {
     if (limit !== undefined) query.set("limit", String(limit));
     if (offset !== undefined) query.set("offset", String(offset));
     const search = query.toString();
-    return apiRequest<LocationSummary[]>(`/locations${search ? `?${search}` : ""}`);
+    return apiRequest<LocationSummary[]>(
+      `/locations${search ? `?${search}` : ""}`,
+    );
   },
   get: (id: string) => apiRequest<LocationDetail>(locationPath(id)),
-  attributeCatalog: () => apiRequest<AttributeCatalog>("/locations/attribute-catalog"),
+  attributeCatalog: () =>
+    apiRequest<AttributeCatalog>("/locations/attribute-catalog"),
   /**
    * Dry-runs the edit against Google. Nothing on the live listing changes, so this is
    * safe to call as often as the person editing wants to look at the diff.
@@ -189,5 +195,6 @@ export const locationsApi = {
       method: "POST",
       body: JSON.stringify(input),
     }),
-  listActions: (id: string) => apiRequest<ProfileActionList>(`${locationPath(id)}/actions`),
+  listActions: (id: string) =>
+    apiRequest<ProfileActionList>(`${locationPath(id)}/actions`),
 };

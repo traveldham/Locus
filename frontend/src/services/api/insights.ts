@@ -123,25 +123,41 @@ function searchSuffix(query: URLSearchParams) {
 }
 
 export const insightsApi = {
-  performance: ({ locationId, projectId, from, to }: PerformanceParams = {}) => {
+  performance: ({
+    locationId,
+    projectId,
+    from,
+    to,
+  }: PerformanceParams = {}) => {
     const query = new URLSearchParams();
     if (locationId) query.set("location_id", locationId);
     if (projectId) query.set("project_id", projectId);
     if (from) query.set("from", from);
     if (to) query.set("to", to);
-    return apiRequest<PerformanceResponse>(`/insights/performance${searchSuffix(query)}`);
+    return apiRequest<PerformanceResponse>(
+      `/insights/performance${searchSuffix(query)}`,
+    );
   },
-  searchTerms: ({ locationId, yearMonth, limit, offset }: SearchTermParams = {}) => {
+  searchTerms: ({
+    locationId,
+    yearMonth,
+    limit,
+    offset,
+  }: SearchTermParams = {}) => {
     const query = new URLSearchParams();
     if (locationId) query.set("location_id", locationId);
     if (yearMonth) query.set("year_month", yearMonth);
     if (limit !== undefined) query.set("limit", String(limit));
     if (offset !== undefined) query.set("offset", String(offset));
-    return apiRequest<SearchTermList>(`/insights/search-terms${searchSuffix(query)}`);
+    return apiRequest<SearchTermList>(
+      `/insights/search-terms${searchSuffix(query)}`,
+    );
   },
   media: ({ locationId }: MediaParams = {}) => {
     const query = new URLSearchParams();
     if (locationId) query.set("location_id", locationId);
-    return apiRequest<MediaSummaryList>(`/insights/media${searchSuffix(query)}`);
+    return apiRequest<MediaSummaryList>(
+      `/insights/media${searchSuffix(query)}`,
+    );
   },
 };
