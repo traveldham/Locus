@@ -60,6 +60,13 @@ without a real quota and a real fleet of locations.
 
 ## Handoff log
 
+- 2026-09-13 (profile audit navigation): Moved the customer-facing current-versus-draft
+  profile comparison out of the general recommendation Overview into a dedicated
+  `/recommendations/[locationId]/profile` tab. The tab keeps the aligned before/after
+  cards and all failing profile checks together, with passed/not-evaluated counts and
+  direct “Understand and fix” links. Overview remains focused on score, priorities and
+  category status.
+
 - 2026-09-13 (recommendation UX simplification): Reworked issue detail around one
   customer decision per finding: problem/title, what to do, optional AI draft, concise
   evidence explanation, then raw saved rows behind “View source records.” Replaced the

@@ -179,7 +179,7 @@ function Card({
       aria-label={title}
       className={cn(
         styles.panel,
-        "min-w-0 overflow-hidden border border-card-border",
+        "h-full min-w-0 overflow-hidden border border-card-border",
       )}
     >
       <div className="border-b border-[#dadce0] px-4 py-2 text-xs font-medium tracking-wide text-[#5f6368] uppercase">

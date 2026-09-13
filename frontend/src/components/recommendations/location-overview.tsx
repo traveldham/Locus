@@ -12,7 +12,6 @@ import Link from "next/link";
 import { SEVERITY_COLOR, TONE_TEXT, scoreTone } from "./audit-format";
 import { issueHref, sectionHref } from "./audit-nav";
 import { CategoryRings } from "./category-rings";
-import { ProfileBeforeAfter } from "./profile-card";
 import { ScoreRing } from "./score-ring";
 import { ScoreTrend } from "./score-trend";
 
@@ -39,8 +38,6 @@ export function LocationOverview({
   const todo = (location.priorities ?? [])
     .map((key) => byKey.get(key))
     .filter((item): item is NonNullable<typeof item> => Boolean(item));
-  const card = location.cards?.profile;
-  const profileItems = run.items.filter((item) => item.category === "profile");
   const draftStatus = location.suggestions?.profile;
 
   return (
@@ -173,20 +170,6 @@ export function LocationOverview({
           ) : null}
         </ol>
       </SectionCard>
-
-      {card ? (
-        <SectionCard
-          title="The profile, before and after"
-          bodyClassName="px-5 py-5"
-          actions={
-            <span className="text-xs text-text-tertiary">
-              Flagged elements are outlined in red
-            </span>
-          }
-        >
-          <ProfileBeforeAfter card={card} items={profileItems} />
-        </SectionCard>
-      ) : null}
 
       <p className="text-xs leading-5 text-text-tertiary">
         {health.basis}
