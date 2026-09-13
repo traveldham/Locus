@@ -22,37 +22,37 @@ export function EvidencePanel({
     retry: 1,
   });
   return (
-    <div className="mt-4 space-y-4 text-sm">
-      {item.evidence.map((e, index) => (
-        <div
-          key={`${e.source}-${index}`}
-          className="space-y-2 border-t border-card-border pt-4"
-        >
-          <p className="font-medium text-text-primary">
-            {e.source.replaceAll("_", " ")} · {e.row_ids.length} evidence rows
-          </p>
-          <p className="text-text-secondary">{e.calculation}</p>
-          <dl className="grid gap-x-6 gap-y-2 sm:grid-cols-2">
-            {Object.entries(e.values).map(([key, value]) => (
-              <div key={key} className="min-w-0">
-                <dt className="text-xs text-text-tertiary">
-                  {key.replaceAll("_", " ")}
-                </dt>
-                <dd className="break-words text-text-primary">
-                  {typeof value === "object"
-                    ? JSON.stringify(value)
-                    : String(value)}
-                </dd>
-              </div>
+    <div className="space-y-3 text-sm">
+      <div>
+        <h4 className="font-medium text-text-primary">Why we flagged this</h4>
+        <p className="mt-1 leading-6 text-text-secondary">{item.why}</p>
+      </div>
+      <ul className="space-y-2">
+        {item.evidence.map((e, index) => (
+          <li key={`${e.source}-${index}`} className="leading-6 text-text-secondary">
+            <span className="font-medium text-text-primary">{e.calculation}.</span>{" "}
+            {Object.entries(e.values).map(([key, value], valueIndex) => (
+              <span key={key}>
+                {valueIndex ? " · " : ""}
+                {key.replaceAll("_", " ")}: {showValue(value)}
+              </span>
             ))}
-          </dl>
-        </div>
-      ))}
-      <p className="text-text-secondary">
-        {item.confidence_reason} {item.limitation}
+          </li>
+        ))}
+      </ul>
+      <p className="text-xs leading-5 text-text-tertiary">
+        {item.limitation}
       </p>
-      <label className="block text-sm text-text-secondary">
-        Inspect the saved source records
+      <details className="border-t border-card-border pt-3">
+        <summary className="min-h-11 cursor-pointer py-3 font-medium text-text-secondary underline-offset-4 hover:text-text-primary hover:underline focus-visible:outline-primary-500">
+          View source records
+        </summary>
+        <div className="space-y-3 pb-2">
+          <p className="text-xs leading-5 text-text-tertiary">
+            {item.confidence_reason}
+          </p>
+          <label className="block text-sm text-text-secondary">
+        Evidence source
         <select
           value={source}
           onChange={(e) => {
@@ -104,8 +104,18 @@ export function EvidencePanel({
           </div>
         </>
       ) : null}
+        </div>
+      </details>
     </div>
   );
+}
+
+function showValue(value: unknown): string {
+  if (value === null || value === undefined || value === "") return "not set";
+  if (typeof value === "boolean") return value ? "yes" : "no";
+  if (Array.isArray(value)) return value.length ? value.join(", ") : "none";
+  if (typeof value === "object") return JSON.stringify(value);
+  return String(value);
 }
 
 /** The cited rows as a table. A stored record should be readable, not pasted JSON. */

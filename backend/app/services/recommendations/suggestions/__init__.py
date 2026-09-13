@@ -35,14 +35,15 @@ async def enrich(category: str, snapshot: dict, result: dict, settings: Settings
             status["reason"] = "Nothing to draft or summarise."
         else:
             try:
+                context = module.business_context(snapshot)
                 response = await provider.generate_json(
-                    module.build_prompt(
-                        module.business_context(snapshot), items, result.get("items", [])
-                    ),
+                    module.build_prompt(context, items, result.get("items", [])),
                     module.RESPONSE_SCHEMA,
                 )
                 status["status"] = "generated"
-                status["attached"] = module.apply(result, response, provider.name, provider.model)
+                status["attached"] = module.apply(
+                    result, response, provider.name, provider.model, context
+                )
                 status["requested"] = len(items)
             except SuggestionError as error:
                 status["status"] = "failed"

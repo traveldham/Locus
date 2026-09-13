@@ -160,6 +160,51 @@ async def test_enrich_attaches_validated_suggestions(monkeypatch):
     assert enriched["evaluations"] == result_for(snapshot)["evaluations"]
 
 
+async def test_enrich_drops_suggestions_that_break_business_constraints(monkeypatch):
+    snapshot = weak_profile()
+    result = result_for(snapshot)
+    provider = FakeProvider(
+        {
+            "summary": "Review the profile fields below.",
+            "suggestions": [
+                {
+                    "rule": "description_missing",
+                    "field": "description",
+                    "value_text": "Call 512-555-0199 or visit https://example.org today.",
+                    "reason": "Includes contact details.",
+                    "confidence": "high",
+                },
+                {
+                    "rule": "secondary_categories_few",
+                    "field": "additional_categories",
+                    "value_list": ["Restaurant", "Orthodontist", "Orthodontist"],
+                    "reason": "Only Invisalign supports a category in the project services.",
+                    "confidence": "medium",
+                },
+                {
+                    "rule": "accessibility_unanswered",
+                    "subject": "hearing_loop",
+                    "field": "attributes",
+                    "value_map": [
+                        {"name": "hearing_loop", "value": True},
+                        {"name": "invented_attribute", "value": True},
+                    ],
+                    "reason": "Requires manager confirmation.",
+                    "confidence": "low",
+                },
+            ],
+        }
+    )
+    use(monkeypatch, provider)
+    enriched = await enrich("profile", snapshot, result, settings())
+    by_key = {(i["rule"], i["subject"]): i for i in enriched["items"]}
+    assert by_key[("description_missing", "")]["suggestion"] is None
+    assert by_key[("secondary_categories_few", "")]["suggestion"]["value"] == ["Orthodontist"]
+    assert by_key[("accessibility_unanswered", "hearing_loop")]["suggestion"]["value"] == {
+        "hearing_loop": True
+    }
+
+
 async def test_enrich_records_failure_and_keeps_findings(monkeypatch):
     use(monkeypatch, FakeProvider(error=llm.SuggestionError("Vertex AI returned 429: quota")))
     snapshot = weak_profile()

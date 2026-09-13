@@ -7,7 +7,7 @@ import type {
 } from "@/services/api/recommendations";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { SEVERITY_COLOR, TONE_TEXT } from "./audit-format";
 import { sectionHref } from "./audit-nav";
 import { EvidencePanel } from "./evidence-panel";
@@ -27,7 +27,6 @@ export function IssueDetail({
 }) {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
-  const [openKey, setOpenKey] = useState<string | null>(null);
 
   const cluster = location.by_rule.find((row) => row.rule === rule);
   if (!cluster) {
@@ -221,95 +220,53 @@ export function IssueDetail({
         </span>
       </div>
 
-      <div className="overflow-hidden rounded-xl border border-card-border bg-card-background">
-        <table className="w-full border-collapse text-sm">
-          <thead>
-            <tr className="border-b border-card-border text-left">
-              <th
-                scope="col"
-                className="px-5 py-3 font-medium text-text-tertiary"
-              >
-                {cluster.unit === "location"
-                  ? "Location"
-                  : cluster.unit[0].toUpperCase() + cluster.unit.slice(1)}
-              </th>
-              <th
-                scope="col"
-                className="px-3 py-3 font-medium text-text-tertiary"
-              >
-                What was found
-              </th>
-              <th
-                scope="col"
-                className="w-28 px-5 py-3 text-right font-medium text-text-tertiary"
-              >
-                Severity
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {visible.map((item) => (
-              <Fragment key={item.key}>
-                <tr className="border-b border-card-border">
-                  <th
-                    scope="row"
-                    className="px-5 py-3 text-left align-top font-normal text-text-primary"
-                  >
-                    {cluster.unit === "location"
-                      ? item.location_name
-                      : item.subject}
-                  </th>
-                  <td className="px-3 py-3 align-top text-text-secondary">
-                    {item.why}
-                    <button
-                      type="button"
-                      aria-expanded={openKey === item.key}
-                      onClick={() =>
-                        setOpenKey(openKey === item.key ? null : item.key)
-                      }
-                      className="ml-2 text-text-tertiary underline decoration-dotted underline-offset-4 hover:text-text-primary focus-visible:outline-primary-500"
-                    >
-                      {openKey === item.key ? "Hide evidence" : "Evidence"}
-                    </button>
-                  </td>
-                  <td className="px-5 py-3 text-right align-top">
-                    <Badge color={SEVERITY_COLOR[item.severity]} size="sm">
-                      {item.severity}
-                    </Badge>
-                  </td>
-                </tr>
-                {openKey === item.key ? (
-                  <tr className="border-b border-card-border">
-                    <td
-                      colSpan={3}
-                      className="bg-background-gray-secondary px-5 pb-4"
-                    >
-                      <p className="pt-3 text-sm leading-6 text-text-primary">
-                        {item.action}
-                      </p>
-                      {item.suggestion ? (
-                        <SuggestionPanel
-                          suggestion={item.suggestion}
-                          locationId={location.id}
-                        />
-                      ) : null}
-                      <EvidencePanel runId={run.id} item={item} />
-                    </td>
-                  </tr>
-                ) : null}
-              </Fragment>
-            ))}
-            {!visible.length ? (
-              <tr>
-                <td colSpan={3} className="px-5 py-8 text-text-secondary">
-                  Nothing matches this search.
-                </td>
-              </tr>
-            ) : null}
-          </tbody>
-        </table>
+      <div className="space-y-4">
+        {visible.map((item) => (
+          <article
+            key={item.key}
+            className="rounded-xl border border-card-border bg-card-background px-5 py-5"
+          >
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div className="min-w-0">
+                <p className="text-xs text-text-tertiary">
+                  {cluster.unit === "location" ? item.location_name : item.subject}
+                </p>
+                <h2 className="mt-1 text-base font-semibold text-text-primary">
+                  {item.title}
+                </h2>
+              </div>
+              <Badge color={SEVERITY_COLOR[item.severity]} size="sm">
+                {item.severity}
+              </Badge>
+            </div>
+
+            <div className="mt-4">
+              <h3 className="text-sm font-medium text-text-primary">What to do</h3>
+              <p className="mt-1 text-sm leading-6 text-text-secondary">{item.action}</p>
+            </div>
+
+            {item.suggestion ? (
+              <div className="mt-4">
+                <SuggestionPanel suggestion={item.suggestion} locationId={location.id} />
+              </div>
+            ) : (
+              <p className="mt-4 rounded-lg bg-background-gray-secondary px-4 py-3 text-xs leading-5 text-text-tertiary">
+                No AI draft is shown because this fix needs information only the business can confirm.
+              </p>
+            )}
+
+            <div className="mt-4 border-t border-card-border pt-4">
+              <EvidencePanel runId={run.id} item={item} />
+            </div>
+          </article>
+        ))}
+        {!visible.length ? (
+          <p className="rounded-xl border border-card-border bg-card-background px-5 py-8 text-sm text-text-secondary">
+            Nothing matches this search.
+          </p>
+        ) : null}
         {pages > 1 ? (
-          <div className="flex flex-wrap items-center gap-4 border-t border-card-border px-5 py-3 text-sm text-text-secondary">
+          <div className="flex flex-wrap items-center gap-4 py-2 text-sm text-text-secondary">
             <span>
               Page {page + 1} of {pages}
             </span>

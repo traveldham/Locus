@@ -6,6 +6,7 @@ own project description as context so the draft is about this business, not a ge
 one. Facts only the business knows are never drafted.
 """
 
+import re
 from datetime import UTC, datetime
 
 from app.services.recommendations.categories.profile import (
@@ -137,9 +138,9 @@ def build_prompt(context: dict, items: list[dict], findings: list[dict] | None =
         for item in items
     )
     shapes = "\n".join(f"- {field}: {shape}" for field, shape in FIELD_SHAPES.items())
-    return f"""You draft improvements for one Google Business Profile. You are given the
-profile as stored, the operator's own description of the business (projects), and the
-audit findings that need a draft. Return one suggestion per finding.
+    return f"""You draft clear, practical improvements for one Google Business Profile.
+You are given the stored profile, the operator's own description of the business
+(projects), and the audit findings that need a draft. Return one suggestion per finding.
 
 Rules you must follow:
 - Draft only for the field named in each finding. Never invent a phone number, street
@@ -157,11 +158,11 @@ Rules you must follow:
 - Put the value in exactly one of value_text, value_list or value_map, matching the
   field's shape:
 {shapes}
-- reason: one sentence saying what in the context supports the draft.
+- reason: one short sentence naming the exact stored fact or project detail that supports the draft.
 - confidence: high when the context states it, medium when it is a reasonable
   inference, low when it is a guess a manager must check.
 
-- summary: three to five sentences for the location manager, in plain language, built
+- summary: two or three short sentences for the location manager, in plain language, built
   only from the findings listed below (all of them, not only those needing a draft).
   Say what is wrong and why it matters to a customer, what to do first, and what is
   already fine. No scores, no percentages, no promises about rankings or revenue.
@@ -206,11 +207,74 @@ def fallback_summary(result: dict) -> dict:
     }
 
 
-def apply(result: dict, response: dict, source: str, model: str) -> int:
+def _allowed_categories(context: dict) -> set[str]:
+    services = [
+        service
+        for project in context.get("projects", [])
+        for service in project.get("services", [])
+        if isinstance(service, str)
+    ]
+    current = {
+        str(value).casefold()
+        for value in [context.get("primary_category"), *context.get("additional_categories", [])]
+        if value
+    }
+    from app.services.recommendations.categories.profile import hinted
+
+    return {category for _, category, _ in hinted(services) if category.casefold() not in current}
+
+
+def _safe_value(field: str, value, context: dict):
+    """Enforce constraints that must not depend on the model following the prompt."""
+    if field == "description":
+        if not isinstance(value, str):
+            return None
+        value = value.strip()
+        if re.search(r"(?:https?://|www\.|\b\S+@\S+\.\S+\b)", value, re.I):
+            return None
+        if re.search(r"(?:\+?\d[\d\s().-]{7,}\d)", value):
+            return None
+        if len(value) > 750:
+            value = value[:750].rsplit(" ", 1)[0]
+        return value or None
+    if field == "additional_categories":
+        if not isinstance(value, list):
+            return None
+        allowed = _allowed_categories(context)
+        chosen = []
+        for category in value:
+            match = next(
+                (
+                    candidate
+                    for candidate in allowed
+                    if candidate.casefold() == str(category).casefold()
+                ),
+                None,
+            )
+            if match and match not in chosen:
+                chosen.append(match)
+        return chosen or None
+    if field == "attributes":
+        if not isinstance(value, dict):
+            return None
+        allowed = set(context.get("attributes_unanswered", []))
+        chosen = {
+            name: answer
+            for name, answer in value.items()
+            if name in allowed and isinstance(answer, bool)
+        }
+        return chosen or None
+    if field == "title":
+        return value.strip() if isinstance(value, str) and value.strip() else None
+    return None
+
+
+def apply(result: dict, response: dict, source: str, model: str, context: dict) -> int:
     """Attach validated suggestions to the findings they answer. Returns how many."""
     by_key = {(i["rule"], i.get("subject") or ""): i for i in targets(result)}
     stamped = datetime.now(UTC).isoformat()
     attached = 0
+    seen: set[tuple[str, str]] = set()
     summary = str(response.get("summary") or "").strip()
     if summary:
         result["summary"] = {
@@ -222,6 +286,9 @@ def apply(result: dict, response: dict, source: str, model: str) -> int:
     for raw in response.get("suggestions", []):
         item = by_key.get((raw.get("rule"), raw.get("subject") or ""))
         if item is None:
+            continue
+        identity = (item["rule"], item.get("subject") or "")
+        if identity in seen:
             continue
         field = CHECKS[item["rule"]]["suggests"]
         if raw.get("field") != field:
@@ -237,10 +304,9 @@ def apply(result: dict, response: dict, source: str, model: str) -> int:
             value = [str(v) for v in raw["value_list"]]
         else:
             value = str(raw.get("value_text") or "").strip()
+        value = _safe_value(field, value, context)
         if not value:
             continue
-        if field == "description" and isinstance(value, str) and len(value) > 750:
-            value = value[:750].rsplit(" ", 1)[0]
         item["suggestion"] = Suggestion(
             field=field,
             value=value,
@@ -251,5 +317,6 @@ def apply(result: dict, response: dict, source: str, model: str) -> int:
             generated_at=stamped,
         ).model_dump(mode="json")
         item["explanation_source"] = "deterministic+generated"
+        seen.add(identity)
         attached += 1
     return attached

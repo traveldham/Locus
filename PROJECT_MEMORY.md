@@ -60,6 +60,35 @@ without a real quota and a real fleet of locations.
 
 ## Handoff log
 
+- 2026-09-13 (recommendation UX simplification): Reworked issue detail around one
+  customer decision per finding: problem/title, what to do, optional AI draft, concise
+  evidence explanation, then raw saved rows behind “View source records.” Replaced the
+  dense findings table with responsive action cards, made missing drafts explicit when
+  business-only facts are required, simplified issue-list language, and labeled AI copy
+  as a draft requiring review. Hardened profile AI enrichment: response constraints are
+  now enforced in code for contact-free descriptions, project-supported categories,
+  catalog-listed unanswered attributes and one suggestion per finding; prompt requests
+  shorter summaries and evidence-specific reasons. Added a constraint-rejection test.
+  Verification: targeted recommendation tests, ruff, frontend lint/TypeScript/build and
+  Impeccable detector. Restart the Celery worker before generating new audits so it loads
+  the updated suggestion code.
+
+- 2026-09-13 (recommendation-engine review): Traced the current audit from snapshot
+  through Celery, deterministic checks, optional LLM enrichment, API and UI. The profile
+  worker currently declares 28 checks across reach/identity/trust/hours/attributes; the
+  other five workers still have no checks. Consequently the displayed health score is
+  currently the profile score normalized to the whole headline score, while the UI does
+  show the other category cards as “No checks built yet.” Found version/output drift:
+  `ENGINE_VERSION` remains `3.0.0` although stored `3.0.0` reports contain different
+  check inventories; the local database has current runs for only 5 of 12 locations,
+  including one old null-score skeleton run. Current suggestion response validation
+  checks target rule/field and basic shape, but does not enforce several prompt-only
+  constraints (catalog-only attributes, real Google categories, no URLs/phones in
+  descriptions). Also, `has_voice_of_merchant = NULL` is currently scored clear and the
+  profile card renders it as “Not verified,” instead of treating unknown separately.
+  Targeted recommendation verification: 45 tests passed; targeted ruff passed. No code,
+  database data, server, worker or generated audit was changed during this review.
+
 - 2026-09-13 (night): **Profile worker built** with 24 deterministic checks in five groups
   (reach, identity, trust, hours, attributes) and a Gemini suggestion layer
   (`services/recommendations/suggestions/`) that drafts description, additional

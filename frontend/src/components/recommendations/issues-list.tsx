@@ -139,7 +139,7 @@ export function IssuesList({
             onClick={() => setParam("checks", "")}
             className="min-h-9 rounded-lg border border-card-border px-3 text-sm text-text-tertiary hover:text-text-primary focus-visible:outline-primary-500"
           >
-            Showing all {matching.length} checks — only those with issues
+            Show issues only
           </button>
         )}
       </div>
@@ -177,6 +177,7 @@ export function IssuesList({
                     key={rule.rule}
                     rule={rule}
                     locationId={location.id}
+                    why={run.items.find((item) => item.rule === rule.rule)?.why}
                     isNew={Boolean(
                       location.changes &&
                       !location.changes.first_audit &&
@@ -198,7 +199,7 @@ export function IssuesList({
         {!withIssuesOnly && quiet.length ? (
           <section>
             <h2 className="border-b-2 border-badge-success-text px-5 py-3 text-sm font-semibold text-text-primary">
-              <span className={TONE_TEXT.success}>No issues found</span>{" "}
+              <span className={TONE_TEXT.success}>Other checks</span>{" "}
               <span className="text-text-tertiary">({quiet.length})</span>
             </h2>
             <ul>
@@ -231,10 +232,8 @@ export function IssuesList({
       </div>
 
       <p className="text-xs leading-5 text-text-tertiary">
-        Counts are checks, not findings. A check that passed and a check without
-        enough evidence are both listed under “No issues found” — remove the
-        “With issues” filter to see them and the reason each one produced
-        nothing.
+        Issue counts refer to checks. Open a check to see every affected item and the
+        saved records that support it.
       </p>
     </div>
   );

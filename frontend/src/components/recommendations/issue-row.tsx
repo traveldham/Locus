@@ -57,13 +57,16 @@ export function IssueRow({
             {sentence.count}
           </Link>{" "}
           {sentence.predicate ? `${sentence.predicate} ` : ""}
+          {sentence.detail ? (
+            <span className="text-text-secondary">{sentence.detail} </span>
+          ) : null}
           <button
             type="button"
             aria-expanded={open}
             onClick={() => setOpen(!open)}
             className="text-text-tertiary underline decoration-dotted underline-offset-4 hover:text-text-primary focus-visible:outline-primary-500"
           >
-            How to fix
+            Understand and fix
           </button>
         </p>
         {isNew ? (

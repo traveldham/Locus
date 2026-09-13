@@ -13,13 +13,6 @@ const CONFIDENCE_COLOR = {
   low: "gray",
 } as const;
 
-const FIELD_LABEL: Record<string, string> = {
-  description: "Suggested description",
-  additional_categories: "Suggested additional categories",
-  attributes: "Suggested attribute answers",
-  title: "Suggested name",
-};
-
 function asText(value: Suggestion["value"]): string {
   if (typeof value === "string") return value;
   if (Array.isArray(value)) return value.join(", ");
@@ -31,7 +24,7 @@ function asText(value: Suggestion["value"]): string {
     .join("\n");
 }
 
-/** A generated draft, clearly marked as such. Nothing here is published on its own. */
+/** A generated fix, clearly marked as a draft. Nothing here is published on its own. */
 export function SuggestionPanel({
   suggestion,
   locationId,
@@ -67,26 +60,27 @@ export function SuggestionPanel({
 
   return (
     <section
-      aria-label="Suggested draft"
-      className="mt-4 rounded-lg border border-primary-500/30 bg-card-background px-4 py-3 text-sm"
+      aria-label="Suggested fix"
+      className="rounded-xl bg-background-gray-secondary px-4 py-4 text-sm"
     >
       <div className="flex flex-wrap items-center gap-2">
         <h3 className="font-medium text-text-primary">
-          {FIELD_LABEL[suggestion.field] ?? `Suggested ${suggestion.field}`}
+          Suggested fix
         </h3>
         <Badge color={CONFIDENCE_COLOR[suggestion.confidence]} size="sm">
           {suggestion.confidence} confidence
         </Badge>
         <span className="ml-auto text-xs text-text-tertiary">
-          Drafted by {suggestion.model}
+          AI draft · review before using
         </span>
       </div>
       <div className="mt-2 leading-6 text-text-primary">
         <SuggestedValue value={suggestion.value} />
       </div>
-      <p className="mt-2 text-xs leading-5 text-text-secondary">
-        {suggestion.reason}
-      </p>
+      <div className="mt-3 border-t border-card-border pt-3">
+        <p className="text-xs font-medium text-text-primary">Why this draft fits</p>
+        <p className="mt-1 text-xs leading-5 text-text-secondary">{suggestion.reason}</p>
+      </div>
       <div className="mt-3 flex flex-wrap items-center gap-2">
         {editable ? (
           <Button type="button" size="sm" onPress={useDraft}>
