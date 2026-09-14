@@ -5,6 +5,7 @@ import { ProjectSwitcher } from "@/components/common/header/project-switcher";
 import ThemeToggle from "@/components/common/header/theme-toggle";
 import { UserProfileButton } from "@/components/common/header/user-profile";
 import { ThreeDots } from "@/components/common/sidebar/icon";
+import { LinkButton } from "@/components/common/link-button";
 import { cn } from "@/utils/cn";
 import { BrandLogo } from "@/components/common/brand-logo";
 import React from "react";
@@ -61,7 +62,12 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
         {/* Desktop layout (xl+) - original layout */}
         <div className="hidden items-center justify-between xl:flex">
           {/* Left Side - project switcher, replacing the sidebar's Projects entry */}
-          <ProjectSwitcher />
+          <div className="flex items-center gap-2.5">
+            <ProjectSwitcher />
+            {/* The switcher only ever opens one project, so without this the list of
+                them has no way in from anywhere in the application. */}
+            <AllProjectsLink />
+          </div>
 
           {/* Right Side - Actions */}
           <div className="flex items-center gap-2.5">
@@ -78,6 +84,15 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
   );
 }
 
+/** The way to every project, rather than the one the switcher has open. */
+function AllProjectsLink() {
+  return (
+    <LinkButton href="/projects" appearance="ghost" size="xl">
+      All projects
+    </LinkButton>
+  );
+}
+
 // Mobile Info
 function MobileInfoDrawer({ isOpen }: { isOpen: boolean }) {
   return (
@@ -85,6 +100,7 @@ function MobileInfoDrawer({ isOpen }: { isOpen: boolean }) {
       <div className="px-5 py-4 shadow-xs">
         <div className="flex items-center justify-between gap-2.5">
           <div className="flex items-center gap-2.5">
+            <AllProjectsLink />
             <ThemeToggle />
           </div>
 
