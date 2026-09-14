@@ -93,7 +93,7 @@ export function ReviewsView() {
     <div className="px-5 py-8 lg:px-8 lg:py-10">
       <PageHeader
         title="Reviews"
-        description="Every Google review across your locations, with the replies you have published under your business name."
+        description="Every Google review across your profiles, with the replies you have published under your business name."
         actions={
           <SyncReviewsButton onSync={handleSync} isSyncing={sync.isPending} />
         }
@@ -105,7 +105,7 @@ export function ReviewsView() {
           className="mt-6 rounded-lg bg-badge-success-background px-3.5 py-2.5 text-sm leading-5 text-badge-success-text"
         >
           Synced {sync.data.total} review{sync.data.total === 1 ? "" : "s"} from{" "}
-          {sync.data.locations_synced} location
+          {sync.data.locations_synced} profile
           {sync.data.locations_synced === 1 ? "" : "s"}.
         </p>
       ) : null}
@@ -189,7 +189,7 @@ export function ReviewsView() {
             <EmptyState
               icon={<Comment1 aria-hidden="true" focusable="false" />}
               title="No reviews yet"
-              description="Reviews are imported from Google Business Profile. Sync to pull in what your locations have already received; nothing appears here until Google returns it."
+              description="Reviews are imported from Google Business Profile. Sync to pull in what your profiles have already received; nothing appears here until Google returns it."
               actions={
                 <>
                   <SyncReviewsButton

@@ -88,8 +88,8 @@ export function ProjectSwitcher() {
                 </span>
                 <span className="shrink-0 text-xs text-text-tertiary tabular-nums">
                   {project.location_count === 1
-                    ? "1 location"
-                    : `${project.location_count} locations`}
+                    ? "1 profile"
+                    : `${project.location_count} profiles`}
                 </span>
               </span>
             </DropdownMenuItem>

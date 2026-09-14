@@ -27,13 +27,13 @@ export const NAV_DATA: NavigationSection[] = [
     label: "WORKSPACE",
     items: [
       {
-        title: "Location audit",
+        title: "Profile audit",
         icon: <InsightsIcon />,
         url: "/recommendations",
         items: [],
       },
       {
-        title: "Locations",
+        title: "Profiles",
         icon: <LocationsIcon />,
         url: "/locations",
         items: [],

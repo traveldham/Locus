@@ -31,7 +31,7 @@ export function ProjectsView() {
     <div className="px-5 py-8 lg:px-8 lg:py-10">
       <PageHeader
         title="Projects"
-        description="A project is a named set of locations you work on together. A location can belong to as many projects as you need."
+        description="A project is a named set of profiles you work on together. A profile can belong to as many projects as you need."
         actions={
           <Button size="xl" onPress={() => setIsDialogOpen(true)}>
             <Plus aria-hidden="true" focusable="false" />
@@ -59,7 +59,7 @@ export function ProjectsView() {
               icon={<Folder1 aria-hidden="true" focusable="false" />}
               title="No projects yet"
               description={`Your organization has ${importedCount} imported ${
-                importedCount === 1 ? "location" : "locations"
+                importedCount === 1 ? "profile" : "profiles"
               }. Group the ones you work on together into your first project.`}
               actions={
                 <>
@@ -68,7 +68,7 @@ export function ProjectsView() {
                     New project
                   </Button>
                   <LinkButton href="/locations" appearance="outline">
-                    Browse locations
+                    Browse profiles
                   </LinkButton>
                 </>
               }
@@ -76,8 +76,8 @@ export function ProjectsView() {
           ) : (
             <EmptyState
               icon={<Folder1 aria-hidden="true" focusable="false" />}
-              title="No locations to group yet"
-              description="Projects are built from the business locations in your workspace. None have loaded yet, so there is nothing to group — you can still create an empty project and add locations to it later."
+              title="No profiles to group yet"
+              description="Projects are built from the business profiles in your workspace. None have loaded yet, so there is nothing to group — you can still create an empty project and add profiles to it later."
               actions={
                 <>
                   <Button size="xl" onPress={() => setIsDialogOpen(true)}>

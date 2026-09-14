@@ -13,7 +13,7 @@ export default function LocationsIndexPage() {
   return (
     <div className="px-5 py-8 lg:px-8 lg:py-10">
       <PageHeader
-        title="Location audits"
+        title="Profile audits"
         description={
           project
             ? `Profiles in ${project.name}. Each is audited on its own — open one to see its score, issues and the stored records behind them.`
@@ -23,11 +23,11 @@ export default function LocationsIndexPage() {
       <div className="mt-6">
         {directory.isPending ? (
           <p role="status" className="text-text-secondary">
-            Loading locations…
+            Loading profiles…
           </p>
         ) : directory.error ? (
           <ErrorState
-            title="We could not load your locations"
+            title="We could not load your profiles"
             onRetry={() => void directory.refetch()}
           />
         ) : (

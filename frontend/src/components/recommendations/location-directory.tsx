@@ -22,17 +22,17 @@ export function LocationDirectory({ rows }: { rows: DirectoryRow[] }) {
       .includes(search.trim().toLowerCase()),
   );
   return (
-    <SectionCard title={`Your locations · ${rows.length}`} bodyClassName="p-0">
+    <SectionCard title={`Your profiles · ${rows.length}`} bodyClassName="p-0">
       <div className="border-b border-card-border px-5 py-4">
         <label htmlFor="audit-location-search" className="sr-only">
-          Find a location
+          Find a profile
         </label>
         <input
           id="audit-location-search"
           type="search"
           value={search}
           onChange={(event) => setSearch(event.target.value)}
-          placeholder="Find a location"
+          placeholder="Find a profile"
           className="min-h-11 w-full rounded-lg border border-card-border bg-card-background px-3 text-sm text-text-primary focus-visible:outline-primary-500 sm:max-w-sm"
         />
       </div>
@@ -123,7 +123,7 @@ export function LocationDirectory({ rows }: { rows: DirectoryRow[] }) {
                     ? "Follow audit"
                     : row.audited_at
                       ? "View report"
-                      : "View location"}
+                      : "View profile"}
                 </Link>
                 <Button
                   size="xl"
@@ -148,8 +148,8 @@ export function LocationDirectory({ rows }: { rows: DirectoryRow[] }) {
       {!shown.length ? (
         <p className="px-5 py-8 text-sm text-text-secondary">
           {rows.length
-            ? "No locations match your search."
-            : "Add a location to your project to start reviewing its Google profile."}
+            ? "No profiles match your search."
+            : "Add a profile to your project to start reviewing it."}
         </p>
       ) : null}
       <div className="border-t border-card-border px-5 py-4 text-xs leading-6 text-text-secondary">
@@ -159,7 +159,7 @@ export function LocationDirectory({ rows }: { rows: DirectoryRow[] }) {
           </p>
         ) : null}
         <p>
-          Each location has its own audit date. Scores use the checks that could
+          Each profile has its own audit date. Scores use the checks that could
           be evaluated; missing evidence is never counted as a pass. Open a
           report to see every check and its supporting records.
         </p>

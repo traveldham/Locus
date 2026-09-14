@@ -47,7 +47,7 @@ export function LocationDetailView({ locationId }: { locationId: string }) {
 
   return (
     <div className="px-5 py-8 lg:px-8 lg:py-10">
-      <BackLink href="/locations">All locations</BackLink>
+      <BackLink href="/locations">All profiles</BackLink>
 
       {isPending ? <LocationDetailSkeleton /> : null}
 
@@ -56,17 +56,17 @@ export function LocationDetailView({ locationId }: { locationId: string }) {
           {isNotFound ? (
             <EmptyState
               icon={<MapMarker5 aria-hidden="true" focusable="false" />}
-              title="Location not found"
-              description="This location is no longer available to your organization. It may have been removed from the Google connection."
+              title="Profile not found"
+              description="This profile is no longer available to your organization. It may have been removed from the Google connection."
               actions={
                 <LinkButton href="/locations" appearance="outline">
-                  Back to locations
+                  Back to profiles
                 </LinkButton>
               }
             />
           ) : (
             <ErrorState
-              title="We could not load this location"
+              title="We could not load this profile"
               description="The request to Locus did not complete. Check your connection, then try again."
               onRetry={() => void refetch()}
               isRetrying={isFetching}
@@ -138,7 +138,7 @@ function LocationProfile({ location }: { location: LocationDetail }) {
                 href={`/recommendations/${location.id}`}
                 appearance="outline"
               >
-                Audit this location
+                Audit this profile
               </LinkButton>
             </>
           )
@@ -155,7 +155,7 @@ function LocationProfile({ location }: { location: LocationDetail }) {
       ) : null}
 
       {!isEditing ? (
-        <div className="mt-6 flex flex-wrap gap-2" aria-label="Location view">
+        <div className="mt-6 flex flex-wrap gap-2" aria-label="Profile view">
           <Button
             type="button"
             size="xl"
@@ -236,12 +236,12 @@ function LocationProfile({ location }: { location: LocationDetail }) {
                     </span>
                   ) : null}
                 </DataField>
-                <DataField label="Google location name">
+                <DataField label="Google profile name">
                   <span className="break-all">
                     {location.google_location_name}
                   </span>
                 </DataField>
-                <DataField label="Dataset location ID">
+                <DataField label="Dataset profile ID">
                   {location.source_location_id ? (
                     <span className="tabular-nums">
                       {location.source_location_id}
@@ -307,7 +307,7 @@ function LocationProfile({ location }: { location: LocationDetail }) {
 
 function LocationDetailSkeleton() {
   return (
-    <div role="status" aria-label="Loading location">
+    <div role="status" aria-label="Loading profile">
       <Skeleton className="h-8 w-72 max-w-full rounded-lg" />
       <Skeleton className="mt-3 h-4 w-96 max-w-full" />
       <div className="mt-4 flex gap-2">

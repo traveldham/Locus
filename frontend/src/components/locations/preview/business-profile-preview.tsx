@@ -156,7 +156,7 @@ export function BusinessProfilePreview({
                 disabled
                 title={
                   location.source === "fixture"
-                    ? "Directions are disabled for synthetic locations"
+                    ? "Directions are disabled for synthetic profiles"
                     : "No map URL stored"
                 }
               >
@@ -299,7 +299,7 @@ export function BusinessProfilePreview({
                   </p>
                 )}
                 <p className="pb-4 text-xs leading-5 text-text-secondary">
-                  Stored schedule only. Special hours and location time zone are
+                  Stored schedule only. Special hours and the profile’s time zone are
                   not resolved into a live “open now” status.
                 </p>
               </details>
@@ -436,7 +436,7 @@ export function BusinessProfilePreview({
         </div>
         {!audit.isPending && !audit.isError && !recommendations.length ? (
           <p className="mt-4 text-sm leading-6 text-text-secondary">
-            No saved actions for this location. Open the audit to check coverage
+            No saved actions for this profile. Open the audit to check coverage
             or generate an analysis.
           </p>
         ) : null}
@@ -445,7 +445,7 @@ export function BusinessProfilePreview({
             className={previewControl}
             href={`/recommendations/${location.id}`}
           >
-            View full location audit
+            View full profile audit
           </Link>
           <button className={previewControl} onClick={onEdit}>
             Edit profile details

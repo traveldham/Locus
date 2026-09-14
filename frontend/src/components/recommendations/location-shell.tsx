@@ -55,7 +55,7 @@ export function LocationShell({
   const name =
     location?.name ??
     profiles.find((row) => row.location_id === locationId)?.name ??
-    (isPending ? "Loading…" : "Unknown location");
+    (isPending ? "Loading…" : "Unknown profile");
   const counts = sectionCounts(location);
   const score = location?.health.score ?? null;
 
@@ -66,7 +66,7 @@ export function LocationShell({
           href={AUDIT_ROOT}
           className="inline-flex min-h-11 items-center underline-offset-4 hover:text-text-primary hover:underline focus-visible:outline-primary-500"
         >
-          All locations
+          All profiles
         </Link>
       </nav>
 
@@ -147,7 +147,7 @@ export function LocationShell({
                       : "Run first audit"}
             </Button>
             <span className="text-xs text-text-tertiary">
-              Reviews all six areas for this location
+              Reviews all six areas for this profile
             </span>
           </form>
         </div>

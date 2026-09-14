@@ -84,7 +84,7 @@ export function RenameProjectDialog({
             <DialogTitle>Edit business details</DialogTitle>
             <p className="text-sm leading-6 text-text-tertiary">
               The web address of this project does not change, so existing links
-              keep working. Its locations are not affected.
+              keep working. Its profiles are not affected.
             </p>
           </DialogHeader>
 

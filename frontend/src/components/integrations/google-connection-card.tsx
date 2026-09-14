@@ -12,7 +12,7 @@ const STATUS_PRESENTATION: Record<
   needs_reauth: {
     label: "Needs reconnecting",
     tone: "caution",
-    notice: "Google needs this account to approve access again before locations can be read.",
+    notice: "Google needs this account to approve access again before profiles can be read.",
   },
   revoked: {
     label: "Access revoked",
@@ -44,7 +44,7 @@ export function GoogleConnectionCard({ connection }: { connection: Connection })
   return (
     <IntegrationCardShell
       title="Google Business Profile"
-      description="The Google account this workspace reads location data from. One connection serves every project."
+      description="The Google account this workspace reads profile data from. One connection serves every project."
       status={<StatusChip tone={presentation.tone} label={presentation.label} />}
     >
       {presentation.notice && (

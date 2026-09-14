@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Posts",
-  description: "Published Google Business Profile posts across every location.",
+  description: "Published posts across every Google Business Profile.",
 };
 
 export default function PostsPage() {

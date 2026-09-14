@@ -4,7 +4,7 @@ import { SparkleFill } from "@tailgrids/icons";
 
 /** Concrete openers, so a first-time reader learns what the agent can actually do. */
 const SUGGESTIONS = [
-  "How is this location scoring?",
+  "How is this profile scoring?",
   "Reply to my unanswered reviews",
   "What should I fix first on this profile?",
   "What has changed here recently?",
@@ -31,7 +31,7 @@ export function AgentEmptyState({
 
       <div className="space-y-1">
         <p className="text-sm font-semibold text-text-primary">
-          {`Ask about ${locationTitle ?? "this location"}`}
+          {`Ask about ${locationTitle ?? "this profile"}`}
         </p>
         <p className="text-xs leading-5 text-text-secondary">
           The assistant can audit the profile, read and answer Google reviews,

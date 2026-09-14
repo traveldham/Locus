@@ -154,7 +154,7 @@ export function AuditProgress({
                     ? "All areas have been reviewed. We’re preparing the overall summary and your action plan."
                     : job.status === "pending"
                       ? "Your request is saved. The review starts as soon as capacity is available; you can leave this page and return."
-                      : "We’re checking the saved data for this location and turning the findings into practical next steps."}
+                      : "We’re checking the saved data for this profile and turning the findings into practical next steps."}
             </p>
           </div>
           {!failed && !loadingReport ? (

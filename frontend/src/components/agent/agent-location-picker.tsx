@@ -38,7 +38,7 @@ export function AgentLocationPicker({
   if (locations.length === 0 && error) {
     return (
       <p className="px-1 text-xs leading-5 text-badge-error-text">
-        Your locations could not be loaded.{" "}
+        Your profiles could not be loaded.{" "}
         <button
           type="button"
           onClick={onRetry}
@@ -54,15 +54,15 @@ export function AgentLocationPicker({
     return (
       <p className="px-1 text-xs leading-5 text-text-tertiary">
         {isLoading
-          ? "Loading your locations…"
-          : "Import a location to start a conversation."}
+          ? "Loading your profiles…"
+          : "Import a profile to start a conversation."}
       </p>
     );
   }
 
   const triggerLabel =
     locations.find((location) => location.id === value)?.title ??
-    "Choose a location";
+    "Choose a profile";
 
   return (
     <Select

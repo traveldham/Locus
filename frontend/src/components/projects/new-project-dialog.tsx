@@ -117,7 +117,7 @@ export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
           <DialogHeader className="border-b border-card-border px-6 py-5 pr-14">
             <DialogTitle>New project</DialogTitle>
             <p className="text-sm leading-6 text-text-tertiary">
-              Add your business details, then choose its imported locations.
+              Add your business details, then choose its imported profiles.
             </p>
           </DialogHeader>
 
@@ -141,7 +141,7 @@ export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
               >
                 Between {PROJECT_NAME_MIN_LENGTH} and {PROJECT_NAME_MAX_LENGTH}{" "}
                 characters. You can rename a project later without affecting its
-                locations.
+                profiles.
               </p>
             </TextField>
 
@@ -155,7 +155,7 @@ export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
               <div className="flex flex-wrap items-end justify-between gap-3">
                 <div>
                   <h3 className="text-sm font-semibold text-text-primary">
-                    Locations
+                    Profiles
                   </h3>
                   <p
                     className="mt-1 text-xs leading-5 text-text-tertiary"
@@ -194,8 +194,8 @@ export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
 
                 {!locationsQuery.isPending && locationsQuery.isError ? (
                   <ErrorState
-                    title="We could not load your locations"
-                    description="You can still create the project and add locations once the list loads."
+                    title="We could not load your profiles"
+                    description="You can still create the project and add profiles once the list loads."
                     onRetry={() => void locationsQuery.refetch()}
                     isRetrying={locationsQuery.isFetching}
                   />
@@ -206,11 +206,11 @@ export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
                 locations.length === 0 ? (
                   <div className="rounded-lg border border-dashed border-card-border px-4 py-5">
                     <p className="text-sm font-medium text-text-primary">
-                      No locations have loaded yet
+                      No profiles have loaded yet
                     </p>
                     <p className="mt-1.5 text-sm leading-6 text-text-tertiary">
                       There is nothing to pick from right now. You can create
-                      this project and add locations afterwards.
+                      this project and add profiles afterwards.
                     </p>
                     <Link
                       href="/settings/integrations"
@@ -235,7 +235,7 @@ export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
                         type="search"
                         value={search}
                         onChange={(event) => setSearch(event.target.value)}
-                        aria-label="Search locations to add"
+                        aria-label="Search profiles to add"
                         placeholder="Search name, address or store code"
                         className="h-11 w-full rounded-md border-0 bg-transparent pr-3 pl-9 text-sm text-text-primary placeholder:text-input-placeholder-text focus:ring-0 focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500"
                       />
@@ -244,7 +244,7 @@ export function NewProjectDialog({ onOpenChange }: NewProjectDialogProps) {
                     <div className="scrollbar-thin max-h-64 overflow-y-auto p-1.5">
                       {visible.length === 0 ? (
                         <p className="px-3 py-6 text-center text-sm text-text-tertiary">
-                          No location matches “{search.trim()}”.
+                          No profile matches “{search.trim()}”.
                         </p>
                       ) : (
                         <ul>
@@ -322,7 +322,7 @@ function LocationPickerSkeleton() {
   return (
     <div
       role="status"
-      aria-label="Loading locations"
+      aria-label="Loading profiles"
       className="rounded-lg border border-card-border p-3"
     >
       {[0, 1, 2, 3].map((index) => (

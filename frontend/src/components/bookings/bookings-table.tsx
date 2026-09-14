@@ -36,7 +36,7 @@ export function BookingsTable({
           </TableHead>
           {showLocation ? (
             <TableHead scope="col" className="w-[18%]">
-              Location
+              Profile
             </TableHead>
           ) : null}
           <TableHead scope="col" className="w-[14%]">

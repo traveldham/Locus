@@ -62,7 +62,7 @@ export function BookingsView() {
     <div className="px-5 py-8 lg:px-8 lg:py-10">
       <PageHeader
         title="Bookings"
-        description="Every appointment request across your locations, and which channel it arrived through. Google reports only an aggregate count, so these individual records come from Locus."
+        description="Every appointment request across your profiles, and which channel it arrived through. Google reports only an aggregate count, so these individual records come from Locus."
         meta={<SourceMark source="locus" detail="Covers every booking on this page." />}
       />
 

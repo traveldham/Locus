@@ -26,8 +26,8 @@ export function DeleteProjectSection({
 
   const locationsPhrase =
     locationCount === 1
-      ? "The 1 location in it"
-      : `The ${locationCount} locations in it`;
+      ? "The 1 profile in it"
+      : `The ${locationCount} profiles in it`;
 
   function close() {
     if (deleteProject.isPending) return;
@@ -57,7 +57,7 @@ export function DeleteProjectSection({
             Delete this project
           </h2>
           <p className="mt-1.5 max-w-2xl text-sm leading-6 text-alert-danger-description">
-            The project and its links to locations are removed.{" "}
+            The project and its links to profiles are removed.{" "}
             {locationsPhrase} stay in your workspace and in every other project
             they belong to.
           </p>
@@ -85,7 +85,7 @@ export function DeleteProjectSection({
                 <span className="font-medium text-text-secondary">
                   {projectName}
                 </span>{" "}
-                and its links to locations will be deleted. This cannot be
+                and its links to profiles will be deleted. This cannot be
                 undone.
               </p>
               <p className="mt-3">

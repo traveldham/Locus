@@ -5,7 +5,7 @@ import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Integrations",
-  description: "The accounts Locus reads your location data from.",
+  description: "The accounts Locus reads your profile data from.",
 };
 
 export default function IntegrationsSettingsPage() {
@@ -19,7 +19,7 @@ export default function IntegrationsSettingsPage() {
           Integrations
         </h1>
         <p className="mt-2 text-sm leading-6 text-text-tertiary">
-          The accounts Locus reads your location data from. One connection is shared across your
+          The accounts Locus reads your profile data from. One connection is shared across your
           organization and serves every project.
         </p>
       </header>

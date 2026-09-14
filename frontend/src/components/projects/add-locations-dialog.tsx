@@ -105,13 +105,13 @@ export function AddLocationsDialog({
       >
         <form onSubmit={handleSubmit} className="flex min-h-0 flex-col">
           <DialogHeader className="border-b border-card-border px-6 py-5">
-            <DialogTitle>Add locations</DialogTitle>
+            <DialogTitle>Add profiles</DialogTitle>
             <p className="text-sm leading-6 text-text-tertiary">
-              Choose which of your workspace locations to add to{" "}
+              Choose which of your workspace profiles to add to{" "}
               <span className="font-medium text-text-secondary">
                 {projectName}
               </span>
-              . A location can sit in more than one project, so adding it here
+              . A profile can sit in more than one project, so adding it here
               does not remove it from anywhere else.
             </p>
           </DialogHeader>
@@ -140,8 +140,8 @@ export function AddLocationsDialog({
 
               {!locationsQuery.isPending && locationsQuery.isError ? (
                 <ErrorState
-                  title="We could not load your locations"
-                  description="The list of locations did not load, so there is nothing to pick from yet."
+                  title="We could not load your profiles"
+                  description="The list of profiles did not load, so there is nothing to pick from yet."
                   onRetry={() => void locationsQuery.refetch()}
                   isRetrying={locationsQuery.isFetching}
                 />
@@ -155,13 +155,13 @@ export function AddLocationsDialog({
                     Nothing left to add
                   </p>
                   <p className="mt-1.5 text-sm leading-6 text-text-tertiary">
-                    Every location in your workspace is already in this project.
+                    Every profile in your workspace is already in this project.
                   </p>
                   <Link
                     href="/locations"
                     className="mt-2 inline-flex min-h-11 items-center text-sm font-medium text-text-primary underline decoration-border-secondary-alt underline-offset-4 hover:decoration-current focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
                   >
-                    Browse locations
+                    Browse profiles
                   </Link>
                 </div>
               ) : null}
@@ -180,7 +180,7 @@ export function AddLocationsDialog({
                       type="search"
                       value={search}
                       onChange={(event) => setSearch(event.target.value)}
-                      aria-label="Search locations to add"
+                      aria-label="Search profiles to add"
                       placeholder="Search name, address or store code"
                       className="h-11 w-full rounded-md border-0 bg-transparent pr-3 pl-9 text-sm text-text-primary placeholder:text-input-placeholder-text focus:ring-0 focus:outline-2 focus:-outline-offset-2 focus:outline-primary-500"
                     />
@@ -189,7 +189,7 @@ export function AddLocationsDialog({
                   <div className="scrollbar-thin max-h-64 overflow-y-auto p-1.5">
                     {visible.length === 0 ? (
                       <p className="px-3 py-6 text-center text-sm text-text-tertiary">
-                        No location outside this project matches “
+                        No profile outside this project matches “
                         {search.trim()}”.
                       </p>
                     ) : (
@@ -259,10 +259,10 @@ export function AddLocationsDialog({
               {addLocations.isPending
                 ? "Adding…"
                 : selected.size === 0
-                  ? "Add locations"
+                  ? "Add profiles"
                   : selected.size === 1
-                    ? "Add 1 location"
-                    : `Add ${selected.size} locations`}
+                    ? "Add 1 profile"
+                    : `Add ${selected.size} profiles`}
             </Button>
           </DialogFooter>
         </form>
@@ -275,7 +275,7 @@ function LocationPickerSkeleton() {
   return (
     <div
       role="status"
-      aria-label="Loading locations"
+      aria-label="Loading profiles"
       className="rounded-lg border border-card-border p-3"
     >
       {[0, 1, 2, 3].map((index) => (

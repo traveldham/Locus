@@ -67,16 +67,16 @@ export function ProjectLocationsPanel({
             id={headingId}
             className="text-base leading-6 font-semibold tracking-[-0.015em] text-text-primary"
           >
-            Locations in this project
+            Profiles in this project
           </h2>
           <p className="mt-1 text-sm text-text-tertiary" aria-live="polite">
             {locations.length}{" "}
-            {locations.length === 1 ? "location" : "locations"}
+            {locations.length === 1 ? "profile" : "profiles"}
           </p>
         </div>
         <Button size="xl" onPress={() => setIsAddOpen(true)}>
           <Plus aria-hidden="true" focusable="false" />
-          Add locations
+          Add profiles
         </Button>
       </div>
 
@@ -84,12 +84,12 @@ export function ProjectLocationsPanel({
         {locations.length === 0 ? (
           <EmptyState
             icon={<MapMarker5 aria-hidden="true" focusable="false" />}
-            title="No locations in this project"
-            description="Add locations from your workspace to start working on them together. A location can belong to several projects at once."
+            title="No profiles in this project"
+            description="Add profiles from your workspace to start working on them together. A profile can belong to several projects at once."
             actions={
               <Button size="xl" onPress={() => setIsAddOpen(true)}>
                 <Plus aria-hidden="true" focusable="false" />
-                Add locations
+                Add profiles
               </Button>
             }
           />
@@ -97,7 +97,7 @@ export function ProjectLocationsPanel({
           <TableRoot className="min-w-[44rem]">
             <TableHeader className="bg-background-gray-secondary">
               <TableRow>
-                <TableHead className="w-[30%]">Location</TableHead>
+                <TableHead className="w-[30%]">Profile</TableHead>
                 <TableHead className="w-[32%]">Address</TableHead>
                 <TableHead className="w-[20%]">Primary category</TableHead>
                 <TableHead className="w-[18%] text-right">
@@ -169,8 +169,8 @@ export function ProjectLocationsPanel({
           onAdded={(count) =>
             onStatusMessage(
               count === 1
-                ? "1 location was added to this project."
-                : `${count} locations were added to this project.`,
+                ? "1 profile was added to this project."
+                : `${count} profiles were added to this project.`,
             )
           }
         />
@@ -178,7 +178,7 @@ export function ProjectLocationsPanel({
 
       {pendingRemoval ? (
         <ConfirmDialog
-          title="Remove this location from the project?"
+          title="Remove this profile from the project?"
           description={
             <>
               <p>
@@ -192,7 +192,7 @@ export function ProjectLocationsPanel({
                 .
               </p>
               <p className="mt-3">
-                The location itself is not deleted. It stays in your workspace,
+                The profile itself is not deleted. It stays in your workspace,
                 keeps its Google Business Profile data, and remains in any other
                 project it belongs to. You can add it back to this project at
                 any time.
@@ -201,7 +201,7 @@ export function ProjectLocationsPanel({
           }
           confirmLabel="Remove from project"
           pendingLabel="Removing…"
-          errorTitle="We could not remove this location"
+          errorTitle="We could not remove this profile"
           error={removeLocation.isError ? removeLocation.error : null}
           isPending={removeLocation.isPending}
           onConfirm={() => void confirmRemoval()}

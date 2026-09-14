@@ -162,7 +162,7 @@ export function ReviewFilters({
         </TextField>
 
         <Select
-          aria-label="Filter by location"
+          aria-label="Filter by profile"
           value={filters.locationId ?? ANY_LOCATION}
           onChange={(key: string) =>
             onChange({ locationId: key === ANY_LOCATION ? null : key })
@@ -175,7 +175,7 @@ export function ReviewFilters({
             <SelectIndicator />
           </SelectTrigger>
           <SelectContent className="max-h-72">
-            <SelectItem id={ANY_LOCATION}>All locations</SelectItem>
+            <SelectItem id={ANY_LOCATION}>All profiles</SelectItem>
             {locations.map((location) => (
               <SelectItem
                 key={location.id}
@@ -227,8 +227,8 @@ export function ReviewFilters({
 
       {isLocationListPartial ? (
         <p className="text-xs leading-5 text-text-tertiary">
-          The location filter lists the first{" "}
-          {locations.length.toLocaleString()} locations in this organization.
+          The profile filter lists the first{" "}
+          {locations.length.toLocaleString()} profiles in this organization.
         </p>
       ) : null}
     </div>

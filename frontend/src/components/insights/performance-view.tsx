@@ -59,7 +59,7 @@ export function PerformanceView() {
           />
           {locationOptions.length === LOCATIONS_MAX_PAGE_SIZE ? (
             <p className="text-xs leading-5 text-text-tertiary">
-              Lists the first {locationOptions.length.toLocaleString()} locations.
+              Lists the first {locationOptions.length.toLocaleString()} profiles.
             </p>
           ) : null}
         </div>
@@ -82,10 +82,10 @@ export function PerformanceView() {
         <EmptyState
           icon={<BarChart2 aria-hidden="true" focusable="false" />}
           title="No performance data for this range"
-          description="Google returned no daily reporting for the locations and dates you selected. Widen the range, or check that the location has been imported and synced."
+          description="Google returned no daily reporting for the profiles and dates you selected. Widen the range, or check that the profile has been imported and synced."
           actions={
             <LinkButton href="/locations" appearance="outline">
-              Review locations
+              Review profiles
             </LinkButton>
           }
         />

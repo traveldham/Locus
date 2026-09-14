@@ -82,7 +82,7 @@ export function ProjectCard({ project }: { project: Project }) {
       <dl className="mt-5 flex items-end gap-8 border-t border-card-border pt-4">
         <div>
           <dt className="text-[11px] font-medium tracking-[0.08em] text-text-tertiary uppercase">
-            Locations
+            Profiles
           </dt>
           <dd className="mt-1 text-sm font-semibold text-text-primary tabular-nums">
             {project.location_count}

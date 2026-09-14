@@ -28,7 +28,7 @@ interface SortState {
 }
 
 const COLUMNS: { id: SortColumn; label: string; className?: string }[] = [
-  { id: "title", label: "Location", className: "w-[24%]" },
+  { id: "title", label: "Profile", className: "w-[24%]" },
   { id: "address", label: "Address", className: "w-[26%]" },
   { id: "category", label: "Primary category", className: "w-[16%]" },
   { id: "store_code", label: "Store code", className: "w-[10%]" },
@@ -98,7 +98,7 @@ export function LocationsTable({ locations, showSearch = true, className }: Loca
       {showSearch ? (
         <div className="flex flex-wrap items-center justify-between gap-3">
           <TextField
-            aria-label="Search locations"
+            aria-label="Search profiles"
             value={search}
             onChange={setSearch}
             className="relative w-full sm:max-w-sm"
@@ -116,8 +116,8 @@ export function LocationsTable({ locations, showSearch = true, className }: Loca
           </TextField>
           <p className="text-sm text-text-tertiary" aria-live="polite">
             {query
-              ? `${visible.length} of ${locations.length} locations`
-              : `${locations.length} ${locations.length === 1 ? "location" : "locations"}`}
+              ? `${visible.length} of ${locations.length} profiles`
+              : `${locations.length} ${locations.length === 1 ? "profile" : "profiles"}`}
           </p>
         </div>
       ) : null}
@@ -149,11 +149,11 @@ export function LocationsTable({ locations, showSearch = true, className }: Loca
           {visible.length === 0 ? (
             <tr>
               <td colSpan={6} className="px-5 py-14 text-center">
-                <p className="text-sm font-medium text-text-primary">No matching locations</p>
+                <p className="text-sm font-medium text-text-primary">No matching profiles</p>
                 <p className="mt-1.5 text-sm text-text-tertiary">
                   {query
-                    ? `No location matches “${search.trim()}”. Try a different name, address or store code.`
-                    : "There are no locations to show here."}
+                    ? `No profile matches “${search.trim()}”. Try a different name, address or store code.`
+                    : "There are no profiles to show here."}
                 </p>
               </td>
             </tr>

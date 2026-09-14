@@ -58,10 +58,10 @@ export function SampleDataNotice({ className }: { className?: string }) {
     <Alert status="info" className={cn("max-w-none", className)}>
       <AlertIndicator />
       <AlertContent>
-        <AlertTitle>These locations are sample data</AlertTitle>
+        <AlertTitle>These profiles are sample data</AlertTitle>
         <AlertDescription>
           Google has not yet approved this project for Business Profile API access, so the
-          locations below come from a sample dataset instead of your Google account. They are
+          profiles below come from a sample dataset instead of your Google account. They are
           marked “Sample data” wherever they appear. Once access is approved, the same screens
           show the real profiles your Google account manages.
         </AlertDescription>

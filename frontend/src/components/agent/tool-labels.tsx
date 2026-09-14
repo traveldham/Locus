@@ -73,8 +73,8 @@ const TOOLS: Record<string, ToolPresentation> = {
   // Only reachable in project scope, where the agent has to find out which locations it
   // is allowed to work on before it can do anything to one of them.
   list_locations: {
-    active: "Looking up your locations",
-    done: "Looked up your locations",
+    active: "Looking up your profiles",
+    done: "Looked up your profiles",
     Icon: Buildings11,
   },
 };

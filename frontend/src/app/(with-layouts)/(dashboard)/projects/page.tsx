@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Named sets of the business locations your organization manages on Google.",
+  description: "Named sets of the business profiles your organization manages on Google.",
 };
 
 export default function ProjectsPage() {

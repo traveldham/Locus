@@ -98,7 +98,7 @@ export function RankingsView() {
       {locations.isError ? (
         <div className="mt-5 max-w-3xl">
           <ErrorState
-            title="We could not load your locations"
+            title="We could not load your profiles"
             onRetry={() => void locations.refetch()}
             isRetrying={locations.isFetching}
           />
@@ -109,8 +109,8 @@ export function RankingsView() {
         <div className="mt-5">
           <EmptyState
             icon={<Buildings11 aria-hidden="true" focusable="false" />}
-            title="No locations yet"
-            description="Rankings are tracked per location. Connect Google and import a location, then keyword tracking has something to measure."
+            title="No profiles yet"
+            description="Rankings are tracked per profile. Connect Google and import a profile, then keyword tracking has something to measure."
             actions={
               <LinkButton href="/settings/integrations">Connect Google</LinkButton>
             }
@@ -139,7 +139,7 @@ export function RankingsView() {
             {!keywords.isPending && !keywords.isError && visibleKeywords.length === 0 ? (
               <p className="px-2 py-6 text-center text-sm leading-6 text-text-tertiary">
                 {allKeywords.length === 0
-                  ? `No keywords are tracked for ${locationName ?? "this location"} yet.`
+                  ? `No keywords are tracked for ${locationName ?? "this profile"} yet.`
                   : "No tracked keyword has this search intent. Choose another intent to see more."}
               </p>
             ) : null}

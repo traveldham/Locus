@@ -31,8 +31,8 @@ export function DeleteProjectButton({
 
   const locationsPhrase =
     locationCount === 1
-      ? "The 1 location in it"
-      : `The ${locationCount} locations in it`;
+      ? "The 1 profile in it"
+      : `The ${locationCount} profiles in it`;
 
   function close() {
     if (deleteProject.isPending) return;
@@ -73,7 +73,7 @@ export function DeleteProjectButton({
                 <span className="font-medium text-text-secondary">
                   {projectName}
                 </span>{" "}
-                and its links to locations will be deleted. This cannot be
+                and its links to profiles will be deleted. This cannot be
                 undone.
               </p>
               <p className="mt-3">

@@ -44,14 +44,14 @@ export function PostsView() {
 
       <div className="mt-6 flex flex-wrap gap-3 rounded-xl border border-card-border bg-card-background p-4">
         <Select
-          aria-label="Filter posts by location"
+          aria-label="Filter posts by profile"
           value={locationId ?? ANY_LOCATION}
           onChange={(key: string) => { setLocationId(key === ANY_LOCATION ? undefined : key); setOffset(0); }}
           className="min-w-56"
         >
           <SelectTrigger size="xl"><SelectValue /><SelectIndicator /></SelectTrigger>
           <SelectContent className="max-h-72">
-            <SelectItem id={ANY_LOCATION}>All locations</SelectItem>
+            <SelectItem id={ANY_LOCATION}>All profiles</SelectItem>
             {(locations.data ?? []).map((location) => (
               <SelectItem key={location.id} id={location.id}>{location.title}</SelectItem>
             ))}
@@ -80,7 +80,7 @@ export function PostsView() {
         {posts.isPending ? <p role="status" className="text-sm text-text-tertiary">Loading posts…</p> : null}
         {posts.isError ? <ErrorState title="We could not load posts" onRetry={() => void posts.refetch()} isRetrying={posts.isFetching} /> : null}
         {!posts.isPending && !posts.isError && items.length === 0 ? (
-          <EmptyState icon={<FileText aria-hidden="true" />} title="No posts found" description="No published post matches the selected location and type." />
+          <EmptyState icon={<FileText aria-hidden="true" />} title="No posts found" description="No published post matches the selected profile and type." />
         ) : null}
         {items.length > 0 ? (
           <div className="grid gap-4 xl:grid-cols-2" aria-busy={posts.isFetching}>
@@ -93,7 +93,7 @@ export function PostsView() {
                 </div>
                 <p className="mt-4 text-sm leading-6 whitespace-pre-line text-text-primary">{post.summary ?? "No post text."}</p>
                 <div className="mt-5 flex items-center justify-between gap-3 border-t border-card-border pt-3 text-xs text-text-tertiary">
-                  <Link className="font-medium text-text-secondary hover:text-text-primary hover:underline" href={`/locations/${post.location_id}`}>{post.location_title ?? "Unknown location"}</Link>
+                  <Link className="font-medium text-text-secondary hover:text-text-primary hover:underline" href={`/locations/${post.location_id}`}>{post.location_title ?? "Unknown profile"}</Link>
                   <span title={post.google_post_id} className="max-w-44 truncate tabular-nums">{post.google_post_id}</span>
                 </div>
               </article>

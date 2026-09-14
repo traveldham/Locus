@@ -121,7 +121,7 @@ export function SearchTermsView() {
           />
           {locationOptions.length === LOCATIONS_MAX_PAGE_SIZE ? (
             <p className="text-xs leading-5 text-text-tertiary">
-              Lists the first {locationOptions.length.toLocaleString()} locations.
+              Lists the first {locationOptions.length.toLocaleString()} profiles.
             </p>
           ) : null}
         </div>
@@ -167,7 +167,7 @@ export function SearchTermsView() {
             title={hasFilters ? "No search terms match these filters" : "No search terms yet"}
             description={
               hasFilters
-                ? "Google reported no search terms for the month and location you selected. Widen the filters to see more."
+                ? "Google reported no search terms for the month and profile you selected. Widen the filters to see more."
                 : "Search terms are imported from Google Business Profile once a reporting month closes. Nothing appears here until Google returns it."
             }
             actions={

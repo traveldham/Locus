@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Reviews",
-  description: "Every Google review across your locations, with the replies you have published.",
+  description: "Every Google review across your profiles, with the replies you have published.",
 };
 
 export default function ReviewsPage() {

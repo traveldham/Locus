@@ -24,11 +24,11 @@ export function LocationsView() {
   return (
     <div className="px-5 py-8 lg:px-8 lg:py-10">
       <PageHeader
-        title="Locations"
+        title="Profiles"
         description={
           project
-            ? `The locations in ${project.name}, exactly as they stand on Google.`
-            : "Every business location imported into this organization, exactly as it stands on Google."
+            ? `The profiles in ${project.name}, exactly as they stand on Google.`
+            : "Every business profile imported into this organization, exactly as it stands on Google."
         }
       />
 
@@ -40,7 +40,7 @@ export function LocationsView() {
         {!isPending && isError ? (
           <div className="max-w-3xl">
             <ErrorState
-              title="We could not load your locations"
+              title="We could not load your profiles"
               onRetry={() => void refetch()}
               isRetrying={isFetching}
             />
@@ -50,8 +50,8 @@ export function LocationsView() {
         {!isPending && !isError && locations.length === 0 ? (
           <EmptyState
             icon={<MapMarker5 aria-hidden="true" focusable="false" />}
-            title="No locations to show"
-            description="This workspace has no locations loaded yet. Check the Google Business Profile connection, or adjust your search if you narrowed the list."
+            title="No profiles to show"
+            description="This workspace has no profiles loaded yet. Check the Google Business Profile connection, or adjust your search if you narrowed the list."
             actions={
               <LinkButton href="/settings/integrations" appearance="outline">
                 View integration

@@ -182,10 +182,10 @@ export function AgentPanel({
         ) : (
           <p className="text-sm leading-6 text-text-secondary">
             {isLoadingLocations
-              ? "Loading your locations…"
+              ? "Loading your profiles…"
               : locationsError
-                ? "Your locations could not be loaded, so there is nothing to talk about yet."
-                : "Connect a Google Business Profile location first. You can then ask the assistant about it."}
+                ? "Your profiles could not be loaded, so there is nothing to talk about yet."
+                : "Connect a Google Business Profile first. You can then ask the assistant about it."}
           </p>
         )}
       </div>
@@ -203,14 +203,14 @@ export function AgentPanel({
         isDisabled={!locationId || !chat.isReady}
         placeholder={
           !locationId
-            ? "Choose a location first…"
+            ? "Choose a profile first…"
             : !chat.isReady
               ? chat.loadError
                 ? "Reconnect to send a message…"
                 : "Opening your conversation…"
               : isBusy
                 ? "Working on your last message…"
-                : "Ask about this location…"
+                : "Ask about this profile…"
         }
       />
     </section>

@@ -120,7 +120,7 @@ export function ContentCard({ card, items }: CategoryCardProps) {
         }
       >
         <p className="mb-5 max-w-prose text-sm leading-6 text-text-secondary">
-          Help customers recognise the location and understand what you offer.
+          Help customers recognise the business and understand what you offer.
           Review photo coverage and publishing activity, then use the drafts
           below to prepare updates.
         </p>

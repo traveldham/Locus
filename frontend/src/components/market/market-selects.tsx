@@ -32,13 +32,13 @@ export function LocationSelect({
 }) {
   return (
     <Select
-      aria-label="Location"
+      aria-label="Profile"
       value={value ?? ""}
       onChange={(key: string) => onChange(key)}
       // Nothing to offer until a location arrives, so the control stays disabled
       // rather than opening an empty menu.
       isDisabled={locations.length === 0}
-      placeholder={isLoading ? "Loading locations…" : "Select a location"}
+      placeholder={isLoading ? "Loading profiles…" : "Select a profile"}
       className={className}
     >
       <SelectTrigger size="xl" className="w-full">

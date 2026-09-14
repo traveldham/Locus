@@ -41,7 +41,7 @@ export default async function LoginPage({
           <AlertTitle>Demo account</AlertTitle>
           <AlertDescription>
             This build ships with one seeded account, already signed up and already holding the
-            sample location data. The fields below are prefilled with it.
+            sample profile data. The fields below are prefilled with it.
           </AlertDescription>
           <dl className="w-full space-y-1 text-sm leading-6">
             <CredentialRow term="Email" value={DEMO_ACCOUNT.email} />

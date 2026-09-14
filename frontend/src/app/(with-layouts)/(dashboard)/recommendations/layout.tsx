@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Suspense, type ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Location audit",
-  description: "A health score, issues and evidence for each location.",
+  title: "Profile audit",
+  description: "A health score, issues and evidence for each profile.",
 };
 
 export default function RecommendationsLayout({

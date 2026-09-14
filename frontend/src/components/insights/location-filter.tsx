@@ -17,7 +17,7 @@ interface LocationFilterProps {
   onChange: (locationId: string | null) => void;
   locations: LocationSummary[];
   isLoading: boolean;
-  /** Shown in place of "All locations" where a single location is required. */
+  /** Shown in place of "All profiles" where a single profile is required. */
   allLabel?: string;
   className?: string;
 }
@@ -27,12 +27,12 @@ export function LocationFilter({
   onChange,
   locations,
   isLoading,
-  allLabel = "All locations",
+  allLabel = "All profiles",
   className = "w-full lg:max-w-64",
 }: LocationFilterProps) {
   return (
     <Select
-      aria-label="Filter by location"
+      aria-label="Filter by profile"
       value={value ?? ALL_LOCATIONS}
       onChange={(key: string) => onChange(key === ALL_LOCATIONS ? null : key)}
       isDisabled={isLoading && locations.length === 0}

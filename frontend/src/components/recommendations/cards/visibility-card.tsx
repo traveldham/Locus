@@ -431,7 +431,7 @@ export function VisibilityCard({ card, items }: CategoryCardProps) {
                   colSpan={5}
                   className="py-6 text-center text-sm text-text-secondary"
                 >
-                  No keywords are tracked for this location.
+                  No keywords are tracked for this profile.
                 </td>
               </tr>
             ) : null}

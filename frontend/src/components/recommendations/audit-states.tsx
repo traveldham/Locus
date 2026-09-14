@@ -53,7 +53,7 @@ export function AuditGate({
     return (
       <EmptyState
         title="This profile has not been audited yet"
-        description="Select Run first audit above. We’ll review six areas, explain the findings and suggest practical next steps using the saved data for this location."
+        description="Select Run first audit above. We’ll review six areas, explain the findings and suggest practical next steps using the saved data for this profile."
       />
     );
   }
@@ -74,7 +74,7 @@ export function LocationScope({
         if (!location) {
           return (
             <EmptyState
-              title="This location is not in the selected audit"
+              title="This profile is not in the selected audit"
               description={
                 <>
                   It may have been added after this audit ran, or removed since.{" "}
@@ -82,7 +82,7 @@ export function LocationScope({
                     href={AUDIT_ROOT}
                     className="underline underline-offset-4"
                   >
-                    Pick another location
+                    Pick another profile
                   </Link>
                   .
                 </>

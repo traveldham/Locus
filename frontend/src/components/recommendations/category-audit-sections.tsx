@@ -8,11 +8,11 @@ import { issueHref } from "./audit-nav";
 
 const PURPOSE: Record<string, string> = {
   profile:
-    "Can customers find accurate business details and confidently choose your location?",
+    "Can customers find accurate business details and confidently choose your business?",
   reputation:
     "What do customer reviews say, and where does your team need to respond?",
   visibility:
-    "Where does your location appear in tracked searches, and where is it missing?",
+    "Where does your profile appear in tracked searches, and where is it missing?",
   operations:
     "Where do booking requests turn into appointments, and where do customers drop off?",
   performance:

@@ -111,7 +111,7 @@ export function CompetitorsView({
       {locations.isError ? (
         <div className="mt-5 max-w-3xl">
           <ErrorState
-            title="We could not load your locations"
+            title="We could not load your profiles"
             onRetry={() => void locations.refetch()}
             isRetrying={locations.isFetching}
           />
@@ -122,8 +122,8 @@ export function CompetitorsView({
         <div className="mt-5">
           <EmptyState
             icon={<Buildings11 aria-hidden="true" focusable="false" />}
-            title="No locations yet"
-            description="Competitors are tracked against one of your locations. Connect Google and import a location to start."
+            title="No profiles yet"
+            description="Competitors are tracked against one of your profiles. Connect Google and import a profile to start."
             actions={<LinkButton href="/settings/integrations">Connect Google</LinkButton>}
           />
         </div>
@@ -134,7 +134,7 @@ export function CompetitorsView({
           <EmptyState
             icon={<UserMultiple1 aria-hidden="true" focusable="false" />}
             title="No keywords are tracked here"
-            description="Competitors are found through a tracked keyword. Once this location has one, the businesses ranking around you appear here."
+            description="Competitors are found through a tracked keyword. Once this profile has one, the businesses ranking around you appear here."
           />
         </div>
       ) : null}

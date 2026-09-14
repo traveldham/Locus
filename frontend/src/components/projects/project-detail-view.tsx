@@ -111,7 +111,7 @@ export function ProjectDetailView({ projectId }: { projectId: string }) {
                 </Badge>
                 <span className="text-sm text-text-tertiary">
                   {data.location_count}{" "}
-                  {data.location_count === 1 ? "location" : "locations"}
+                  {data.location_count === 1 ? "profile" : "profiles"}
                 </span>
                 {created ? (
                   <span className="text-sm text-text-tertiary">
@@ -188,7 +188,7 @@ export function ProjectDetailView({ projectId }: { projectId: string }) {
                 <AlertContent>
                   <AlertTitle>This project is archived</AlertTitle>
                   <AlertDescription>
-                    Archiving marks a project as finished. Its locations are
+                    Archiving marks a project as finished. Its profiles are
                     untouched and still available everywhere else in Locus.
                     Restore the project to mark it active again.
                   </AlertDescription>

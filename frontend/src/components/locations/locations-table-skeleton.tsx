@@ -4,7 +4,7 @@ const COLUMN_WIDTHS = ["w-40", "w-56", "w-32", "w-16", "w-28", "w-24"];
 
 export function LocationsTableSkeleton({ rows = 6 }: { rows?: number }) {
   return (
-    <div role="status" aria-label="Loading locations" className="flex flex-col gap-4">
+    <div role="status" aria-label="Loading profiles" className="flex flex-col gap-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Skeleton className="h-11 w-full rounded-lg sm:max-w-sm" />
         <Skeleton className="h-4 w-28" />

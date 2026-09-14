@@ -60,7 +60,7 @@ export function PhotosView() {
           />
           {locationOptions.length === LOCATIONS_MAX_PAGE_SIZE ? (
             <p className="text-xs leading-5 text-text-tertiary">
-              Lists the first {locationOptions.length.toLocaleString()} locations.
+              Lists the first {locationOptions.length.toLocaleString()} profiles.
             </p>
           ) : null}
         </div>
@@ -96,7 +96,7 @@ export function PhotosView() {
         <EmptyState
           icon={<MultipleImages aria-hidden="true" focusable="false" />}
           title="No photo data yet"
-          description="Photo counts come from Google Business Profile. Nothing appears here until a location has been imported and Google has returned its media."
+          description="Photo counts come from Google Business Profile. Nothing appears here until a profile has been imported and Google has returned its media."
         />
       ) : null}
 
@@ -106,8 +106,8 @@ export function PhotosView() {
             {missingCount === 0 ? (
               <>
                 Every one of the {items.length.toLocaleString()}{" "}
-                {items.length === 1 ? "location" : "locations"} below has both a profile and a
-                cover photo set.
+                {items.length === 1 ? "profile" : "profiles"} below has both a profile photo and
+                a cover photo set.
               </>
             ) : (
               <>
@@ -115,8 +115,8 @@ export function PhotosView() {
                   {missingCount.toLocaleString()}
                 </span>{" "}
                 of {items.length.toLocaleString()}{" "}
-                {items.length === 1 ? "location is" : "locations are"} missing a profile or
-                cover photo. Those two are the images Google shows first.
+                {items.length === 1 ? "profile is" : "profiles are"} missing a profile photo or
+                a cover photo. Those two are the images Google shows first.
               </>
             )}
           </p>
@@ -125,10 +125,10 @@ export function PhotosView() {
             <EmptyState
               icon={<MultipleImages aria-hidden="true" focusable="false" />}
               title="Nothing is missing a photo"
-              description="Every location in this view has both a profile and a cover photo set."
+              description="Every profile in this view has both a profile photo and a cover photo set."
               actions={
                 <Button size="xl" appearance="outline" onPress={() => setOnlyGaps(false)}>
-                  Show all locations
+                  Show all profiles
                 </Button>
               }
             />

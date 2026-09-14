@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Locus Intelligence",
     default: "Locus Intelligence",
   },
-  description: "Location intelligence that turns evidence into clear business actions.",
+  description: "Profile intelligence that turns evidence into clear business actions.",
   icons: {
     icon: "/brand/favicon.webp",
     shortcut: "/brand/favicon.webp",

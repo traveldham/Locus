@@ -10,8 +10,8 @@ const PILLARS = [
   },
   {
     icon: MapMarker5,
-    title: "Every location, one place",
-    description: "See the locations your organization operates from a single dashboard.",
+    title: "Every profile, one place",
+    description: "See the profiles your organization operates from a single dashboard.",
   },
   {
     icon: Shield1Check,
@@ -35,8 +35,8 @@ export function AuthShell({ title, description, children }: { title: string; des
         <Image src="/brand/locus-logo.svg" alt="Locus Intelligence" width={300} height={106} className="h-14 w-auto brightness-0 invert" />
         <div className="max-w-lg">
           <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs font-medium tracking-wide text-white/70 uppercase">Workspace</span>
-          <p className="mt-6 text-4xl leading-tight font-semibold tracking-[-0.035em] text-white">Turn location data into the next clear business decision.</p>
-          <p className="mt-5 max-w-md text-base leading-7 text-white/60">A multi-location decision-support workspace for operators and managers who need to know which locations need attention, and why.</p>
+          <p className="mt-6 text-4xl leading-tight font-semibold tracking-[-0.035em] text-white">Turn profile data into the next clear business decision.</p>
+          <p className="mt-5 max-w-md text-base leading-7 text-white/60">A multi-profile decision-support workspace for operators and managers who need to know which profiles need attention, and why.</p>
           <ul className="mt-10 space-y-5">
             {PILLARS.map(({ icon: Icon, title, description }) => (
               <li key={title} className="flex items-start gap-4">

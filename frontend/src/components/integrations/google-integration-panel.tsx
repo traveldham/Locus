@@ -51,7 +51,7 @@ export function GoogleIntegrationPanel() {
       <MessagePanel
         icon={<InfoTriangle />}
         title="No workspace data has been loaded yet"
-        description="This build ships with a seeded demo workspace. Run the seed command in the backend to load the Google account, locations and reviews."
+        description="This build ships with a seeded demo workspace. Run the seed command in the backend to load the Google account, profiles and reviews."
       >
         <code className="rounded-md bg-background-gray-primary px-3 py-2 font-mono text-sm text-text-primary">
           uv run python -m app.seed

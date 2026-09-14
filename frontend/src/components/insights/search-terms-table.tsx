@@ -70,7 +70,7 @@ export function SearchTermsTable({
       <TableHeader>
         <TableRow>
           <TableHead className="text-left">Search term</TableHead>
-          {hideLocation ? null : <TableHead className="text-left">Location</TableHead>}
+          {hideLocation ? null : <TableHead className="text-left">Profile</TableHead>}
           {hideMonth ? null : (
             <TableHead className="text-left whitespace-nowrap">Month</TableHead>
           )}

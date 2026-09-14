@@ -186,7 +186,7 @@ export function PhotoCoverageCard({ media }: { media: MediaSummary }) {
 
       {isInconsistent ? (
         <p className="mt-3 text-xs leading-5 text-text-tertiary">
-          Google&rsquo;s category counts add up to more than the photo total for this location,
+          Google&rsquo;s category counts add up to more than the photo total for this profile,
           so no share of the total is drawn. The counts are listed as reported.
         </p>
       ) : null}

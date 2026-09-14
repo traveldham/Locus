@@ -2,7 +2,7 @@ import { LocationDetailView } from "@/components/locations/location-detail-view"
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Location",
+  title: "Profile",
 };
 
 export default async function LocationDetailPage({
