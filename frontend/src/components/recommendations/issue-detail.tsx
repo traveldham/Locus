@@ -10,8 +10,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { SEVERITY_COLOR, TONE_TEXT } from "./audit-format";
 import { sectionHref } from "./audit-nav";
+import { BulkReplyPanel } from "./bulk-reply-panel";
 import { EvidencePanel } from "./evidence-panel";
-import { SuggestionPanel } from "./suggestion-panel";
+import { replyTargetId, SuggestionPanel } from "./suggestion-panel";
 import { issueSentence, plural } from "./issue-row";
 
 const PAGE_SIZE = 25;
@@ -238,6 +239,10 @@ export function IssueDetail({
         </span>
       </div>
 
+      {/* Reads the filtered set, not the page: its count is what the search says is here,
+          and the point of the control is not having to page through the rest. */}
+      <BulkReplyPanel items={findings} locationId={location.id} />
+
       <div className="space-y-4">
         {visible.map((item) => (
           <article
@@ -274,6 +279,7 @@ export function IssueDetail({
                 <SuggestionPanel
                   suggestion={item.suggestion}
                   locationId={location.id}
+                  reviewId={replyTargetId(item)}
                 />
               </div>
             ) : (

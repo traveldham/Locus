@@ -4,7 +4,8 @@ import { recommendationApi } from "@/services/api/recommendations";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 
-const latestKey = (locationId: string) => [
+/** Exported because acting on an audit's finding elsewhere leaves this run stale. */
+export const auditLatestKey = (locationId: string) => [
   "recommendations",
   "latest",
   locationId,
@@ -29,7 +30,7 @@ export function useAuditDirectory(projectId: string | null) {
 
 export function useLatestRecommendations(locationId: string) {
   return useQuery({
-    queryKey: latestKey(locationId),
+    queryKey: auditLatestKey(locationId),
     queryFn: () => recommendationApi.latest(locationId),
     enabled: Boolean(locationId),
     staleTime: 30_000,
@@ -49,10 +50,10 @@ export function useGenerateRecommendations() {
     // Queuing changes nothing on screen yet; the job poll publishes the result.
     onSuccess: (job) => {
       client.setQueryData<Awaited<ReturnType<typeof recommendationApi.latest>>>(
-        latestKey(job.location_id),
+        auditLatestKey(job.location_id),
         (previous) => (previous ? { ...previous, job } : previous),
       );
-      void client.invalidateQueries({ queryKey: latestKey(job.location_id) });
+      void client.invalidateQueries({ queryKey: auditLatestKey(job.location_id) });
       void client.invalidateQueries({ queryKey: DIRECTORY_KEY });
     },
   });
@@ -85,7 +86,7 @@ export function useAuditJob(jobId: string | null) {
     published.current = jobId;
     const locationId = query.data?.location_id;
     if (locationId)
-      void client.invalidateQueries({ queryKey: latestKey(locationId) });
+      void client.invalidateQueries({ queryKey: auditLatestKey(locationId) });
     void client.invalidateQueries({ queryKey: DIRECTORY_KEY });
   }, [client, jobId, status, query.data?.location_id]);
 

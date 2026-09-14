@@ -99,6 +99,75 @@ export function useReplyToReviewMutation() {
   });
 }
 
+/** One drafted reply in a bulk run, addressed by our review row id. */
+export interface BulkReplyTarget {
+  /** The caller's own id for the row, echoed back so results match what it drew. */
+  key: string;
+  id: string;
+  comment: string;
+}
+
+export interface BulkReplyResult {
+  key: string;
+  /** Null once published; otherwise the failure, left for the caller to word. */
+  error: unknown;
+}
+
+export interface BulkReplyReport {
+  results: BulkReplyResult[];
+  /** True when the run stopped before every target was attempted. */
+  stopped: boolean;
+}
+
+export interface BulkReplyInput {
+  targets: BulkReplyTarget[];
+  /** Read between sends only — see below. */
+  signal?: AbortSignal;
+  onResult?: (result: BulkReplyResult) => void;
+}
+
+/**
+ * Publishes drafted replies one after another.
+ *
+ * Sequential on purpose: each target is a live write to Google through the provider, and
+ * firing twenty-odd at once is what trips its rate limit and leaves a run half-published
+ * with no clear account of which half. A failure is recorded and the run carries on,
+ * because over that many reviews some failing is the ordinary outcome, not a reason to
+ * abandon the rest.
+ *
+ * `signal` is checked between sends and never handed to fetch: a request already in flight
+ * may have reached Google, so it finishes and is reported rather than left unresolved.
+ */
+export function useBulkReplyToReviewsMutation() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async ({
+      targets,
+      signal,
+      onResult,
+    }: BulkReplyInput): Promise<BulkReplyReport> => {
+      const results: BulkReplyResult[] = [];
+      for (const target of targets) {
+        if (signal?.aborted) return { results, stopped: true };
+        let result: BulkReplyResult;
+        try {
+          await reviewsApi.reply({ id: target.id, comment: target.comment });
+          result = { key: target.key, error: null };
+        } catch (error) {
+          result = { key: target.key, error };
+        }
+        results.push(result);
+        onResult?.(result);
+      }
+      return { results, stopped: false };
+    },
+    // Once at the end rather than once per reply: the inbox only has to be right when the
+    // run is over, and refetching it after every send competes with the loop still running.
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: reviewKeys.all }),
+  });
+}
+
 export function useRemoveReviewReplyMutation() {
   const queryClient = useQueryClient();
   return useMutation({

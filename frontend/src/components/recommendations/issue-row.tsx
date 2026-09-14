@@ -36,6 +36,7 @@ export function IssueRow({
   locationId,
   why,
   isNew = false,
+  drafts = 0,
 }: {
   rule: RuleCluster;
   locationId: string;
@@ -43,6 +44,11 @@ export function IssueRow({
   why?: string;
   /** Triggered now, not triggered in the previous audit. */
   isNew?: boolean;
+  /**
+   * How many of this check's findings arrived with a draft attached. Counted from the
+   * findings themselves, not from `rule.suggests`, which only says a draft was asked for.
+   */
+  drafts?: number;
 }) {
   const [open, setOpen] = useState(false);
   const sentence = issueSentence(rule, why);
@@ -70,6 +76,11 @@ export function IssueRow({
             Understand and fix
           </button>
         </p>
+        {drafts > 0 ? (
+          <span className="shrink-0 text-xs font-medium text-badge-success-text">
+            {drafts === 1 ? "AI draft ready" : `${drafts} AI drafts ready`}
+          </span>
+        ) : null}
         {isNew ? (
           <span className="shrink-0 text-xs font-medium text-badge-error-text">
             new

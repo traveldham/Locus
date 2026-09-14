@@ -146,6 +146,17 @@ export function OperationsCard({ card, items }: CategoryCardProps) {
       i.suggestion?.field === "followup_message" &&
       typeof i.suggestion.value === "string",
   );
+  // One check drafts this, and it is a process for the front desk rather than a value
+  // any field on the profile holds, so it is read here and never written anywhere.
+  const reminderPlan = items.find(
+    (i: Recommendation) =>
+      i.suggestion?.field === "reminder_plan" &&
+      Array.isArray(i.suggestion.value) &&
+      i.suggestion.value.length > 0,
+  );
+  const reminderSteps = Array.isArray(reminderPlan?.suggestion?.value)
+    ? reminderPlan.suggestion.value
+    : null;
   const oldest = card.oldest_new_age_days;
 
   return (
@@ -322,6 +333,25 @@ export function OperationsCard({ card, items }: CategoryCardProps) {
                   {followups.length - 1} more drafted under the findings below.
                 </p>
               ) : null}
+            </div>
+          ) : null}
+
+          {reminderSteps ? (
+            <div className="rounded-xl bg-background-gray-secondary px-4 py-4">
+              <h3 className="text-sm font-medium text-text-primary">
+                Drafted reminder routine
+                <span className="ml-1.5 font-normal text-text-tertiary">
+                  · for the front desk to run, not something Locus sends
+                </span>
+              </h3>
+              <ol className="mt-2 list-decimal space-y-1 pl-5 text-sm leading-6 text-text-primary">
+                {reminderSteps.map((step) => (
+                  <li key={step}>{step}</li>
+                ))}
+              </ol>
+              <p className="mt-2 max-w-prose text-xs leading-5 text-text-secondary">
+                {reminderPlan?.suggestion?.reason}
+              </p>
             </div>
           ) : null}
         </div>

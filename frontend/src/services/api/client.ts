@@ -12,9 +12,27 @@ export class ApiError extends Error {
   constructor(
     message: string,
     public status: number,
+    /**
+     * The parsed `detail` exactly as the API sent it. Most endpoints send a string, which
+     * `message` already carries; the ones that reject on contents send an object with
+     * `field_errors`, and only the caller knows how to word those per field.
+     */
+    public detail?: unknown,
   ) {
     super(message);
   }
+}
+
+/** The sentence to show, from a `detail` that may be a string or a structured object. */
+function errorMessage(body: { detail?: unknown; message?: unknown } | null) {
+  const detail = body?.detail;
+  if (typeof detail === "string" && detail) return detail;
+  if (detail && typeof detail === "object") {
+    const nested = (detail as { message?: unknown }).message;
+    if (typeof nested === "string" && nested) return nested;
+  }
+  if (typeof body?.message === "string" && body.message) return body.message;
+  return "Something went wrong. Please try again.";
 }
 
 export function getAccessToken() {
@@ -90,12 +108,7 @@ export async function apiFetch(
   if (!response.ok) {
     const body = await response.json().catch(() => null);
     if (response.status === 401) setAccessToken(null);
-    throw new ApiError(
-      body?.detail ??
-        body?.message ??
-        "Something went wrong. Please try again.",
-      response.status,
-    );
+    throw new ApiError(errorMessage(body), response.status, body?.detail);
   }
 
   return response;

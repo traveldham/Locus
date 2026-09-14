@@ -89,6 +89,17 @@ export interface LocationDetail extends LocationSummary {
 }
 
 /**
+ * One attribute answer as the edit endpoint takes it. `attribute_id` is Google's
+ * prefixed name (`attributes/<name>`) and `value_type` decides the container the value
+ * travels in, so it is read from the catalog rather than assumed.
+ */
+export interface AttributeInput {
+  attribute_id: string;
+  value_type: string;
+  values: unknown[];
+}
+
+/**
  * An edit submitted for review. Every field is optional: only the ones present are
  * considered, and an explicit `null` clears the value on the Google profile.
  */
@@ -99,6 +110,12 @@ export interface LocationEditRequest {
   description?: string | null;
   open_status?: LocationOpenStatus;
   hours_periods?: LocationHoursPeriod[];
+  /**
+   * Answers to individual attributes. The API diffs each one against the stored profile
+   * and sends only what changed, merging rather than replacing — so a partial map is
+   * safe and leaves every attribute it does not name alone.
+   */
+  attributes?: AttributeInput[];
 }
 
 /** One before/after pair, already rendered as display strings by the API. */

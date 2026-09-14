@@ -32,6 +32,15 @@ export function IssuesList({
   const severity = (params.get("severity") ?? "") as Severity | "";
   const search = params.get("q") ?? "";
   const withIssuesOnly = params.get("checks") !== "all";
+  const draftsOnly = params.get("drafts") === "1";
+
+  // Counted from the findings, because `RuleCluster.suggests` only names the field a
+  // check may draft: it says nothing about whether this run actually produced one.
+  const draftsByRule = new Map<string, number>();
+  for (const item of run.items) {
+    if (item.suggestion)
+      draftsByRule.set(item.rule, (draftsByRule.get(item.rule) ?? 0) + 1);
+  }
 
   function setParam(key: string, value: string) {
     const next = new URLSearchParams(params.toString());
@@ -50,9 +59,11 @@ export function IssuesList({
   });
   const failing = matching.filter((rule) => rule.issues > 0);
   const quiet = matching.filter((rule) => rule.issues === 0);
-  const shown = severity
+  const bySeverity = severity
     ? failing.filter((rule) => rule.severity[severity])
     : failing;
+  const drafted = bySeverity.filter((rule) => draftsByRule.has(rule.rule));
+  const shown = draftsOnly ? drafted : bySeverity;
 
   return (
     <div className="space-y-5">
@@ -131,6 +142,14 @@ export function IssuesList({
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
+        {draftsByRule.size ? (
+          <Chip
+            active={draftsOnly}
+            onClick={() => setParam("drafts", draftsOnly ? "" : "1")}
+          >
+            With an AI draft {drafted.length}
+          </Chip>
+        ) : null}
         {withIssuesOnly ? (
           <button
             type="button"
@@ -189,6 +208,7 @@ export function IssuesList({
                       !location.changes.first_audit &&
                       location.changes.new.includes(rule.rule),
                     )}
+                    drafts={draftsByRule.get(rule.rule) ?? 0}
                   />
                 ))}
               </ul>
@@ -196,13 +216,16 @@ export function IssuesList({
           );
         })}
 
-        {!shown.length && (withIssuesOnly || !quiet.length) ? (
+        {!shown.length && (withIssuesOnly || draftsOnly || !quiet.length) ? (
           <p className="px-5 py-8 text-sm text-text-secondary">
-            No check matches this filter.
+            {draftsOnly
+              ? "No check in this view arrived with a draft. Clear the draft filter to see the rest."
+              : "No check matches this filter."}
           </p>
         ) : null}
 
-        {!withIssuesOnly && quiet.length ? (
+        {/* A passed check has no finding and so can never carry a draft. */}
+        {!withIssuesOnly && !draftsOnly && quiet.length ? (
           <section>
             <h2 className="border-b-2 border-badge-success-text px-5 py-3 text-sm font-semibold text-text-primary">
               <span className={TONE_TEXT.success}>Other checks</span>{" "}

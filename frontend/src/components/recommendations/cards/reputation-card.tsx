@@ -1,9 +1,19 @@
 "use client";
 
 import { SectionCard } from "@/components/common/section-card";
+import { Button } from "@/components/tailgrids/core/button";
+import { auditLatestKey } from "@/hooks/use-recommendations";
+import { useReplyToReviewMutation } from "@/hooks/use-reviews";
 import type { Recommendation } from "@/services/api/recommendations";
+import { REPLY_MAX_LENGTH } from "@/services/api/reviews";
 import { cn } from "@/utils/cn";
+import { useQueryClient } from "@tanstack/react-query";
 import { TONE_FILL, TONE_STROKE, TONE_TEXT } from "../audit-format";
+import {
+  replyDraftText,
+  replySendErrorMessage,
+  replyTargetId,
+} from "../suggestion-panel";
 import type { CategoryCardProps } from "./registry";
 
 /** What the reputation worker's `card(snapshot)` returns. */
@@ -143,14 +153,166 @@ function Stat({
   );
 }
 
+type UnansweredReview = ReputationCardData["unanswered"][number];
+
+/**
+ * One unanswered review, its drafted reply, and the button that publishes that reply.
+ *
+ * A mutation per row rather than one for the list: each send stands or falls on its own,
+ * and a manager working down the list has to see which row failed, with that row's draft
+ * still in front of them to retry.
+ */
+function UnansweredReviewRow({
+  review,
+  item,
+  locationId,
+}: {
+  review: UnansweredReview;
+  /** The finding that drafted a reply to this review, when one did. */
+  item: Recommendation | undefined;
+  locationId: string;
+}) {
+  const client = useQueryClient();
+  const reply = useReplyToReviewMutation();
+  const draft = item?.suggestion ?? null;
+  const shown = typeof draft?.value === "string" ? draft.value : null;
+  const targetId = item ? replyTargetId(item) : null;
+  const publishable = replyDraftText(draft);
+  const sent = reply.isSuccess;
+  // A button that cannot publish is worse than no button, so the draft is shown either
+  // way and the reason it cannot be sent is stated instead of being left to guess.
+  const sendable =
+    targetId && publishable ? { id: targetId, comment: publishable } : null;
+  const blocked =
+    shown === null || sendable
+      ? null
+      : !targetId
+        ? "This finding does not name a review Locus can reply to, so this draft has to be posted from your Business Profile."
+        : shown.trim().length > REPLY_MAX_LENGTH
+          ? `Longer than Google's ${REPLY_MAX_LENGTH.toLocaleString()}-character reply limit, so it has to be shortened before it can be sent.`
+          : null;
+
+  function send() {
+    if (!sendable || reply.isPending || sent) return;
+    reply.mutate(sendable, {
+      // The reviews cache is refreshed by the mutation itself. This audit is a stored
+      // document that still calls the review unanswered, but its `inputs_changed` check
+      // reads live rows, so refetching it is what surfaces the reply.
+      onSuccess: () => {
+        void client.invalidateQueries({ queryKey: auditLatestKey(locationId) });
+      },
+    });
+  }
+
+  return (
+    <li className="border-b border-card-border py-4 last:border-b-0">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-text-tertiary">
+        <span
+          className={cn(
+            "font-semibold",
+            review.rating !== null && review.rating <= 2
+              ? TONE_TEXT.error
+              : TONE_TEXT.warning,
+          )}
+        >
+          {review.rating === null ? "Unrated" : `${review.rating} star`}
+        </span>
+        <span>{review.date}</span>
+      </div>
+      <p className="mt-1 text-sm leading-6 text-text-primary">
+        {review.comment || "No comment left."}
+      </p>
+      {draft && shown !== null ? (
+        <div className="mt-3 rounded-md bg-background-gray-secondary px-3 py-2">
+          <p className="text-xs font-medium text-primary-500">
+            AI reply draft · {sent ? "sent to Google" : "not posted"}
+            <span className="ml-2 font-normal text-text-tertiary">
+              {draft.confidence} confidence · review before posting
+            </span>
+          </p>
+          <p className="mt-1 text-sm leading-6 whitespace-pre-line text-text-primary">
+            {shown}
+          </p>
+          {sendable ? (
+            <div className="mt-3 flex flex-wrap items-center gap-2">
+              <Button
+                type="button"
+                size="xl"
+                onPress={send}
+                isDisabled={reply.isPending || sent}
+              >
+                {sent
+                  ? "Reply sent"
+                  : reply.isPending
+                    ? "Sending…"
+                    : "Send this reply to Google"}
+              </Button>
+              <span className="text-xs leading-5 text-text-tertiary">
+                Sends the text above word for word, published publicly on Google
+                under your business name next to this review. Read it first.
+              </span>
+            </div>
+          ) : blocked ? (
+            <p className="mt-2 text-xs leading-5 text-text-tertiary">
+              {blocked}
+            </p>
+          ) : null}
+          {sent ? (
+            <p role="status" className="mt-2 text-xs text-badge-success-text">
+              Sent. This finding clears on the next audit.
+            </p>
+          ) : null}
+          {reply.isError ? (
+            <p
+              role="alert"
+              className="mt-2 rounded-lg bg-badge-error-background px-3 py-2 text-xs leading-5 text-badge-error-text"
+            >
+              {replySendErrorMessage(reply.error)}
+            </p>
+          ) : null}
+        </div>
+      ) : null}
+    </li>
+  );
+}
+
+const THEME_RANK = { high: 0, medium: 1, low: 2 } as const;
+
+/**
+ * The one theme list to show, and how many findings drafted one.
+ *
+ * Three reputation checks each ask for this same list, so a weak rating that is also
+ * falling produces three readings of the same review text. Printing all three would say
+ * one thing three times, so the most confident speaks for them and the count says so.
+ */
+function themeDraft(items: Recommendation[]) {
+  const drafted = items.filter(
+    (i) =>
+      i.suggestion?.field === "themes" &&
+      Array.isArray(i.suggestion.value) &&
+      i.suggestion.value.length > 0,
+  );
+  const ordered = [...drafted].sort(
+    (a, b) =>
+      THEME_RANK[a.suggestion?.confidence ?? "low"] -
+        THEME_RANK[b.suggestion?.confidence ?? "low"] || b.score - a.score,
+  );
+  return { chosen: ordered[0] ?? null, total: ordered.length };
+}
+
 /** Reviews as a customer sees them, and the low reviews still waiting for a reply. */
-export function ReputationCard({ card: raw, items }: CategoryCardProps) {
+export function ReputationCard({
+  card: raw,
+  items,
+  location,
+}: CategoryCardProps) {
   const card = raw as ReputationCardData;
   const drafts = new Map<string, Recommendation>();
   for (const item of items) {
     if (item.rule === "critical_review_unanswered" && item.subject)
       drafts.set(item.subject, item);
   }
+  const themes = themeDraft(items);
   const replyPct =
     card.replied_share === null ? null : Math.round(card.replied_share * 100);
 
@@ -270,48 +432,47 @@ export function ReputationCard({ card: raw, items }: CategoryCardProps) {
             </span>
           </h3>
           <ul className="mt-3 space-y-3">
-            {card.unanswered.map((review) => {
-              const draft = drafts.get(review.id)?.suggestion;
-              return (
-                <li
-                  key={review.id}
-                  className="border-b border-card-border py-4 last:border-b-0"
-                >
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-text-tertiary">
-                    <span
-                      className={cn(
-                        "font-semibold",
-                        review.rating !== null && review.rating <= 2
-                          ? TONE_TEXT.error
-                          : TONE_TEXT.warning,
-                      )}
-                    >
-                      {review.rating === null
-                        ? "Unrated"
-                        : `${review.rating} star`}
-                    </span>
-                    <span>{review.date}</span>
-                  </div>
-                  <p className="mt-1 text-sm leading-6 text-text-primary">
-                    {review.comment || "No comment left."}
-                  </p>
-                  {draft && typeof draft.value === "string" ? (
-                    <div className="mt-3 rounded-md bg-background-gray-secondary px-3 py-2">
-                      <p className="text-xs font-medium text-primary-500">
-                        AI reply draft · not posted
-                        <span className="ml-2 font-normal text-text-tertiary">
-                          {draft.confidence} confidence · review before posting
-                        </span>
-                      </p>
-                      <p className="mt-1 text-sm leading-6 whitespace-pre-line text-text-primary">
-                        {draft.value}
-                      </p>
-                    </div>
-                  ) : null}
-                </li>
-              );
-            })}
+            {card.unanswered.map((review) => (
+              <UnansweredReviewRow
+                key={review.id}
+                review={review}
+                item={drafts.get(review.id)}
+                locationId={location.id}
+              />
+            ))}
           </ul>
+        </div>
+      ) : null}
+
+      {themes.chosen && Array.isArray(themes.chosen.suggestion?.value) ? (
+        <div className="mt-6 border-t border-card-border pt-5">
+          <h3 className="text-sm font-semibold text-text-primary">
+            What reviewers keep coming back to
+            <span className="ml-2 text-xs font-normal text-text-tertiary">
+              AI reading of the stored review text · nothing is published from
+              here
+            </span>
+          </h3>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {themes.chosen.suggestion.value.map((theme) => (
+              <li
+                key={theme}
+                className="rounded-lg border border-card-border px-3 py-1.5 text-sm text-text-primary"
+              >
+                {theme}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 max-w-prose text-xs leading-5 text-text-secondary">
+            {themes.chosen.suggestion.reason}
+          </p>
+          <p className="mt-1 text-xs leading-5 text-text-tertiary">
+            Drafted for &ldquo;{themes.chosen.title}&rdquo;
+            {themes.total > 1
+              ? `, one of ${themes.total} findings that read the same reviews.`
+              : "."}{" "}
+            Read it as a lead to check, not a measured figure.
+          </p>
         </div>
       ) : null}
     </SectionCard>

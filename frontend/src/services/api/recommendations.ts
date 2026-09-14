@@ -13,11 +13,64 @@ export type VerdictState =
   | "clear"
   | "insufficient_data"
   | "suppressed";
+/**
+ * Every field the audit engine can draft — the `suggests` value of a check, exactly as
+ * the six suggestion workers spell it. Closed on purpose: a `string` here let a field
+ * reach the UI with no label and no renderer of its own, which is how `keyword_plan`
+ * came to be drawn as a Yes/No list. A new field on the engine now fails to compile
+ * here until every exhaustive map below and in the panel answers for it.
+ */
+export type SuggestionField =
+  | "description"
+  | "title"
+  | "review_reply"
+  | "term_action"
+  | "hours_note"
+  | "followup_message"
+  | "themes"
+  | "additional_categories"
+  | "reminder_plan"
+  | "investigation_plan"
+  | "photo_shot_list"
+  | "post_drafts"
+  | "attributes"
+  | "keyword_plan";
+
+/**
+ * How a drafted value is shaped, which is a property of the field and not of the bytes
+ * that arrived: a one-entry `Record<string, string>` and a `Record<string, boolean>` are
+ * indistinguishable at a glance, and a drafted sentence is as truthy as `true`.
+ *
+ * - `text`   — one string.
+ * - `list`   — ordered lines.
+ * - `flags`  — attribute name to a yes/no answer.
+ * - `notes`  — a subject (a keyword) to a sentence of advice about it.
+ */
+export type SuggestionShape = "text" | "list" | "flags" | "notes";
+
+/** Verified against `backend/app/services/recommendations/suggestions/*.py`. */
+export const SUGGESTION_SHAPE: Record<SuggestionField, SuggestionShape> = {
+  description: "text",
+  title: "text",
+  review_reply: "text",
+  term_action: "text",
+  hours_note: "text",
+  followup_message: "text",
+  themes: "list",
+  additional_categories: "list",
+  reminder_plan: "list",
+  investigation_plan: "list",
+  photo_shot_list: "list",
+  post_drafts: "list",
+  attributes: "flags",
+  keyword_plan: "notes",
+};
+
 /** A generated draft for a field the audit found missing or weak. Reviewed by a
  *  person before anything is published; never a fact. */
 export interface Suggestion {
-  field: string;
-  value: string | string[] | Record<string, boolean>;
+  field: SuggestionField;
+  value: string | string[] | Record<string, boolean> | Record<string, string>;
   reason: string;
   confidence: "high" | "medium" | "low";
   source: string;

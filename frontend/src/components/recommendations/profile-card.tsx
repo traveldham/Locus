@@ -1,11 +1,14 @@
 "use client";
 
 import styles from "@/components/locations/preview/google-profile.module.css";
+import { Button } from "@/components/tailgrids/core/button";
 import type {
   ProfileCard as ProfileCardData,
   Recommendation,
 } from "@/services/api/recommendations";
 import { cn } from "@/utils/cn";
+import { useRouter } from "next/navigation";
+import { storeDraft } from "./draft-handoff";
 
 /** Which card element each profile check paints. */
 const RULE_ELEMENT: Record<string, string> = {
@@ -49,14 +52,56 @@ function flagged(items: Recommendation[]) {
   return map;
 }
 
-function afterValue(items: Recommendation[] | undefined, field: string) {
-  const with_ = items?.find(
+/**
+ * Which description draft wins when several rules each wrote one.
+ *
+ * Five checks may draft this one field, and they are not alternatives: a description can
+ * be over the cap, keyword-stuffed and vague at the same time, and each rule drafts
+ * against its own complaint alone. Severity cannot settle it — it ranks how much the
+ * profile is hurt, not which rewrite supersedes which — so the order is the strictness of
+ * the constraint each draft was written to satisfy. A draft that already fits the cap and
+ * reads as plain language can still be expanded by hand; an expanded draft that breaks
+ * the cap is one Google refuses to save at all, so the hard limits come first.
+ */
+const DESCRIPTION_RULE_ORDER = [
+  "description_missing",
+  "description_too_long",
+  "description_keyword_stuffed",
+  "description_quality",
+  "description_short",
+];
+
+/** The one description draft to show, and how many were in the running. */
+function descriptionDraft(items: Recommendation[] | undefined) {
+  const drafted = (items ?? []).filter(
     (i) =>
-      i.suggestion &&
-      i.suggestion.field === field &&
+      i.suggestion?.field === "description" &&
       typeof i.suggestion.value === "string",
   );
-  return with_ ? String(with_.suggestion?.value) : null;
+  const rank = (rule: string) => {
+    const at = DESCRIPTION_RULE_ORDER.indexOf(rule);
+    return at === -1 ? DESCRIPTION_RULE_ORDER.length : at;
+  };
+  // Sorting is stable, so drafts from rules the order does not name keep audit order.
+  const ordered = [...drafted].sort((a, b) => rank(a.rule) - rank(b.rule));
+  return { chosen: ordered[0] ?? null, total: ordered.length };
+}
+
+function textDraft(items: Recommendation[] | undefined, field: string) {
+  return (
+    items?.find(
+      (i) =>
+        i.suggestion &&
+        i.suggestion.field === field &&
+        typeof i.suggestion.value === "string",
+    ) ?? null
+  );
+}
+
+function draftText(item: Recommendation | null) {
+  return typeof item?.suggestion?.value === "string"
+    ? item.suggestion.value
+    : null;
 }
 
 function afterList(
@@ -97,10 +142,11 @@ export function ProfileBeforeAfter({
   const flags = flagged(items);
   const hasDrafts = items.some((i) => i.suggestion);
   const draftAttributes = afterAttributes(flags.get("attributes"));
+  const nameDraft = textDraft(flags.get("name"), "title");
+  const description = descriptionDraft(flags.get("description"));
   const changed = new Set<string>();
-  if (afterValue(flags.get("name"), "title") !== null) changed.add("name");
-  if (afterValue(flags.get("description"), "description") !== null)
-    changed.add("description");
+  if (draftText(nameDraft) !== null) changed.add("name");
+  if (draftText(description.chosen) !== null) changed.add("description");
   if (afterList(flags.get("category"), "additional_categories").length)
     changed.add("category");
   if (Object.keys(draftAttributes).length) changed.add("attributes");
@@ -118,10 +164,8 @@ export function ProfileBeforeAfter({
             title="Proposed profile preview"
             card={{
               ...card,
-              name: afterValue(flags.get("name"), "title") ?? card.name,
-              description:
-                afterValue(flags.get("description"), "description") ??
-                card.description,
+              name: draftText(nameDraft) ?? card.name,
+              description: draftText(description.chosen) ?? card.description,
               additional_categories: [
                 ...new Set([
                   ...card.additional_categories,
@@ -155,7 +199,109 @@ export function ProfileBeforeAfter({
           />
         ) : null}
       </div>
+      {hasDrafts ? (
+        <DraftActions
+          nameDraft={nameDraft}
+          description={description}
+          hasCategoryDraft={changed.has("category")}
+          hasAttributeDraft={changed.has("attributes")}
+        />
+      ) : null}
     </div>
+  );
+}
+
+/**
+ * The way out of the preview: each drafted field the editor can take, as its own button.
+ *
+ * Only the two fields `DraftHandoff` carries are offered. The editor prefills one field
+ * per visit and clears the handoff on arrival, so drafted categories and attributes are
+ * named as read-only rather than given a button that would drop them on the way.
+ */
+function DraftActions({
+  nameDraft,
+  description,
+  hasCategoryDraft,
+  hasAttributeDraft,
+}: {
+  nameDraft: Recommendation | null;
+  description: { chosen: Recommendation | null; total: number };
+  hasCategoryDraft: boolean;
+  hasAttributeDraft: boolean;
+}) {
+  const router = useRouter();
+  const aboutDraft = description.chosen;
+  const name = draftText(nameDraft);
+  const about = draftText(aboutDraft);
+  if (name === null && about === null) return null;
+
+  function open(
+    item: Recommendation,
+    field: "title" | "description",
+    value: string,
+  ) {
+    storeDraft(item.location_id, {
+      field,
+      value,
+      reason: item.suggestion?.reason ?? "",
+    });
+    router.push(`/locations/${encodeURIComponent(item.location_id)}?draft=1`);
+  }
+
+  return (
+    <section
+      aria-label="Use these drafts"
+      className="rounded-xl bg-background-gray-secondary px-4 py-4"
+    >
+      <h3 className="text-sm font-medium text-text-primary">
+        Take a draft into the editor
+      </h3>
+      <p className="mt-1 max-w-prose text-xs leading-5 text-text-secondary">
+        Each button opens the profile editor with that one field prefilled. You
+        still read it, change it and save it there; nothing above is published
+        from this page.
+      </p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {nameDraft && name !== null ? (
+          <Button
+            type="button"
+            size="xl"
+            onPress={() => open(nameDraft, "title", name)}
+          >
+            Edit the business name with this draft
+          </Button>
+        ) : null}
+        {aboutDraft && about !== null ? (
+          <Button
+            type="button"
+            size="xl"
+            onPress={() => open(aboutDraft, "description", about)}
+          >
+            Edit the description with this draft
+          </Button>
+        ) : null}
+      </div>
+      {aboutDraft && description.total > 1 ? (
+        <p className="mt-3 text-xs leading-5 text-text-secondary">
+          {description.total} checks each drafted a description. The one shown
+          is from &ldquo;{aboutDraft.title}&rdquo;, chosen because it answers
+          the strictest limit on the field; the rest are under their own
+          findings below.
+        </p>
+      ) : null}
+      {hasCategoryDraft || hasAttributeDraft ? (
+        <p className="mt-2 text-xs leading-5 text-text-tertiary">
+          The drafted{" "}
+          {hasCategoryDraft && hasAttributeDraft
+            ? "categories and attribute answers"
+            : hasCategoryDraft
+              ? "categories"
+              : "attribute answers"}{" "}
+          have no editor field to open yet. Read them in the preview and set
+          them in your Business Profile.
+        </p>
+      ) : null}
+    </section>
   );
 }
 

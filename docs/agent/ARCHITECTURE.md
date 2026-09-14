@@ -72,7 +72,7 @@ assistant message with no tool calls ends the turn.
 `RECURSION_LIMIT = 25` bounds it. A model that has not answered in twenty-five steps is
 looping, not working.
 
-One deliberate choice: this is a **single loop with ten tools**, not a supervisor
+One deliberate choice: this is a **single loop with eleven tools**, not a supervisor
 delegating to sub-agents. The model is perfectly capable of sequencing "read the audit,
 list the unanswered reviews, reply to this one" itself. A routing layer would have added
 indirection and a second system prompt without adding capability.
@@ -131,6 +131,7 @@ is random, so a genuine timestamp collision could still order a result before it
 | Tool | Reads or writes | Backs onto |
 |---|---|---|
 | `get_latest_audit` | read | `recommendations.runs.latest_run` — returns a compact summary (score, grade, coverage, top priorities), never the whole report, which is far too large for a prompt |
+| `list_audit_suggestions` | read | the same run's AI-drafted `Suggestion`s, each with the id the existing write tool needs — or an honest reason it cannot be applied |
 | `start_audit` | read† | `recommendations.queue.start_audit` — joins an audit already running rather than starting a second |
 | `poll_audit_job` | read | polls the `AuditJob` internally for up to ~90s rather than making the model re-ask every two seconds |
 | `list_reviews` | read | `api.reviews.list_reviews`, scoped to this location; `unreplied_only` is the filter that matters |
@@ -170,6 +171,39 @@ its own. This is load-bearing for two reasons, both of which were real bugs befo
 
 The trade is that a tool cannot see the task's uncommitted state. That costs nothing: the
 task only commits chat messages, which no tool reads.
+
+### Applying the audit's own drafts
+
+The audit already drafts content: a reply for each unanswered low review, a description
+for a profile that has none. The agent could not see any of it, so "apply the audit's
+suggested replies" produced an agent writing its own wording and ignoring drafts the
+product had already generated and safety-checked.
+
+`list_audit_suggestions` shows it those drafts. It is a **read** tool, deliberately: the
+drafts are applied with `reply_to_review` and `update_location_profile`, which already go
+through the human write paths and the `ProfileAction` trail. A second way to write would
+be exactly the unaudited parallel path the tools module exists to prevent.
+
+Each suggestion says where it can be applied, and that resolution is the delicate part.
+A finding's `subject` is **Google's** review id — `reputation.review_ref` prefers it — and
+`reply_to_review` takes our row UUID. The same mismatch has already shipped once as a
+button that did nothing. The row id appears only in the finding's `evidence` entry whose
+source is `reviews`, so that is where it is read from, and it still has to name exactly one
+review of *this* location before it is offered; anything else comes back as
+`applies_to: null` with a sentence saying the target could not be identified. Guessing
+would publish a reply under a review nobody chose.
+
+A drafted `attributes` map is the same problem in a different shape. It is keyed by the
+catalog's bare attribute name; the stored id is that name behind `attributes/` and the
+value type is the catalog's own, so both are resolved here and handed over as a payload
+`update_location_profile` takes as it stands. The agent has no tool that reads the catalog,
+so a prompt telling it to look the type up would be a prompt telling it to guess. A drafted
+answer is always a yes or no, and only a `BOOL` attribute can hold one, so a name the
+catalog does not list or types otherwise is left out and the suggestion says how many were.
+
+The rest have no write path at all — posts and bookings are read-only here, and secondary
+categories are not in `EDITABLE_FIELDS`. Each of those says plainly that it is advice for a
+person, because a model shown a draft with no way to apply it will otherwise invent one.
 
 ### The safeguard worth knowing about
 
@@ -354,7 +388,8 @@ needs nothing else.
 cd backend && uv run pytest tests/test_agent_tools.py tests/test_agent_graph.py \
                             tests/test_agent_api.py tests/test_agent_turn.py \
                             tests/test_agent_tool_safety.py tests/test_agent_replay.py \
-                            tests/test_agent_stream.py
+                            tests/test_agent_stream.py tests/test_agent_audit_summary.py \
+                            tests/test_agent_audit_suggestions.py
 ```
 
 `test_agent_tool_safety.py` and `test_agent_replay.py` are the regression suite for the
