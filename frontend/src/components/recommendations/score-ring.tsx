@@ -56,7 +56,7 @@ export function ScoreRing({
             strokeDasharray={`${filled} ${circumference}`}
             transform={`rotate(-90 ${size / 2} ${size / 2})`}
             className={cn(
-              "transition-[stroke-dasharray] duration-500",
+              "motion-safe:transition-[stroke-dasharray] motion-safe:duration-500",
               TONE_STROKE[tone],
             )}
           />
@@ -64,7 +64,7 @@ export function ScoreRing({
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span
             className={cn(
-              "text-[32px] leading-9 font-semibold tracking-[-0.03em]",
+              "text-[32px] leading-9 font-semibold tracking-[-0.03em] tabular-nums",
               TONE_TEXT[tone],
             )}
           >

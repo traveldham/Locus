@@ -3,62 +3,19 @@
 import type { CategoryScore } from "@/services/api/recommendations";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
-import { GRADE_LABEL, TONE_STROKE, TONE_TEXT, scoreTone } from "./audit-format";
-import { sectionHref, withParam } from "./audit-nav";
+import { TONE_FILL, TONE_TEXT, scoreTone } from "./audit-format";
+import { sectionHref } from "./audit-nav";
 
-function Ring({ score, size = 72 }: { score: number | null; size?: number }) {
-  const tone = scoreTone(score);
-  const stroke = 7;
-  const radius = (size - stroke) / 2;
-  const circumference = 2 * Math.PI * radius;
-  const filled = score === null ? 0 : (score / 100) * circumference;
-  return (
-    <span
-      className="relative inline-flex shrink-0"
-      style={{ width: size, height: size }}
-    >
-      <svg
-        width={size}
-        height={size}
-        viewBox={`0 0 ${size} ${size}`}
-        aria-hidden="true"
-      >
-        <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          fill="none"
-          strokeWidth={stroke}
-          className="stroke-card-border"
-        />
-        <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          fill="none"
-          strokeWidth={stroke}
-          strokeLinecap="round"
-          strokeDasharray={`${filled} ${circumference}`}
-          transform={`rotate(-90 ${size / 2} ${size / 2})`}
-          className={cn(
-            "transition-[stroke-dasharray] duration-500",
-            TONE_STROKE[tone],
-          )}
-        />
-      </svg>
-      <span
-        className={cn(
-          "absolute inset-0 flex items-center justify-center text-lg font-semibold tracking-[-0.02em]",
-          TONE_TEXT[tone],
-        )}
-      >
-        {score ?? "—"}
-      </span>
-    </span>
-  );
-}
+const CATEGORY_CONTEXT: Record<string, string> = {
+  profile: "Business details customers rely on",
+  reputation: "Reviews and your response to customers",
+  visibility: "Where you appear in local searches",
+  operations: "Bookings and customer follow-through",
+  performance: "Profile views and customer actions",
+  content: "Photos, videos and business updates",
+};
 
-/** One box per category, each with its own ring. Click opens that category's issues. */
+/** Comparable category scores, with evidence coverage separate from health. */
 export function CategoryRings({
   locationId,
   categories,
@@ -67,53 +24,72 @@ export function CategoryRings({
   categories: CategoryScore[];
 }) {
   return (
-    <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="divide-y divide-card-border">
       {categories.map((row) => {
-        const evaluated = row.checks_passed + row.checks_failed;
-        const total = evaluated + row.checks_not_evaluated;
-        const grade =
-          row.score === null
-            ? "not_evaluated"
-            : row.score >= 90
-              ? "excellent"
-              : row.score >= 75
-                ? "good"
-                : row.score >= 50
-                  ? "fair"
-                  : "poor";
+        const total =
+          row.checks_passed + row.checks_failed + row.checks_not_evaluated;
+        const tone = scoreTone(row.score);
         return (
           <li key={row.category}>
             <Link
-              href={withParam(
-                sectionHref(locationId, "/issues"),
-                "area",
-                row.category,
+              href={sectionHref(
+                locationId,
+                row.category === "profile"
+                  ? "/profile"
+                  : `/category/${row.category}`,
               )}
-              aria-label={`${row.label}: ${row.score ?? "not evaluated"} out of 100. Open its issues.`}
-              className="flex h-full items-center gap-4 rounded-xl border border-card-border bg-card-background px-4 py-4 transition hover:border-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
+              className="group grid min-h-11 gap-3 rounded-lg px-2 py-4 motion-safe:transition-colors hover:bg-background-gray-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 sm:grid-cols-[minmax(0,1fr)_minmax(140px,0.75fr)] sm:items-center"
             >
-              <Ring score={row.score} />
               <span className="min-w-0">
-                <span className="block text-sm font-semibold text-text-primary">
+                <span className="flex items-center gap-2 text-sm font-semibold text-text-primary">
                   {row.label}
-                  <span className="ml-1.5 text-xs font-normal text-text-tertiary">
-                    {row.weight}%
+                  <svg
+                    className="size-4 text-text-tertiary"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.75"
+                    aria-hidden="true"
+                  >
+                    <path d="m9 5 7 7-7 7" />
+                  </svg>
+                </span>
+                <span className="mt-0.5 block text-xs leading-5 text-text-secondary">
+                  {CATEGORY_CONTEXT[row.category]}
+                </span>
+                <span className="mt-1 block text-xs leading-5 text-text-secondary">
+                  {total === 0
+                    ? "No checks available"
+                    : `${row.checks_passed} passed · ${row.checks_failed} need attention · ${row.checks_not_evaluated} not evaluated`}
+                </span>
+              </span>
+              <span>
+                <span className="mb-2 flex items-baseline justify-between gap-3">
+                  <span className="text-xs text-text-secondary">
+                    {row.weight}% category weight
+                  </span>
+                  <span
+                    className={cn(
+                      "shrink-0 text-sm font-semibold tabular-nums",
+                      row.score === null
+                        ? "text-text-secondary"
+                        : TONE_TEXT[tone],
+                    )}
+                  >
+                    {row.score === null ? "Not scored" : `${row.score}/100`}
                   </span>
                 </span>
                 <span
-                  className={cn(
-                    "block text-xs font-medium",
-                    TONE_TEXT[scoreTone(row.score)],
-                  )}
+                  className="block h-2 overflow-hidden rounded-full bg-background-gray-secondary"
+                  aria-hidden="true"
                 >
-                  {GRADE_LABEL[grade]}
-                </span>
-                <span className="mt-1 block text-xs leading-5 text-text-tertiary">
-                  {total === 0
-                    ? "No checks built yet"
-                    : row.score === null
-                      ? `${total} checks, none could run`
-                      : `${row.issues} ${row.issues === 1 ? "issue" : "issues"} · ${evaluated} of ${total} checks ran`}
+                  <span
+                    className={cn(
+                      "block h-full rounded-full motion-safe:transition-[width] motion-safe:duration-500",
+                      TONE_FILL[tone],
+                    )}
+                    style={{ width: `${row.score ?? 0}%` }}
+                  />
                 </span>
               </span>
             </Link>

@@ -1,6 +1,6 @@
 # Locus Workspace Memory
 
-Last updated: 2026-09-13
+Last updated: 2026-09-14
 
 ## Workspace structure
 
@@ -59,6 +59,18 @@ review sync run inline and still record a `SyncRun` row each. Do not reintroduce
 without a real quota and a real fleet of locations.
 
 ## Handoff log
+
+- 2026-09-14 (audit UI review): Traced current six-category UI and job publication;
+  no application code changed. Progress reaches 100% before overall-summary generation
+  and publication finish; `audit-progress.tsx` ignores worker `stage`. Category tabs
+  show failing check rows only; all other verdicts/reasons are accessible in Issues by
+  removing “With issues.” Overview draft-failure notice checks profile only. Issue
+  filters use 36px controls, below the workspace's 44px target. Architecture docs are
+  stale about history: `AuditScoreHistory`/`AuditCheckHistory` now preserve derived
+  trends and changes while old full runs are deleted. Verified 15 tests with
+  `cd backend && uv run pytest tests/test_recommendations.py tests/test_recommendation_scoring.py -q`.
+  Impeccable detector flagged only the active-tab border (not a confirmed defect).
+  Live browser review unavailable: required browser execution tool is not exposed.
 
 - 2026-09-14: **All six workers built.** Five parallel agents built reputation (10
   checks), visibility (11), operations (10), performance (9) and content (9) following

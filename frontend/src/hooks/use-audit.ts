@@ -22,6 +22,8 @@ export function useAuditRun(locationId: string) {
     inputsChanged: Boolean(latest.data?.inputs_changed),
     isPending: latest.isPending,
     error: latest.error,
+    jobError: job.error,
+    refreshJob: () => void job.refetch(),
     refetch: () => void latest.refetch(),
   };
 }

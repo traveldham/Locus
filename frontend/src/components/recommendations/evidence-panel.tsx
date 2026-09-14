@@ -16,9 +16,11 @@ export function EvidencePanel({
 }) {
   const [source, setSource] = useState(item.evidence[0]?.source ?? "");
   const [offset, setOffset] = useState(0);
+  const [expanded, setExpanded] = useState(false);
   const rows = useQuery({
     queryKey: ["recommendation-evidence", runId, item.key, source, offset],
     queryFn: () => recommendationApi.evidence(runId, item.key, source, offset),
+    enabled: expanded && Boolean(source),
     retry: 1,
   });
   return (
@@ -46,7 +48,10 @@ export function EvidencePanel({
         ))}
       </ul>
       <p className="text-xs leading-5 text-text-tertiary">{item.limitation}</p>
-      <details className="border-t border-card-border pt-3">
+      <details
+        className="border-t border-card-border pt-3"
+        onToggle={(event) => setExpanded(event.currentTarget.open)}
+      >
         <summary className="min-h-11 cursor-pointer py-3 font-medium text-text-secondary underline-offset-4 hover:text-text-primary hover:underline focus-visible:outline-primary-500">
           View source records
         </summary>
@@ -146,7 +151,12 @@ function EvidenceTable({ rows }: { rows: Record<string, unknown>[] }) {
   }
 
   return (
-    <div className="max-h-80 overflow-auto rounded-lg border border-card-border">
+    <div
+      tabIndex={0}
+      role="region"
+      aria-label="Saved evidence records"
+      className="max-h-80 overflow-auto rounded-lg border border-card-border focus-visible:outline-primary-500"
+    >
       <table className="w-full border-collapse text-xs">
         <thead className="sticky top-0 bg-background-gray-secondary">
           <tr className="text-left">
@@ -170,7 +180,7 @@ function EvidenceTable({ rows }: { rows: Record<string, unknown>[] }) {
               {columns.map((column) => (
                 <td
                   key={column}
-                  className="max-w-64 truncate px-3 py-2 text-text-primary"
+                  className="min-w-32 max-w-64 px-3 py-2 break-words text-text-primary"
                   title={show(row[column])}
                 >
                   {show(row[column])}

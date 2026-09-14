@@ -52,7 +52,7 @@ function InsightList({
                 <span className="text-text-primary">{point.text}</span>{" "}
                 <Link
                   href={href(point.category)}
-                  className="text-xs text-text-tertiary underline-offset-4 hover:underline"
+                  className="inline-flex min-h-11 min-w-11 items-center text-xs text-text-secondary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-primary-500"
                 >
                   {labels.get(point.category) ?? point.category}
                 </Link>
@@ -61,7 +61,10 @@ function InsightList({
           ))}
         </ul>
       ) : (
-        <p className="mt-2 text-sm text-text-tertiary">Nothing to list.</p>
+        <p className="mt-2 text-sm text-text-secondary">
+          No {tone === "success" ? "strengths" : "priorities"} highlighted in
+          this summary.
+        </p>
       )}
     </div>
   );
@@ -91,21 +94,101 @@ export function LocationOverview({
   const todo = (location.priorities ?? [])
     .map((key) => byKey.get(key))
     .filter((item): item is NonNullable<typeof item> => Boolean(item));
-  const draftStatus = location.suggestions?.profile;
+  const failedDrafts = Object.entries(location.suggestions ?? {}).filter(
+    ([, result]) => result.status === "failed",
+  );
+  const evaluated = health.checks_passed + health.checks_failed;
+  const total = evaluated + health.checks_not_evaluated;
   const categoryLabels = new Map(
     run.categories.map((c) => [c.category, c.label]),
   );
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-6">
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+        <SectionCard title="Your profile health">
+          <ScoreRing
+            score={health.score}
+            grade={health.grade}
+            label={
+              health.score === null
+                ? "There is not enough evidence to score this audit."
+                : "A weighted score from the checks that could be evaluated."
+            }
+          />
+          <dl className="mt-6 divide-y divide-card-border border-y border-card-border text-sm">
+            <div className="flex justify-between gap-3 py-3">
+              <dt className="text-text-secondary">Checks passed</dt>
+              <dd className="font-semibold tabular-nums text-badge-success-text">
+                {health.checks_passed}
+              </dd>
+            </div>
+            <div className="flex justify-between gap-3 py-3">
+              <dt className="text-text-secondary">Checks needing attention</dt>
+              <dd
+                className={cn(
+                  "font-semibold tabular-nums",
+                  health.checks_failed ? TONE_TEXT.error : "text-text-primary",
+                )}
+              >
+                {health.checks_failed}
+              </dd>
+            </div>
+            <div className="flex justify-between gap-3 py-3">
+              <dt className="text-text-secondary">Not evaluated</dt>
+              <dd className="font-semibold tabular-nums text-text-primary">
+                {health.checks_not_evaluated}
+              </dd>
+            </div>
+          </dl>
+          <p className="mt-3 text-xs leading-5 text-text-secondary">
+            {evaluated} of {total} checks had enough evidence to run. Missing
+            evidence is excluded from the score.
+          </p>
+          <div className="mt-5 border-t border-card-border pt-4">
+            <h3 className="mb-2 text-sm font-medium text-text-primary">
+              Progress over time
+            </h3>
+            <ScoreTrend history={history} />
+            {changes && !changes.first_audit ? (
+              <p className="mt-3 text-xs leading-5 text-text-secondary">
+                Since your previous audit:{" "}
+                <span className={cn("font-medium", TONE_TEXT.success)}>
+                  {changes.fixed.length} checks resolved
+                </span>{" "}
+                ·{" "}
+                <span
+                  className={cn(
+                    "font-medium",
+                    changes.new.length ? TONE_TEXT.error : "",
+                  )}
+                >
+                  {changes.new.length} newly flagged
+                </span>
+                .
+              </p>
+            ) : null}
+          </div>
+        </SectionCard>
+        <SectionCard title="Explore your audit" bodyClassName="py-1 px-3">
+          <p className="px-2 pt-3 text-sm leading-6 text-text-secondary">
+            See the current situation, supporting metrics and recommended next
+            steps in each area.
+          </p>
+          <CategoryRings
+            locationId={location.id}
+            categories={health.categories}
+          />
+        </SectionCard>
+      </div>
       {summary ? (
         <SectionCard
-          title="In short"
+          title="What this audit tells you"
           actions={
             <span className="text-xs text-text-tertiary">
               {summary.source === "deterministic"
                 ? "Written from the findings"
-                : `Written by ${summary.model} from all six audits`}
+                : "AI summary · based on this audit’s findings"}
             </span>
           }
         >
@@ -130,64 +213,36 @@ export function LocationOverview({
               />
             </div>
           ) : null}
-          {draftStatus?.status === "failed" ? (
-            <p className="mt-3 text-xs leading-5 text-badge-warning-text">
-              Drafts could not be generated this time: {draftStatus.error}
-            </p>
-          ) : null}
         </SectionCard>
       ) : null}
 
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-        <SectionCard title="Health score">
-          <ScoreRing
-            score={health.score}
-            grade={health.grade}
-            label={
-              health.score === null
-                ? "No category has checks that could run."
-                : `${Math.round(health.coverage * 100)}% of checks had enough evidence to run.`
-            }
-          />
-          <div className="mt-4 border-t border-card-border pt-4">
-            <ScoreTrend history={history} />
-          </div>
-          {changes && !changes.first_audit ? (
-            <p className="mt-3 text-xs leading-5 text-text-tertiary">
-              Since the last audit:{" "}
-              <span className={cn("font-medium", TONE_TEXT.success)}>
-                {changes.fixed.length} fixed
-              </span>
-              {" · "}
-              <span
-                className={cn(
-                  "font-medium",
-                  changes.new.length ? TONE_TEXT.error : "",
-                )}
-              >
-                {changes.new.length} new
-              </span>
-            </p>
-          ) : null}
-        </SectionCard>
-
-        <SectionCard title="Scores by category">
-          <CategoryRings
-            locationId={location.id}
-            categories={health.categories}
-          />
-        </SectionCard>
-      </div>
+      {failedDrafts.length ? (
+        <div
+          className="rounded-xl border border-card-border bg-card-background px-5 py-4 text-sm leading-6"
+          role="status"
+        >
+          <p className="font-medium text-badge-warning-text">
+            Some AI drafts are unavailable
+          </p>
+          <p className="text-text-secondary">
+            {failedDrafts
+              .map(([category]) => categoryLabels.get(category) ?? category)
+              .join(", ")}
+            : the checks and recommendations are still available. Rerun the
+            audit to try generating drafts again.
+          </p>
+        </div>
+      ) : null}
 
       <SectionCard
-        title="Do these first"
+        title="Your next steps"
         bodyClassName="px-0 py-0"
         actions={
           <Link
             href={sectionHref(location.id, "/issues")}
-            className="min-h-11 text-sm text-text-secondary underline underline-offset-4 focus-visible:outline-primary-500"
+            className="inline-flex min-h-11 min-w-11 items-center text-sm text-text-secondary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-primary-500"
           >
-            All issues
+            View all findings
           </Link>
         }
       >
@@ -206,7 +261,7 @@ export function LocationOverview({
                   <p className="text-sm leading-6 text-text-primary">
                     <Link
                       href={issueHref(location.id, item.rule)}
-                      className="font-medium text-primary-500 underline-offset-4 hover:underline"
+                      className="inline-flex min-h-11 items-center font-medium text-primary-500 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-primary-500"
                     >
                       {item.title}
                     </Link>
@@ -214,17 +269,24 @@ export function LocationOverview({
                   <p className="mt-0.5 text-sm leading-6 text-text-secondary">
                     {item.why}
                   </p>
+                  <p className="mt-2 text-sm leading-6 text-text-primary">
+                    <span className="font-medium">Next step:</span>{" "}
+                    {item.action}
+                  </p>
                   <p className="mt-1 flex flex-wrap items-center gap-2 text-xs text-text-tertiary">
                     <Badge color={SEVERITY_COLOR[item.severity]} size="sm">
                       {item.severity}
                     </Badge>
                     {rule?.effort ? (
                       <span>
-                        Takes {EFFORT_LABEL[rule.effort] ?? rule.effort}
+                        Estimated effort:{" "}
+                        {EFFORT_LABEL[rule.effort] ?? rule.effort}
                       </span>
                     ) : null}
                     {item.suggestion ? (
-                      <span className={TONE_TEXT.success}>Draft ready</span>
+                      <span className={TONE_TEXT.success}>
+                        AI draft ready to review
+                      </span>
                     ) : null}
                     {changes?.new.includes(item.rule) &&
                     !changes.first_audit ? (
@@ -239,7 +301,13 @@ export function LocationOverview({
           })}
           {!todo.length ? (
             <li className="px-5 py-8 text-sm text-text-secondary">
-              Nothing to do. Every check that could run passed.
+              {health.score === null
+                ? "There is not enough evidence to recommend next steps. Open each area to see which checks could not be evaluated."
+                : health.checks_failed > 0 || health.issues > 0
+                  ? "No priorities were selected for this report. Open all findings to review the checks needing attention."
+                  : health.checks_not_evaluated > 0
+                    ? "Every evaluated check passed. Review the areas with missing evidence for a more complete picture."
+                    : "Every evaluated check passed. Explore each area to review the supporting metrics."}
             </li>
           ) : null}
         </ol>

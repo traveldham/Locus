@@ -86,7 +86,7 @@ function draftFor(item: Recommendation | undefined): string | null {
 }
 
 function formatChange(change: number | null): string {
-  if (change === null) return "new";
+  if (change === null) return "no comparison";
   const pct = Math.round(change * 100);
   return `${pct > 0 ? "+" : ""}${pct}%`;
 }
@@ -168,11 +168,19 @@ function Sparkline({ trend }: { trend: (number | null)[] }) {
     y: p === null ? null : 4 + Math.min(20, p),
   }));
   const path = points
-    .filter((p): p is { x: number; y: number } => p.y !== null)
-    .map((p, i) => `${i === 0 ? "M" : "L"}${p.x} ${p.y}`)
+    .map((p, index) =>
+      p.y === null
+        ? ""
+        : `${index > 0 && points[index - 1].y !== null ? "L" : "M"}${p.x} ${p.y}`,
+    )
     .join(" ");
   return (
-    <svg viewBox="0 0 50 28" className="h-7 w-12" aria-hidden="true">
+    <svg
+      viewBox="0 0 50 28"
+      className="h-7 w-12"
+      role="img"
+      aria-label={`Weekly positions, oldest first: ${trend.map((position) => (position === null ? "not available" : position)).join(", ")}. Lower positions are better.`}
+    >
       <line
         x1="4"
         x2="46"
@@ -224,7 +232,7 @@ function Counter({
   tone: keyof typeof TONE_TEXT;
 }) {
   return (
-    <div className="rounded-lg border border-card-border px-3 py-2">
+    <div className="border-b border-card-border px-1 py-3">
       <p className={cn("text-2xl font-semibold tabular-nums", TONE_TEXT[tone])}>
         {value}
       </p>
@@ -264,6 +272,11 @@ export function VisibilityCard({ card, items }: CategoryCardProps) {
         </span>
       }
     >
+      <p className="mb-5 max-w-prose text-sm leading-6 text-text-secondary">
+        See how often this profile appears in Google’s three local results for
+        the keywords you track. Positions are recorded checks for a particular
+        keyword and device, not a prediction for every searcher.
+      </p>
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
         <PackRing
           share={card.pack_share}
@@ -305,7 +318,17 @@ export function VisibilityCard({ card, items }: CategoryCardProps) {
         </p>
       ) : null}
 
-      <div className="mt-5 overflow-x-auto">
+      <p className="mt-5 text-xs leading-5 text-text-secondary">
+        Lower position numbers are better. The four-week trend runs oldest to
+        newest; gaps mean no position is available. Scroll the table
+        horizontally on smaller screens.
+      </p>
+      <div
+        className="mt-2 overflow-x-auto"
+        role="region"
+        aria-label="Keyword positions"
+        tabIndex={0}
+      >
         <table className="w-full min-w-[520px] text-sm">
           <caption className="sr-only">
             Tracked keywords with latest position and four-week trend
@@ -340,9 +363,9 @@ export function VisibilityCard({ card, items }: CategoryCardProps) {
                 >
                   <td className="py-2.5 pr-3 text-text-primary">
                     {k.keyword}
-                    {k.device === "desktop" ? (
+                    {k.device ? (
                       <span className="ml-1 text-xs text-text-tertiary">
-                        desktop
+                        {k.device}
                       </span>
                     ) : null}
                   </td>
@@ -421,6 +444,10 @@ export function VisibilityCard({ card, items }: CategoryCardProps) {
           <h3 className="text-sm font-semibold text-text-primary">
             Top search terms{card.terms_month ? ` · ${card.terms_month}` : ""}
           </h3>
+          <p className="mt-1 text-xs leading-5 text-text-secondary">
+            Impressions with change from the previous month. Google may omit
+            low-volume terms, so these counts do not equal total profile views.
+          </p>
           {card.top_terms.length ? (
             <ul className="mt-2 space-y-2">
               {card.top_terms.map((t) => {
@@ -429,7 +456,7 @@ export function VisibilityCard({ card, items }: CategoryCardProps) {
                 return (
                   <li key={t.term} className="text-sm">
                     <div className="flex items-baseline justify-between gap-3">
-                      <span className="min-w-0 truncate text-text-primary">
+                      <span className="min-w-0 break-words text-text-primary">
                         {t.term}
                       </span>
                       <span className="shrink-0 tabular-nums text-text-secondary">

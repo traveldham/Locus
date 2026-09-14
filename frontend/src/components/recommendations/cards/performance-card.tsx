@@ -58,8 +58,8 @@ const TILES: {
   rate?: boolean;
 }[] = [
   { key: "impressions", label: "Impressions" },
-  { key: "calls", label: "Calls" },
-  { key: "directions", label: "Directions" },
+  { key: "calls", label: "Call button taps" },
+  { key: "directions", label: "Direction requests" },
   { key: "website_clicks", label: "Website clicks" },
   { key: "action_rate", label: "Actions per impression", rate: true },
 ];
@@ -107,19 +107,19 @@ function Tile({
   return (
     <div
       className={cn(
-        "min-w-0 rounded-lg border px-3 py-3",
+        "min-w-0 border-b px-1 py-4",
         flagged
           ? "border-badge-error-text/40 bg-badge-error-background"
-          : "border-card-border bg-background-gray-secondary",
+          : "border-card-border",
       )}
     >
-      <p className="truncate text-xs text-text-tertiary">{label}</p>
+      <p className="text-sm text-text-secondary">{label}</p>
       <p className="mt-1 text-lg font-semibold tabular-nums text-text-primary">
         {count(metric?.current ?? null, rate)}
       </p>
       <p className="mt-0.5 text-xs tabular-nums text-text-secondary">
         {change === null ? (
-          <span className="text-text-disable">no comparison</span>
+          <span className="text-text-secondary">Change unavailable</span>
         ) : (
           <>
             <span className={cn("font-medium", TONE_TEXT[tone])}>
@@ -132,6 +132,19 @@ function Tile({
           </>
         )}
       </p>
+      <p className="mt-1 text-xs text-text-secondary">
+        Previous: {count(metric?.previous ?? null, rate)}
+      </p>
+      {metric ? (
+        <p className="mt-2 text-xs text-text-tertiary">
+          {metric.days} current / {metric.previous_days} previous days reported
+        </p>
+      ) : null}
+      {flagged ? (
+        <p className="mt-2 text-xs font-medium text-badge-error-text">
+          Needs attention
+        </p>
+      ) : null}
     </div>
   );
 }
@@ -322,7 +335,34 @@ export function PerformanceCard({ card, items }: CategoryCardProps) {
         </span>
       }
     >
-      <div className="space-y-5">
+      <div className="space-y-6">
+        <div className="grid gap-3 border-b border-card-border pb-5 sm:grid-cols-2">
+          <div>
+            <h3 className="text-sm font-semibold text-text-primary">
+              How people find and use your profile
+            </h3>
+            <p className="mt-1 max-w-prose text-sm leading-6 text-text-secondary">
+              Impressions count profile views. Calls, directions and website
+              clicks show the actions taken from those views.
+            </p>
+          </div>
+          <dl className="space-y-1 text-sm">
+            <div className="flex flex-wrap justify-between gap-x-3">
+              <dt className="text-text-secondary">Current period</dt>
+              <dd className="font-medium text-text-primary">
+                {shortDate(window.current_start)} –{" "}
+                {shortDate(window.current_end)}
+              </dd>
+            </div>
+            <div className="flex flex-wrap justify-between gap-x-3">
+              <dt className="text-text-secondary">Previous period</dt>
+              <dd className="font-medium text-text-primary">
+                {shortDate(window.previous_start)} –{" "}
+                {shortDate(window.previous_end)}
+              </dd>
+            </div>
+          </dl>
+        </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
           {TILES.map((tile) => (
             <Tile
@@ -335,12 +375,64 @@ export function PerformanceCard({ card, items }: CategoryCardProps) {
           ))}
         </div>
 
+        <details className="border-b border-card-border pb-2">
+          <summary className="flex min-h-11 cursor-pointer items-center text-sm text-primary-500 focus-visible:outline-2 focus-visible:outline-primary-500">
+            More reported metrics: Maps, Search, messages and bookings
+          </summary>
+          <div className="grid grid-cols-2 gap-3 pb-3 lg:grid-cols-4">
+            <Tile
+              label="Maps impressions"
+              metric={data.metrics.impressions_maps}
+              flagged={false}
+            />
+            <Tile
+              label="Search impressions"
+              metric={data.metrics.impressions_search}
+              flagged={false}
+            />
+            <Tile
+              label="Conversations started"
+              metric={data.metrics.conversations}
+              flagged={false}
+            />
+            <Tile
+              label="Profile-attributed bookings"
+              metric={data.metrics.bookings}
+              flagged={false}
+            />
+          </div>
+          <p className="pb-3 text-xs leading-5 text-text-secondary">
+            These are reported profile metrics. Profile-attributed bookings can
+            differ from the appointment requests shown in Operations.
+          </p>
+        </details>
+
         <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
           <div className="min-w-0">
-            <p className="mb-2 text-xs font-medium tracking-wide text-text-tertiary uppercase">
+            <p className="mb-2 text-sm font-semibold text-text-primary">
               Weekly impressions
             </p>
             <WeeklySparkline weeks={data.weekly_impressions} />
+            <details className="mt-3 text-sm">
+              <summary className="flex min-h-11 cursor-pointer items-center text-primary-500 focus-visible:outline-2 focus-visible:outline-primary-500">
+                View weekly totals
+              </summary>
+              <ul className="divide-y divide-card-border">
+                {data.weekly_impressions.map((week) => (
+                  <li
+                    key={week.start}
+                    className="flex flex-wrap justify-between gap-2 py-2 text-text-secondary"
+                  >
+                    <span>
+                      {shortDate(week.start)} – {shortDate(week.end)}
+                    </span>
+                    <span className="tabular-nums">
+                      {count(week.impressions)} · {week.days} days reported
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </details>
           </div>
           <div className="min-w-0 space-y-4">
             <SplitBar
@@ -364,7 +456,9 @@ export function PerformanceCard({ card, items }: CategoryCardProps) {
             ? `; the newest day is ${shortDate(window.latest_date)}, ${age} day${age === 1 ? "" : "s"} before the audit date`
             : ""}
           . Missing days and unreported metrics are left out, never counted as
-          zero. Actions are taps and clicks, not customers.
+          zero. The action rate uses calls, directions and website clicks per
+          impression; it does not measure unique customers or completed
+          appointments. Unequal reporting coverage can affect comparisons.
         </p>
 
         <InvestigationPlans items={items} />

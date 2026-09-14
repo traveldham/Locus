@@ -35,9 +35,6 @@ export interface ContentCardData {
   };
 }
 
-/** Per-type working target for the coverage bars: a display convention, not policy. */
-const PHOTO_TYPE_TARGET = 8;
-
 const PHOTO_TYPES: {
   key: "interior" | "exterior" | "team" | "other";
   label: string;
@@ -105,6 +102,10 @@ export function ContentCard({ card, items }: CategoryCardProps) {
   const postDrafts = drafts(items, "post_drafts");
   const shotLists = drafts(items, "photo_shot_list");
   const { photos, posts } = card;
+  const maxPhotoCount = Math.max(
+    1,
+    ...PHOTO_TYPES.map(({ key }) => photos[key] ?? 0),
+  );
   const mixEntries = Object.entries(posts.type_mix).sort((a, b) => b[1] - a[1]);
 
   return (
@@ -114,10 +115,15 @@ export function ContentCard({ card, items }: CategoryCardProps) {
         bodyClassName="px-5 py-5"
         actions={
           <span className="text-xs text-text-tertiary">
-            Red outlines show what needs attention
+            Saved content · suggestions are shown separately
           </span>
         }
       >
+        <p className="mb-5 max-w-prose text-sm leading-6 text-text-secondary">
+          Help customers recognise the location and understand what you offer.
+          Review photo coverage and publishing activity, then use the drafts
+          below to prepare updates.
+        </p>
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="min-w-0">
             <h3 className="text-sm font-semibold text-text-primary">Photos</h3>
@@ -130,12 +136,12 @@ export function ContentCard({ card, items }: CategoryCardProps) {
                 <div className="mt-3 grid grid-cols-3 gap-2">
                   <Tile
                     label="Photos"
-                    value={photos.total ?? "?"}
+                    value={photos.total ?? "Unknown"}
                     flagged={flagged.has("photos")}
                   />
                   <Tile
                     label="Videos"
-                    value={photos.videos ?? "?"}
+                    value={photos.videos ?? "Unknown"}
                     flagged={flagged.has("video")}
                   />
                   <Tile
@@ -152,10 +158,7 @@ export function ContentCard({ card, items }: CategoryCardProps) {
                   {PHOTO_TYPES.map(({ key, label }) => {
                     const value = photos[key];
                     const bad = emptyTypes.has(key);
-                    const share =
-                      value === null
-                        ? 0
-                        : Math.min(1, value / PHOTO_TYPE_TARGET);
+                    const share = value === null ? 0 : value / maxPhotoCount;
                     return (
                       <li key={key} className="flex items-center gap-3 text-sm">
                         <span
@@ -172,30 +175,27 @@ export function ContentCard({ card, items }: CategoryCardProps) {
                             bad && "outline outline-1 outline-badge-error-text",
                           )}
                           role="img"
-                          aria-label={`${label}: ${value ?? "unknown"} of a ${PHOTO_TYPE_TARGET} photo target`}
+                          aria-label={`${label}: ${value ?? "unknown"} photos`}
                         >
                           <span
                             className={cn(
                               "block h-full rounded-full",
-                              share >= 1
-                                ? "bg-badge-success-text"
-                                : share > 0
-                                  ? "bg-badge-warning-text"
-                                  : "bg-transparent",
+                              bad ? "bg-badge-error-text" : "bg-primary-500",
                             )}
                             style={{ width: `${Math.round(share * 100)}%` }}
                           />
                         </span>
                         <span className="w-10 shrink-0 text-right tabular-nums text-text-primary">
-                          {value ?? "?"}
+                          {value ?? "—"}
                         </span>
                       </li>
                     );
                   })}
                 </ul>
                 <p className="mt-2 text-xs text-text-tertiary">
-                  Bars fill at {PHOTO_TYPE_TARGET} photos per type. Other means
-                  photos with no type recorded.
+                  Bar lengths compare recorded counts. Other means photos with
+                  no type recorded; these are not targets. Last recorded upload:{" "}
+                  {photos.last_uploaded_on ?? "unknown"}.
                 </p>
               </>
             )}
@@ -206,7 +206,7 @@ export function ContentCard({ card, items }: CategoryCardProps) {
             <div className="mt-3 grid grid-cols-3 gap-2">
               <Tile
                 label="Last post"
-                value={days(posts.days_since_post, "Never")}
+                value={days(posts.days_since_post, "Not recorded")}
                 flagged={flagged.has("last_post")}
                 small
               />
@@ -219,7 +219,7 @@ export function ContentCard({ card, items }: CategoryCardProps) {
                 label="With button"
                 value={
                   posts.cta_share === null
-                    ? "?"
+                    ? "Unknown"
                     : `${Math.round(posts.cta_share * 100)}%`
                 }
                 flagged={flagged.has("cta")}
@@ -304,7 +304,7 @@ export function ContentCard({ card, items }: CategoryCardProps) {
             {postDrafts.map((item) => (
               <div key={item.key} className="min-w-0">
                 <h3 className="text-sm font-semibold text-text-primary">
-                  Posts ready to publish
+                  Post drafts to review
                 </h3>
                 <p className="mt-0.5 text-xs text-text-tertiary">
                   For: {item.title}
@@ -369,22 +369,22 @@ function Tile({
   return (
     <div
       className={cn(
-        "min-w-0 rounded-lg border border-card-border px-3 py-2",
-        flagged &&
-          "outline outline-2 outline-offset-1 outline-badge-error-text",
+        "min-w-0 border-b border-card-border px-1 py-3",
+        flagged && "border-badge-error-text",
       )}
     >
-      <p className="truncate text-[11px] tracking-wide text-text-tertiary uppercase">
-        {label}
-      </p>
+      <p className="text-xs text-text-secondary">{label}</p>
       <p
         className={cn(
-          "mt-0.5 truncate font-semibold tabular-nums text-text-primary",
+          "mt-1 break-words font-semibold tabular-nums text-text-primary",
           small ? "text-sm" : "text-lg",
         )}
       >
         {value}
       </p>
+      {flagged ? (
+        <p className="mt-1 text-xs text-badge-error-text">Needs attention</p>
+      ) : null}
     </div>
   );
 }

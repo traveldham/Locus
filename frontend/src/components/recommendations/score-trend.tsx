@@ -69,9 +69,34 @@ export function ScoreTrend({ history }: { history: ScorePoint[] }) {
             delta > 0 ? TONE_TEXT.success : delta < 0 ? TONE_TEXT.error : "",
           )}
         >
-          {delta > 0 ? `+${delta}` : delta} since the first
+          {delta > 0 ? `+${delta}` : delta} points across this history
         </span>
       </p>
+      <details className="mt-2">
+        <summary className="flex min-h-11 cursor-pointer items-center text-xs font-medium text-text-secondary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-primary-500">
+          View audit history
+        </summary>
+        <ul className="divide-y divide-card-border text-xs">
+          {[...history].reverse().map((point) => (
+            <li
+              key={point.run_id}
+              className="flex justify-between gap-3 py-2 leading-5"
+            >
+              <time className="text-text-secondary" dateTime={point.at}>
+                {new Date(point.at).toLocaleDateString(undefined, {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                })}
+              </time>
+              <span className="text-right tabular-nums text-text-primary">
+                {point.score === null ? "Not scored" : `${point.score}/100`} ·{" "}
+                {Math.round(point.coverage * 100)}% coverage
+              </span>
+            </li>
+          ))}
+        </ul>
+      </details>
     </div>
   );
 }

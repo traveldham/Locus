@@ -47,13 +47,6 @@ function daysTone(days: number | null, good: number, fair: number) {
   return "error" as const;
 }
 
-function daysAgo(iso: string | null): number | null {
-  if (!iso) return null;
-  const then = Date.parse(iso);
-  if (Number.isNaN(then)) return null;
-  return Math.max(0, Math.floor((Date.now() - then) / 86_400_000));
-}
-
 function RatingRing({
   average,
   size = 96,
@@ -101,7 +94,7 @@ function RatingRing({
           strokeDasharray={`${filled} ${circumference}`}
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
           className={cn(
-            "transition-[stroke-dasharray] duration-500",
+            "motion-safe:transition-[stroke-dasharray] motion-safe:duration-500",
             TONE_STROKE[tone],
           )}
         />
@@ -158,8 +151,6 @@ export function ReputationCard({ card: raw, items }: CategoryCardProps) {
     if (item.rule === "critical_review_unanswered" && item.subject)
       drafts.set(item.subject, item);
   }
-  const maxBar = Math.max(1, ...STARS.map((s) => card.distribution[s] ?? 0));
-  const lastAge = daysAgo(card.last_review_date);
   const replyPct =
     card.replied_share === null ? null : Math.round(card.replied_share * 100);
 
@@ -173,8 +164,13 @@ export function ReputationCard({ card: raw, items }: CategoryCardProps) {
         </span>
       }
     >
-      <div className="grid gap-6 lg:grid-cols-[auto_1fr]">
-        <div className="flex items-center gap-5">
+      <p className="mb-5 max-w-prose text-sm leading-6 text-text-secondary">
+        Understand your recorded customer feedback and which reviews still need
+        a response. These figures use the reviews saved in this audit, which may
+        differ from the live Google profile.
+      </p>
+      <div className="grid gap-6 xl:grid-cols-[auto_1fr]">
+        <div className="flex flex-wrap items-center gap-5">
           <RatingRing average={card.average} />
           <div className="min-w-0">
             <p className="text-sm font-semibold text-text-primary">
@@ -184,9 +180,7 @@ export function ReputationCard({ card: raw, items }: CategoryCardProps) {
             <p className="mt-0.5 text-xs leading-5 text-text-secondary">
               {card.average === null
                 ? "Not enough ratings to average."
-                : card.average >= 4
-                  ? "Above the 4-star line most customers filter at."
-                  : "Below the 4-star line most customers filter at."}
+                : "Average of the stored reviews with a valid star rating."}
             </p>
             <ul className="mt-3 space-y-1" aria-label="Ratings by star">
               {STARS.map((star) => {
@@ -197,8 +191,8 @@ export function ReputationCard({ card: raw, items }: CategoryCardProps) {
                     key={star}
                     className="flex items-center gap-2 text-xs text-text-secondary"
                   >
-                    <span className="w-3 text-right tabular-nums text-text-primary">
-                      {star}
+                    <span className="w-10 text-right tabular-nums text-text-primary">
+                      {star} star
                     </span>
                     <span
                       className="h-2 w-28 overflow-hidden rounded-full bg-card-border sm:w-36"
@@ -213,7 +207,7 @@ export function ReputationCard({ card: raw, items }: CategoryCardProps) {
                               ? TONE_FILL.warning
                               : TONE_FILL.success,
                         )}
-                        style={{ width: `${(n / maxBar) * 100}%` }}
+                        style={{ width: `${share * 100}%` }}
                       />
                     </span>
                     <span className="w-16 tabular-nums">
@@ -247,16 +241,10 @@ export function ReputationCard({ card: raw, items }: CategoryCardProps) {
             hint="median"
           />
           <Stat
-            label="Last review"
-            value={
-              lastAge === null
-                ? "—"
-                : lastAge === 0
-                  ? "today"
-                  : `${lastAge} ${lastAge === 1 ? "day" : "days"} ago`
-            }
-            tone={daysTone(lastAge, 14, 30)}
-            hint={card.last_review_date ?? undefined}
+            label="Latest recorded review"
+            value={card.last_review_date ?? "Unknown"}
+            tone="muted"
+            hint="as saved in this audit"
           />
           <Stat
             label="Low reviews unanswered"
@@ -287,7 +275,7 @@ export function ReputationCard({ card: raw, items }: CategoryCardProps) {
               return (
                 <li
                   key={review.id}
-                  className="rounded-lg border border-card-border px-4 py-3"
+                  className="border-b border-card-border py-4 last:border-b-0"
                 >
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-text-tertiary">
                     <span
@@ -310,7 +298,7 @@ export function ReputationCard({ card: raw, items }: CategoryCardProps) {
                   {draft && typeof draft.value === "string" ? (
                     <div className="mt-3 rounded-md bg-background-gray-secondary px-3 py-2">
                       <p className="text-xs font-medium text-primary-500">
-                        Drafted reply
+                        AI reply draft · not posted
                         <span className="ml-2 font-normal text-text-tertiary">
                           {draft.confidence} confidence · review before posting
                         </span>

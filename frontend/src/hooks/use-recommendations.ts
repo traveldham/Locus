@@ -48,6 +48,10 @@ export function useGenerateRecommendations() {
     mutationFn: recommendationApi.generate,
     // Queuing changes nothing on screen yet; the job poll publishes the result.
     onSuccess: (job) => {
+      client.setQueryData<Awaited<ReturnType<typeof recommendationApi.latest>>>(
+        latestKey(job.location_id),
+        (previous) => (previous ? { ...previous, job } : previous),
+      );
       void client.invalidateQueries({ queryKey: latestKey(job.location_id) });
       void client.invalidateQueries({ queryKey: DIRECTORY_KEY });
     },
@@ -65,7 +69,8 @@ export function useAuditJob(jobId: string | null) {
     enabled: Boolean(jobId),
     refetchInterval: (q) => {
       const status = q.state.data?.status;
-      return status === "pending" || status === "running" ? 2000 : false;
+      if (status === "succeeded" || status === "failed") return false;
+      return q.state.status === "error" ? 5000 : 2000;
     },
     staleTime: 0,
     retry: 1,

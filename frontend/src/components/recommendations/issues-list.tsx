@@ -11,7 +11,7 @@ import { SEVERITY_ORDER, TONE_TEXT } from "./audit-format";
 import { IssueRow } from "./issue-row";
 
 const chip =
-  "min-h-9 rounded-full border px-3 text-sm whitespace-nowrap transition focus-visible:outline-primary-500";
+  "min-h-11 rounded-lg border px-3 text-sm whitespace-nowrap motion-safe:transition-colors focus-visible:outline-primary-500";
 
 const SEVERITY_RULE = {
   critical: "border-badge-error-text",
@@ -56,6 +56,15 @@ export function IssuesList({
 
   return (
     <div className="space-y-5">
+      <div>
+        <h2 className="text-xl font-semibold tracking-[-0.02em] text-text-primary">
+          Your findings and next steps
+        </h2>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-text-secondary">
+          Start with the checks needing attention. Open a finding to see the
+          affected items, the evidence and any draft you can review.
+        </p>
+      </div>
       <div className="flex flex-wrap items-center gap-2">
         <label className="sr-only" htmlFor="issue-search">
           Search checks
@@ -66,7 +75,7 @@ export function IssuesList({
           defaultValue={search}
           onChange={(e) => setParam("q", e.target.value)}
           placeholder="Search checks"
-          className="min-h-9 w-56 rounded-lg border border-card-border bg-card-background px-3 text-sm text-text-primary focus-visible:outline-primary-500"
+          className="min-h-11 w-full rounded-lg border border-card-border bg-card-background px-3 text-sm text-text-primary focus-visible:outline-primary-500 sm:w-56"
         />
         <div
           className="flex flex-wrap gap-1.5"
@@ -74,13 +83,12 @@ export function IssuesList({
           aria-label="Filter by area"
         >
           <Chip active={!area} onClick={() => setParam("area", "")}>
-            All {failing.length}
+            All areas
           </Chip>
           {run.categories.map((category) => {
             const count = location.by_rule.filter(
               (rule) => rule.category === category.category && rule.issues > 0,
             ).length;
-            if (!count) return null;
             return (
               <Chip
                 key={category.category}
@@ -127,19 +135,17 @@ export function IssuesList({
           <button
             type="button"
             onClick={() => setParam("checks", "all")}
-            className="flex min-h-9 items-center gap-2 rounded-lg border border-primary-500 px-3 text-sm text-text-primary focus-visible:outline-primary-500"
+            className="flex min-h-11 items-center gap-2 rounded-lg border border-primary-500 px-3 text-sm text-text-primary focus-visible:outline-primary-500"
           >
-            With issues
-            <span aria-hidden="true">✕</span>
-            <span className="sr-only">Remove filter and show every check</span>
+            Show passed and unevaluated checks too
           </button>
         ) : (
           <button
             type="button"
             onClick={() => setParam("checks", "")}
-            className="min-h-9 rounded-lg border border-card-border px-3 text-sm text-text-tertiary hover:text-text-primary focus-visible:outline-primary-500"
+            className="min-h-11 rounded-lg border border-card-border px-3 text-sm text-text-tertiary hover:text-text-primary focus-visible:outline-primary-500"
           >
-            Show issues only
+            Show checks needing attention only
           </button>
         )}
       </div>
@@ -190,7 +196,7 @@ export function IssuesList({
           );
         })}
 
-        {!shown.length ? (
+        {!shown.length && (withIssuesOnly || !quiet.length) ? (
           <p className="px-5 py-8 text-sm text-text-secondary">
             No check matches this filter.
           </p>

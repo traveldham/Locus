@@ -18,6 +18,12 @@ const FIELD_LABEL: Record<string, string> = {
   additional_categories: "additional categories",
   attributes: "attribute answers",
   title: "business name",
+  review_reply: "review reply",
+  reply: "review reply",
+  followup_message: "customer follow-up",
+  investigation_plan: "investigation plan",
+  post_drafts: "post ideas",
+  photo_shot_list: "photo checklist",
 };
 
 function asText(value: Suggestion["value"]): string {
@@ -41,6 +47,7 @@ export function SuggestionPanel({
 }) {
   const router = useRouter();
   const [copied, setCopied] = useState(false);
+  const [copyError, setCopyError] = useState(false);
   const editable =
     (suggestion.field === "description" || suggestion.field === "title") &&
     typeof suggestion.value === "string";
@@ -59,9 +66,11 @@ export function SuggestionPanel({
     try {
       await navigator.clipboard.writeText(asText(suggestion.value));
       setCopied(true);
+      setCopyError(false);
       setTimeout(() => setCopied(false), 2000);
     } catch {
       setCopied(false);
+      setCopyError(true);
     }
   }
 
@@ -74,7 +83,9 @@ export function SuggestionPanel({
         <h3 className="font-medium text-text-primary">
           Suggested fix
           <span className="ml-1.5 font-normal text-text-tertiary">
-            · {FIELD_LABEL[suggestion.field] ?? suggestion.field}
+            ·{" "}
+            {FIELD_LABEL[suggestion.field] ??
+              suggestion.field.replaceAll("_", " ")}
           </span>
         </h3>
         <Badge color={CONFIDENCE_COLOR[suggestion.confidence]} size="sm">
@@ -97,13 +108,13 @@ export function SuggestionPanel({
       </div>
       <div className="mt-3 flex flex-wrap items-center gap-2">
         {editable ? (
-          <Button type="button" size="sm" onPress={useDraft}>
+          <Button type="button" size="xl" onPress={useDraft}>
             Use this draft in the editor
           </Button>
         ) : null}
         <Button
           type="button"
-          size="sm"
+          size="xl"
           appearance="outline"
           onPress={() => void copy()}
         >
@@ -112,9 +123,22 @@ export function SuggestionPanel({
         <span className="text-xs leading-5 text-text-tertiary">
           {editable
             ? "Opens the profile editor prefilled. You still preview and approve before anything is published."
-            : "Categories and attributes are set in the Business Profile; copy the answers to take with you."}
+            : suggestion.field === "attributes" ||
+                suggestion.field === "additional_categories"
+              ? "Review these answers before updating your Business Profile."
+              : "Copy this draft, check it against your business and adapt it before using it."}
         </span>
       </div>
+      {copied ? (
+        <p role="status" className="mt-2 text-xs text-badge-success-text">
+          Draft copied to clipboard.
+        </p>
+      ) : null}
+      {copyError ? (
+        <p role="alert" className="mt-2 text-xs text-badge-error-text">
+          Copy did not work. Select the draft text and copy it manually.
+        </p>
+      ) : null}
     </section>
   );
 }

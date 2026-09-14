@@ -20,7 +20,7 @@ export function AuditGate({
   locationId: string;
   children: (run: RecommendationRun) => ReactNode;
 }) {
-  const { run, job, isAuditing, isPending, error, refetch } =
+  const { run, isAuditing, isPending, error, refetch } =
     useAuditRun(locationId);
   if (isPending) {
     return (
@@ -39,13 +39,12 @@ export function AuditGate({
     if (isAuditing) {
       return (
         <EmptyState
-          title="Auditing this profile now"
+          title="Your first report is on its way"
           description={
             <>
-              {job?.status === "pending"
-                ? "Queued and waiting for a worker to pick it up."
-                : `${job?.stage} · ${job?.progress}%`}{" "}
-              The result appears here as soon as it finishes.
+              Follow the review above. When it finishes, you’ll see your overall
+              profile health, the findings in each area and recommended next
+              steps.
             </>
           }
         />
@@ -54,7 +53,7 @@ export function AuditGate({
     return (
       <EmptyState
         title="This profile has not been audited yet"
-        description="Run the first audit for this location, then its score and issues appear here."
+        description="Select Run first audit above. We’ll review six areas, explain the findings and suggest practical next steps using the saved data for this location."
       />
     );
   }

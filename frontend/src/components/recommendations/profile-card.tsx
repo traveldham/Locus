@@ -39,22 +39,6 @@ const RULE_ELEMENT: Record<string, string> = {
   services_without_attribute: "attributes",
 };
 
-const ELEMENT_NOTE: Record<string, string> = {
-  phone: "no call button",
-  website: "no website button",
-  address: "directions may fail",
-  category: "weak match to searches",
-  verified: "may not show at all",
-  status: "listed as closed",
-  opened: "no years in business",
-  description: "customers read nothing",
-  name: "against guidelines",
-  logo: "no logo beside the name",
-  cover: "no cover image",
-  hours: "hours unknown",
-  attributes: "accessibility unknown",
-};
-
 function flagged(items: Recommendation[]) {
   const map = new Map<string, Recommendation[]>();
   for (const item of items) {
@@ -112,33 +96,65 @@ export function ProfileBeforeAfter({
 }) {
   const flags = flagged(items);
   const hasDrafts = items.some((i) => i.suggestion);
+  const draftAttributes = afterAttributes(flags.get("attributes"));
+  const changed = new Set<string>();
+  if (afterValue(flags.get("name"), "title") !== null) changed.add("name");
+  if (afterValue(flags.get("description"), "description") !== null)
+    changed.add("description");
+  if (afterList(flags.get("category"), "additional_categories").length)
+    changed.add("category");
+  if (Object.keys(draftAttributes).length) changed.add("attributes");
   return (
-    <div className={cn("grid gap-5", hasDrafts && "lg:grid-cols-2")}>
-      <Card title="As customers see it now" card={card} flags={flags} />
-      {hasDrafts ? (
-        <Card
-          title="With the drafts applied"
-          card={{
-            ...card,
-            name: afterValue(flags.get("name"), "title") ?? card.name,
-            description:
-              afterValue(flags.get("description"), "description") ??
-              card.description,
-            additional_categories: [
-              ...card.additional_categories,
-              ...afterList(flags.get("category"), "additional_categories"),
-            ],
-            attributes_yes: [
-              ...card.attributes_yes,
-              ...Object.entries(afterAttributes(flags.get("attributes")))
-                .filter(([, v]) => v)
-                .map(([k]) => k),
-            ],
-          }}
-          flags={new Map()}
-          after
-        />
-      ) : null}
+    <div className="space-y-4">
+      <p className="text-sm leading-6 text-text-secondary">
+        {hasDrafts
+          ? `${changed.size} profile ${changed.size === 1 ? "field has" : "fields have"} proposed edits. Blue labels identify drafted fields; remaining highlighted issues still need your attention.`
+          : "No AI edits are available in this report. Use the checks below to review the recommended changes and add business details that only you can confirm."}
+      </p>
+      <div className={cn("grid gap-5", hasDrafts && "lg:grid-cols-2")}>
+        <Card title="Current saved profile" card={card} flags={flags} />
+        {hasDrafts ? (
+          <Card
+            title="Proposed profile preview"
+            card={{
+              ...card,
+              name: afterValue(flags.get("name"), "title") ?? card.name,
+              description:
+                afterValue(flags.get("description"), "description") ??
+                card.description,
+              additional_categories: [
+                ...new Set([
+                  ...card.additional_categories,
+                  ...afterList(flags.get("category"), "additional_categories"),
+                ]),
+              ],
+              attributes_yes: [
+                ...new Set([
+                  ...card.attributes_yes.filter(
+                    (key) => draftAttributes[key] !== false,
+                  ),
+                  ...Object.entries(draftAttributes)
+                    .filter(([, v]) => v)
+                    .map(([k]) => k),
+                ]),
+              ],
+              attributes_no: [
+                ...new Set([
+                  ...card.attributes_no.filter(
+                    (key) => draftAttributes[key] !== true,
+                  ),
+                  ...Object.entries(draftAttributes)
+                    .filter(([, v]) => !v)
+                    .map(([k]) => k),
+                ]),
+              ],
+            }}
+            flags={new Map([...flags].filter(([key]) => !changed.has(key)))}
+            changed={changed}
+            after
+          />
+        ) : null}
+      </div>
     </div>
   );
 }
@@ -148,20 +164,26 @@ function Card({
   card,
   flags,
   after = false,
+  changed = new Set<string>(),
 }: {
   title: string;
   card: ProfileCardData;
   flags: Map<string, Recommendation[]>;
   after?: boolean;
+  changed?: Set<string>;
 }) {
   const mark = (element: string) =>
     flags.has(element)
       ? "rounded-md outline outline-2 outline-offset-2 outline-[#d93025]"
       : "";
   const note = (element: string) =>
-    flags.has(element) ? (
+    changed.has(element) ? (
+      <span className="ml-2 text-xs font-medium text-[#1967d2]">
+        AI draft · review
+      </span>
+    ) : flags.has(element) ? (
       <span className="ml-2 text-xs font-medium text-[#d93025]">
-        {ELEMENT_NOTE[element]}
+        Needs attention
       </span>
     ) : null;
   const address = [
@@ -195,14 +217,24 @@ function Card({
           <span className="absolute inset-0 flex items-center justify-center text-xs text-[#5f6368]">
             No cover photo{note("cover")}
           </span>
-        ) : null}
+        ) : (
+          <span className="absolute inset-0 flex items-center justify-center text-xs text-[#5f6368]">
+            {card.has_cover === true
+              ? "Cover photo recorded · image not included in audit"
+              : "Cover photo status unknown"}
+          </span>
+        )}
         <span
           className={cn(
             "absolute -bottom-5 left-4 flex size-12 items-center justify-center rounded-full border-2 border-white bg-white text-[10px] text-[#5f6368] shadow",
             mark("logo"),
           )}
         >
-          {card.has_logo === false ? "no logo" : "logo"}
+          {card.has_logo === false
+            ? "no logo"
+            : card.has_logo === true
+              ? "logo saved"
+              : "unknown"}
         </span>
       </div>
       <div className="px-4 pt-8 pb-4">
@@ -269,11 +301,11 @@ function Card({
         <dl className="mt-4 space-y-2 text-sm">
           <div className={cn("flex gap-3", mark("address"))}>
             <dt className="w-20 shrink-0 text-[#5f6368]">Address</dt>
-            <dd>{address || "Not set"}</dd>
+            <dd className="min-w-0 break-words">{address || "Not set"}</dd>
           </div>
           <div className={cn("flex gap-3", mark("phone"))}>
             <dt className="w-20 shrink-0 text-[#5f6368]">Phone</dt>
-            <dd>{card.phone ?? "Not set"}</dd>
+            <dd className="min-w-0 break-words">{card.phone ?? "Not set"}</dd>
           </div>
           <div className={cn("flex gap-3", mark("website"))}>
             <dt className="w-20 shrink-0 text-[#5f6368]">Website</dt>
@@ -324,6 +356,14 @@ function Card({
                   .join(" · ")
               : "Nothing confirmed yet."}
           </p>
+          {card.attributes_no.length ? (
+            <p className="mt-2 text-sm leading-6 text-[#5f6368]">
+              Recorded as unavailable:{" "}
+              {card.attributes_no
+                .map((a) => a.replaceAll("_", " "))
+                .join(" · ")}
+            </p>
+          ) : null}
         </div>
       </div>
     </section>

@@ -121,9 +121,10 @@ export function IssueDetail({
           .includes(term),
     );
   const pages = Math.max(1, Math.ceil(findings.length / PAGE_SIZE));
+  const currentPage = Math.min(page, pages - 1);
   const visible = findings.slice(
-    page * PAGE_SIZE,
-    page * PAGE_SIZE + PAGE_SIZE,
+    currentPage * PAGE_SIZE,
+    currentPage * PAGE_SIZE + PAGE_SIZE,
   );
   const examined = cluster.subjects_examined;
   const failed = cluster.subjects_failed;
@@ -230,7 +231,7 @@ export function IssueDetail({
             setPage(0);
           }}
           placeholder="Search subjects"
-          className="min-h-9 w-64 rounded-lg border border-card-border bg-card-background px-3 text-sm text-text-primary focus-visible:outline-primary-500"
+          className="min-h-11 w-full rounded-lg border border-card-border bg-card-background px-3 text-sm text-text-primary focus-visible:outline-primary-500 sm:w-64"
         />
         <span className="text-sm text-text-tertiary">
           {findings.length} of {cluster.issues} shown
@@ -240,7 +241,7 @@ export function IssueDetail({
       <div className="space-y-4">
         {visible.map((item) => (
           <article
-            key={item.key}
+            key={`${run.id}:${item.key}`}
             className="rounded-xl border border-card-border bg-card-background px-5 py-5"
           >
             <div className="flex flex-wrap items-start justify-between gap-3">
@@ -297,20 +298,20 @@ export function IssueDetail({
         {pages > 1 ? (
           <div className="flex flex-wrap items-center gap-4 py-2 text-sm text-text-secondary">
             <span>
-              Page {page + 1} of {pages}
+              Page {currentPage + 1} of {pages}
             </span>
             <button
               type="button"
-              disabled={page === 0}
-              onClick={() => setPage(page - 1)}
+              disabled={currentPage === 0}
+              onClick={() => setPage(currentPage - 1)}
               className="min-h-11 underline disabled:opacity-40"
             >
               Previous
             </button>
             <button
               type="button"
-              disabled={page + 1 >= pages}
-              onClick={() => setPage(page + 1)}
+              disabled={currentPage + 1 >= pages}
+              onClick={() => setPage(currentPage + 1)}
               className="min-h-11 underline disabled:opacity-40"
             >
               Next

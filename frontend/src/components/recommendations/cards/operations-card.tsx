@@ -86,10 +86,8 @@ function Tile({
   hint: string;
 }) {
   return (
-    <div className="min-w-0 rounded-xl border border-card-border bg-background-gray-secondary px-4 py-3">
-      <p className="text-xs font-medium tracking-wide text-text-tertiary uppercase">
-        {label}
-      </p>
+    <div className="min-w-0 border-b border-card-border py-4">
+      <p className="text-sm font-medium text-text-secondary">{label}</p>
       <p
         className={cn(
           "mt-1 text-2xl font-semibold tracking-[-0.02em]",
@@ -116,10 +114,13 @@ function Bars({
       {rows.map((row) => (
         <li
           key={row.label}
-          className="grid grid-cols-[7rem_1fr_2.5rem] items-center gap-2 text-sm"
+          className="grid grid-cols-[minmax(5rem,1fr)_minmax(3rem,1.5fr)_2.5rem] items-center gap-2 text-sm"
         >
-          <span className="truncate text-text-secondary">{row.label}</span>
-          <span className="h-2.5 overflow-hidden rounded-full bg-background-gray-secondary">
+          <span className="break-words text-text-secondary">{row.label}</span>
+          <span
+            aria-hidden="true"
+            className="h-2.5 overflow-hidden rounded-full bg-background-gray-secondary"
+          >
             <span
               className={cn(
                 "block h-full rounded-full",
@@ -164,6 +165,11 @@ export function OperationsCard({ card, items }: CategoryCardProps) {
         </p>
       ) : (
         <div className="space-y-6">
+          <p className="max-w-prose text-sm leading-6 text-text-secondary">
+            See which appointment requests need a response and how recorded
+            visits ended. These requests include all recorded channels, not only
+            Google.
+          </p>
           <div className="grid gap-3 sm:grid-cols-3">
             <Tile
               label="Confirmed"
@@ -187,7 +193,13 @@ export function OperationsCard({ card, items }: CategoryCardProps) {
 
           <div className="grid gap-6 lg:grid-cols-2">
             <div>
-              <h3 className="text-sm font-medium text-text-primary">Funnel</h3>
+              <h3 className="text-sm font-semibold text-text-primary">
+                Where requests stand
+              </h3>
+              <p className="mt-1 text-xs leading-5 text-text-secondary">
+                Each request appears in its current status once. These bars are
+                a status breakdown, not steps in a conversion funnel.
+              </p>
               <div className="mt-3">
                 <Bars
                   ariaLabel="Requests by status"
@@ -258,7 +270,15 @@ export function OperationsCard({ card, items }: CategoryCardProps) {
                     <Bars
                       ariaLabel="Requests by channel"
                       rows={card.channels.map((c) => ({
-                        label: c.channel,
+                        label:
+                          (
+                            {
+                              google_profile: "Google profile",
+                              walk_in: "Walk-in",
+                              website: "Website",
+                              phone: "Phone",
+                            } as Record<string, string>
+                          )[c.channel] ?? c.channel,
                         value: c.requests,
                         fill: "bg-primary-500",
                       }))}
@@ -272,6 +292,19 @@ export function OperationsCard({ card, items }: CategoryCardProps) {
               </div>
             </div>
           </div>
+          <details className="border-t border-card-border pt-2 text-sm">
+            <summary className="flex min-h-11 cursor-pointer items-center text-primary-500 focus-visible:outline-2 focus-visible:outline-primary-500">
+              How these rates are calculated
+            </summary>
+            <p className="max-w-prose pb-3 leading-6 text-text-secondary">
+              Confirmation counts confirmed, completed and no-show requests out
+              of requests with a decision. Cancellation and no-show rates use
+              only completed, cancelled and no-show visits. Waiting requests and
+              future confirmed visits do not belong in that outcome total. Lead
+              time measures the time from request creation to the requested
+              appointment date.
+            </p>
+          </details>
 
           {followups.length ? (
             <div className="rounded-xl bg-background-gray-secondary px-4 py-4">
