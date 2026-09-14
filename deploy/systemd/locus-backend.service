@@ -1,0 +1,18 @@
+[Unit]
+Description=Locus FastAPI backend (uvicorn)
+After=network.target postgresql.service redis-server.service
+Requires=postgresql.service redis-server.service
+
+[Service]
+Type=simple
+User=pawanpatrapp
+Group=pawanpatrapp
+WorkingDirectory=/home/pawanpatrapp/Locus/backend
+# app/core/config.py loads .env itself via pydantic-settings; WorkingDirectory is enough.
+ExecStart=/home/pawanpatrapp/.local/bin/uv run uvicorn app.main:app --host 127.0.0.1 --port 8000
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

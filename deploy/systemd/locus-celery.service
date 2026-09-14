@@ -1,0 +1,17 @@
+[Unit]
+Description=Locus Celery worker (audit generation)
+After=network.target redis-server.service
+Requires=redis-server.service
+
+[Service]
+Type=simple
+User=pawanpatrapp
+Group=pawanpatrapp
+WorkingDirectory=/home/pawanpatrapp/Locus/backend
+ExecStart=/home/pawanpatrapp/.local/bin/uv run celery -A app.worker worker --loglevel=info --concurrency=2
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
