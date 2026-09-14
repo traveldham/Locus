@@ -104,3 +104,12 @@ export function useActiveProject(): ActiveProjectValue {
 export function useActiveProjectId(): string | null {
   return useContext(ActiveProjectContext)?.projectId ?? null;
 }
+
+/**
+ * The active project's name, for copy that has to say which project something covers.
+ * Null outside the dashboard tree and until the project list has answered, so every
+ * caller needs wording that still reads without it.
+ */
+export function useActiveProjectName(): string | null {
+  return useContext(ActiveProjectContext)?.project?.name ?? null;
+}

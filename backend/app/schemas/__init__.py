@@ -1,3 +1,11 @@
+from app.schemas.agent import (
+    AgentMessageResponse,
+    ConversationCreateRequest,
+    ConversationDetail,
+    ConversationSummary,
+    PostMessageRequest,
+    TurnResponse,
+)
 from app.schemas.auth import (
     LoginRequest,
     OrganizationSummary,
@@ -63,6 +71,7 @@ from app.schemas.seo import (
 
 __all__ = [
     "ActionUser",
+    "AgentMessageResponse",
     "AttributeCatalogItemResponse",
     "AttributeCatalogResponse",
     "AttributeInput",
@@ -72,6 +81,9 @@ __all__ = [
     "CompetitorListResponse",
     "CompetitorObservationResponse",
     "ConnectionResponse",
+    "ConversationCreateRequest",
+    "ConversationDetail",
+    "ConversationSummary",
     "EditPreviewResponse",
     "FieldChange",
     "HoursPeriodInput",
@@ -93,6 +105,7 @@ __all__ = [
     "PerformanceSeriesResponse",
     "PerformanceTotals",
     "PostListResponse",
+    "PostMessageRequest",
     "PostResponse",
     "ProjectCreate",
     "ProjectDetailResponse",
@@ -108,6 +121,7 @@ __all__ = [
     "SearchTermResponse",
     "TokenResponse",
     "TrackedKeywordListResponse",
+    "TurnResponse",
     "TrackedKeywordResponse",
     "UserResponse",
 ]

@@ -6,6 +6,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
+from app.api.agent import router as agent_router
 from app.api.auth import router as auth_router
 from app.api.bookings import router as bookings_router
 from app.api.health import router as health_router
@@ -67,6 +68,7 @@ for router in (
     insights_router,
     market_router,
     bookings_router,
+    agent_router,
 ):
     app.include_router(router, prefix=settings.api_prefix)
 

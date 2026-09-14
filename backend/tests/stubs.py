@@ -10,9 +10,14 @@ count rather than a magic number copied out of a CSV.
 
 from __future__ import annotations
 
+import asyncio
+from collections.abc import Sequence
 from dataclasses import replace
 from datetime import UTC, datetime
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
+
+from langchain_core.language_models.fake_chat_models import GenericFakeChatModel
+from langchain_core.messages import AIMessage, BaseMessage
 
 from app.models import LocationSource, OpenStatus
 from app.services.providers.base import (
@@ -321,3 +326,152 @@ class StubReviewsProvider:
     ) -> None:
         del connection
         self._replies[(location.google_location_name, google_review_id)] = None
+
+
+class StubChatModel:
+    """A chat model whose every reply is written by the test, not by a model.
+
+    The agent graph only ever asks a model for two things - bind these tools, then answer
+    these messages - so a scripted list of `AIMessage`s is enough to drive a whole turn:
+    script one that requests a tool and one that answers, and the loop runs for real with
+    no network and no language model anywhere.
+
+    What it received is kept as well, so a test can assert the system prompt was sent and
+    that the tool's result came back to the model.
+    """
+
+    def __init__(self, responses: Sequence[AIMessage]):
+        self._responses = list(responses)
+        self.tools: list = []
+        self.calls: list[list[BaseMessage]] = []
+
+    def bind_tools(self, tools, **kwargs):
+        del kwargs
+        self.tools = list(tools)
+        return self
+
+    async def ainvoke(self, messages, **kwargs):
+        del kwargs
+        self.calls.append(list(messages))
+        if not self._responses:
+            raise AssertionError("The agent asked the model for one more reply than scripted")
+        return self._responses.pop(0)
+
+
+class StreamingChatModel(GenericFakeChatModel):
+    """A scripted model that arrives a word at a time, the way a real one does.
+
+    `StubChatModel` is not a chat model at all - it answers `ainvoke` and nothing else -
+    which is all the graph needs but leaves the token path untested. This one is a real
+    `BaseChatModel` with `_astream` behind it, so LangGraph's `messages` stream carries
+    genuine `AIMessageChunk`s through the genuine callback plumbing. `bind_tools` hands
+    back the same object because the point here is the deltas, not tool calling.
+    """
+
+    def bind_tools(self, tools, **kwargs):
+        del tools, kwargs
+        return self
+
+
+class FakePubSub:
+    """One subscriber's queue. Mirrors `redis.asyncio.client.PubSub` closely enough that
+    the real subscription code runs unchanged: a subscribe confirmation arrives before
+    any message, `get_message` returns `None` when its timeout passes, and
+    `ignore_subscribe_messages` filters rather than waits."""
+
+    def __init__(self, broker: FakeRedisBroker) -> None:
+        self._broker = broker
+        self._messages: asyncio.Queue[dict[str, Any]] = asyncio.Queue()
+        self.channels: list[str] = []
+        self.closed = False
+
+    async def subscribe(self, channel: str) -> None:
+        self.channels.append(channel)
+        self._broker.attach(channel, self)
+        self._messages.put_nowait({"type": "subscribe", "channel": channel, "data": 1})
+
+    def deliver(self, channel: str, payload: str) -> None:
+        self._messages.put_nowait({"type": "message", "channel": channel, "data": payload})
+
+    async def get_message(
+        self, ignore_subscribe_messages: bool = False, timeout: float | None = 0.0
+    ) -> dict[str, Any] | None:
+        try:
+            message = await asyncio.wait_for(self._messages.get(), timeout)
+        except TimeoutError:
+            return None
+        if ignore_subscribe_messages and message["type"] != "message":
+            return None
+        return message
+
+    async def aclose(self) -> None:
+        self.closed = True
+        self._broker.detach(self)
+
+
+class FakeRedis:
+    """The client half: publish goes to the broker, `pubsub()` opens a subscriber."""
+
+    def __init__(self, broker: FakeRedisBroker) -> None:
+        self._broker = broker
+        self.closed = False
+
+    async def publish(self, channel: str, payload: str) -> int:
+        return self._broker.publish(channel, payload)
+
+    def pubsub(self) -> FakePubSub:
+        return FakePubSub(self._broker)
+
+    async def aclose(self) -> None:
+        self.closed = True
+
+
+class FakeRedisBroker:
+    """An in-process stand-in for the Redis the agent's turn stream runs over.
+
+    The stream exists to join two processes, and a test has only one, so the broker is a
+    dictionary of subscribers rather than a server. Everything either side of it -
+    encoding, subscribing, forwarding, closing - is the real code.
+
+    `fail()` makes every publish raise, which is how the suite asserts the thing that
+    matters most about the publishing path: that a broker which is down costs a reader
+    its animation and a turn nothing at all.
+    """
+
+    def __init__(self) -> None:
+        self.published: list[tuple[str, str]] = []
+        self._subscribers: dict[str, list[FakePubSub]] = {}
+        self._arrivals: dict[str, asyncio.Event] = {}
+        self._failing = False
+
+    def client(self) -> FakeRedis:
+        return FakeRedis(self)
+
+    def fail(self) -> None:
+        self._failing = True
+
+    def publish(self, channel: str, payload: str) -> int:
+        if self._failing:
+            raise ConnectionError("Redis is not answering")
+        self.published.append((channel, payload))
+        subscribers = self._subscribers.get(channel, [])
+        for subscriber in subscribers:
+            subscriber.deliver(channel, payload)
+        return len(subscribers)
+
+    def attach(self, channel: str, subscriber: FakePubSub) -> None:
+        self._subscribers.setdefault(channel, []).append(subscriber)
+        self._arrivals.setdefault(channel, asyncio.Event()).set()
+
+    def detach(self, subscriber: FakePubSub) -> None:
+        for subscribers in self._subscribers.values():
+            if subscriber in subscribers:
+                subscribers.remove(subscriber)
+
+    def subscribers(self, channel: str) -> int:
+        return len(self._subscribers.get(channel, []))
+
+    async def wait_for_subscriber(self, channel: str) -> None:
+        """Block until something has subscribed to `channel`, so a test can publish into
+        a stream it knows is listening rather than racing it."""
+        await self._arrivals.setdefault(channel, asyncio.Event()).wait()

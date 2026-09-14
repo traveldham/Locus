@@ -23,6 +23,9 @@ class Settings(BaseSettings):
     redis_url: str = "redis://localhost:6379/0"
     celery_always_eager: bool = False
     audit_job_timeout_seconds: int = Field(default=900, ge=30, le=7200)
+    # A chat turn is someone waiting at a keyboard, so it is bounded far tighter than an
+    # audit. The task sets this per-task: the Celery-wide limit is the audit's.
+    agent_turn_timeout_seconds: int = Field(default=180, ge=30, le=600)
 
     # A snapshot read runs in its own repeatable-read session, so a request that takes
     # one holds two connections at once. Size the pool for that, not for one each.

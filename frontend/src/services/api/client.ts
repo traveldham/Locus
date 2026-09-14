@@ -61,10 +61,20 @@ async function request(path: string, init: RequestInit, token: string | null) {
   });
 }
 
-export async function apiRequest<T>(
+/**
+ * One authenticated call, as the raw `Response`.
+ *
+ * `apiRequest` is this plus JSON parsing and is what almost everything should use. This
+ * exists for the one response that is not JSON and must not be buffered: the agent's
+ * `text/event-stream`, which is read incrementally from `response.body`. Going through here
+ * rather than calling `fetch` directly is what keeps the bearer token, the refresh-once-on-
+ * 401 retry and the error shape in a single place — `EventSource` cannot send an
+ * `Authorization` header at all, which is why the stream is a `fetch` in the first place.
+ */
+export async function apiFetch(
   path: string,
   init: RequestInit = {},
-): Promise<T> {
+): Promise<Response> {
   const token = getAccessToken();
   let response = await request(path, init, token);
 
@@ -88,6 +98,14 @@ export async function apiRequest<T>(
     );
   }
 
+  return response;
+}
+
+export async function apiRequest<T>(
+  path: string,
+  init: RequestInit = {},
+): Promise<T> {
+  const response = await apiFetch(path, init);
   if (response.status === 204) return undefined as T;
   return response.json() as Promise<T>;
 }

@@ -23,7 +23,7 @@ from app.models import (
     OrganizationMembership,
     User,
 )
-from stubs import StubGbpProvider, StubReviewsProvider
+from stubs import FakeRedisBroker, StubGbpProvider, StubReviewsProvider
 
 SessionFactory = async_sessionmaker[AsyncSession]
 
@@ -74,6 +74,19 @@ def no_llm(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(
         "app.services.recommendations.suggestions.overall.get_settings", lambda: offline
     )
+
+
+@pytest.fixture(autouse=True)
+def turn_stream(monkeypatch: pytest.MonkeyPatch) -> FakeRedisBroker:
+    """Run the agent's live turn stream over an in-process broker.
+
+    Autouse because a turn publishes whether or not the test is about streaming, and
+    nothing in this suite is allowed to open a socket. A test that cares about what was
+    published asks for this fixture and reads it back.
+    """
+    broker = FakeRedisBroker()
+    monkeypatch.setattr("app.services.agent.stream.redis_client", broker.client)
+    return broker
 
 
 @pytest.fixture(autouse=True)

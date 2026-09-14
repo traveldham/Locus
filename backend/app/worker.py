@@ -15,7 +15,7 @@ celery_app = Celery(
     "locus",
     broker=settings.redis_url,
     backend=settings.redis_url,
-    include=["app.tasks.audit"],
+    include=["app.tasks.audit", "app.tasks.agent"],
 )
 
 celery_app.conf.update(

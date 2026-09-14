@@ -1,3 +1,10 @@
+from app.models.agent import (
+    AgentConversation,
+    AgentMessage,
+    AgentMessageRole,
+    AgentTurn,
+    AgentTurnStatus,
+)
 from app.models.audit import ActionStatus, ProfileAction
 from app.models.base import Base, DataSource, TimestampMixin, utcnow
 from app.models.bookings import Booking, BookingChannel, BookingStatus
@@ -40,6 +47,11 @@ from app.models.user import AuthProvider, User, UserIdentity
 
 __all__ = [
     "ActionStatus",
+    "AgentConversation",
+    "AgentMessage",
+    "AgentMessageRole",
+    "AgentTurn",
+    "AgentTurnStatus",
     "AuditCheckHistory",
     "AuditScoreHistory",
     "AuditJob",

@@ -10,6 +10,7 @@ import {
 import { cn } from "@/utils/cn";
 import { ReactNode, Suspense, useState } from "react";
 import { AuthGuard } from "@/components/auth/auth-guard";
+import { AgentWidget } from "@/components/agent/agent-widget";
 import { ActiveProjectProvider } from "@/contexts/active-project";
 
 export default function WithLayout({ children }: { children: ReactNode }) {
@@ -90,6 +91,9 @@ export default function WithLayout({ children }: { children: ReactNode }) {
               </div>
             </div>
           </div>
+
+          {/* Fixed, and outside the scrolling <main> so it stays put on every page. */}
+          <AgentWidget />
         </ActiveProjectProvider>
       </Suspense>
     </AuthGuard>

@@ -17,6 +17,9 @@ dependencies = [
   "uvicorn[standard]>=0.32,<1",
   "google-auth>=2.30,<3",
   "requests>=2.31,<3",
+  "langgraph>=1.2.11,<2",
+  "langchain-core>=1.6.3,<2",
+  "langchain-google-vertexai>=3.2.4,<4",
 ]
 
 [project.optional-dependencies]
