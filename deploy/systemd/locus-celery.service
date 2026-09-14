@@ -8,7 +8,7 @@ Type=simple
 User=pawanpatrapp
 Group=pawanpatrapp
 WorkingDirectory=/home/pawanpatrapp/Locus/backend
-ExecStart=/home/pawanpatrapp/.local/bin/uv run celery -A app.worker worker --loglevel=info --concurrency=2
+ExecStart=/home/pawanpatrapp/.local/bin/uv run celery -A app.worker worker --loglevel=info --concurrency=6
 Restart=on-failure
 RestartSec=5
 NoNewPrivileges=true
