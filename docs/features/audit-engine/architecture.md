@@ -140,8 +140,8 @@ field and its role.
 ## Worker docs
 
 Each worker's checks, thresholds, abstentions and AI drafts are documented in
-`docs/engine/workers/<key>.md`, with the research behind them in
-`docs/engine/research/`.
+`docs/features/audit-engine/categories/<key>.md`, with the research behind them in
+`docs/features/audit-engine/research/`.
 
 ## What was deliberately removed on 2026-09-13
 

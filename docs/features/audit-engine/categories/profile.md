@@ -90,4 +90,4 @@ implement `generate_json` and register it in `provider_from_settings`.
 
 Special hours, service area, services list, pending Google edits and Google-updated
 fields: they need the Business Information API and are described in
-`docs/engine/research/03-profile-worker-data-inventory.md`.
+`docs/features/audit-engine/research/03-profile-worker-data-inventory.md`.

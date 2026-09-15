@@ -2,7 +2,7 @@
 
 Category `operations`, weight 15. Module: `backend/app/services/recommendations/categories/operations.py`.
 Suggestion layer: `backend/app/services/recommendations/suggestions/operations.py`.
-Research and thresholds: `docs/engine/research/06-operations-worker.md`.
+Research and thresholds: `docs/features/audit-engine/research/06-operations-worker.md`.
 
 ## What it answers
 

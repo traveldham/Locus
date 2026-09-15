@@ -9,6 +9,7 @@ from fastapi.responses import JSONResponse
 from app.api.agent import router as agent_router
 from app.api.auth import router as auth_router
 from app.api.bookings import router as bookings_router
+from app.api.demo_profiles import router as demo_profiles_router
 from app.api.health import router as health_router
 from app.api.insights import router as insights_router
 from app.api.integrations import router as integrations_router
@@ -69,6 +70,7 @@ for router in (
     market_router,
     bookings_router,
     agent_router,
+    demo_profiles_router,
 ):
     app.include_router(router, prefix=settings.api_prefix)
 

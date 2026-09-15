@@ -2,7 +2,7 @@
 
 Category `reputation`, weight 20. Module: `backend/app/services/recommendations/categories/reputation.py`.
 Suggestion layer: `backend/app/services/recommendations/suggestions/reputation.py`.
-Research and thresholds: `docs/engine/research/04-reputation-worker.md`.
+Research and thresholds: `docs/features/audit-engine/research/04-reputation-worker.md`.
 
 ## What it answers
 

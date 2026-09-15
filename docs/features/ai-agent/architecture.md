@@ -41,6 +41,11 @@ error the model can read and explain; an exception anywhere in the loop lands as
 turn carrying its reason. A chat that silently stops answering is the worst outcome, so it
 is the one outcome that cannot happen.
 
+Two exceptions are deliberately *not* converted into tool errors: Celery's
+`SoftTimeLimitExceeded` and `asyncio.CancelledError`. Both mean the turn itself is being
+torn down, and handing "you ran out of time" to the model as a readable error would only
+buy it another model call it does not have time for. They propagate.
+
 ---
 
 ## The loop
@@ -100,7 +105,7 @@ So messages are stored with everything needed to reproduce that exactly:
 | Row | Stored | Replays as |
 |---|---|---|
 | `role=user` | `content` | `HumanMessage` |
-| `role=assistant` | `content`, `tool_calls` (JSON) | `AIMessage(content, tool_calls=[...])` |
+| `role=assistant` | `content`, `tool_calls` (JSON, each optionally carrying `thought_signature`) | `AIMessage(content, tool_calls=[...])`, signatures restored into `additional_kwargs` |
 | `role=tool` | `content`, `tool_call_id`, `tool_name` | `ToolMessage(content, tool_call_id, name)` |
 
 **A stored transcript is not assumed to be valid.** Because each message is committed as it
@@ -124,6 +129,12 @@ Ordering is `created_at, id`. The id only makes the order deterministic, not cor
 is random, so a genuine timestamp collision could still order a result before its call.
 `_repair` is what makes that survivable rather than fatal.
 
+**Gemini thought signatures replay too.** A stored tool call may carry a `thought_signature`,
+which is read back into `AIMessage.additional_kwargs` under
+`__gemini_function_call_thought_signatures__` and written out again on the next store. It is
+not optional decoration: without it the request fails outright with *"Function call is
+missing a thought_signature"*.
+
 ---
 
 ## The tools
@@ -133,7 +144,7 @@ is random, so a genuine timestamp collision could still order a result before it
 | `get_latest_audit` | read | `recommendations.runs.latest_run` — returns a compact summary (score, grade, coverage, top priorities), never the whole report, which is far too large for a prompt |
 | `list_audit_suggestions` | read | the same run's AI-drafted `Suggestion`s, each with the id the existing write tool needs — or an honest reason it cannot be applied |
 | `start_audit` | read† | `recommendations.queue.start_audit` — joins an audit already running rather than starting a second |
-| `poll_audit_job` | read | polls the `AuditJob` internally for up to ~90s rather than making the model re-ask every two seconds |
+| `poll_audit_job` | read | polls the `AuditJob` internally for up to `POLL_BUDGET_SECONDS` (60) rather than making the model re-ask every two seconds; at most `MAX_POLLS` (2) waits per job, and it gives up early on a job still `pending` with no `started_at` |
 | `list_reviews` | read | `api.reviews.list_reviews`, scoped to this location; `unreplied_only` is the filter that matters |
 | `sync_reviews` | read† | `api.reviews.sync_reviews` — refreshes from the provider before acting |
 | `reply_to_review` | **write** | `api.reviews.reply_to_review` |
@@ -148,10 +159,14 @@ is random, so a genuine timestamp collision could still order a result before it
 no argument for the model to get wrong and nothing to guess. The two tools that are pointed
 at something other than that location are the ones given a row rather than a location —
 `reply_to_review` takes a review, `poll_audit_job` takes a job — and both resolve that row's
-location and check it before acting. The argument schemas also forbid unknown fields, so a
+location and check it before acting. The argument schemas also set `extra="forbid"`, so a
 model that invents a `location_id` anyway is refused rather than having it silently dropped:
 the write would otherwise land on this conversation's own profile while the model reported
-editing the other one.
+editing the other one. One caveat — `StructuredTool` skips validation entirely for a schema
+with **no** fields, so on the read-only tools that take no arguments a stray one is still
+merely dropped. The refusal is asserted for the five tools that take arguments:
+`update_location_profile`, `reply_to_review`, `list_reviews`, `list_recent_actions`,
+`poll_audit_job`.
 
 ### Every tool call gets its own session
 
@@ -256,7 +271,9 @@ enforces it.
    `turn.current_tool` is set to whatever the agent is about to run, which is what the UI's
    "Checking reviews…" line reads.
 4. The turn ends `succeeded`, or `failed` with the reason — a model that cannot be reached,
-   a tool that failed, a loop that hit its bound.
+   a tool that failed, a loop that hit its bound, or a graph that completed without ever
+   producing assistant text (`"The assistant did not return an answer. Ask again."`). An
+   assistant message with neither text nor tool calls is dropped rather than stored.
 5. The client watches `GET /agent/turns/{id}/stream` — or polls `GET /agent/turns/{id}`
    and re-reads the transcript, which still works and still shows the same answer.
 
@@ -284,14 +301,19 @@ a stuck turn blocks the chat forever:
 
 ## The API
 
-| | |
-|---|---|
-| `POST /agent/conversations` | `{location_id}`, required → the conversation |
-| `GET /agent/conversations?location_id=` | one location's conversations, newest first |
-| `GET /agent/conversations/{id}` | the full transcript, plus `active_turn` |
-| `POST /agent/conversations/{id}/messages` | `{content}` → `202` + the queued turn |
-| `GET /agent/turns/{id}` | turn status — the polling target |
-| `GET /agent/turns/{id}/stream` | the same turn as it happens, as server-sent events |
+All paths are under the API prefix, `/api/v1` by default.
+
+| | | |
+|---|---|---|
+| `POST /api/v1/agent/conversations` | `201` | `{location_id}`, required → the conversation |
+| `GET /api/v1/agent/conversations` | `200` | optionally `?location_id=` — one location's conversations, or every one of this tenant's, newest first |
+| `GET /api/v1/agent/conversations/{id}` | `200` | the full transcript, plus `active_turn` |
+| `POST /api/v1/agent/conversations/{id}/messages` | `202` | `{content}` (1-4000 chars) → the queued turn |
+| `GET /api/v1/agent/turns/{id}` | `200` | turn status — the polling target |
+| `GET /api/v1/agent/turns/{id}/stream` | `200` | the same turn as it happens, as server-sent events |
+
+A conversation's `title` is set to the location's title when it is created — it is not
+derived from the first exchange.
 
 Everything is scoped to the caller's organization; another tenant's conversation, turn or
 location is a `404`, not a `403`. A conversation cannot be created without a location: the
@@ -339,7 +361,11 @@ every exit path including failure says so; a heartbeat comment every 15 seconds,
 which the proxies in front of this API drop an idle connection; and a hard lifetime cap
 just above `AGENT_TURN_TIMEOUT_SECONDS`, because a worker killed at its own time limit
 publishes nothing on the way out. A turn that is already terminal when the request
-arrives is answered with `done` immediately rather than subscribing to a dead channel.
+arrives is answered with `done` alone, immediately, rather than subscribing to a dead
+channel. On every other path `status` is the first event. (If the turn settles in the gap
+between opening the subscription and re-reading the row, the client gets `status` then
+`done`.) If the subscription itself cannot be opened the endpoint answers `503 "Live updates
+are unavailable. Poll the turn instead."`
 
 ---
 
@@ -375,8 +401,12 @@ login`, or a service account attached to the VM). `build_chat_model` raises with
 setting to fix if the provider is not configured, and that message reaches the user as the
 turn's error rather than disappearing into a log.
 
-`AGENT_TURN_TIMEOUT_SECONDS` (default 180) bounds a turn. It is set per-task because the
-Celery-wide limit is sized for an audit, and someone waiting at a keyboard is not.
+The chat model is built with `temperature=0.2`.
+
+`AGENT_TURN_TIMEOUT_SECONDS` (default 180, bounded 30-600) bounds a turn. It is set
+per-task because the Celery-wide limit is sized for an audit, and someone waiting at a
+keyboard is not. The Celery soft limit is `max(timeout - 15, 15)`, which is what raises
+`SoftTimeLimitExceeded` in time for the turn to record its own failure.
 
 The Celery worker must load the new task module — `app.tasks.agent` is in the worker's
 `include` list, so it is picked up on worker start. A deploy that restarts `locus-celery`

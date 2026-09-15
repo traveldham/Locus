@@ -2,7 +2,7 @@
 
 Category `content`, weight 10. Module: `backend/app/services/recommendations/categories/content.py`.
 Suggestion layer: `backend/app/services/recommendations/suggestions/content.py`.
-Research: `docs/engine/research/08-content-worker.md`.
+Research: `docs/features/audit-engine/research/08-content-worker.md`.
 
 ## What it answers
 

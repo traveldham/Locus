@@ -2,7 +2,7 @@
 
 Category `performance`, weight 10. Module: `backend/app/services/recommendations/categories/performance.py`.
 Suggestion layer: `backend/app/services/recommendations/suggestions/performance.py`.
-Research and thresholds: `docs/engine/research/07-performance-worker.md`.
+Research and thresholds: `docs/features/audit-engine/research/07-performance-worker.md`.
 
 ## What it answers
 

@@ -7,9 +7,16 @@ import { ErrorState } from "@/components/common/error-state";
 import { LinkButton } from "@/components/common/link-button";
 import { PageHeader } from "@/components/common/page-header";
 import { SampleDataNotice } from "@/components/common/sample-data-notice";
+import { Button } from "@/components/tailgrids/core/button";
 import { useLocationsQuery } from "@/hooks/use-locations";
 import { LOCATIONS_MAX_PAGE_SIZE } from "@/services/api/locations";
-import { MapMarker5 } from "@tailgrids/icons";
+import { Download1, MapMarker5 } from "@tailgrids/icons";
+import { useState } from "react";
+import {
+  ImportSampleProfilesDialog,
+  SampleImportResultAlert,
+  type SampleImportOutcome,
+} from "./import-sample-profiles-dialog";
 import { LocationsTable } from "./locations-table";
 import { LocationsTableSkeleton } from "./locations-table-skeleton";
 
@@ -21,6 +28,22 @@ export function LocationsView() {
     (location) => location.source === "fixture",
   );
 
+  const [isImportOpen, setIsImportOpen] = useState(false);
+  const [importOutcome, setImportOutcome] =
+    useState<SampleImportOutcome | null>(null);
+
+  function openImport() {
+    setImportOutcome(null);
+    setIsImportOpen(true);
+  }
+
+  const importButton = (
+    <Button size="xl" appearance="outline" onPress={openImport}>
+      <Download1 aria-hidden="true" focusable="false" />
+      Import sample profiles
+    </Button>
+  );
+
   return (
     <div className="px-5 py-8 lg:px-8 lg:py-10">
       <PageHeader
@@ -30,7 +53,20 @@ export function LocationsView() {
             ? `The profiles in ${project.name}, exactly as they stand on Google.`
             : "Every business profile imported into this organization, exactly as it stands on Google."
         }
+        actions={importButton}
       />
+
+      {importOutcome ? (
+        <div className="mt-6">
+          <SampleImportResultAlert
+            outcome={importOutcome}
+            project={
+              project ? { id: project.id, name: project.name } : undefined
+            }
+            onDismiss={() => setImportOutcome(null)}
+          />
+        </div>
+      ) : null}
 
       {hasSampleData ? <SampleDataNotice className="mt-6" /> : null}
 
@@ -51,11 +87,17 @@ export function LocationsView() {
           <EmptyState
             icon={<MapMarker5 aria-hidden="true" focusable="false" />}
             title="No profiles to show"
-            description="This workspace has no profiles loaded yet. Check the Google Business Profile connection, or adjust your search if you narrowed the list."
+            description="This workspace has no profiles loaded yet. Check the Google Business Profile connection, or import a sample profile to see what an audit finds."
             actions={
-              <LinkButton href="/settings/integrations" appearance="outline">
-                View integration
-              </LinkButton>
+              <>
+                <Button size="xl" onPress={openImport}>
+                  <Download1 aria-hidden="true" focusable="false" />
+                  Import sample profiles
+                </Button>
+                <LinkButton href="/settings/integrations" appearance="outline">
+                  View integration
+                </LinkButton>
+              </>
             }
           />
         ) : null}
@@ -72,6 +114,13 @@ export function LocationsView() {
           </>
         ) : null}
       </div>
+
+      {isImportOpen ? (
+        <ImportSampleProfilesDialog
+          onClose={() => setIsImportOpen(false)}
+          onImported={setImportOutcome}
+        />
+      ) : null}
     </div>
   );
 }

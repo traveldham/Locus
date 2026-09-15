@@ -2,7 +2,7 @@
 
 Category `visibility`, weight 25. Module: `backend/app/services/recommendations/categories/visibility.py`.
 Suggestion layer: `backend/app/services/recommendations/suggestions/visibility.py`.
-Research and thresholds: `docs/engine/research/05-visibility-worker.md`.
+Research and thresholds: `docs/features/audit-engine/research/05-visibility-worker.md`.
 
 ## What it answers
 

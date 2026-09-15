@@ -10,9 +10,10 @@ export const auditLatestKey = (locationId: string) => [
   "latest",
   locationId,
 ];
-const DIRECTORY_KEY = ["recommendations", "overview"] as const;
+/** Exported because adding a profile to the organization gives the directory a new row. */
+export const auditDirectoryKey = ["recommendations", "overview"] as const;
 const directoryKey = (projectId: string | null) => [
-  ...DIRECTORY_KEY,
+  ...auditDirectoryKey,
   projectId,
 ];
 
@@ -53,8 +54,10 @@ export function useGenerateRecommendations() {
         auditLatestKey(job.location_id),
         (previous) => (previous ? { ...previous, job } : previous),
       );
-      void client.invalidateQueries({ queryKey: auditLatestKey(job.location_id) });
-      void client.invalidateQueries({ queryKey: DIRECTORY_KEY });
+      void client.invalidateQueries({
+        queryKey: auditLatestKey(job.location_id),
+      });
+      void client.invalidateQueries({ queryKey: auditDirectoryKey });
     },
   });
 }
@@ -87,7 +90,7 @@ export function useAuditJob(jobId: string | null) {
     const locationId = query.data?.location_id;
     if (locationId)
       void client.invalidateQueries({ queryKey: auditLatestKey(locationId) });
-    void client.invalidateQueries({ queryKey: DIRECTORY_KEY });
+    void client.invalidateQueries({ queryKey: auditDirectoryKey });
   }, [client, jobId, status, query.data?.location_id]);
 
   return query;
